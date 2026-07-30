@@ -1,0 +1,22 @@
+{
+  "retrieved_at": "2026-07-30T10:37:30Z",
+  "url": "https://www.medicare.gov/health-drug-plans/part-d/basics/costs (also https://www.cms.gov/newsroom/fact-sheets/final-cy-2026-part-d-redesign-program-instructions and https://www.medicare.gov/publications/12211-whats-the-medicare-prescription-payment-plan.pdf)",
+  "http_status": "403 Forbidden. CONNECT tunnel failed, response 403 for www.medicare.gov:443 and www.cms.gov:443. NO DIRECT PAGE OR PDF READ.",
+  "source_type": "primary_government",
+  "extracted": {
+    "part_d_2026_annual_oop_cap_located": "$2,100",
+    "derivation_located": "The CY 2026 annual out-of-pocket threshold of $2,100 is the original 2025 out-of-pocket cap of $2,000 adjusted based on the annual percentage increase in average expenditures for covered Part D drugs.",
+    "coherence_check": "2000 -> 2100 is a 5.0% adjustment, which is plausible for the Part D API measure. Unlike the FPL figure, this located number is not internally contradictory. It is still UNCONFIRMED because no primary page was read.",
+    "catastrophic_coverage_effect_located": "Once the cap is reached the beneficiary automatically gets catastrophic coverage and pays nothing out of pocket for covered Part D drugs for the rest of the calendar year.",
+    "medicare_prescription_payment_plan": {
+      "exists_2026": "Yes, located as an available payment option.",
+      "what_it_does_located": "Spreads out-of-pocket Part D drug costs into monthly payments across the calendar year. It does not save money or lower drug costs.",
+      "timing_note_located": "Can be joined at any time in the year; starting earlier (before September) gives more months to spread costs.",
+      "APPLIES_TO_THESE_DRUGS": "UNRESOLVED AND CONSEQUENTIAL. The MPPP applies to drugs covered under the Part D benefit. GATE-BRIDGE established that Medicare GLP-1 Bridge drugs are furnished OUTSIDE the Part D benefit payment flow, that the Part D deductible does not apply, and that no part of the $50 copay counts toward TrOOP. That strongly implies the MPPP does NOT apply to a Bridge fill and that Bridge spending does NOT count toward the $2,100 cap - but nothing located states this directly. Do not assert either way.",
+      "distinct_case": "If a GLP-1 is covered by a beneficiary's ordinary Part D formulary (not via the Bridge), then it is an ordinary Part D drug and the $2,100 cap and MPPP would apply in the normal way. The engine must branch on WHICH channel the fill goes through."
+    },
+    "engine_consequence": "For a Medicare user the annual picture differs sharply by channel: ordinary Part D coverage (capped at the located $2,100, MPPP smoothing available) versus Bridge (located $50/month, no TrOOP accrual, no deductible, no LIS) versus cash pay (no insurance interaction at all). These must not be blended into one number.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Not a quotation from any government page this session read."
+  },
+  "verbatim_excerpt": "(none - no page or PDF text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'Your out-of-pocket spending on covered Part D drugs reaches $2,100 in 2026.' And on the payment plan: 'This payment option might help you manage your monthly expenses, but it doesn't save you money or lower your drug costs.')"
+}

@@ -1,0 +1,15 @@
+{
+  "retrieved_at": "2026-07-30T10:37:00Z",
+  "url": "internal: audit of the original GATE-ORF eligibility_rules array",
+  "http_status": "n/a (record audit)",
+  "source_type": "verifier_audit",
+  "extracted": {
+    "defect": "All four eligibility_rules entries populate verbatim_quote with quotation-marked sentences that the author concedes were never read from the cited primary source. Each is prefixed with a bracketed disclaimer, but the field contract is verbatim text, and the payload is a search-index reconstruction. Any downstream consumer that renders verbatim_quote, or that strips a bracketed prefix, publishes fabricated quotations in a YMYL surface.",
+    "second_defect": "eligibility_rules entries carry no confidence field and no null mechanism, unlike the data array. The rule strings are fully populated machine-readable predicates. A consumer therefore reads them as established, even though the data rows for the very same pathways are all confidence=unverified with value=null. The gate is internally inconsistent: it refuses to publish $50 but publishes the predicate set that governs who gets $50.",
+    "affected_pathways": ["self_pay_journey_program", "copay_card", "medicare_bridge", "label_contraindication"],
+    "highest_risk_entry": "medicare_bridge. It asserts indication_restricted_to=obesity_weight_management, counts_toward_part_d_deductible=false and counts_toward_annual_oop_cap=false. None was read from any source. Located secondary coverage frames Bridge eligibility as actively contested ('Medicare GLP-1 Bridge Launches, but Who Actually Qualifies?'), and every CMS, medicare.gov and hhs.gov cross-check failed. A Part D beneficiary relying on these predicates could budget wrongly and be refused at the counter.",
+    "second_highest_risk_entry": "copay_card. The rule encodes price_is_floor_not_guarantee=true, which is correct and important, but the gate provides no annual benefit maximum and no expiration date, both of which are standard Lilly savings-card conditions. An unbounded 'as little as $25' is a known counter-surprise pattern.",
+    "required_remedy": "Either move verbatim_quote to null and add an explicit confidence field set to unverified on all four entries, or drop the eligibility_rules array from the shipped gate. Do not ship quotation-marked text that was never read."
+  },
+  "verbatim_excerpt": "Original record, self_pay_journey_program: \"[SEARCH-INDEX DERIVED, NOT CONFIRMED VERBATIM FROM PRIMARY - page returned HTTP 403] \\\"To continue to be eligible for this purchase offer, you must complete your refill purchase of Foundayo within 45 days ...\\\"\" - a quotation placed inside a field whose contract is verbatim primary text."
+}

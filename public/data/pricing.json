@@ -122,7 +122,13 @@
         "1.7mg",
         "2.4mg"
       ],
-      "doseTiers": {}
+      "doseTiers": {
+        "0.25mg": "low_doses",
+        "0.5mg": "low_doses",
+        "1mg": "standard_doses",
+        "1.7mg": "standard_doses",
+        "2.4mg": "standard_doses"
+      }
     },
     "ozempic": {
       "label": "Ozempic",
@@ -222,26 +228,6 @@
       "basis": "A Medicare program is definitionally limited to Medicare beneficiaries. CMS pages were unreachable on 2026-07-30; see GATE-BRIDGE in docs/gate-resolutions.md for the full evidentiary position."
     },
     {
-      "id": "medicare-bridge-osa-exclusion",
-      "pathway": "medicare_bridge",
-      "effect": "suppress",
-      "when": {
-        "field": "osaCovered",
-        "op": "truthy"
-      },
-      "reason": "Beneficiaries already covered for this medication under the obstructive sleep apnea pathway are reported to be ineligible for this program. Confirm your own eligibility with Medicare before relying on it.",
-      "sourceUrl": "https://www.medicare.gov/",
-      "verification": "pending_primary_verification",
-      "basis": "Reported as an exclusion in the program description under review. CMS could not be reached on 2026-07-30 to confirm the criterion verbatim. Suppressing the pathway for this group is the conservative direction; the alternative would quote a price to a beneficiary who cannot obtain it. Flagged as a blocking item in docs/discrepancy-report.md."
-    },
-    {
-      "id": "medicare-bridge-clinical-criteria",
-      "pathway": "medicare_bridge",
-      "effect": "note",
-      "when": true,
-      "reason": "This program is reported to require a BMI of at least 35, or at least 27 with a weight-related comorbid condition, and to cover a multi-dose pen rather than single-dose vials. These criteria are not yet confirmed against CMS."
-    },
-    {
       "id": "manufacturer-direct-requires-prescription",
       "pathway": "*",
       "effect": "caveat",
@@ -323,6 +309,45 @@
         "value": "ozempic"
       },
       "reason": "Ozempic is approved for type 2 diabetes, not for weight management. Coverage and program eligibility follow the diabetes indication."
+    },
+    {
+      "id": "medicare-bridge-part-d-eligible-exclusion",
+      "pathway": "medicare_bridge",
+      "effect": "suppress",
+      "when": {
+        "any": [
+          {
+            "field": "osaCovered",
+            "op": "truthy"
+          },
+          {
+            "field": "partDGlp1Eligible",
+            "op": "truthy"
+          }
+        ]
+      },
+      "reason": "This program is reported to be for beneficiaries who cannot already get a GLP-1 through their Part D plan. A diagnosis of type 2 diabetes, moderate to severe obstructive sleep apnea, or noncirrhotic MASH is reported to confer Part D GLP-1 eligibility and therefore to disqualify you from this program, even if you meet every clinical criterion. Confirm your own position with Medicare.",
+      "sourceUrl": "https://www.medicare.gov/",
+      "verification": "pending_primary_verification",
+      "basis": "Research located CMS-attributed material stating the program is for beneficiaries not eligible to receive a GLP-1 through their Part D plan, and naming type 2 diabetes, moderate to severe obstructive sleep apnea and noncirrhotic MASH as the qualifying diagnoses that confer Part D eligibility. The mechanism is therefore broader than the 'already covered for sleep apnea' exclusion originally briefed: it is HAVING a Part D-qualifying diagnosis, not being enrolled in coverage for it. cms.gov and medicare.gov were both denied at CONNECT by the egress policy on 2026-07-30, so this could not be read directly. Suppressing on this predicate is the conservative direction: the alternative quotes a fixed monthly price to a beneficiary who cannot obtain it."
+    },
+    {
+      "id": "medicare-bridge-clinical-criteria",
+      "pathway": "medicare_bridge",
+      "effect": "note",
+      "when": true,
+      "reason": "This program is reported to require a BMI of at least 35, or at least 27 with a weight-related comorbid condition, and to run for a bounded period through the end of 2027. It is reported to cover Foundayo, Wegovy injection and tablets, and the Zepbound KwikPen specifically rather than Zepbound vials. None of these criteria is yet confirmed against CMS."
+    },
+    {
+      "id": "medicaid-balance-model-is-state-variable",
+      "pathway": "*",
+      "effect": "note",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "eq",
+        "value": "medicaid"
+      },
+      "reason": "Medicaid GLP-1 coverage is state-by-state. A federal program reported for 2026 negotiates terms on behalf of state Medicaid agencies, but participation is voluntary and what you pay depends on your own state. There is no national Medicaid price for these medications and this site does not publish one."
     }
   ],
   "prices": [
@@ -399,7 +424,10 @@
         "provenance": "Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 to every request on 2026-07-30.",
         "basis": "conflicting_secondary",
         "needs": "A direct read of trumprx.gov. Until then this figure must not render as a number in any state."
-      }
+      },
+      "caveats": [
+        "The widely quoted low monthly figure for this pathway is reported to be an INTRODUCTORY price: limited to the lowest doses and to the first two monthly fills, after which the price is reported to rise substantially. Budgeting the introductory figure as your ongoing cost could understate what you pay from the third fill onward by 150 to 300 dollars a month. This condition is not yet confirmed against the manufacturer, and it is the single most important thing to check before you rely on any low headline price for this pathway."
+      ]
     },
     {
       "value": null,
@@ -429,7 +457,7 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Reported at a fixed monthly beneficiary cost for a multi-dose pen, subject to BMI criteria. Neither the launch nor the cost could be confirmed against CMS.",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
       "candidate": {
         "value": 50,
         "provenance": "Reported as 50 per month from 2026-07-01. cms.gov and medicare.gov were both denied by the egress policy on 2026-07-30, so neither the launch nor the amount could be confirmed.",
@@ -446,49 +474,13 @@
       "source_url": "https://lillydirect.lilly.com/",
       "source_type": "primary_manufacturer",
       "verified_date": "2026-07-30",
-      "confidence": "unverified",
-      "notes": "Reference figure only, used to measure a saving against.",
-      "candidate": {
-        "value": 1086,
-        "provenance": "Reported in a range of approximately 1059 to 1087 depending on source and date. Not confirmable without a direct read.",
-        "basis": "conflicting_secondary",
-        "needs": "A current list or WAC figure from a Lilly source."
-      }
-    },
-    {
-      "value": null,
-      "unit": "USD/month",
-      "drug": "wegovy_injection",
-      "dose_or_tier": "any",
-      "pathway": "novocare_self_pay",
-      "source_url": "https://www.novocare.com/",
-      "source_type": "primary_manufacturer",
-      "verified_date": "2026-07-30",
-      "confidence": "unverified",
-      "notes": "Direct cash-pay price, reported as flat across doses.",
-      "candidate": {
-        "value": 199,
-        "provenance": "Reported at 199 per month via search-index summaries. novocare.com was denied by the egress policy on 2026-07-30.",
-        "basis": "secondary_press",
-        "needs": "Direct read of novocare.com, including whether the price is genuinely flat across all doses."
-      }
-    },
-    {
-      "value": null,
-      "unit": "USD/month",
-      "drug": "wegovy_injection",
-      "dose_or_tier": "any",
-      "pathway": "trumprx",
-      "source_url": "https://trumprx.gov/",
-      "source_type": "primary_government",
-      "verified_date": "2026-07-30",
       "confidence": "conflicting",
-      "notes": "A November 2025 announcement described approximately 350 per month; later readings of the live site described approximately 199. The live site governs and could not be read.",
+      "notes": "Reference figure only. Sources give 1086 as WAC and approximately 1059 attributed to April 2026 published pricing. A spread in the denominator changes the headline saving, so no single figure is adopted.",
       "candidate": {
         "value": null,
-        "provenance": "Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 on 2026-07-30.",
+        "provenance": "Four mutually inconsistent figures located: 1086, 1059, 1059.87 and 1087. Averaging them would invent a price nobody charges.",
         "basis": "conflicting_secondary",
-        "needs": "A direct read of trumprx.gov."
+        "needs": "A current WAC or list figure from a Lilly source, with its as-of date."
       }
     },
     {
@@ -543,7 +535,10 @@
         "provenance": "Reported at 199 per month. novocare.com denied by egress policy on 2026-07-30.",
         "basis": "secondary_press",
         "needs": "Direct read of novocare.com."
-      }
+      },
+      "caveats": [
+        "The widely quoted low monthly figure for this pathway is reported to be an INTRODUCTORY price: limited to the lowest doses and to the first two monthly fills, after which the price is reported to rise substantially. Budgeting the introductory figure as your ongoing cost could understate what you pay from the third fill onward by 150 to 300 dollars a month. This condition is not yet confirmed against the manufacturer, and it is the single most important thing to check before you rely on any low headline price for this pathway."
+      ]
     },
     {
       "value": null,
@@ -561,7 +556,10 @@
         "provenance": "Conflicting, neither confirmable. HTTP 403 on 2026-07-30.",
         "basis": "conflicting_secondary",
         "needs": "A direct read of trumprx.gov."
-      }
+      },
+      "caveats": [
+        "The widely quoted low monthly figure for this pathway is reported to be an INTRODUCTORY price: limited to the lowest doses and to the first two monthly fills, after which the price is reported to rise substantially. Budgeting the introductory figure as your ongoing cost could understate what you pay from the third fill onward by 150 to 300 dollars a month. This condition is not yet confirmed against the manufacturer, and it is the single most important thing to check before you rely on any low headline price for this pathway."
+      ]
     },
     {
       "value": null,
@@ -663,7 +661,7 @@
       "source_type": "primary_manufacturer",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Reported to have been added to the self-pay program at a discount to list. No confirmed figure.",
+      "notes": "Reported as a single flat self-pay price across ALL dose strengths, structurally unlike Zepbound vials which are tiered. Mounjaro must not inherit Zepbound dose-tier logic.",
       "candidate": {
         "value": null,
         "provenance": "Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain.",
@@ -771,12 +769,108 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "A fixed monthly Medicare beneficiary cost was reported as beginning as soon as 2026-07-01. Today is past that date and CMS could not be reached to confirm it started.",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
       "candidate": {
         "value": 50,
         "provenance": "Reported at 50 per month for eligible Medicare Part D beneficiaries. cms.gov denied by egress policy on 2026-07-30.",
         "basis": "secondary_press",
         "needs": "A direct read of a CMS page."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "low_doses",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Lowest two doses (0.25 mg and 0.5 mg). Reported to carry an introductory price for a limited number of fills.",
+      "caveats": [
+        "The widely quoted low monthly figure for this pathway is reported to be an INTRODUCTORY price: limited to the lowest doses and to the first two monthly fills, after which the price is reported to rise substantially. Budgeting the introductory figure as your ongoing cost could understate what you pay from the third fill onward by 150 to 300 dollars a month. This condition is not yet confirmed against the manufacturer, and it is the single most important thing to check before you rely on any low headline price for this pathway."
+      ],
+      "candidate": {
+        "value": null,
+        "provenance": "A low introductory figure and a higher ongoing figure are both reported for these doses. Which applies depends on fill number and on an offer end date. Not confirmable without a direct read.",
+        "basis": "secondary_press",
+        "needs": "A direct read of novocare.com establishing the introductory price, how many fills it covers, its end date, and the ongoing price after it."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "standard_doses",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Doses from 1 mg upward. Reported to be priced above the lowest two doses, contradicting the flat-rate pricing widely attributed to this pathway.",
+      "candidate": {
+        "value": null,
+        "provenance": "Reported at a materially higher ongoing figure than the introductory price quoted for the lowest doses. Not confirmable without a direct read.",
+        "basis": "secondary_press",
+        "needs": "A direct read of novocare.com for the per-dose price table."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "trumprx",
+      "source_url": "https://trumprx.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "conflicting",
+      "notes": "Federal platform. Reported figures include an \"as low as\" lowest-dose introductory price and a separate average price. These are two different statistics describing one program, not two competing readings of it.",
+      "caveats": [
+        "The widely quoted low monthly figure for this pathway is reported to be an INTRODUCTORY price: limited to the lowest doses and to the first two monthly fills, after which the price is reported to rise substantially. Budgeting the introductory figure as your ongoing cost could understate what you pay from the third fill onward by 150 to 300 dollars a month. This condition is not yet confirmed against the manufacturer, and it is the single most important thing to check before you rely on any low headline price for this pathway."
+      ],
+      "candidate": {
+        "value": null,
+        "provenance": "trumprx.gov could not be read. Reported figures include both an average price and an \"as low as\" lowest-dose introductory price covering a limited number of fills.",
+        "basis": "secondary_press",
+        "needs": "A direct read of trumprx.gov product pages."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "medicare_bridge",
+      "source_url": "https://www.medicare.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
+      "candidate": {
+        "value": 50,
+        "provenance": "Reported at 50 dollars per month for eligible beneficiaries. cms.gov and medicare.gov both denied by egress policy on 2026-07-30.",
+        "basis": "secondary_press",
+        "needs": "A direct read of a CMS page confirming cost and covered formulations."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_pill",
+      "dose_or_tier": "any",
+      "pathway": "medicare_bridge",
+      "source_url": "https://www.medicare.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
+      "candidate": {
+        "value": 50,
+        "provenance": "Reported at 50 dollars per month for eligible beneficiaries. cms.gov and medicare.gov both denied by egress policy on 2026-07-30.",
+        "basis": "secondary_press",
+        "needs": "A direct read of a CMS page confirming cost and covered formulations."
       }
     }
   ]

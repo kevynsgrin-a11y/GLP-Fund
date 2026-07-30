@@ -1,0 +1,21 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "http://127.0.0.1:40851/__agentproxy/status",
+  "http_status": "200 (local diagnostic endpoint); all external hosts below returned 403 at CONNECT",
+  "source_type": "local_diagnostic_not_a_source",
+  "extracted": {
+    "purpose": "Adversarial re-verification of the prior researcher's egress-blockade claim for GATE-TRUMPRX.",
+    "prior_claim_upheld": "CONFIRMED. The 403 responses originate from this session's egress proxy at the HTTP CONNECT stage, not from trumprx.gov. The prior researcher's refutation of the naive 'trumprx.gov blocks scrapers' reading is correct and I independently reproduce it.",
+    "hosts_i_independently_confirmed_403_at_connect": [
+      "trumprx.gov:443 (WebFetch of https://trumprx.gov/p/wegovy returned 403; curl returned 'CONNECT tunnel failed, response 403')",
+      "www.google.com:443 (logged in proxy recentRelayFailures as connect_rejected)",
+      "www.cnn.com:443 (WebFetch returned 403)",
+      "rollcall.com:443 (WebFetch returned 403)"
+    ],
+    "significance_of_cnn_and_rollcall_403": "The prior researcher recorded http_status 'ok' for https://www.cnn.com/2026/02/24/health/novo-nordisk-ozempic-wegovy-costs and for the rollcall.com Factbase transcript. Both are in fact 403 and unreadable. Their own tos_notes admit the pages were only 'surfaced via WebSearch listing; not directly fetched'. The http_status field therefore misreports an unread URL as successfully read.",
+    "control_test_note": "The prior researcher's example.com control is directionally right but weaker than claimed; www.google.com failing at CONNECT is a cleaner demonstration that the denial is blanket egress policy rather than any property of the target site.",
+    "policy_compliance": "Per /root/.ccr/README.md I did not retry or route around the block, and did not use any alternate MCP fetch tool to tunnel to a blocked host.",
+    "consequence": "No PRIMARY source on this gate's allowlist is readable. Therefore no figure on this gate can be CONFIRMED by anyone in this environment, including me. Every price value remains null."
+  },
+  "verbatim_excerpt": "{\"ts\":\"2026-07-30T10:43:40.478Z\",\"kind\":\"connect_rejected\",\"detail\":\"gateway answered 403 to CONNECT (policy denial or upstream failure)\",\"host\":\"www.google.com:443\"} ... curl: (56) CONNECT tunnel failed, response 403"
+}

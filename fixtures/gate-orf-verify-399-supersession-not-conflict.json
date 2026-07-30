@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:34:40Z",
+  "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-and-us-government-agree-expand-access-obesity-medicines (403); mirror https://lilly.gcs-web.com/news-releases/news-release-details/lilly-and-us-government-agree-expand-access-obesity-medicines (403)",
+  "http_status": "403 on both hosts",
+  "source_type": "primary_manufacturer_located_not_read",
+  "extracted": {
+    "finding": "The $399 figure the original report treated as an unreconciled CONFLICT with $349 is better characterized as a SUPERSEDED pre-approval announcement, not a live competing price.",
+    "provenance_of_399": "Announced 2025-11-06 in the Lilly / U.S. government agreement on obesity medicines: orforglipron to be available with the lowest dose starting at $149 with additional doses up to $399, via TrumpRx and LillyDirect.",
+    "provenance_of_349": "Post-launch regular top-tier self-pay price located on foundayo.lilly.com after the 2026-04-01 approval and 2026-04-06 LillyDirect launch.",
+    "correct_characterization": "Sequence, not conflict: $399 was an announced pre-launch ceiling; the located post-launch regular ceiling is $349, with a conditional $299 for continuous refills. Reporting also states Lilly 'lowered its price, saying it will sell the pill at up to $299 a month if patients continually renew their prescription'.",
+    "why_still_unverified": "Neither figure was read from a primary page. Both remain located-only. Value stays null.",
+    "additional_located_figure_from_same_agreement": "Zepbound and orforglipron monthly prices described as dropping from more than $1080 to an average of $346 when purchased through TrumpRx; Medicare beneficiaries with obesity or overweight at $50 a month. Not confirmed.",
+    "list_price_lead_secondary_only": "A secondary tracker reports a U.S. list price of approximately $649 per month for Foundayo as of July 2026. Secondary only. The original report's statement that no list price was located from a PRIMARY source remains accurate; this is recorded only as a lead for re-run."
+  },
+  "verbatim_excerpt": "\"Orforglipron will be available with the lowest dose starting at $149 with additional doses up to $399.\" (located via WebSearch over the Lilly/US-government agreement release; page body 403 and never read.) And: \"Lilly has lowered its price, saying it will sell the pill at up to $299 a month if patients continually renew their prescription.\""
+}

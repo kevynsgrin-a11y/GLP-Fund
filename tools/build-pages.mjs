@@ -318,14 +318,11 @@ function faqFor(drugId) {
 
 function buildIndex() {
   const body = `
-  <h1>What is the cheapest legitimate way to pay for your GLP-1 this month?</h1>
+  <h1>The cheapest legal way to pay for your GLP-1</h1>
   <p class="lede">
-    Select your medication, your insurance situation and your dose. You get every
-    available payment pathway ranked by real monthly cost, each with a source link
-    and the date we verified it.
+    Three questions. Every payment pathway ranked by what you would actually pay
+    this month, each with its source and the date we checked it.
   </p>
-  ${dataStamp()}
-  ${adSlot('leaderboard')}
 
   <form class="tool" data-tool-form novalidate>
     <h2 class="visually-hidden">Find your cheapest pathway</h2>
@@ -359,6 +356,8 @@ function buildIndex() {
     </p>
   </form>
 
+  ${dataStamp()}
+
   <section class="results" data-results aria-live="polite" aria-atomic="false" aria-labelledby="results-heading">
     <div class="empty">
       <p>Choose your medication and your insurance situation to see every pathway
@@ -366,7 +365,14 @@ function buildIndex() {
     </div>
   </section>
 
-  ${adSlot('inline')}
+  ${/* The leaderboard sits BELOW the tool, not above it.
+        Above the form it pushed the third input to 942px in an 844px viewport,
+        so the dose question fell below the fold and the brief's "three inputs,
+        one screen, no scrolling to start" was quietly broken. The slot still
+        reserves its height, so CLS is unaffected -- it is only the position that
+        changed. Measured by tools/qa.mjs; do not move it back without re-running
+        that check. */ ''}
+  ${adSlot('leaderboard')}
   ${affiliateSlot('below-results')}
 
   <h2>Why this site and not a telehealth cost guide</h2>
@@ -389,6 +395,11 @@ function buildIndex() {
     so and link you to the official page instead of guessing.
     <a href="/methodology/">Read the methodology</a>.
   </p>
+
+  ${/* Second slot placed here rather than directly under the first: stacked
+        adjacent slots left a dead band of roughly 350px on a 390px viewport and
+        halve each other's viewability. */ ''}
+  ${adSlot('inline')}
 
   <h2>Every pathway we track</h2>
   <ul>

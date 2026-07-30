@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "http://127.0.0.1:40851/__agentproxy/status",
+  "http_status": "200 for the local diagnostic endpoint; every external host CONNECT-rejected",
+  "source_type": "local_diagnostic_not_a_data_source",
+  "extracted": {
+    "verifier_independent_test": "CONFIRMS the prior researcher's retrieval-blockade claim",
+    "webfetch_cms_bridge_landing": "The server returned HTTP 403 Forbidden. (https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge)",
+    "webfetch_control_example_com": "The server returned HTTP 403 Forbidden. (https://example.com/) - control proves session-wide failure, not CMS bot protection",
+    "curl_exit_codes": "curl returned HTTP code 000 (no response) for www.cms.gov, www.medicare.gov, aspe.hhs.gov, api.fda.gov AND example.com",
+    "proxy_recent_failures_kind": "connect_rejected",
+    "proxy_recent_failures_detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+    "working_channel": "WebSearch only, constrained with allowed_domains to cms.gov / medicare.gov / medicaid.gov",
+    "consequence": "No primary page was directly read by EITHER the original researcher or this verifier. All figures must remain value:null / confidence:unverified. WebSearch summaries are lossy paraphrase and cannot confirm."
+  },
+  "verbatim_excerpt": "{\"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\"} -- and WebFetch on https://example.com/ returned \"The server returned HTTP 403 Forbidden.\""
+}

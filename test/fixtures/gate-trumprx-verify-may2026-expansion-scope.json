@@ -1,0 +1,14 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://www.whitehouse.gov/fact-sheets/2026/05/fact-sheet-president-donald-j-trump-announces-expansion-of-trumprx-gov-to-bring-americans-transparency-and-choice-on-everyday-medicines/",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_government_page",
+  "extracted": {
+    "finding": "The prior researcher flagged the May 2026 TrumpRx expansion as an open staleness risk that might have changed GLP-1 pricing after the February launch. Index-mediated reading indicates the expansion's scope was GENERIC medicines, not GLP-1 repricing.",
+    "expansion_scope_index_attributed": "TrumpRx.gov began featuring more than 600 generic medications, with discounts from Amazon Pharmacy, Cost Plus Drugs and GoodRx integrated into the platform.",
+    "glp1_figures_in_may_2026_context": "The same GLP-1 figures from February are restated unchanged ($1,028 and $1,349 to an average of $350 and as low as $199; Wegovy pill to as low as $149; Zepbound $1,088 to an average of $346 and as low as $299). No revised GLP-1 price was surfaced.",
+    "residual_staleness_risk": "PARTIALLY REDUCED, NOT ELIMINATED. The May expansion appears not to have repriced GLP-1s, but the live product pages carry their own offer windows that postdate all fact sheets: the Wegovy Pill 4 mg offer expires 2026-08-31, and the pen introductory offers run to 2026-12-31. Fact-sheet figures are therefore not a substitute for the live page.",
+    "confirmation_status": "NOT CONFIRMED. Index-mediated only."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to whitehouse.gov: \"In May 2026, President Trump announced an expansion of TrumpRx.gov to provide unprecedented price transparency on generic medications, with the platform beginning to feature more than 600 generic medications. Discounts offered by Amazon Pharmacy, Cost Plus Drugs, and GoodRx were integrated into TrumpRx.gov.\" -- reproduced from search-index output, NOT a direct read."
+}

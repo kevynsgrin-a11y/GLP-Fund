@@ -323,6 +323,19 @@ export function toContext(input = {}) {
     medicareEligible: input.medicareEligible ?? insuranceStatus === 'medicare',
     incomeTier: input.incomeTier ?? 'unknown',
     osaCovered: input.osaCovered ?? false,
+    /**
+     * Whether the user can already get a GLP-1 through their Part D plan.
+     *
+     * Research indicates the Medicare Bridge disqualifier is broader than the
+     * "already covered for sleep apnea" exclusion originally specified: what
+     * disqualifies is HAVING a Part D-qualifying diagnosis (type 2 diabetes,
+     * moderate to severe obstructive sleep apnea, or noncirrhotic MASH), not
+     * being enrolled in coverage for one. Kept as a separate field from
+     * osaCovered so the narrower originally-specified rule and the broader
+     * mechanism can both be expressed, and so a future verification pass can
+     * retire whichever turns out to be wrong.
+     */
+    partDGlp1Eligible: input.partDGlp1Eligible ?? false,
     hasPrescription: input.hasPrescription ?? true,
     bmi: typeof input.bmi === 'number' ? input.bmi : null,
     hasComorbidity: input.hasComorbidity ?? null,

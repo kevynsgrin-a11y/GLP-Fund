@@ -1,0 +1,35 @@
+{
+  "retrieved_at": "2026-07-30T10:38:00Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge (also https://www.cms.gov/files/document/medicare-glp-1-bridge-expectations-faqs.pdf)",
+  "http_status": "403 Forbidden. CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PAGE OR PDF READ.",
+  "source_type": "primary_government",
+  "extracted": {
+    "ANSWER_TO_ITEM_6": "The $50/month beneficiary copay and the $245/month government/net price are TWO SIDES OF THE SAME PROGRAM - the Medicare GLP-1 Bridge. They are NOT distinct programs, and they are NOT distinct from GATE-BRIDGE. GATE-BRIDGE is that program.",
+    "fifty_dollars": {
+      "figure": 50,
+      "unit": "USD per month, beneficiary copay",
+      "belongs_to": "Medicare GLP-1 Bridge",
+      "who_pays": "the Medicare beneficiary at the pharmacy counter"
+    },
+    "two_hundred_forty_five_dollars": {
+      "figure": 245,
+      "unit": "USD per monthly supply, net price to the government",
+      "belongs_to": "Medicare GLP-1 Bridge",
+      "who_pays": "this is the net price at which participating MANUFACTURERS supply the drug under the demonstration; it is NOT a consumer-facing price and must never be displayed to a user as what they would pay",
+      "located_language": "Under the Medicare GLP-1 Bridge, participating manufacturers will provide eligible GLP-1 drugs at a net price of $245 per monthly supply. Medicare beneficiaries will pay a co-pay of just $50 per month."
+    },
+    "DISPLAY_SAFETY_RULE": "Because $245 and $50 come from the same program, an engine that surfaced both as if they were alternative consumer prices would be badly misleading. Only $50 is a beneficiary-facing figure for this program.",
+    "trumprx_is_a_DISTINCT_program": "TrumpRx.gov is a separate direct-to-consumer cash channel, not the Bridge. Located claim: discounted prices in the direct-to-consumer channel TrumpRx.gov are for drugs commonly purchased outside of insurance, with GLP-1 users without insurance coverage expected to save $3,000 per year. The $50 Bridge copay must not be attributed to TrumpRx, nor TrumpRx pricing to the Bridge.",
+    "bridge_parameters_consistent_with_existing_gate_bridge_fixtures": {
+      "period": "2026-07-01 through 2027-12-31",
+      "eligible_drugs": "Foundayo, Wegovy (injection and tablets), Zepbound (KwikPen) when used to reduce excess body weight and maintain weight reduction",
+      "indication_gate": "the $50 copay applies only when prescribed for a weight management indication",
+      "outside_part_d": "furnished outside the Part D benefit payment flow and coverage; Part D deductible does not apply; no part of the $50 copay counts toward TrOOP; no low-income subsidy (LIS) provided for LIS beneficiaries",
+      "LIS_WARNING": "The absence of LIS means a low-income-subsidy beneficiary could conceivably do WORSE at $50 under the Bridge than under their subsidized Part D benefit. The engine must not assume the Bridge is always the cheapest Medicare option.",
+      "exclusion": "Not all Medicare beneficiaries qualify, including those who already receive GLP-1 medications through existing Medicare prescription drug coverage or are eligible for GLP-1 coverage through the Part D benefit"
+    },
+    "cross_check_note": "These figures agree with the previously written GATE-BRIDGE fixtures, which were themselves recorded under the same 403 blockade. Agreement between two blocked sessions reading the same search index is NOT independent corroboration and does not upgrade confidence.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Not a quotation from any government page this session read."
+  },
+  "verbatim_excerpt": "(none - no page or PDF text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'Under the Medicare GLP-1 Bridge, participating manufacturers will provide eligible GLP-1 drugs at a net price of $245 per monthly supply. Medicare beneficiaries will pay a co-pay of just $50 per month.')"
+}

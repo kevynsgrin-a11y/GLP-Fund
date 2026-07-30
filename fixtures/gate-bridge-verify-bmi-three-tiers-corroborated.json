@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/files/document/glp-1-prescribers-c-1.pdf",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "The reported findings' three-tier BMI structure is INDEPENDENTLY CORROBORATED by a separate search of cms.gov run by this verifier. It survives scrutiny.",
+    "tier_1": "BMI at least 35, no comorbidity required",
+    "tier_2": "BMI at least 30 AND a diagnosis of one or more of: (A) heart failure with preserved ejection fraction, (B) uncontrolled hypertension (systolic above 140 mm Hg or diastolic above 90 mm Hg despite concurrent treatment with two antihypertensive medications), or (C) chronic kidney disease stage 3a or above",
+    "tier_3": "BMI at least 27 AND a diagnosis of one or more of: (A) pre-diabetes, (B) previous myocardial infarction, (C) previous stroke, or (D) symptomatic peripheral artery disease",
+    "assessment_timepoint": "at the time the patient starts GLP-1 therapy",
+    "tier_3_fourth_comorbidity_resolved": "The reported findings flagged a discrepancy between 'symptomatic peripheral artery disease' and 'symptomatic conditions' across two search renderings. This verifier's independent search returned 'symptomatic peripheral artery disease'. The 'symptomatic conditions' rendering was a truncation artifact, not a genuine conflict. Resolved in substance; still needs a direct read.",
+    "additional_attestations_corroborated": "beneficiary is at least 18 years of age; currently on and will continue lifestyle modification (as clinically appropriate); and does not have type 2 diabetes, moderate-to-severe obstructive sleep apnea, or MASH",
+    "spec_errors_confirmed": "The reported spec's 'BMI >= 35, or >= 27 with comorbidities' does delete the entire BMI-30 tier and does attach an unqualified comorbidity list to BMI 27. Both errors are real and consequential in opposite directions.",
+    "value": "null / unverified - no primary read. This remains the single most load-bearing unread document in the gate."
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"To qualify, at the time the patient starts GLP-1 therapy, at least one of these must be true: BMI >= 35... BMI >= 30 AND a diagnosis of one or more of the following: (A) heart failure with preserved ejection fraction, (B) uncontrolled hypertension... or (C) chronic kidney disease stage 3a or above... BMI >= 27 AND a diagnosis of one or more of the following: (A) pre-diabetes (B) previous myocardial infarction, (C) previous stroke, or (D) symptomatic peripheral artery disease\""
+}

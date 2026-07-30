@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-part-d-plans",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "BLOCKING OMISSION - no low-income subsidy applies to the Bridge copay",
+    "reported_claim": "$50 per month, stated as independent of income",
+    "problem": "Income-independence is presented as a neutral simplification. For an LIS / dual-eligible beneficiary the $50 is a FULL UNSUBSIDIZED charge, higher than their normal Part D cost sharing, and it also does not accrue to TrOOP.",
+    "lis_rule": "Low-income cost-sharing subsidies do not apply to any portion of the Bridge copay; no LIS is provided for LIS beneficiaries",
+    "phase_invariance": "The $50 copay would remain the same regardless of the phase of the Part D benefit the beneficiary is in",
+    "operates_outside_part_d": "The Medicare GLP-1 Bridge will operate outside of the Medicare Part D benefit's coverage and payment flow",
+    "part_d_plan_redirection": "Where a PA request reaches a Part D plan for a GLP-1 excluded from Part D (agents when used for weight loss) but possibly Bridge-eligible, CMS strongly encourages the plan sponsor to assist with directing the claim to the Bridge for review",
+    "note_on_reported_quote_drift": "Reported findings quote this page as 'The $50 copay for eligible beneficiaries remains the same' (present tense). Index returns 'would remain the same' - conditional pre-launch guidance voice. The reported string is not verbatim.",
+    "source_absent_from_reported_source_list": true,
+    "value": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"Low-income cost-sharing subsidies would also not apply to any portion of the copay... there is no low-income subsidy (LIS) provided for LIS beneficiaries under the Medicare GLP-1 Bridge.\" and \"The Medicare GLP-1 Bridge will operate outside of the Medicare Part D benefit's coverage and payment flow.\""
+}

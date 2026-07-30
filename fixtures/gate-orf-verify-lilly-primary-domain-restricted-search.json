@@ -1,0 +1,31 @@
+{
+  "retrieved_at": "2026-07-30T10:35:10Z",
+  "url": "WebSearch with allowed_domains=[foundayo.lilly.com, lilly.com, pricinginfo.lilly.com, lillydirect.lilly.com, investor.lilly.com]",
+  "http_status": "search returned results; every underlying page 403 on direct WebFetch",
+  "source_type": "search_index_over_primary_domains_only",
+  "extracted": {
+    "purpose": "Test the original report's stated reason for nulling every price, namely that 'the summarizer mixed it with drugs.com, ro.co, healthline.com and findhonestcare.com'. Restricting the search to Lilly primary domains removes that specific contamination.",
+    "result": "The same figures reproduce from a primary-domains-only result set. The original report's contamination rationale is therefore moot, but the nulls still stand for a different and stronger reason: no primary page was ever read, and a search-engine summary is a locator, not a confirmer.",
+    "self_pay_regular_1_month_located": {
+      "0.8 mg": "$149",
+      "2.5 mg": "$199",
+      "5.5 mg": "$299",
+      "9 mg": "$299",
+      "14.5 mg": "$349",
+      "17.2 mg": "$349",
+      "supply_definition": "for all Foundayo dosages, 1-month supply is defined as 30 days"
+    },
+    "self_pay_journey_offer_located": "$299 for 14.5 mg and 17.2 mg only, conditional on refilling within 45 days of the delivery/received date of the previous fill",
+    "savings_card_located": "as low as $25 for a 1-month, 2-month, or 3-month prescription fill, requires commercial drug insurance with coverage for Foundayo",
+    "medicare_bridge_located": "$50 for a one-month (30-day) supply through the Medicare GLP-1 Bridge program",
+    "discrepancy_against_original_report": "The Lilly-primary-restricted summary states the Medicare Bridge price as a one-month (30-day) supply. The original report asserted the basis was '28- or 30-day supply'. The 28-day element has no located support.",
+    "additional_primary_urls_the_original_report_never_cited": [
+      "https://foundayo.lilly.com/hcp/savings-coverage",
+      "https://foundayo.lilly.com/",
+      "https://www.lilly.com/lillydirect/companion/foundayo",
+      "https://investor.lilly.com/node/54111/pdf",
+      "https://investor.lilly.com/news-releases/news-release-details/foundayotm-orforglipron-lillys-new-oral-glp-1-pill-weight-loss"
+    ]
+  },
+  "verbatim_excerpt": "Summary over Lilly primary domains only: \"Regular price for a 1-month supply of Foundayo dosages is $149 for 0.8 mg, $199 for 2.5 mg, $299 for 5.5 mg and 9 mg, and $349 for 14.5 mg and 17.2 mg. For all Foundayo dosages, 1-month supply is defined as 30 days.\" ... \"The $299 purchase offer applies to the 14.5 mg and 17.2 mg Foundayo dosages.\" ... \"Get your medicine and pay $50 for a one-month (30-day) supply through the Medicare GLP-1 Bridge program.\""
+}

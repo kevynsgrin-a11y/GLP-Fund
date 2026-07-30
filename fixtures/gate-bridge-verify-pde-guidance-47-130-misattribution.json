@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/priorities/innovation/files/balance-cy27-pde-submission-guidance.pdf",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "TWO DEFECTS in the reported findings' handling of the $47 / $130 example figures",
+    "defect_1_misattribution": "Reported findings attribute these figures to balance-part-d-plans-rfa.pdf ('RFA plan examples') and direct remediation to 'a direct read of balance-part-d-plans-rfa.pdf Appendix C and its example tables.' The figures actually appear in the BALANCE Model PDE submission guidance (balance-cy27-pde-submission-guidance.pdf) as prescription-drug-event reporting illustrations. Remediation is pointed at the wrong document.",
+    "defect_2_spurious_inconsistency": "Reported findings assert 'the $130/three-month figure is inconsistent with the $50 per 28-30 day cap.' $130 for a three-month supply is approximately $43.33 per month, i.e. BELOW the $50 per 28-or-30-day ceiling. $47 for one month is likewise below $50. There is no inconsistency; the claimed conflict is a reasoning error.",
+    "example_detail": "BALANCE Plan or EGWP example: model drug on a tier with $47.00 copay for a one-month supply (ingredient cost $499.00, dispensing fee $5.00), and a tier with $130.00 copay for a three-month supply (ingredient cost $1,497.00, dispensing fee $5.00)",
+    "shared_conclusion": "These are illustrative reporting examples, not operative prices. They must not ship as prices. Agreed with the reported findings on that point.",
+    "performance_period": "January 1, 2027 through December 31, 2031",
+    "value": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"In a BALANCE Plan or Employer Group Waiver Plan (EGWP) example, a participating plan places a model drug on a tier with a $47.00 copay for a one-month supply (ingredient cost = $499.00, dispensing fee = $5.00) and a tier with a $130.00 copay for a three-month supply (ingredient cost = $1,497.00, dispensing fee = $5.00). This example appears in the official CMS BALANCE Model PDE ... submission guidance document\""
+}

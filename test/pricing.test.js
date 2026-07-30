@@ -358,6 +358,77 @@ test('vector 8: cash pathways survive the OSA exclusion, so the user is not left
   assert.ok(withOsa.some((r) => r.pathway === 'lillydirect_self_pay'));
 });
 
+test('vector 8, shipped data: the Bridge disqualifier is the broader Part D one', () => {
+  // Research indicates the real mechanism is having a Part D-qualifying diagnosis
+  // (type 2 diabetes, moderate to severe OSA, or noncirrhotic MASH), not merely
+  // "already covered for sleep apnea". The shipped rule suppresses on either
+  // signal, so both readings are honoured until one can be confirmed.
+  const base = { drug: 'wegovy_injection', insurance: 'medicare' };
+  const control = rankPathways(base, SHIPPED, at);
+  assert.ok(control.some((r) => r.pathway === 'medicare_bridge'), 'control: Bridge offered');
+
+  for (const disqualifier of [{ osaCovered: true }, { partDGlp1Eligible: true }]) {
+    const results = rankPathways({ ...base, ...disqualifier }, SHIPPED, at);
+    assert.ok(
+      !results.some((r) => r.pathway === 'medicare_bridge'),
+      `Bridge must be suppressed for ${JSON.stringify(disqualifier)}`
+    );
+    const hidden = suppressedPathways({ ...base, ...disqualifier }, SHIPPED, at);
+    assert.equal(
+      find(hidden, 'medicare_bridge').suppressedBy,
+      'medicare-bridge-part-d-eligible-exclusion'
+    );
+  }
+});
+
+test('the introductory-pricing trap reaches the user as a caveat', () => {
+  // The most consequential consumer finding in the research: the low headline
+  // figures for these pathways are reported to be introductory, covering the
+  // lowest doses and the first two fills only. Omitting that is how a patient
+  // ends up budgeting a number that triples. It must be on the card, not in a
+  // footnote, and not only in the data file.
+  const checks = [
+    { drug: 'wegovy_injection', dose: '0.25mg', pathway: 'novocare_self_pay' },
+    { drug: 'wegovy_injection', dose: 'any', pathway: 'trumprx' },
+    { drug: 'ozempic', dose: 'any', pathway: 'trumprx' },
+    { drug: 'ozempic', dose: 'any', pathway: 'novocare_self_pay' },
+    { drug: 'zepbound', dose: 'any', pathway: 'trumprx' },
+  ];
+
+  for (const c of checks) {
+    const result = find(rankPathways({ drug: c.drug, dose: c.dose, insurance: 'none' }, SHIPPED, at), c.pathway);
+    assert.ok(result, `${c.drug}/${c.pathway} should be offered`);
+    assert.ok(
+      result.caveats.some((x) => /INTRODUCTORY price/.test(x)),
+      `${c.drug}/${c.pathway} must carry the introductory-pricing caveat, got: ${JSON.stringify(result.caveats)}`
+    );
+  }
+});
+
+test('Wegovy injection is dose-tiered, not flat', () => {
+  // Appendix B vector 4 was written assuming a flat price across doses. Research
+  // contradicts that: the low doses and the standard doses are reported to be
+  // priced differently, so dose "any" was an invalid modelling assumption. The
+  // vector is rewritten, per the brief's instruction that verified findings win.
+  const low = find(rankPathways({ drug: 'wegovy_injection', dose: '0.25mg', insurance: 'none' }, SHIPPED, at), 'novocare_self_pay');
+  const standard = find(rankPathways({ drug: 'wegovy_injection', dose: '2.4mg', insurance: 'none' }, SHIPPED, at), 'novocare_self_pay');
+
+  assert.equal(low.doseOrTier, 'low_doses');
+  assert.equal(standard.doseOrTier, 'standard_doses');
+  assert.notEqual(low.doseOrTier, standard.doseOrTier, 'the two tiers must be distinct');
+});
+
+test('vector 4, shipped data: NovoCare and TrumpRx both appear for an uninsured user', () => {
+  const results = rankPathways({ drug: 'wegovy_injection', dose: '0.5mg', insurance: 'none' }, SHIPPED, at);
+  const pathways = results.map((r) => r.pathway);
+  assert.ok(pathways.includes('novocare_self_pay'));
+  assert.ok(pathways.includes('trumprx'));
+  for (const r of results) {
+    assert.match(r.sourceUrl, /^https:\/\//);
+    assert.ok(r.verifiedDate);
+  }
+});
+
 /* ========================================================================= *
  * VECTOR 10 -- THE INTEGRITY INVARIANT
  * ========================================================================= */

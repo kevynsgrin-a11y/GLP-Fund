@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/newsroom/fact-sheets/contract-year-2026-policy-and-technical-changes-medicare-advantage-program-medicare-prescription-final",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "The reported findings declared this question unresolvable; it is resolvable on a primary CMS document that they did not locate.",
+    "reported_unresolved_item": "'Whether the CMS-4208-P reinterpretation of the Part D agents-when-used-for-weight-loss statutory exclusion was ever FINALIZED. Domain-restricted search of cms.gov surfaced only the PROPOSED rule. Could not confirm either finalization or formal non-finalization against a primary source.'",
+    "actual_status": "A CMS FINAL rule fact sheet exists (CMS-4208-F). CMS did NOT finalize the Part D Coverage of Anti-Obesity Medications (AOMs) and Application to the Medicaid Program provision.",
+    "final_rule_fact_sheet_url": "https://www.cms.gov/newsroom/fact-sheets/contract-year-2026-policy-and-technical-changes-medicare-advantage-program-medicare-prescription-final",
+    "federal_register_final": "https://www.federalregister.gov/documents/2025/04/15/2025-06008/medicare-and-medicaid-programs-contract-year-2026-policy-and-technical-changes-to-the-medicare",
+    "substantive_conclusion_CORROBORATED": "The Part D statutory exclusion of agents when used for weight loss remains in force. There is no permanent Part D entitlement to GLP-1s for obesity alone. The reported findings' substantive conclusion survives.",
+    "staleness_defect": "The reported findings cite ONLY the superseded proposed-rule fact sheet (CMS-4208-P) and carry its estimates - 7 percent of the Part D population / 3.4 million enrollees / $24.8 billion over ten years - as if live. These are projections for a policy that was never adopted and must not be surfaced.",
+    "value": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"CMS is not finalizing the Part D Coverage of Anti-Obesity Medications (AOMs) and Application to the Medicaid Program provision from the proposed rule... CMS is not finalizing certain provisions from the proposed rule at this time and may address these proposals in future rulemaking, as appropriate.\""
+}

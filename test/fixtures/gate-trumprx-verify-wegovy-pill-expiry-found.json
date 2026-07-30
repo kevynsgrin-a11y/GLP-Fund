@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://trumprx.gov/p/wegovy-pill",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_primary_page",
+  "extracted": {
+    "finding": "The prior researcher reported the Wegovy Pill $149 'limited time offer' as having NO expiry date captured and an 'unknown deadline'. An expiry date IS retrievable by the same index-mediated method they used, and it is 32 days away.",
+    "expiry_found": "The 4 mg offer is available only until AUGUST 31, 2026, after which 4 mg becomes $199 per month.",
+    "days_until_expiry_from_2026_07_30": 32,
+    "dose_split_the_prior_researcher_collapsed": {
+      "1.5_mg": "$149/month (no expiry surfaced for this strength)",
+      "4_mg": "$149/month ONLY until 2026-08-31, then $199/month"
+    },
+    "prior_researcher_dose_or_tier_string": "'Oral tablet 1.5 mg and 4 mg - LIMITED TIME OFFER' -- treats both strengths as one undifferentiated tier and states the expiry is unknown. Both halves of that are wrong: the strengths have different offer durations, and the 4 mg expiry is discoverable.",
+    "eligibility_conditions_omitted_by_prior_researcher": [
+      "SELF-PAY patients only",
+      "US resident or US Territory resident (Puerto Rico, Guam, U.S. Virgin Islands, Northern Mariana Islands, American Samoa)",
+      "18 years of age or older",
+      "valid prescription required",
+      "If the patient has any state, federal or government healthcare program (Medicare, Medicaid, VA, TRICARE): may not seek insurance reimbursement, may not count the cost toward deductible or out-of-pocket limit, and must inform the insurer that the medication was purchased outside the prescription plan."
+    ],
+    "patient_harm_if_uncorrected": "A patient on the 4 mg oral dose budgeting $149/month faces a $50/month increase on 2026-09-01 with no notice from the dataset. Additionally a Medicare/Medicaid/VA/TRICARE beneficiary could be shown a price they are contractually restricted from using in the normal way.",
+    "confirmation_status": "NOT CONFIRMED. Index-mediated only; replicated across two independently phrased queries. Value remains null. The expiry date and the government-program restriction must nonetheless be recorded as conditions."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to trumprx.gov/p/wegovy-pill: \"The limited time offer allows you to pay $149 for each month of Wegovy 1.5 mg and 4 mg tablets.\" ... \"The 4 mg offer is only available until August 31, 2026, after which the price will be $199 per month for 4 mg.\" ... \"This offer is for self-pay patients only and requires you to be a resident of the United States or a United States Territory (Puerto Rico, Guam, U.S. Virgin Island, Northern Mariana Islands, American Samoa) who is 18 years of age or older with a valid prescription.\" ... \"If you have any state, federal, or government healthcare programs (such as Medicare, Medicaid, VA, or TRICARE), you cannot ask your insurance to reimburse you, cannot count the cost toward your insurance deductible or out-of-pocket limit, and must inform your insurance company that you purchased the medication outside of their prescription plan.\" -- reproduced from search-index output, NOT a direct read."
+}

@@ -1,0 +1,25 @@
+{
+  "retrieved_at": "2026-07-30T10:33:00Z",
+  "url": "https://www.lilly.com/lillydirect/medicines/zepbound/single-dose-pen-and-single-patient-use-kwikpen-savings-program-full-terms-conditions",
+  "http_status": "403 Forbidden. NO DIRECT PAGE READ. Content below is SEARCH-INDEX-MEDIATED PARAPHRASE ONLY, not verbatim page text.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "rule_located": "Zepbound Savings Card excludes beneficiaries of state, federal, and government-funded healthcare programs.",
+    "excluded_programs_as_listed_by_search_summary": [
+      "Medicaid",
+      "Medicare",
+      "Medicare Part D",
+      "Medicare Advantage",
+      "Medigap",
+      "DoD",
+      "VA",
+      "TRICARE/CHAMPUS",
+      "any state prescription drug assistance program"
+    ],
+    "commercial_insurance_required": "Search summary indicates the card requires enrollment in a commercial drug insurance plan.",
+    "FEHB_status": "NOT ADDRESSED in anything located for Lilly. The task premise that FEHB is universally excluded is NOT supported for Lilly by anything retrieved. Do not encode FEHB handling for Lilly cards from this session.",
+    "engine_consequence": "Supports SUPPRESSING the copay-card pathway entirely for a Medicare user (test vector 7) rather than ranking it lower - but as a LOCATED, UNCONFIRMED rule.",
+    "NOT_VERBATIM_WARNING": "The wording below is the search summarizer's prose. It may be a close restatement of the terms or may be reconstructed. It must not be shipped as a quotation."
+  },
+  "verbatim_excerpt": "(none - no page text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'To be eligible for the Zepbound savings card for the single-patient-use KwikPen, you must not be enrolled in any state, federal, or government funded healthcare program, including Medicaid, Medicare, Medicare Part D, Medicare Advantage, Medigap, DoD, VA, TRICARE/CHAMPUS, or any state prescription drug assistance program.')"
+}
