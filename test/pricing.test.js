@@ -241,12 +241,19 @@ test('vector 5, shipped data: the 149-vs-199 conflict renders as unverified, not
   // unreachable. Reconciling them into one number would be a guess, and a guess
   // is what this site exists not to do. So the shipped datum is `conflicting`
   // with a null value, and the UI says so.
+  // The apparent conflict is now reported to resolve as a strength-and-deadline
+  // distinction rather than a contradiction -- but it is still not CONFIRMED, so
+  // the datum stays conflicting with a null value. What changed is that the raw
+  // figures no longer appear in the card prose; they live in the candidate block,
+  // which /methodology/ renders under an explicit "located but not confirmed"
+  // heading. See the bare-figure invariant below for why that matters.
   const datum = SHIPPED.prices.find(
     (p) => p.drug === 'wegovy_pill' && p.dose_or_tier === '1.5mg' && p.pathway === 'novocare_self_pay'
   );
   assert.equal(datum.confidence, 'conflicting');
   assert.equal(datum.value, null);
-  assert.match(datum.notes, /149 and 199/);
+  assert.match(datum.notes, /different strengths and different offer windows/);
+  assert.equal(datum.candidate.value, null);
 
   const results = rankPathways({ drug: 'wegovy_pill', dose: '1.5mg', insurance: 'none' }, SHIPPED, at);
   const novo = find(results, 'novocare_self_pay');
@@ -257,6 +264,39 @@ test('vector 5, shipped data: the 149-vs-199 conflict renders as unverified, not
 /* ========================================================================= *
  * VECTOR 6 -- copay card outranks cash for a commercially covered user
  * ========================================================================= */
+
+test('no rendered note or caveat contains a currency figure', () => {
+  // The integrity invariant covers the price FIELD. This covers the prose beside
+  // it, which is the same hazard wearing different clothes: a card that shows
+  // "Price not currently verified" directly above a note reading "$149" has told
+  // the user a price, whatever the price field says. A user scanning six cards on
+  // a phone will not parse the distinction.
+  //
+  // Magnitudes may still be conveyed in words -- "roughly 150 dollars", "four
+  // figures a month" -- which reads as an estimate rather than a quotable price.
+  // The located figures themselves live in the candidate block, which
+  // /methodology/ renders under an explicit not-confirmed heading.
+  const offenders = [];
+
+  for (const datum of SHIPPED.prices) {
+    for (const [field, text] of [
+      ['notes', datum.notes],
+      ...(datum.caveats ?? []).map((c, i) => [`caveats[${i}]`, c]),
+    ]) {
+      const found = String(text ?? '').match(/\$\s?[\d,]+/g);
+      if (found) {
+        offenders.push(`${datum.drug}|${datum.dose_or_tier}|${datum.pathway} ${field}: ${found.join(', ')}`);
+      }
+    }
+  }
+
+  for (const rule of SHIPPED.eligibilityRules) {
+    const found = String(rule.reason ?? '').match(/\$\s?[\d,]+/g);
+    if (found) offenders.push(`rule ${rule.id}: ${found.join(', ')}`);
+  }
+
+  assert.deepEqual(offenders, [], offenders.join('\n'));
+});
 
 test('vector 6: ozempic with commercial coverage ranks the copay card above cash pathways', () => {
   const results = rankPathways({ drug: 'ozempic', insurance: 'commercial_covered' }, ENGINE, at);

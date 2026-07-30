@@ -238,14 +238,41 @@ export function renderResults({ results, hidden, summary, drugMeta, staleness, t
 
   const priced = results.filter((r) => r.monthlyCost !== null).length;
 
+  // "Cheapest first" is a claim about the ordering, and it is only true when
+  // there are verified prices to order BY. With no priced pathway every result
+  // ties, so the list falls back to alphabetical -- and a heading promising a
+  // cost ranking over an alphabetical list is exactly the kind of small, quiet
+  // dishonesty this site exists to avoid. The heading tells the truth about what
+  // the ordering actually is.
+  const heading =
+    priced === 0
+      ? 'Your pathways'
+      : priced === 1
+        ? 'Your pathways, verified price first'
+        : 'Your pathways, cheapest first';
+
+  const orderNote =
+    priced === 0
+      ? `<p class="results__count">
+           ${results.length} pathway${results.length === 1 ? '' : 's'} available to you.
+           <strong>None has a price we have been able to verify</strong>, so these are listed
+           alphabetically rather than by cost. We cannot tell you which is cheapest.
+           <a href="/methodology/">Why</a>.
+         </p>`
+      : `<p class="results__count">
+           ${results.length} pathway${results.length === 1 ? '' : 's'},
+           ${priced} with a verified price${
+             priced < results.length
+               ? '. Pathways we could not verify are listed after the priced ones and are not ranked'
+               : ''
+           }.
+         </p>`;
+
   return `
     ${renderStalenessBanner(staleness)}
     <div class="results__head">
-      <h2 id="results-heading">Your pathways, cheapest first</h2>
-      <p class="results__count">
-        ${results.length} pathway${results.length === 1 ? '' : 's'},
-        ${priced} with a verified price
-      </p>
+      <h2 id="results-heading">${heading}</h2>
+      ${orderNote}
     </div>
     <ol class="card-list">
       ${results.map((r, i) => renderCard(r, i, today)).join('')}

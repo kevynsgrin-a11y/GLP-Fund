@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-07-30T11:07:39.034Z",
+  "ranAt": "2026-07-30T11:20:51.399Z",
   "viewport": "390x844",
   "chromium": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
   "checks": [
@@ -26,17 +26,17 @@
     {
       "name": "results render for a completed flow",
       "pass": true,
-      "detail": "2 cards"
+      "detail": "4 cards"
     },
     {
       "name": "shipped data renders no price as a number",
       "pass": true,
-      "detail": "LillyDirect Self Pay: Price not currently verified | TrumpRx: Price not currently verified"
+      "detail": "LillyDirect Self Pay: Price not currently verified | Medicare Part D: Price not currently verified | Patient assistance program: Price not currently verified | "
     },
     {
       "name": "every card carries a source link and a verification date",
       "pass": true,
-      "detail": "2 cards checked"
+      "detail": "4 cards checked"
     },
     {
       "name": "vector 1 on screen: LillyDirect first at $299, $3,588 per year",
@@ -126,7 +126,7 @@
     {
       "name": "every source URL was checked and its status recorded",
       "pass": true,
-      "detail": "4 URLs; 4 unreachable from this network"
+      "detail": "8 URLs; 8 unreachable from this network"
     }
   ],
   "failures": 0,
@@ -146,6 +146,22 @@
     {
       "url": "https://www.novocare.com/",
       "status": "403"
+    },
+    {
+      "url": "https://pricinginfo.lilly.com/foundayo",
+      "status": "403"
+    },
+    {
+      "url": "https://www.lillycares.com/",
+      "status": "403"
+    },
+    {
+      "url": "https://www.medicare.gov/drug-coverage-part-d",
+      "status": "403"
+    },
+    {
+      "url": "https://www.novonordiskpap.com/",
+      "status": "blocked"
     }
   ]
 }

@@ -60,12 +60,17 @@ Orforglipron is a small-molecule tablet, reviewed as an NDA. **A BLA number cann
 
 ### Evidentiary basis, stated honestly
 
-Direct retrieval failed (403) for the FDA approval letter, the FDA label, the FDA press announcement, the openFDA API, Lilly investor relations, and the SEC filing. The resolution rests on two arguments that do not require reading a page body:
+Direct retrieval failed (403) for the FDA approval letter, the FDA label, the FDA press announcement, the openFDA API, Lilly investor relations, and the SEC filing.
 
-1. **FDA's own URL taxonomy.** The approval letter sits at `accessdata.fda.gov/drugsatfda_docs/appletter/2026/220934Orig1s000ltr.pdf`. FDA publishes documents under `/appletter/` **only for applications it has approved**. A Complete Response Letter is not published at an `appletter` path; FDA posts those under `download.open.fda.gov/crl/`. The path itself indicates an approval, and the search index reports the document's title as `NDA 220934 NDA APPROVAL Eli Lilly and Company`.
-2. **FDA's CRL filename convention.** The CRL is `CRL_BLA125827_20260410.pdf`. The document type, application type, application number and date are all encoded in the filename by FDA's own convention, and `BLA` is dispositive.
+**An earlier draft of this document overstated the evidence here, and the adversarial verifier was right to reject it.** That draft argued from two "structural" facts: that FDA publishes approval letters only under `/drugsatfda_docs/appletter/`, and that a CRL file named `CRL_BLA125827_20260410.pdf` encodes its application type in FDA's own naming convention. The second argument does not survive scrutiny. **The file was never opened -- it returned 403 -- and because an identical 403 is returned for `example.com`, a 403 on that URL does not establish that the file exists at all.** Reasoning from the filename of a document you have not retrieved, on a host that refuses everything equally, is not structural evidence. It is inference dressed as observation, which is the precise failure this project exists to avoid.
 
-The identity of BLA 125827 as Replimune's RP1 was established through secondary sources and is used **only** to name which drug the CRL concerns -- not to confirm any figure.
+What actually survives:
+
+1. **The URL-taxonomy argument, weakened but standing.** The approval letter path `accessdata.fda.gov/drugsatfda_docs/appletter/2026/220934Orig1s000ltr.pdf` and its search-index title `NDA 220934 NDA APPROVAL Eli Lilly and Company` are consistent with an approval. This is index-mediated, not read, and it is corroborating rather than confirming.
+2. **The NDA-versus-BLA distinction, which needs no retrieval.** Orforglipron is a small-molecule tablet and is reviewed as a New Drug Application. A Biologics License Application number cannot refer to it. This is a regulatory-category fact, not a claim about a document.
+3. **Independent secondary corroboration plus date logic** placing the 2026-04-10 Complete Response Letter with Replimune's RP1 for advanced melanoma -- a different sponsor, a different product, a different application type.
+
+So the conclusion holds -- Claim B is about a different drug -- but it rests on the category distinction and on secondary corroboration, **not** on a primary read of anything. The `primary_government` designation has been dropped from the CRL fixture accordingly. No figure anywhere in this gate is confirmed.
 
 **What remains unverified:** every Foundayo price. The figures in circulation ($149 lowest dose, up to $399, $25 with a commercial savings card, $50 Medicare) are pre-approval agreement pricing or "as little as" best cases, which are different claims from a launched price. All are filed null.
 

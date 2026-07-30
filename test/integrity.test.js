@@ -127,6 +127,9 @@ const ALLOWED_HOSTS = new Set([
   'zepbound.lilly.com', 'www.zepbound.com', 'zepbound.com',
   'mounjaro.lilly.com', 'www.mounjaro.com', 'mounjaro.com',
   'www.lillycares.com', 'lillycares.com',
+  // Lilly's statutory price-disclosure host. A primary manufacturer source, and
+  // the correct citation for a list or WAC figure.
+  'pricinginfo.lilly.com',
   'www.novonordisk.com', 'novonordisk.com', 'www.novonordisk-us.com',
   'www.novocare.com', 'novocare.com',
   'www.wegovy.com', 'wegovy.com', 'www.ozempic.com', 'ozempic.com',
