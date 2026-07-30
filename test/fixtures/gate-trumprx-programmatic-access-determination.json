@@ -1,0 +1,24 @@
+{
+  "retrieved_at": "2026-07-30T10:12:56Z",
+  "url": "https://trumprx.gov/robots.txt",
+  "http_status": "403 Forbidden - never retrieved",
+  "source_type": "primary_government",
+  "fixture_purpose": "Answers gate task item 3 unambiguously, because it carries a product consequence.",
+  "extracted": {
+    "DETERMINATION": "PROGRAMMATIC ACCESS TO trumprx.gov IS NOT PERMITTED FOR THIS PRODUCT.",
+    "therefore": "The site MUST operate on MANUAL CURATION ONLY, and the methodology page MUST say so explicitly.",
+    "this_is_a_definite_answer_not_a_hedge": true,
+    "reasoning_chain": [
+      "1. PERMISSION WAS NEVER ESTABLISHED. robots.txt was never retrieved (403). No terms-of-use document was ever retrieved, and domain-restricted search did not even establish that a site-wide terms-of-use page EXISTS. A crawler may not assume permission from silence it has never actually heard. For a YMYL product, the absence of a verified grant is a denial, not a default-allow.",
+      "2. THIS ENVIRONMENT IS AFFIRMATIVELY FORBIDDEN TO REACH THE HOST. The session's organizational egress policy denies CONNECT to trumprx.gov:443. The proxy README instructs: 'Do not retry or route around it - report the blocked host.' Building a scraper that depends on an egress path the organization has closed would violate that policy on every run.",
+      "3. THE TWO REASONS ARE INDEPENDENT AND POINT THE SAME WAY. Even if the organizational block were lifted tomorrow, reason 1 still stands until robots.txt and the terms are actually read and found permissive. Lifting the block is necessary but not sufficient.",
+      "4. THE CONTENT IS PRICE DATA THAT MOVES. Even setting permission aside, an automated feed that silently breaks (returning 403 forever, or worse, stale-but-parseable data) would publish stale drug prices to sick people. Manual curation with an explicit as-of date fails safe; a broken scraper fails dangerously."
+    ],
+    "what_would_change_this_determination": "ALL of: (a) organizational egress allowlisting of trumprx.gov; AND (b) a direct successful read of https://trumprx.gov/robots.txt showing the target paths are not Disallowed for the intended user-agent; AND (c) a direct read of any terms-of-use document confirming automated retrieval and reproduction of price content is not prohibited. Until all three are satisfied and recorded in a fixture, manual curation is the only defensible mode.",
+    "required_methodology_page_language": "TrumpRx.gov pricing on this site is curated MANUALLY. We do not scrape TrumpRx.gov. Automated access to that site has not been established as permitted, and every figure is transcribed by a human reviewer and stamped with the date it was read.",
+    "additional_product_requirement": "Because the $199 figure is (per index-mediated reading) limited to the first two fills, the UI must never render a bare '$199/month' for Wegovy Pen or Ozempic. It must render the introductory price, its two-fill duration, AND the post-introductory price together, or render nothing at all.",
+    "robots_txt_directives_found": "NONE - file never retrieved. No claim is made or may be made about its contents.",
+    "tos_statements_on_scraping_found": "NONE - no terms document was ever retrieved. No claim is made about what it says."
+  },
+  "verbatim_excerpt": "WebFetch result for https://trumprx.gov/robots.txt, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\" From /root/.ccr/README.md, quoted verbatim: \"The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it - report the blocked host.\""
+}

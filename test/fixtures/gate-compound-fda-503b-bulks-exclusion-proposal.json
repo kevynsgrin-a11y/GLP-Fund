@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/news-events/press-announcements/fda-proposes-exclude-semaglutide-tirzepatide-and-liraglutide-503b-bulks-list",
+  "also_covers_urls": [
+    "https://www.fda.gov/media/192439/download"
+  ],
+  "http_status": "403 Forbidden on direct read (WebFetch). Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "Would be primary_government if directly read. Treat as UNVERIFIED.",
+  "extracted": {
+    "announcement_date": "April 30, 2026 (per index; also corroborated by secondary legal commentary). NOT directly confirmed.",
+    "action": "FDA proposed to EXCLUDE semaglutide, tirzepatide and liraglutide from the section 503B bulks list, finding no clinical need for outsourcing facilities to compound these drugs from bulk drug substances.",
+    "comment_period_close": "June 29, 2026. As of today (2026-07-30) the comment period has CLOSED.",
+    "STATUS_IS_PROPOSED_NOT_FINAL": "CRITICAL: this is a PROPOSAL. As of 2026-07-30 no final FDA determination excluding these substances from the 503B bulks list was located. The regulatory picture is therefore still in motion, which is a reason for the site to avoid making any affirmative legality representation about compounded products.",
+    "practical_effect_today": "Semaglutide and tirzepatide are NOT on the 503B bulks list today. A 503B outsourcing facility may only compound from bulk drug substances that appear on that list (or that are the subject of an applicable drug shortage). Absent listing and absent shortage, 503B bulk compounding of these molecules has no lawful basis.",
+    "second_independent_lock": "This is a SECOND, independent legal barrier on top of shortage-list removal. Even if the Fifth Circuit were to restore the shortage listing, the 503B bulks question would remain."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"FDA is proposing to exclude semaglutide, tirzepatide, and liraglutide on the 503B bulks list, finding no clinical need for outsourcing facilities to compound these drugs from bulk substances.\" ... \"The public comment period on the proposed exclusion of semaglutide, tirzepatide, and liraglutide from the 503B Bulks List closes on June 29.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

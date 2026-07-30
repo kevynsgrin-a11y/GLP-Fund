@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-07-30T10:12:56Z",
+  "url": "https://www.cms.gov/newsroom/press-releases/coming-soon-cms-provide-50-monthly-access-glp-1-medications-medicare-beneficiaries",
+  "http_status": "403 Forbidden on direct read (egress proxy CONNECT denial for www.cms.gov:443 and www.hhs.gov:443). Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['hhs.gov','cms.gov']). NOT a direct read.",
+  "fixture_purpose": "Answers gate task item 4: whether HHS or CMS independently document TrumpRx PRICES, which would provide a primary-government route to a figure even while trumprx.gov is unreadable.",
+  "extracted": {
+    "ANSWER_TO_ITEM_4": "NO. Domain-restricted search across hhs.gov and cms.gov surfaced NO page stating a per-drug TrumpRx cash price. CMS/HHS document a DIFFERENT and separately-governed pathway - the Medicare GLP-1 Bridge at $50/month - plus the MFN policy framework in the abstract. There is no CMS or HHS page carrying the $199 / $299 / $349 / $149 TrumpRx self-pay figures.",
+    "consequence": "Because trumprx.gov is unreadable AND no .gov page states a current per-drug TrumpRx price, EVERY TrumpRx per-drug figure in this gate is confidence 'unverified' with value null. This is the plain statement the gate task demanded.",
+    "what_cms_hhs_DO_document": {
+      "medicare_glp1_bridge_patient_cost_usd_per_month": 50,
+      "bridge_effective_date": "Beginning July 1, 2026, all formulations of Foundayo, all formulations of Wegovy, and the KwikPen formulation of Zepbound are available to eligible beneficiaries through the Medicare GLP-1 Bridge",
+      "bridge_is_a_separate_pathway": "The Medicare GLP-1 Bridge is NOT TrumpRx. Different eligibility, different price, different governing authority. Must not be merged with TrumpRx self-pay rows.",
+      "relevant_cms_urls": [
+        "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge",
+        "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-part-d-plans",
+        "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-providers",
+        "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-pharmacies",
+        "https://www.cms.gov/newsroom/press-releases/cms-launches-voluntary-model-expand-access-life-changing-medicines-promote-healthier-living",
+        "https://www.hhs.gov/press-room/cms-mfn-lower-us-drug-prices.html"
+      ],
+      "note_on_245": "The '$245/month Medicare/Medicaid price' figure that appears in secondary reporting did NOT surface on any hhs.gov or cms.gov page in domain-restricted search. It is a manufacturer-agreement term reported by press, not a confirmed government-published price."
+    }
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to cms.gov, quoted verbatim: \"Under the demonstration eligible Medicare beneficiaries will pay $50 for a month of GLP-1 medications. Beginning July 1, 2026, all formulations of Foundayo, all formulations of Wegovy, and the KwikPen formulation of Zepbound will be available to eligible beneficiaries through the Medicare GLP-1 Bridge.\" Search tool's own summary, quoted verbatim: \"the search results do not contain specific information about a '$245' pricing point or details about 'TrumpRx' specifically.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

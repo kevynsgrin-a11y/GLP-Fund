@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T10:21:00Z",
+  "url": "WebSearch result set only. Primary target https://www.lilly.com/lillydirect/medicines/zepbound/self-pay-journey-program-purchase-offer-full-terms-conditions was 403 at CONNECT and never read.",
+  "http_status": "403 on the primary source. This fixture records LOCATED claims from a search-index summary, not a retrieved page.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. Every value below is recorded as null in the structured output. These figures may not be shipped.",
+    "claimed_zepbound_single_dose_vial_tiers_self_pay_journey_program": {
+      "2.5 mg": "$299/month (claimed reduced from $349)",
+      "5 mg": "$399/month (claimed reduced from $499)",
+      "7.5 mg, 10 mg, 12.5 mg, 15 mg": "$449/month (claimed reduced from $499)"
+    },
+    "claimed_announcement_date": "December 1, 2025 price reduction, per the task brief and consistent with search-index summaries referencing an investor.lilly.com release titled 'Lilly lowers the price of Zepbound (tirzepatide) single-dose vials'",
+    "claimed_45_day_refill_window": "Search-index summary states: continuing to qualify for the $449 offer on higher doses requires completing the refill purchase within 45 days of the delivery or receipt date of the previous prescription; and that the 2.5 mg ($299) and 5 mg ($399) tiers do NOT require the 45-day refill window.",
+    "claimed_penalty_for_missing_window": "Search-index summary states missing the 45-day window for 7.5 mg and up means paying '$499-$699'. This is an unverified RANGE from an aggregator, is internally vague, and conflicts with the single prior-price figure of $499 cited elsewhere in the same result set. Not usable.",
+    "CONFLICT_NOTE": "The 45-day condition was NOT read in Lilly's own terms and conditions text. No verbatim Lilly wording for it was obtained. The task requires it quoted verbatim or declared unconfirmable; it is unconfirmable from this session.",
+    "vial_vs_pen_separation": "These claimed tiers are for SINGLE-DOSE VIALS. They must not be merged with the multi-dose KwikPen tiers recorded in gate-lilly-zepbound-kwikpen-located-unconfirmed.json, even where the dollar figures coincide."
+  },
+  "verbatim_excerpt": "From the WebSearch summary, quoted: 'As of December 2025, self-pay pricing for Zepbound single-dose vials starts at $299 per month for the 2.5 mg dose, $399 for 5 mg, and $449 for higher concentrations (7.5 mg through 15 mg), provided refills happen within 45 days.' and 'Continuing to qualify for the $449 offer on higher doses requires completing the refill purchase within 45 days of the delivery or receipt date of the previous prescription. The 2.5 mg ($299) and 5 mg ($399) doses don't require this 45-day refill window.' This is a search-index summary, NOT Lilly's verbatim terms."
+}

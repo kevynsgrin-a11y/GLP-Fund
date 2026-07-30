@@ -1,0 +1,37 @@
+{
+  "retrieved_at": "2026-07-30T10:12:56Z",
+  "url": "https://www.whitehouse.gov/fact-sheets/2026/02/fact-sheet-president-donald-j-trump-launches-trumprx-gov-to-bring-lower-drug-prices-to-american-patients/",
+  "http_status": "403 Forbidden on direct read (egress proxy CONNECT denial for www.whitehouse.gov:443). Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['whitehouse.gov']). NOT a direct read.",
+  "allowlist_note": "whitehouse.gov was NOT on this gate's enumerated primary-source allowlist (which listed fda.gov, cms.gov, medicare.gov, trumprx.gov, hhs.gov, manufacturer domains, sec.gov). It is self-evidently a primary government publisher and is treated as primary_government here, but since it could not be read directly the distinction is moot for confirmation purposes.",
+  "extracted": {
+    "THIS_FIXTURE_RESOLVES_THE_APPARENT_PRICE_CONFLICT": "The brief presented the Nov-2025 figures (~$350 Ozempic/Wegovy, ~$346 Zepbound) and the live-site figures (~$199, ~$299) as CONFLICTING. Index-mediated White House text indicates they are NOT contradictory: $350/$346 are stated as AVERAGE prices and $199/$299 as 'as low as' LOWEST-DOSE prices, in the SAME sentence structure. They are two different statistics describing one program, not two competing readings. No averaging or reconciliation was performed by me - the source itself states both.",
+    "launch_date": "February 5, 2026",
+    "launch_date_corroboration": "A Roll Call Factba.se transcript is titled 'Remarks: Donald Trump Announces the Launch of the TrumpRX Website - February 5, 2026'. A second whitehouse.gov URL exists at /releases/2026/02/president-trump-launches-trumprx-gov-delivering-massive-immediate-savings-to-millions-of-americans/. Alston & Bird's Health Care Week in Review dated February 6, 2026 records 'Trump Administration Launches TrumpRX'.",
+    "ozempic_and_wegovy_injectable": {
+      "from_list_usd_per_month": { "ozempic": 1028, "wegovy": 1349 },
+      "to_average_usd_per_month": 350,
+      "to_as_low_as_usd_per_month": 199,
+      "qualifier": "depending on dosage strength"
+    },
+    "wegovy_pill": {
+      "from_usd_per_month": 1349,
+      "to_as_low_as_usd_per_month": 149,
+      "qualifier": "depending on dosage strength"
+    },
+    "zepbound": {
+      "from_list_usd_per_month": 1088,
+      "to_average_usd_per_month": 346,
+      "to_as_low_as_usd_per_month": 299,
+      "qualifier": "depending on dosage strength",
+      "list_price_discrepancy": "This text gives Zepbound list as $1,088. The brief cited $1,087 and $1,059-$1,086. Aggregators cite $1,086.37. FOUR different values for one list price; none directly read from Lilly. Unresolved."
+    },
+    "launch_manufacturers": "AstraZeneca, Eli Lilly, EMD Serono, Novo Nordisk, Pfizer - the first five to reach MFN pricing deals",
+    "drug_count_at_launch": "Over 40 drugs at launch (CBS News secondary reporting says 43), with plans to add more",
+    "claimed_annual_saving": "GLP-1 users without insurance coverage expected to save $3,000 per year via TrumpRx.gov",
+    "mechanism": "Patients search for a drug and see savings available via a manufacturer coupon or by purchasing directly from the manufacturer. TrumpRx is a REFERRAL/COMPARISON storefront, not itself a pharmacy or seller.",
+    "later_expansion": "A further fact sheet dated May 2026 announces an 'Expansion of TrumpRx.gov to Bring Americans Transparency and Choice on Everyday Medicines', and a CEA analysis PDF 'Savings from Most-Favored-Nation Drug Pricing Policy' is dated May 2026. Prices may have moved AGAIN between the Feb 5 launch and today (2026-07-30); the brief's 'more recent readings' are not necessarily current."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to whitehouse.gov, quoted verbatim: \"Ozempic and Wegovy (injectable): The monthly prices will fall from $1,028 and $1,349, respectively, to an average price of $350 and as low as $199, depending on dosage strength.\" ... \"Wegovy (pill): The monthly price of the Wegovy pill will fall from $1,349 to as low as $149, depending on dosage strength.\" ... \"Zepbound: The monthly price of Zepbound will fall from $1,088 to an average price of $346 and as low as $299, depending on dosage strength.\" ... \"The launch features drugs made by the first five manufacturers to reach MFN pricing deals with the Trump Administration: AstraZeneca, Eli Lilly, EMD Serono, Novo Nordisk, and Pfizer.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

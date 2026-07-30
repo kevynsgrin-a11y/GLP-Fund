@@ -40,6 +40,32 @@ export const EFFECTS = Object.freeze({
 const HARD_EFFECTS = new Set([EFFECTS.SUPPRESS, EFFECTS.REQUIRE]);
 
 /**
+ * Marks a hard rule whose source could not be read at build time. Set on a rule
+ * INSTEAD of a verbatim quote, and only alongside a `basis` explaining the
+ * evidence actually held. See validateRules for why this state is permitted for
+ * rules but never for prices.
+ */
+export const PENDING_VERIFICATION = 'pending_primary_verification';
+
+/**
+ * Count hard rules still awaiting a verbatim quote. Rendered on /methodology/
+ * and asserted by the test suite, so the verification debt is visible rather
+ * than buried in a data file.
+ *
+ * @param {Array<object>} rules
+ * @returns {{total: number, pending: number, pendingIds: string[]}}
+ */
+export function verificationDebt(rules) {
+  const hard = (rules ?? []).filter((r) => HARD_EFFECTS.has(r?.effect));
+  const pending = hard.filter((r) => r.verification === PENDING_VERIFICATION);
+  return {
+    total: hard.length,
+    pending: pending.length,
+    pendingIds: pending.map((r) => r.id),
+  };
+}
+
+/**
  * ---------------------------------------------------------------------------
  * THE PREDICATE LANGUAGE
  *
@@ -198,8 +224,30 @@ export function validateRules(rules) {
             'claim about what the user may legally do'
         );
       }
-      if (typeof rule.quote !== 'string' || rule.quote.length < 20) {
-        problems.push(`${where}: hard rule needs a verbatim quote from its source`);
+
+      // A hard rule must either quote its source verbatim, or say out loud that
+      // it has not yet been able to. The second state exists because primary
+      // sources were unreachable at build time (see docs/discrepancy-report.md);
+      // it is deliberately noisy rather than silent, and the count of pending
+      // rules is asserted by the test suite and rendered on /methodology/.
+      //
+      // Shipping a pending SUPPRESS or REQUIRE rule is the conservative
+      // direction: both effects only ever NARROW a user's apparent options, so
+      // an over-broad suppression tells someone to check with their plan, while
+      // its absence would tell them a copay card is available when it is not.
+      // Prices get no such latitude -- those are gated by confidence alone.
+      if (rule.verification === PENDING_VERIFICATION) {
+        if (typeof rule.basis !== 'string' || rule.basis.length < 20) {
+          problems.push(
+            `${where}: a rule pending verification must state the basis actually held ` +
+              'for it, so a reviewer can judge the risk of applying it'
+          );
+        }
+      } else if (typeof rule.quote !== 'string' || rule.quote.length < 20) {
+        problems.push(
+          `${where}: hard rule needs a verbatim quote from its source, or ` +
+            `verification: "${PENDING_VERIFICATION}" plus a basis`
+        );
       }
     }
   });

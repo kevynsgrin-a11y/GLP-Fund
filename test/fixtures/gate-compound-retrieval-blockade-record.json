@@ -1,0 +1,46 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "http://127.0.0.1:40851/__agentproxy/status",
+  "http_status": "403 CONNECT tunnel failed for EVERY primary-source host attempted. Proxy status endpoint itself returned 200.",
+  "source_type": "primary_government",
+  "extracted": {
+    "FINDING": "GATE-COMPOUND could not be resolved by direct read of any primary source. The session's organization egress policy denies CONNECT to every host on the project's primary-source allowlist. Not one byte of fda.gov was read directly.",
+    "hosts_denied_403_connect": [
+      "www.fda.gov",
+      "fda.gov",
+      "api.fda.gov",
+      "dps.fda.gov",
+      "accessdata.fda.gov",
+      "www.accessdata.fda.gov",
+      "cacmap.fda.gov",
+      "www.federalregister.gov",
+      "www.govinfo.gov",
+      "www.regulations.gov",
+      "www.courtlistener.com",
+      "storage.courtlistener.com",
+      "www.novonordisk.com",
+      "www.wegovy.com",
+      "www.cms.gov",
+      "innovation.cms.gov",
+      "medicare.gov",
+      "www.medicare.gov",
+      "www.hhs.gov",
+      "trumprx.gov",
+      "www.trumprx.gov",
+      "www.lilly.com",
+      "investor.lilly.com",
+      "www.novocare.com",
+      "www.sec.gov"
+    ],
+    "secondary_hosts_also_denied": [
+      "www.courthousenews.com",
+      "www.orrick.com"
+    ],
+    "webfetch_result_on_fda_gov": "WebFetch returned 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' for https://www.fda.gov/drugs/drug-alerts-and-statements/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize and for https://www.fda.gov/news-events/press-announcements/fda-proposes-exclude-semaglutide-tirzepatide-and-liraglutide-503b-bulks-list",
+    "curl_result_on_fda_gov": "curl: (56) CONNECT tunnel failed, response 403 -- including for https://www.fda.gov/robots.txt, so robots.txt and terms of service could NOT be checked for any FDA host.",
+    "only_available_channel": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). This returns a language model's summary of a search index's cached view of FDA pages. It is NOT a direct read and under this project's rules of evidence it CANNOT confirm anything.",
+    "CONSEQUENCE_FOR_THE_GATE": "The gate asks for FDA's verbatim risk language so the site could reproduce it as required warning text if compounded products are shown. That verbatim text could not be obtained from a primary read. Therefore the precondition for displaying compounded products AT ALL is unmet on evidentiary grounds, independent of the regulatory merits. Default to exclusion is not merely retained, it is compelled.",
+    "programmatic_access_note": "Because robots.txt was unreachable on every FDA host, programmatic access permission is UNKNOWN, not permitted. No scraping of FDA hosts may be built into this project on the strength of this session."
+  },
+  "verbatim_excerpt": "From the agent proxy status endpoint, recentRelayFailures, quoted verbatim: {\"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\", \"host\": \"www.fda.gov:443\"} ... and from /root/.ccr/README.md: \"### 403 / 407 from the proxy -- The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it -- report the blocked host.\""
+}

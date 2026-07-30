@@ -1,0 +1,44 @@
+{
+  "retrieved_at": "2026-07-30T10:22:41Z",
+  "url": "https://www.lilly.com/robots.txt (and every other Lilly host listed below)",
+  "http_status": "403 CONNECT tunnel failed for EVERY Lilly host attempted, via both WebFetch and curl. No byte of any lilly.com property was read.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "FINDING": "GATE-LILLY could not be resolved by direct read of any primary source. The session's egress policy denies CONNECT to every lilly.com property, so not one figure in this gate can be confirmed under the project's rules of evidence.",
+    "lilly_hosts_denied_403_connect": [
+      "www.lilly.com",
+      "lilly.com",
+      "investor.lilly.com",
+      "lillydirect.lilly.com",
+      "zepbound.lilly.com",
+      "www.zepbound.lilly.com",
+      "pricinginfo.lilly.com",
+      "lilly.gcs-web.com",
+      "www.lillydirect.com",
+      "lillydirect.com",
+      "www.lillycares.com"
+    ],
+    "other_hosts_denied_403_connect": [
+      "www.sec.gov",
+      "www.pharmexec.com",
+      "www.drugs.com",
+      "example.com"
+    ],
+    "blockade_is_total_not_selective": "example.com is also denied 403. The denial is not Lilly-specific bot protection and is not an origin-side block: the CONNECT tunnel is refused by the egress gateway before any TLS session with Lilly is established. curl reports 'curl: (56) CONNECT tunnel failed, response 403' with http_code=000, meaning zero HTTP response was ever received from Lilly.",
+    "webfetch_also_nonfunctional": "WebFetch returned 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' for every URL tried, INCLUDING https://example.com/. WebFetch is therefore not a usable retrieval channel in this session at all, so its 403 on Lilly URLs carries no information about Lilly specifically.",
+    "specific_primary_urls_attempted_and_denied": [
+      "https://www.lilly.com/lillydirect/medicines/zepbound/self-pay-journey-program-purchase-offer-full-terms-conditions",
+      "https://investor.lilly.com/news-releases/news-release-details/lilly-lowers-price-zepboundr-tirzepatide-single-dose-vials",
+      "https://zepbound.lilly.com/coverage-savings",
+      "https://lillydirect.lilly.com/pharmacy/zepbound",
+      "https://pricinginfo.lilly.com/zepbound",
+      "https://pricinginfo.lilly.com/mounjaro",
+      "https://www.lilly.com/lillydirect/medicines/zepbound"
+    ],
+    "only_available_channel": "Domain-restricted WebSearch, which returns a language model's summary of a search index's cached view of pages. It is NOT a direct read. Under this project's rules of evidence it CANNOT confirm anything, so every value in this gate is null with confidence unverified.",
+    "programmatic_access_note": "robots.txt was unreachable on every Lilly host (www.lilly.com, zepbound.lilly.com, lillydirect.lilly.com, investor.lilly.com all 403 at CONNECT). Programmatic access permission for Lilly properties is therefore UNKNOWN, not permitted. No scraping of Lilly hosts may be built into this project on the strength of this session.",
+    "CONSEQUENCE_FOR_TEST_VECTORS": "Golden test vectors 1, 2, 3 and 11 cannot be populated with confirmed values from this session. Vector 2 ($399 at 5 mg) must DIFFER from vector 1 ($299 at 2.5 mg) to prove dose-tier logic is live; the search index consistently reports that difference, but consistency across secondary aggregators is not confirmation. Hardcoding 299/399/449 now would ship unverified prices into a YMYL surface.",
+    "diagnostic_step_not_completed": "The README's step-1 diagnostic (curl http://127.0.0.1:40851/__agentproxy/status) was denied by the local permission classifier, so proxy-side recentRelayFailures could not be re-read in this session. The host-by-host curl results above establish the denials independently."
+  },
+  "verbatim_excerpt": "curl output, quoted verbatim, representative of all Lilly hosts: 'curl: (56) CONNECT tunnel failed, response 403' with 'http_code=000'. And from /root/.ccr/README.md: '### 403 / 407 from the proxy -- The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it -- report the blocked host.'"
+}

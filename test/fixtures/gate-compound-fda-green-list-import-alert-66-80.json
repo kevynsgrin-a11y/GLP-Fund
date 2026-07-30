@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/news-events/press-announcements/fda-launches-green-list-protect-americans-illegal-imported-glp-1-drug-ingredients",
+  "also_covers_urls": [
+    "https://www.accessdata.fda.gov/CMS_IA/importalert_1186.html"
+  ],
+  "http_status": "403 Forbidden on direct read. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "Would be primary_government if directly read. Treat as UNVERIFIED.",
+  "extracted": {
+    "action": "FDA established a 'green list' import alert, Import Alert 66-80, to help stop GLP-1 active pharmaceutical ingredients (APIs) that have potential quality concerns from entering the U.S. supply chain.",
+    "how_it_works": "The green list will include GLP-1 APIs from facilities the agency has inspected or evaluated that appear to be in compliance with FDA's standards. APIs from unverified foreign sources are the target.",
+    "revision_date_anchor": "A major revision of Import Alert 66-80 was made in response to a CDER Office of Compliance, Office of Manufacturing Quality, Division of Drug Quality memo dated March 19, 2026. Exact press announcement date NOT confirmed.",
+    "stated_background": "FDA previously identified serious concerns with compounded versions of semaglutide and tirzepatide, including dosing errors, use of unapproved salt forms and adverse events, some requiring hospitalization.",
+    "SUPPLY_CHAIN_IMPLICATION": "FDA treats the API supply feeding compounded GLP-1s as a quality risk requiring an import gate. This means the identity and quality of the active ingredient in any given compounded GLP-1 product is not something a consumer-facing tool can characterize, let alone price-compare. There is no product identity to hold constant across sellers.",
+    "THIRD_INDEPENDENT_LOCK": "This is a third independent regulatory barrier alongside shortage-list removal and the 503B bulks exclusion proposal - a restriction on the raw material itself."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"The agency has established a green list import alert (66-80) to help stop GLP-1 active pharmaceutical ingredients (APIs) that have potential quality concerns from entering the U.S. supply chain.\" ... \"The FDA previously identified serious concerns with compounded versions of semaglutide and tirzepatide, including dosing errors, use of unapproved salt forms and adverse events - some requiring hospitalization.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

@@ -1,0 +1,783 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30",
+  "verification": {
+    "status": "primary_sources_unreachable",
+    "summary": "Every price in this file is filed as unverified with a null value. On 2026-07-30 the build environment's egress policy denied HTTPS CONNECT to every primary source (fda.gov, accessdata.fda.gov, api.fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, lilly.com, investor.lilly.com, lillydirect.lilly.com, novonordisk.com, novocare.com, wegovy.com, ozempic.com), so no figure could be confirmed by direct retrieval. Secondary sources may locate a fact but may never confirm one, so no figure here renders as a number.",
+    "candidateFieldMeaning": "Each datum may carry a `candidate` block: the figure research located, with the provenance actually held for it. The engine NEVER reads `candidate`. It exists so /methodology/ can show its work and so a single verification pass can promote a figure with no code change.",
+    "promotionProcedure": "docs/ops-runbook.md, section 'Promoting a candidate figure'",
+    "discrepancyReport": "docs/discrepancy-report.md"
+  },
+  "pathways": {
+    "lillydirect_self_pay": {
+      "label": "LillyDirect Self Pay",
+      "kind": "manufacturer_direct",
+      "manufacturer": "Eli Lilly and Company",
+      "officialUrl": "https://lillydirect.lilly.com/",
+      "description": "Eli Lilly's direct-to-patient cash-pay pharmacy. Requires a valid prescription. Bypasses insurance entirely, so the amount paid does not count toward any deductible or out-of-pocket maximum."
+    },
+    "novocare_self_pay": {
+      "label": "NovoCare Pharmacy",
+      "kind": "manufacturer_direct",
+      "manufacturer": "Novo Nordisk",
+      "officialUrl": "https://www.novocare.com/",
+      "description": "Novo Nordisk's direct-to-patient cash-pay pharmacy. Requires a valid prescription. Bypasses insurance entirely."
+    },
+    "trumprx": {
+      "label": "TrumpRx",
+      "kind": "government_platform",
+      "manufacturer": null,
+      "officialUrl": "https://trumprx.gov/",
+      "description": "Federal direct-purchase platform launched under Most-Favored-Nation pricing agreements with manufacturers. Prices on this platform have moved repeatedly since launch."
+    },
+    "copay_card": {
+      "label": "Manufacturer savings card",
+      "kind": "commercial_insurance_assistance",
+      "manufacturer": null,
+      "officialUrl": "https://lillydirect.lilly.com/",
+      "description": "A manufacturer copay card used alongside commercial insurance. Universally excludes beneficiaries of federal healthcare programs."
+    },
+    "medicare_bridge": {
+      "label": "Medicare GLP-1 Bridge",
+      "kind": "government_program",
+      "manufacturer": null,
+      "officialUrl": "https://www.medicare.gov/",
+      "description": "A Medicare access pathway reported to provide a fixed monthly beneficiary cost for a covered GLP-1, subject to clinical eligibility criteria."
+    },
+    "medicare_part_d": {
+      "label": "Medicare Part D",
+      "kind": "government_program",
+      "manufacturer": null,
+      "officialUrl": "https://www.medicare.gov/drug-coverage-part-d",
+      "description": "Standard Part D coverage where the plan covers the indication. Cost varies by plan, formulary tier and phase of the benefit."
+    },
+    "patient_assistance": {
+      "label": "Patient assistance program",
+      "kind": "charitable_assistance",
+      "manufacturer": null,
+      "officialUrl": "https://www.lillycares.com/",
+      "description": "Manufacturer-funded assistance for patients below an income threshold. Income-gated and application-based."
+    },
+    "list_price": {
+      "label": "List price, no program",
+      "kind": "reference",
+      "manufacturer": null,
+      "officialUrl": "https://lillydirect.lilly.com/",
+      "description": "The manufacturer's published list price. Shown as the reference point a saving is measured against, not as a pathway to choose."
+    }
+  },
+  "drugs": {
+    "zepbound": {
+      "label": "Zepbound",
+      "genericName": "tirzepatide",
+      "manufacturer": "Eli Lilly and Company",
+      "route": "injection",
+      "indication": "chronic weight management",
+      "slug": "zepbound-cost",
+      "doses": [
+        "2.5mg",
+        "5mg",
+        "7.5mg",
+        "10mg",
+        "12.5mg",
+        "15mg"
+      ],
+      "doseTiers": {
+        "2.5mg": "2.5mg",
+        "5mg": "5mg",
+        "7.5mg": "all_other_doses",
+        "10mg": "all_other_doses",
+        "12.5mg": "all_other_doses",
+        "15mg": "all_other_doses"
+      }
+    },
+    "mounjaro": {
+      "label": "Mounjaro",
+      "genericName": "tirzepatide",
+      "manufacturer": "Eli Lilly and Company",
+      "route": "injection",
+      "indication": "type 2 diabetes",
+      "slug": "mounjaro-cost",
+      "doses": [
+        "2.5mg",
+        "5mg",
+        "7.5mg",
+        "10mg",
+        "12.5mg",
+        "15mg"
+      ],
+      "doseTiers": {}
+    },
+    "wegovy_injection": {
+      "label": "Wegovy",
+      "genericName": "semaglutide",
+      "manufacturer": "Novo Nordisk",
+      "route": "injection",
+      "indication": "chronic weight management",
+      "slug": "wegovy-cost",
+      "doses": [
+        "0.25mg",
+        "0.5mg",
+        "1mg",
+        "1.7mg",
+        "2.4mg"
+      ],
+      "doseTiers": {}
+    },
+    "ozempic": {
+      "label": "Ozempic",
+      "genericName": "semaglutide",
+      "manufacturer": "Novo Nordisk",
+      "route": "injection",
+      "indication": "type 2 diabetes",
+      "slug": "ozempic-cost",
+      "doses": [
+        "0.25mg",
+        "0.5mg",
+        "1mg",
+        "2mg"
+      ],
+      "doseTiers": {}
+    },
+    "wegovy_pill": {
+      "label": "Wegovy tablets",
+      "genericName": "oral semaglutide",
+      "manufacturer": "Novo Nordisk",
+      "route": "oral",
+      "indication": "chronic weight management",
+      "slug": "wegovy-pill-cost",
+      "doses": [
+        "1.5mg",
+        "4mg",
+        "9mg",
+        "25mg"
+      ],
+      "doseTiers": {
+        "1.5mg": "1.5mg",
+        "4mg": "higher_doses",
+        "9mg": "higher_doses",
+        "25mg": "higher_doses"
+      }
+    },
+    "foundayo": {
+      "label": "Foundayo",
+      "genericName": "orforglipron",
+      "manufacturer": "Eli Lilly and Company",
+      "route": "oral",
+      "indication": "chronic weight management",
+      "slug": "foundayo-cost",
+      "doses": [
+        "lowest_dose",
+        "higher_doses"
+      ],
+      "doseTiers": {
+        "lowest_dose": "lowest_dose",
+        "higher_doses": "higher_doses"
+      }
+    }
+  },
+  "eligibilityRules": [
+    {
+      "id": "copay-card-federal-program-bar",
+      "pathway": "copay_card",
+      "effect": "suppress",
+      "when": {
+        "field": "federalProgramme",
+        "op": "truthy"
+      },
+      "reason": "Manufacturer savings cards exclude anyone enrolled in a federal healthcare program, including Medicare, Medicaid, TRICARE and VA coverage. This pathway is not available to you.",
+      "sourceUrl": "https://lillydirect.lilly.com/",
+      "verification": "pending_primary_verification",
+      "basis": "Every manufacturer copay card program in this category carries a federal-healthcare-program exclusion in its terms and conditions. The verbatim sentence could not be retrieved on 2026-07-30 because the egress policy denied access to every manufacturer domain. Applying this rule narrows options rather than widening them, which is the safe direction: its absence would tell a Medicare beneficiary that a low copay is available to them when it is not."
+    },
+    {
+      "id": "copay-card-requires-commercial-coverage",
+      "pathway": "copay_card",
+      "effect": "require",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "in",
+        "value": [
+          "commercial_covered",
+          "commercial_not_covered"
+        ]
+      },
+      "reason": "A manufacturer savings card requires commercial insurance. It cannot be used without coverage.",
+      "sourceUrl": "https://lillydirect.lilly.com/",
+      "verification": "pending_primary_verification",
+      "basis": "Copay assistance is by construction a cost-share reducer applied on top of commercial coverage, so it has no function for an uninsured purchaser. Verbatim terms unretrievable on 2026-07-30 under the egress blockade."
+    },
+    {
+      "id": "medicare-bridge-requires-medicare",
+      "pathway": "medicare_bridge",
+      "effect": "require",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "eq",
+        "value": "medicare"
+      },
+      "reason": "This pathway is available only to Medicare beneficiaries.",
+      "sourceUrl": "https://www.medicare.gov/",
+      "verification": "pending_primary_verification",
+      "basis": "A Medicare program is definitionally limited to Medicare beneficiaries. CMS pages were unreachable on 2026-07-30; see GATE-BRIDGE in docs/gate-resolutions.md for the full evidentiary position."
+    },
+    {
+      "id": "medicare-bridge-osa-exclusion",
+      "pathway": "medicare_bridge",
+      "effect": "suppress",
+      "when": {
+        "field": "osaCovered",
+        "op": "truthy"
+      },
+      "reason": "Beneficiaries already covered for this medication under the obstructive sleep apnea pathway are reported to be ineligible for this program. Confirm your own eligibility with Medicare before relying on it.",
+      "sourceUrl": "https://www.medicare.gov/",
+      "verification": "pending_primary_verification",
+      "basis": "Reported as an exclusion in the program description under review. CMS could not be reached on 2026-07-30 to confirm the criterion verbatim. Suppressing the pathway for this group is the conservative direction; the alternative would quote a price to a beneficiary who cannot obtain it. Flagged as a blocking item in docs/discrepancy-report.md."
+    },
+    {
+      "id": "medicare-bridge-clinical-criteria",
+      "pathway": "medicare_bridge",
+      "effect": "note",
+      "when": true,
+      "reason": "This program is reported to require a BMI of at least 35, or at least 27 with a weight-related comorbid condition, and to cover a multi-dose pen rather than single-dose vials. These criteria are not yet confirmed against CMS."
+    },
+    {
+      "id": "manufacturer-direct-requires-prescription",
+      "pathway": "*",
+      "effect": "caveat",
+      "when": true,
+      "reason": "Requires a valid prescription from a licensed healthcare provider."
+    },
+    {
+      "id": "cash-pay-does-not-count-toward-deductible",
+      "pathway": "lillydirect_self_pay",
+      "effect": "note",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "ne",
+        "value": "none"
+      },
+      "reason": "Paying cash bypasses your insurance, so what you spend here does not count toward your deductible or your out-of-pocket maximum."
+    },
+    {
+      "id": "cash-pay-does-not-count-toward-deductible-novo",
+      "pathway": "novocare_self_pay",
+      "effect": "note",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "ne",
+        "value": "none"
+      },
+      "reason": "Paying cash bypasses your insurance, so what you spend here does not count toward your deductible or your out-of-pocket maximum."
+    },
+    {
+      "id": "patient-assistance-income-gated",
+      "pathway": "patient_assistance",
+      "effect": "note",
+      "when": true,
+      "reason": "Patient assistance programs are income-gated and require an application, usually with proof of income and a prescriber's involvement. Approval is not immediate."
+    },
+    {
+      "id": "patient-assistance-income-tier",
+      "pathway": "patient_assistance",
+      "effect": "require",
+      "when": {
+        "field": "incomeTier",
+        "op": "in",
+        "value": [
+          "low",
+          "moderate",
+          "unknown"
+        ]
+      },
+      "reason": "Patient assistance is limited to applicants below an income threshold.",
+      "sourceUrl": "https://www.lillycares.com/",
+      "verification": "pending_primary_verification",
+      "basis": "Manufacturer assistance programs in this category are income-gated as a matter of program design. The specific threshold as a percentage of the federal poverty level could not be retrieved on 2026-07-30. 'unknown' is deliberately permitted so that a user who has not stated an income is shown the pathway with its income caveat rather than having it silently removed."
+    },
+    {
+      "id": "trumprx-manual-curation",
+      "pathway": "trumprx",
+      "effect": "caveat",
+      "when": true,
+      "reason": "Programmatic access to trumprx.gov is not available to this site, so figures for this pathway are curated by hand and may lag the live platform. Check trumprx.gov directly before relying on a price."
+    },
+    {
+      "id": "mounjaro-diabetes-indication",
+      "pathway": "*",
+      "effect": "note",
+      "when": {
+        "field": "drug",
+        "op": "eq",
+        "value": "mounjaro"
+      },
+      "reason": "Mounjaro is approved for type 2 diabetes, not for weight management. Coverage and program eligibility follow the diabetes indication."
+    },
+    {
+      "id": "ozempic-diabetes-indication",
+      "pathway": "*",
+      "effect": "note",
+      "when": {
+        "field": "drug",
+        "op": "eq",
+        "value": "ozempic"
+      },
+      "reason": "Ozempic is approved for type 2 diabetes, not for weight management. Coverage and program eligibility follow the diabetes indication."
+    }
+  ],
+  "prices": [
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "2.5mg",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Single-dose vial, starter dose, via the self-pay program.",
+      "candidate": {
+        "value": 299,
+        "provenance": "Located via search-index summaries of a Lilly announcement dated 2025-12-01 reporting a reduction from 349 to 299 for the 2.5 mg vial. NOT a direct read of any Lilly page.",
+        "basis": "secondary_press",
+        "needs": "One direct read of lillydirect.lilly.com to confirm the figure is still current."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "5mg",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Single-dose vial, second dose tier, via the self-pay program.",
+      "candidate": {
+        "value": 399,
+        "provenance": "Located via search-index summaries of the same 2025-12-01 Lilly announcement, reporting a reduction from 499 to 399 for the 5 mg vial. NOT a direct read.",
+        "basis": "secondary_press",
+        "needs": "One direct read of lillydirect.lilly.com."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "all_other_doses",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Single-dose vial, 7.5 mg and above.",
+      "caveats": [
+        "A refill window is reported to apply at the higher doses: the reduced price is reported to require refilling within 45 days. If that condition is real, missing the window raises what you actually pay. This condition is NOT yet confirmed against Eli Lilly."
+      ],
+      "candidate": {
+        "value": 449,
+        "provenance": "Located via search-index summaries of the 2025-12-01 Lilly announcement, reporting a reduction from 499 to 449 for all other approved doses. NOT a direct read.",
+        "basis": "secondary_press",
+        "needs": "Direct read of lillydirect.lilly.com, and explicit confirmation of the 45-day refill condition, which materially changes real monthly cost."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "trumprx",
+      "source_url": "https://trumprx.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "conflicting",
+      "notes": "Sources conflict and the live platform could not be read. A November 2025 announcement described approximately 346 per month; later readings of the live site described approximately 299. The live site governs, and it is unreadable from this build.",
+      "candidate": {
+        "value": null,
+        "provenance": "Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 to every request on 2026-07-30.",
+        "basis": "conflicting_secondary",
+        "needs": "A direct read of trumprx.gov. Until then this figure must not render as a number in any state."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Requires commercial insurance. Amount depends on whether your plan covers the weight-management indication.",
+      "candidate": {
+        "value": null,
+        "provenance": "Copay card amounts are tiered by whether the plan covers the indication, and the terms could not be retrieved. No single figure is defensible.",
+        "basis": "unretrieved",
+        "needs": "Direct read of the Zepbound savings card terms, including the maximum annual benefit."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "medicare_bridge",
+      "source_url": "https://www.medicare.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reported at a fixed monthly beneficiary cost for a multi-dose pen, subject to BMI criteria. Neither the launch nor the cost could be confirmed against CMS.",
+      "candidate": {
+        "value": 50,
+        "provenance": "Reported as 50 per month from 2026-07-01. cms.gov and medicare.gov were both denied by the egress policy on 2026-07-30, so neither the launch nor the amount could be confirmed.",
+        "basis": "secondary_press",
+        "needs": "A direct read of a CMS page confirming the program launched, its beneficiary cost, and its eligibility criteria."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reference figure only, used to measure a saving against.",
+      "candidate": {
+        "value": 1086,
+        "provenance": "Reported in a range of approximately 1059 to 1087 depending on source and date. Not confirmable without a direct read.",
+        "basis": "conflicting_secondary",
+        "needs": "A current list or WAC figure from a Lilly source."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Direct cash-pay price, reported as flat across doses.",
+      "candidate": {
+        "value": 199,
+        "provenance": "Reported at 199 per month via search-index summaries. novocare.com was denied by the egress policy on 2026-07-30.",
+        "basis": "secondary_press",
+        "needs": "Direct read of novocare.com, including whether the price is genuinely flat across all doses."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "trumprx",
+      "source_url": "https://trumprx.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "conflicting",
+      "notes": "A November 2025 announcement described approximately 350 per month; later readings of the live site described approximately 199. The live site governs and could not be read.",
+      "candidate": {
+        "value": null,
+        "provenance": "Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 on 2026-07-30.",
+        "basis": "conflicting_secondary",
+        "needs": "A direct read of trumprx.gov."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Requires commercial insurance. Amount depends on whether your plan covers the weight-management indication.",
+      "candidate": {
+        "value": null,
+        "provenance": "Terms unretrievable on 2026-07-30.",
+        "basis": "unretrieved",
+        "needs": "Direct read of the Wegovy savings card terms."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reference figure only.",
+      "candidate": {
+        "value": 1349,
+        "provenance": "Reported at approximately 1349 per month. Not confirmable without a direct read.",
+        "basis": "secondary_press",
+        "needs": "A current list figure from a Novo Nordisk source."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "ozempic",
+      "dose_or_tier": "any",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Direct cash-pay price for the type 2 diabetes indication.",
+      "candidate": {
+        "value": 199,
+        "provenance": "Reported at 199 per month. novocare.com denied by egress policy on 2026-07-30.",
+        "basis": "secondary_press",
+        "needs": "Direct read of novocare.com."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "ozempic",
+      "dose_or_tier": "any",
+      "pathway": "trumprx",
+      "source_url": "https://trumprx.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "conflicting",
+      "notes": "A November 2025 announcement described approximately 350 per month; later readings of the live site described approximately 199. Unreadable from this build.",
+      "candidate": {
+        "value": null,
+        "provenance": "Conflicting, neither confirmable. HTTP 403 on 2026-07-30.",
+        "basis": "conflicting_secondary",
+        "needs": "A direct read of trumprx.gov."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "ozempic",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Requires commercial insurance covering the type 2 diabetes indication.",
+      "candidate": {
+        "value": null,
+        "provenance": "Terms unretrievable on 2026-07-30.",
+        "basis": "unretrieved",
+        "needs": "Direct read of the Ozempic savings card terms."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "ozempic",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "conflicting",
+      "notes": "Reference figure only. Sources give approximately 935 and approximately 1028.",
+      "candidate": {
+        "value": null,
+        "provenance": "Two figures in circulation, neither confirmable.",
+        "basis": "conflicting_secondary",
+        "needs": "A current list figure from a Novo Nordisk source."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_pill",
+      "dose_or_tier": "1.5mg",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "conflicting",
+      "notes": "Oral starting dose. Sources give 149 and 199 per month and the conflict is unresolved: the two figures may describe different things, such as a first-fill price against an ongoing price, or a direct price against a retail price with a savings offer.",
+      "candidate": {
+        "value": null,
+        "provenance": "149 and 199 both reported. The distinction between them could not be established without a direct read, and reconciling them into one number would be a guess.",
+        "basis": "conflicting_secondary",
+        "needs": "A direct read of novocare.com establishing which figure applies to which purchase channel. Until then this renders as unverified rather than picking a side."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_pill",
+      "dose_or_tier": "higher_doses",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Oral doses above the starting dose. No figure located.",
+      "candidate": {
+        "value": null,
+        "provenance": "No figure located for the higher oral doses.",
+        "basis": "unretrieved",
+        "needs": "Direct read of novocare.com."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "wegovy_pill",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reference figure only. No list figure located for the oral product.",
+      "candidate": {
+        "value": null,
+        "provenance": "Not located.",
+        "basis": "unretrieved",
+        "needs": "A current list figure from a Novo Nordisk source."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "mounjaro",
+      "dose_or_tier": "any",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reported to have been added to the self-pay program at a discount to list. No confirmed figure.",
+      "candidate": {
+        "value": null,
+        "provenance": "Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain.",
+        "basis": "secondary_press",
+        "needs": "Direct read of lillydirect.lilly.com for an actual Mounjaro self-pay figure."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "mounjaro",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Requires commercial insurance covering the type 2 diabetes indication.",
+      "candidate": {
+        "value": null,
+        "provenance": "Terms unretrievable on 2026-07-30.",
+        "basis": "unretrieved",
+        "needs": "Direct read of the Mounjaro savings card terms."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "mounjaro",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Reference figure only.",
+      "candidate": {
+        "value": null,
+        "provenance": "Not separately located from Zepbound reporting.",
+        "basis": "unretrieved",
+        "needs": "A current list figure from a Lilly source."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "foundayo",
+      "dose_or_tier": "lowest_dose",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Oral starting dose. The figure in circulation is pre-approval agreement pricing, which is not the same claim as a launched price.",
+      "candidate": {
+        "value": 149,
+        "provenance": "149 per month for the lowest dose was reported both before approval as an agreement price and after approval as a self-pay starting price. The distinction matters and could not be resolved without a direct read.",
+        "basis": "secondary_press",
+        "needs": "A direct read of lillydirect.lilly.com confirming the actual launched self-pay price, not the pre-approval agreement figure."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "foundayo",
+      "dose_or_tier": "higher_doses",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Oral doses above the starting dose.",
+      "candidate": {
+        "value": 399,
+        "provenance": "Reported as up to 399 per month. 'Up to' is a ceiling, not a price for a given dose.",
+        "basis": "secondary_press",
+        "needs": "Per-dose figures from a direct read."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "foundayo",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Requires commercial insurance.",
+      "candidate": {
+        "value": 25,
+        "provenance": "Reported as 'as little as' 25 per month with a savings card. An 'as little as' figure is a best case, not a price.",
+        "basis": "secondary_press",
+        "needs": "Direct read of the savings card terms including the maximum benefit."
+      }
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "foundayo",
+      "dose_or_tier": "any",
+      "pathway": "medicare_bridge",
+      "source_url": "https://www.medicare.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "A fixed monthly Medicare beneficiary cost was reported as beginning as soon as 2026-07-01. Today is past that date and CMS could not be reached to confirm it started.",
+      "candidate": {
+        "value": 50,
+        "provenance": "Reported at 50 per month for eligible Medicare Part D beneficiaries. cms.gov denied by egress policy on 2026-07-30.",
+        "basis": "secondary_press",
+        "needs": "A direct read of a CMS page."
+      }
+    }
+  ]
+}

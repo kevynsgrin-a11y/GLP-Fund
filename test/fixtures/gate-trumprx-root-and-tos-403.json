@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-07-30T10:12:56Z",
+  "url": "https://trumprx.gov/",
+  "http_status": "403 Forbidden",
+  "source_type": "primary_government",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED FOR EVERY PATH BELOW. The 403 originated at this session's egress proxy during the HTTP CONNECT handshake, NOT from trumprx.gov. See gate-trumprx-egress-blockade-record.json. No byte of trumprx.gov content was ever received.",
+  "extracted": {
+    "per_url_status": [
+      { "url": "https://trumprx.gov/", "webfetch": "403 Forbidden", "curl": "curl: (56) CONNECT tunnel failed, response 403" },
+      { "url": "https://www.trumprx.gov/", "webfetch": "not attempted via WebFetch", "curl": "curl: (56) CONNECT tunnel failed, response 403" },
+      { "url": "https://trumprx.gov/robots.txt", "webfetch": "403 Forbidden", "curl": "curl: (56) CONNECT tunnel failed, response 403" },
+      { "url": "https://trumprx.gov/terms", "webfetch": "403 Forbidden", "curl": "not attempted" },
+      { "url": "https://trumprx.gov/terms-of-service", "webfetch": "403 Forbidden", "curl": "not attempted" },
+      { "url": "https://trumprx.gov/privacy", "webfetch": "403 Forbidden", "curl": "not attempted" },
+      { "url": "https://trumprx.gov/privacy-policy", "webfetch": "403 Forbidden", "curl": "not attempted" },
+      { "url": "https://trumprx.gov/p/zepbound", "webfetch": "403 Forbidden", "curl": "not attempted" },
+      { "url": "https://trumprx.gov/browse", "webfetch": "403 Forbidden", "curl": "not attempted" }
+    ],
+    "robots_txt_contents": "UNKNOWN - NEVER RETRIEVED. No claim may be made about trumprx.gov's robots.txt directives.",
+    "terms_of_service_contents": "UNKNOWN - NEVER RETRIEVED. No claim may be made about what trumprx.gov's terms say regarding automated access, scraping, or reproduction.",
+    "existence_of_a_privacy_policy_path": "A path https://trumprx.gov/privacy-policy is indexed by the search engine under the title 'Privacy Policy'. Its EXISTENCE is therefore attested by the index; its CONTENTS were not read.",
+    "canonical_terms_path_not_identified": "No /terms, /terms-of-use, or /terms-of-service page surfaced in domain-restricted search of trumprx.gov. Only 'Privacy Policy' surfaced. Whether a site-wide terms-of-use document exists at all is UNDETERMINED.",
+    "site_appears_to_sit_behind_cloudflare": "Index-mediated description of the privacy policy references 'automatic IP-based location detection from Cloudflare'. This is an inference about infrastructure, not a read of an access-control rule."
+  },
+  "verbatim_excerpt": "WebFetch result for https://trumprx.gov/ and for https://trumprx.gov/robots.txt, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.\" curl result, quoted verbatim: \"curl: (56) CONNECT tunnel failed, response 403\"."
+}

@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/drugs/human-drug-compounding/fda-alerts-health-care-providers-compounders-and-patients-dosing-errors-associated-compounded",
+  "http_status": "403 Forbidden on direct read. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "Would be primary_government if directly read. Treat as UNVERIFIED.",
+  "extracted": {
+    "adverse_events": "FDA has received reports of adverse events, some requiring hospitalization, that may be related to overdoses due to dosing errors associated with compounded semaglutide injectable products, resulting from patients measuring and self-administering incorrect doses and healthcare providers miscalculating doses.",
+    "mechanisms_of_error": "Risk of medication dosing errors due to conversion from milligrams to other units of measurement (for example units), availability of compounded semaglutide products in varying concentrations, and use of multiple-dose vials.",
+    "prescribing_errors": "Adverse events have occurred due to prescriptions indicating higher than recommended starting doses, more frequent than recommended dosing, and faster than recommended titration of doses.",
+    "overdose_effects": "Adverse effects from overdoses include severe nausea, severe vomiting and severe hypoglycemia. Prolonged observation and treatment may be necessary due to semaglutide's long half-life of about one week.",
+    "PERSONALIZED_DOSE_LOOPHOLE_DIRECTLY_UNDERCUT": "The 'personalized dose' / 'custom titration' marketing pitch used by telehealth compounders is the SAME mechanism FDA identifies as the cause of hospitalizations - non-label starting doses, non-label frequency and faster-than-label titration. A dose that differs from the approved label is simultaneously the compounder's legal argument for not being 'essentially a copy' AND the specific hazard FDA flags. A price-comparison tool cannot present that as a consumer cost option.",
+    "adverse_event_report_counts_secondary_only": "Secondary sources report more than 455 adverse event reports linked to compounded semaglutide and more than 320 linked to compounded tirzepatide as of early 2025. NOT confirmed against any primary FDA source. Do not publish these counts."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"FDA has received reports of adverse events, some requiring hospitalization, that may be related to overdoses due to dosing errors associated with compounded semaglutide injectable products.\" ... \"Adverse events have occurred due to prescriptions indicating higher than recommended starting doses, more frequent than recommended dosing and faster than recommended titration of doses.\" ... \"There may be a risk of medication dosing errors due to conversion from milligrams to other units of measurement, availability of compounded semaglutide products in varying concentrations and use of multiple-dose vials.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

@@ -1,0 +1,59 @@
+{
+  "retrieved_at": "2026-07-30T10:12:56Z",
+  "url": "https://trumprx.gov/p/wegovy",
+  "http_status": "403 Forbidden on direct read. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['trumprx.gov']). The figures below are a language model's summary of a search index's cached view of trumprx.gov product pages. THIS IS NOT A DIRECT READ AND MUST NOT BE TREATED AS CONFIRMATION. Recorded so a human curator knows exactly which pages to open and what to expect.",
+  "extracted": {
+    "product_page_inventory_discovered": [
+      "https://trumprx.gov/p/wegovy (Wegovy Pen)",
+      "https://trumprx.gov/p/wegovy-pill (Wegovy Pill)",
+      "https://trumprx.gov/p/ozempic (Ozempic Pen)",
+      "https://trumprx.gov/p/ozempic-pill (Ozempic Pill)",
+      "https://trumprx.gov/p/zepbound (Zepbound Vial)",
+      "https://trumprx.gov/p/zepbound-kwikpen (Zepbound KwikPen)",
+      "https://trumprx.gov/browse",
+      "https://trumprx.gov/browse?type=brand",
+      "https://trumprx.gov/browse?page=5",
+      "https://trumprx.gov/privacy-policy"
+    ],
+    "CRITICAL_TEETH_FINDING_introductory_pricing": "The widely-reported '$199/month' figure for Wegovy Pen and Ozempic is attributed by the index to be an INTRODUCTORY price covering only the FIRST TWO MONTHLY FILLS, after which the price RISES to $349/month or higher. A patient who budgets $199/month indefinitely would face a price increase of +$150 to +$300 per month from the third fill onward. Any consumer-facing display of '$199' without the two-fill limitation is actively dangerous.",
+    "wegovy_pen": {
+      "intro_price_usd_per_month": 199,
+      "intro_duration": "first two monthly fills",
+      "price_after_intro_usd_per_month": 349,
+      "doses_at_349": "0.25mg, 0.5mg, 1mg, 1.7mg, 2.4mg",
+      "price_after_intro_high_dose_usd_per_month": 399,
+      "dose_at_399": "7.2mg"
+    },
+    "ozempic_pen": {
+      "intro_price_usd_per_month": 199,
+      "intro_duration": "first two monthly fills",
+      "price_after_intro_usd_per_month": 349,
+      "doses_at_349": "0.25mg, 0.5mg, 1mg",
+      "price_after_intro_high_dose_usd_per_month": 499,
+      "dose_at_499": "2mg"
+    },
+    "wegovy_pill": {
+      "price_usd_per_month": 149,
+      "doses": "1.5 mg and 4 mg",
+      "caveat": "described as a LIMITED TIME OFFER - time-bounded, expiry date unknown"
+    },
+    "zepbound_vial": {
+      "price_usd_per_month": 299,
+      "qualifier": "'starts at' - higher doses cost more; per-dose ladder NOT captured",
+      "fulfillment": "Eli Lilly manages all Zepbound Vial orders through LillyDirect, which confirms eligibility and offers delivery. 'Eligibility is required and terms and conditions apply.'",
+      "support_line": "LillyDirect Customer Care 844-559-3471, 9am-7pm ET Mon-Fri"
+    },
+    "zepbound_kwikpen": {
+      "price_usd_per_month": 299.00,
+      "comparator_shown_on_product_page_usd": 499.00,
+      "discount_shown": "40% off",
+      "COMPARATOR_CONFLICT": "The Zepbound KwikPen product page comparator is reported as $499.00, NOT the ~$1,087 list price reported for the site homepage. $299 vs $499 is 40% off, which is internally consistent. This means the site may display DIFFERENT comparator baselines in different places (list price vs. prior direct-to-consumer self-pay price). Treating $1,087 as 'the' comparator for the $299 figure is not supported."
+    },
+    "oral_ozempic_page_exists": "An 'Ozempic Pill' product page exists at /p/ozempic-pill. Its price was NOT captured. Note the Nov 2025 announcement anticipated oral GLP-1 starting doses at $150/month upon approval; whether /p/ozempic-pill reflects $150 is UNVERIFIED.",
+    "per_dose_ladders_not_captured": "Dose-specific pricing for Zepbound (2.5/5/7.5/10/12.5/15 mg) was explicitly NOT available from the index. Secondary reporting suggests Zepbound direct-to-consumer runs $299 up to $449/month by dose, but that is press, not primary.",
+    "provenance_warning": "Every number in this fixture is index-mediated. None of it may be published as confirmed."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to trumprx.gov, quoted verbatim: \"Wegovy pen injections are $199 per month for the first two monthly fills, then $349/month for 0.25mg, 0.5mg, 1mg, 1.7mg, or 2.4mg and $399/month for the 7.2mg dose\" ... \"Ozempic injections are $199 per month for the first two monthly fills, then $349/month for 0.25mg, 0.5mg or 1mg, and $499/month for 2mg\" ... \"Wegovy pill tablets are $149 per month for 1.5 mg and 4 mg (limited time offer)\" ... \"Zepbound KwikPen starts at $299.00 (compared to $499.00 retail, which is 40% off)\" ... \"Eli Lilly and Company manages all Zepbound (Tirzepatide) Vial orders through LillyDirect, which will guide you through eligibility confirmation and offers delivery options. Eligibility is required and terms and conditions apply.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

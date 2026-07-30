@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:22:00Z",
+  "url": "WebSearch result set only. Primary targets https://www.lillycares.com/how-to-apply and https://investor.lilly.com/news-releases/news-release-details/lilly-broadens-income-eligibility-patient-assistance-programs were 403 at CONNECT and never read.",
+  "http_status": "403 on the primary sources. LOCATED claims only, and they DIRECTLY CONTRADICT each other.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED, AND SELF-CONTRADICTORY. All values null.",
+    "claimed_income_thresholds": "Tiered by medication group rather than a single percentage: 300 percent of Federal Poverty Guidelines for Group 1 medications, 400 percent for Group 2, and 500 percent for Groups 3 and 4, against 2026 guidelines. A separate claim states Mounjaro assistance is free for income-eligible uninsured patients at or below 400 percent FPL ($63,840 for a household of one in 2026). The task asked for 'the' income threshold as a single percentage; if the tiering claim is accurate, no single threshold exists and the tool's data model must accommodate per-product tiers.",
+    "ZEPBOUND_COVERAGE_DIRECT_CONTRADICTION": {
+      "claim_A_not_covered": "'no income-based patient assistance program exists for Zepbound through Lilly Cares' and 'Lilly Cares ... does not currently include Zepbound on its medication list as of April 2026'",
+      "claim_B_covered": "'Lilly Cares Foundation provides free Mounjaro and Zepbound to qualifying patients'",
+      "assessment": "These two claims appeared in the SAME search result set and cannot both be true. The summary itself then tried to resolve the conflict in favor of claim A. That resolution is an unattributed judgment by a summarizing model over cached aggregator pages and carries no evidentiary weight whatsoever.",
+      "consequence": "Whether a low-income uninsured patient has ANY free-drug pathway to Zepbound is left genuinely unknown by this session. This is the single most consequential unresolved question in the gate: it is precisely the population with no other route to the medicine, and both a false positive (sending someone to apply for a program that will not cover them) and a false negative (telling someone no help exists when it does) do real harm."
+    },
+    "eligibility_note": "Even under claim B, Mounjaro assistance would be tied to the type 2 diabetes indication, not weight management, so it is not a substitute pathway for a weight-management patient.",
+    "allowlist_note": "lillycares.com is operated by the Lilly Cares Foundation, a separate 501(c)(3) entity, and is NOT among the hosts enumerated on this project's primary-source allowlist (which names lilly.com and its subdomains). Even had it been reachable, whether it counts as primary under the project's own rules needs an explicit ruling from the project owner before any Lilly Cares figure is shipped."
+  },
+  "verbatim_excerpt": "From the WebSearch summary, quoted, showing the contradiction: 'The Lilly Cares Foundation uses income limits of 300% (Group 1 Medications), 400% (Group 2 Medications), and 500% (Group 3 & 4 Medications) of 2026 Federal Poverty Guidelines.' ... 'no income-based patient assistance program exists for Zepbound through Lilly Cares.' ... 'Lilly Cares Foundation provides free Mounjaro and Zepbound to qualifying patients.'"
+}

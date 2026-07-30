@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:21:00Z",
+  "url": "WebSearch result set only. Primary target https://investor.lilly.com/news-releases/news-release-details/zepbound-tirzepatide-most-prescribed-weight-management was located but NOT fetched (all investor.lilly.com CONNECTs denied 403).",
+  "http_status": "403 on the primary source. LOCATED claims only.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. All values null in structured output.",
+    "claimed_fda_status": "Search-index summary states the FDA approved a LABEL EXPANSION for Zepbound to include a four-dose single-patient-use KwikPen delivering a full month of treatment in one device, on February 23, 2026. If true, the 'subject to FDA approval' caveat in the original announcement has been satisfied and the pen is shipping.",
+    "claimed_shipping_status": "Search-index summary states the multi-dose KwikPen is available to self-paying patients through LillyDirect as of late February 2026.",
+    "claimed_pen_pricing": "Lowest dose $299, additional doses up to $449; and on refill of the multi-dose pen prescription through LillyDirect, patients 'will pay no more than $449'.",
+    "PEN_REFILL_LANGUAGE_DIFFERS_FROM_VIAL_LANGUAGE": "Note carefully: the pen claim is phrased as a refill CAP ('no more than $449') with no 45-day condition attached in the summary, whereas the vial claim attaches a 45-day refill window to the $449 tier. These are potentially two different mechanisms. Neither was read from a Lilly page. Do not assume the vial refill rule applies to the pen, and do not assume it does not.",
+    "per_dose_pen_price_breakdown": "NOT OBTAINED. The task asks for pen prices per dose. Only the endpoints ($299 lowest, up to $449) were located. The intermediate per-dose pen tiers are unknown from this session.",
+    "GATE_BRIDGE_DEPENDENCY": "The task states GATE-BRIDGE is reportedly pen-only. That dependency rests on the pen's approval and availability status, which is unconfirmed here. GATE-BRIDGE must not be built on this fixture."
+  },
+  "verbatim_excerpt": "From the WebSearch summary, quoted: 'The U.S. Food and Drug Administration (FDA) approved a label expansion for Zepbound (tirzepatide) to include the four-dose single-patient use KwikPen that delivers a full month of treatment in one device on February 23, 2026.' and 'For self-pay patients, the Zepbound multi-dose pen will be available at the lowest dose at $299, with additional doses up to $449, and when patients refill their multi-dose pen prescription on the LillyDirect digital health platform, they will pay no more than $449.' Search-index summary, not a primary read."
+}
