@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:52:30Z",
+  "url": "WebSearch result set only. Primary target https://www.lillycares.com/how-to-apply was 403 at CONNECT and never read.",
+  "http_status": "403 on the primary source. This fixture records LOCATED claims from a search-index summary.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. All values stay null.",
+    "PRIOR_REPORT_ASYMMETRY": "The prior gate marked the ZEPBOUND Lilly Cares datum 'conflicting' but marked the MOUNJARO Lilly Cares FPL datum merely 'unverified', as though the Mounjaro program were simply unconfirmed rather than disputed. The located evidence does not support that asymmetry.",
+    "contradiction_now_extends_to_mounjaro": "A single search summary states both of the following in adjacent sentences: 'Mounjaro, Zepbound, and Rezvoglar are NOT in the Lilly Cares formulary as of 2026' AND 'The Lilly Cares Foundation patient assistance program runs for uninsured patients with income at or below 400 percent of the federal poverty level ($63,840 per year for a single person in 2026), and approved applicants typically receive a 12-month supply of Mounjaro at no cost.' Both cannot be true. The Mounjaro datum must therefore be 'conflicting', not 'unverified'.",
+    "zepbound_contradiction_upheld": "The prior report's finding of flatly contradictory Zepbound evidence is CONFIRMED and reproduced: one located claim says no income-based assistance exists for Zepbound and it is absent from the formulary; another says Lilly Cares supplies free Zepbound. The search channel itself concedes the conflict: 'The search results show conflicting information about Zepbound eligibility.'",
+    "fpl_threshold_still_unsettled": "The single-threshold claim (400 percent FPL, $63,840 household of one, 2026) and the tiered claim (300 percent Group 1, 400 percent Group 2, 500 percent Groups 3 and 4) were both located and cannot both describe one product. Group assignments per product were never obtained, so the rule is not evaluable. Unchanged from the prior report.",
+    "allowlist_scope_question_upheld": "lillycares.com is operated by a separate 501(c)(3) and is not among the primary hosts named on this project's allowlist. The prior report was right to flag this as needing an explicit scope ruling. However the prior report's own sources array labels this host source_type 'primary_manufacturer', contradicting its own tos_notes on the same entry.",
+    "harm_note": "Whether the poorest uninsured patients have any free-drug pathway to Zepbound remains genuinely unknown, and both error directions cause real harm. Nothing may be shown for this branch."
+  },
+  "verbatim_excerpt": "Quoted from the WebSearch summary: 'Mounjaro: The Lilly Cares Foundation patient assistance program runs for uninsured patients with income at or below 400 percent of the federal poverty level ($63,840 per year for a single person in 2026), and approved applicants typically receive a 12-month supply of Mounjaro at no cost. Zepbound: There's an important distinction here. Mounjaro, Zepbound, and Rezvoglar are NOT in the Lilly Cares formulary as of 2026. However, no income-based patient assistance program exists for Zepbound.'"
+}

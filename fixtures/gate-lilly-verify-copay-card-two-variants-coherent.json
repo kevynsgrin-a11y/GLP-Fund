@@ -1,0 +1,28 @@
+{
+  "retrieved_at": "2026-07-30T10:52:00Z",
+  "url": "WebSearch result set only. Primary target https://zepbound.lilly.com/savings and https://zepbound.lilly.com/hcp/coverage-savings were 403 at CONNECT and never read.",
+  "http_status": "403 on all primary Lilly hosts. This fixture records LOCATED claims from search-index summaries, not a retrieved page.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. All values remain null. Recorded to REFUTE three specific characterizations in the prior gate report.",
+    "REFUTATION_1_hard_gap_does_not_exist": "The prior report called the non-covered-indication copay a 'HARD GAP ... NOT obtained from any channel, primary or secondary' and said the search channel 'returned only statements about uninsured and government-insured patients'. That is incorrect. A single targeted query located it, including a dedicated aggregator page titled 'Zepbound Savings Card - Non-Covered Benefit'.",
+    "located_non_covered_variant": {
+      "patient_pays": "as low as $499 for a 1-month prescription fill of Zepbound single-dose pen",
+      "maximum_savings": "wholesale acquisition cost minus $499",
+      "fill_limit": "up to 13 fills per calendar year",
+      "another_aggregator_phrasing": "'may still provide a discount ... often up to $650 per month, depending on the dose, pharmacy, and the program's monthly and annual caps'"
+    },
+    "located_covered_variant": {
+      "patient_pays": "as little as $25 for a 1-, 2-, or 3-month fill of the Zepbound single-dose pen",
+      "maximum_savings": "up to $100 per 1-month fill, $200 per 2-month, $300 per 3-month",
+      "annual_cap": "up to $1,300 per calendar year",
+      "fill_limit": "up to 13 fills per calendar year",
+      "expiry": "12/31/2026",
+      "other_conditions": "18 or older, US or Puerto Rico resident, not enrolled in any government healthcare program"
+    },
+    "REFUTATION_2_no_incoherence": "The prior report marked the maximum-benefit datum confidence 'conflicting' and 'unusable in any form', reasoning that 'A $100-per-fill ceiling cannot coexist with a card that reduces a $1,000-plus list price to $25'. That reasoning is FALSE. In the covered variant the plan pays first and the card offsets only the patient's residual COPAY, so a $100 ceiling is entirely compatible with a $25 out-of-pocket. The annual cap is also exactly arithmetically consistent: 13 fills x $100 = $1,300. The two card variants are cleanly separable, not conflated. Confidence must be lowered from 'conflicting' to 'unverified'.",
+    "REFUTATION_3_dropped_product_form_condition": "BLOCKING. Both card variants are restricted to PEN presentations, and single-dose VIALS are excluded from the savings card. The prior report's copay_card data entries state the tier only as 'commercial insurance that COVERS Zepbound' with no pen-vs-vial restriction recorded. A vial patient shown a $25 expectation would be sent to the counter wrong.",
+    "located_pen_vial_split": "'The $25 track applies to single-dose pens; the non-covered track applies to the KwikPen. Vials are sold through Lilly's separate Self Pay Journey Program at the same $299-$449.' and 'The $25 savings card does not cover single-dose vials.'"
+  },
+  "verbatim_excerpt": "Quoted from WebSearch summaries: 'You must have commercial drug insurance that covers Zepbound single-dose pen and a prescription for an approved use consistent with FDA-approved product labeling to pay as little as $25 for a 1-month, 2-month, or 3-month prescription fill of Zepbound single-dose pen.' And: 'For patients with commercial drug insurance that does not provide coverage for Zepbound single-dose pen, you can pay as low as $499 for your 1-month prescription fill of Zepbound single-dose pen.' And: 'Card savings are subject to a maximum monthly savings of up to $100 per 1-month prescription, $200 per 2-month prescription, or $300 per 3-month prescription fill and a separate maximum annual savings of up to $1,300 per calendar year.'"
+}

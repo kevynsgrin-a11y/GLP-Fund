@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "WebSearch result set only. Primary targets https://pricinginfo.lilly.com/zepbound and https://pricinginfo.lilly.com/mounjaro were 403 at CONNECT and never read.",
+  "http_status": "403 on both primary sources. This fixture records LOCATED claims from search-index summaries.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. All values stay null.",
+    "REFUTATION_zepbound_unit_was_stated": "The prior report claimed of the Zepbound list price that 'None state whether the figure is per month of therapy, per vial, per four-vial carton, or per KwikPen, so the unit itself is unresolved.' That overstates the gap. Located summaries DO state a unit.",
+    "located_zepbound_list_price_with_unit": "'the list price of Zepbound is $1,086 per month for a 28-day supply (4 pre-filled pens)' and separately 'each month defined as a 28-day supply of four single-dose vials or one KwikPen'.",
+    "residual_zepbound_conflict_is_real": "The spread $1,059 / $1,059.87 / $1,086 / $1,087 remains genuinely unresolved and confidence 'conflicting' is CORRECT. Note additionally that the $1,086 figure is attached to PENS, so treating 'zepbound list price' as a single datum spanning vials and pens is itself a modeling defect the prior report did not flag.",
+    "REFUTATION_mounjaro_list_price_was_located": "The prior report stated 'No observed list-price figure was located at all' for Mounjaro and that only a back-calculated ~$1,085 existed. That is incorrect. Figures were located.",
+    "located_mounjaro_list_price": "'All Mounjaro dose strengths - 2.5mg, 5mg, 7.5mg, 10mg, 12.5mg, and 15mg - are priced at approximately $1,069-$1,112/month at retail pharmacies, regardless of dose' and 'a retail list price of approximately $1,070/month'. These are approximations and a range, so the datum is 'conflicting', value null. But the claim that nothing was locatable is wrong.",
+    "located_mounjaro_selfpay": "'Mounjaro is available on LillyDirect at $499 per month for all doses. These prices are roughly 50 to 55 percent below the retail list price and cannot be combined with insurance.' Note the prior report cited '54 percent off list'; the located phrasing is a 50-55 percent band, so the precise percentage is itself unsettled.",
+    "flat_structure_caution_upheld": "The prior report's warning that Mounjaro is flat-priced across doses and must NOT inherit Zepbound's dose-tier logic is supported by the located text and should be retained.",
+    "indication_caution_upheld": "The prior report's caution that Mounjaro is indicated for type 2 diabetes and must not be surfaced as a cheaper weight-management substitute is retained. No FDA label was readable, so it remains an unverified caution, not a cited label fact."
+  },
+  "verbatim_excerpt": "Quoted from WebSearch summaries: 'According to Lilly's official pricing information, the list price of Zepbound is $1,086 per month for a 28-day supply (4 pre-filled pens). Other sources report slightly lower figures - approximately $1,059 per month at U.S. list price as of April 2026.' And: 'All Mounjaro dose strengths - 2.5mg, 5mg, 7.5mg, 10mg, 12.5mg, and 15mg - are priced at approximately $1,069-$1,112/month at retail pharmacies, regardless of dose.'"
+}

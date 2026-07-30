@@ -1,0 +1,21 @@
+{
+  "retrieved_at": "2026-07-30T10:55:25Z",
+  "url": "Local proxy control-plane http://127.0.0.1:40851/__agentproxy/status plus direct CONNECT probes of 10 hosts, plus WebFetch probes",
+  "http_status": "curl: (56) CONNECT tunnel failed, response 403 / http_code=000 on all 10 hosts probed. WebFetch: 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' on both a Lilly URL and https://example.com/",
+  "source_type": "primary_environment_control_plane",
+  "extracted": {
+    "VERDICT_ON_PRIOR_CLAIM": "The prior researcher's central claim of a total primary-source retrieval blockade is INDEPENDENTLY CONFIRMED. I could not refute it.",
+    "hosts_probed_all_403_at_CONNECT": [
+      "www.lilly.com", "investor.lilly.com", "pricinginfo.lilly.com", "zepbound.lilly.com",
+      "lillydirect.lilly.com", "www.lillycares.com", "www.fda.gov", "www.cms.gov",
+      "trumprx.gov", "example.com"
+    ],
+    "webfetch_status": "WebFetch returned 403 Forbidden for https://investor.lilly.com/news-releases/news-release-details/lilly-lowers-price-zepboundr-tirzepatide-single-dose-vials AND for https://example.com/. WebFetch is non-functional for every URL in this session, so its 403 on a Lilly host carries zero Lilly-specific information.",
+    "negative_control_holds": "example.com is refused by both curl and WebFetch. The denial is an egress-policy denial at the gateway, not Lilly bot protection and not an origin response. http_code=000 means no HTTP response was ever received from any origin.",
+    "primary_allowlist_hosts_also_blocked": "fda.gov, cms.gov and trumprx.gov are on this project's PRIMARY allowlist and are equally denied, so no substitute primary host exists.",
+    "proxy_recorded_reason": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+    "working_channel": "WebSearch only. Per the rules of evidence a search-index summary may LOCATE but never CONFIRM.",
+    "policy_compliance": "Per /root/.ccr/README.md, 403/407 from the proxy is an organization egress denial and must be reported, not retried or routed around. No relay, mirror or alternate gateway was attempted."
+  },
+  "verbatim_excerpt": "From the proxy status endpoint: {\"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\", \"host\": \"investor.lilly.com:443\"} and the same for www.lilly.com:443, zepbound.lilly.com:443, www.novonordisk.com:443, www.novocare.com:443 and www.google.com:443. From /root/.ccr/README.md: 'The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it - report the blocked host.'"
+}

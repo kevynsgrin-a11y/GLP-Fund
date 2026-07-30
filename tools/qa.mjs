@@ -105,8 +105,16 @@ function startServer(overrides = new Map()) {
 /* --------------------------------------------------------------------- CDP */
 
 function findChrome() {
-  const found = CHROME_CANDIDATES.find((p) => existsSync(p));
-  if (!found) throw new Error(`No Chromium found. Looked in:\n${CHROME_CANDIDATES.join('\n')}`);
+  // CHROMIUM_PATH lets CI point at whatever browser it installed, since the
+  // pre-installed paths below are specific to this development environment.
+  const candidates = [process.env.CHROMIUM_PATH, ...CHROME_CANDIDATES].filter(Boolean);
+  const found = candidates.find((p) => existsSync(p));
+  if (!found) {
+    throw new Error(
+      `No Chromium found. Looked in:\n${candidates.join('\n')}\n` +
+        'Set CHROMIUM_PATH to a Chromium or Chrome binary.'
+    );
+  }
   return found;
 }
 
