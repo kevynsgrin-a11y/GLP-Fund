@@ -195,23 +195,87 @@ KV has no query, so the per-drug index is maintained at write time. Writes are i
 
 ## 6. Cloudflare Pages deploy
 
-**Project settings**
+Target: **`glp1-fund.com`**, registered through Cloudflare.
+
+### 6.0 The API token: read this before creating one
+
+**The token must never be committed to this repository, pasted into a file in it, or included in a commit message, an issue, or a pull request comment.** A Pages-scoped token can publish arbitrary content to a live health-information site. Treat it as a credential that can deface the product.
+
+Where it goes: **GitHub repository secrets**, at Settings > Secrets and variables > Actions. Two secrets:
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | the token created below |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard, right-hand sidebar of the account overview |
+
+GitHub secrets are write-only once saved: the workflow can use the value, and nobody -- including me -- can read it back. That is the property you want.
+
+**Creating the token,** Cloudflare dashboard > My Profile > API Tokens > Create Token > Create Custom Token:
+
+- Permissions: **Account > Cloudflare Pages > Edit**. That single permission is sufficient. Do not grant Zone or DNS permissions; this workflow does not touch DNS.
+- Account Resources: include only the account that owns the Pages project.
+- TTL: set an expiry you are willing to rotate. An immortal deploy token is a liability.
+
+`.gitignore` already excludes `.dev.vars`, which is the only place Wrangler would look for a local token. If you deploy from a laptop instead of CI, export the token in your shell for that session rather than writing it to a file.
+
+**If a token is ever exposed** -- pasted into a chat, a commit, or a log -- revoke it in the Cloudflare dashboard first and create a new one second. Rotation is cheap; a live token in a public repository is not.
+
+### 6.1 Project settings
 
 | Setting | Value |
 | --- | --- |
+| Project name | `glp1-fund` |
 | Build command | **(empty)** |
 | Build output directory | `public` |
 | Root directory | `/` |
 | Functions directory | `functions` (repo root, auto-detected) |
+| Production branch | `main` |
 | Node version | not required; nothing is built |
 
-There is no build step. `public/` is served exactly as committed. `package.json` exists only to run `node --test` and is never read at deploy time.
+There is no build step. `public/` is served exactly as committed. `package.json` exists only to run `node --test` and is never read at deploy time. `wrangler.toml` holds these settings in version control so they are reviewable rather than click-configured.
 
-**Bindings:** KV namespace, variable name `ALERTS`, bound for both production and preview. Without it the alert endpoint returns 503 and logs the missing binding; the rest of the site is unaffected.
+### 6.2 KV binding
+
+The alert list is the only server-side state in the project. Create the namespaces once and paste the ids into `wrangler.toml`:
+
+```bash
+npx wrangler kv namespace create ALERTS
+npx wrangler kv namespace create ALERTS --preview
+```
+
+Bind as variable name `ALERTS` for **both** production and preview. Without it the alert endpoint returns 503 and logs the missing binding, and every other part of the site is unaffected -- the intended failure mode, because a broken mailing list must never take down a page somebody is reading at a pharmacy counter.
+
+### 6.3 Custom domain
+
+In the Pages project, Custom domains > Set up a custom domain, add `glp1-fund.com` and `www.glp1-fund.com`. Because the domain is registered in the same Cloudflare account, the DNS records are created automatically and no nameserver change is needed. Allow a few minutes for the certificate to issue; until it does, the smoke check in the deploy workflow will report non-200 and say so rather than failing the deploy.
+
+Decide one thing deliberately: whether `www` redirects to apex or the reverse. The site's canonical URLs are **apex** (`https://glp1-fund.com/...`), generated from `DOMAIN` in `config.js`, so `www` should redirect to apex. Serving both without a redirect splits ranking signals between two hosts.
+
+### 6.4 Deploying
+
+**Automatic**, and the intended path: push to `main`. `.github/workflows/deploy.yml` runs the full test suite, the page-drift check and the browser QA pass, and deploys only if all three are green. Deployment is gated behind the tests deliberately -- the integrity invariant that stops an unverified price rendering as a number *is* a test, so shipping past a red suite means shipping past the guarantee.
+
+**Manual**, if needed:
+
+```bash
+npm test && node tools/qa.mjs           # do not skip this
+npx wrangler pages deploy public --project-name=glp1-fund --branch=main
+```
+
+### 6.5 First-deploy checklist
+
+1. Both GitHub secrets set.
+2. KV namespace ids pasted into `wrangler.toml` and committed.
+3. Custom domain added, certificate issued, `www` redirecting to apex.
+4. `https://glp1-fund.com/` serves the tool.
+5. `https://glp1-fund.com/data/pricing.json` serves JSON with `Cache-Control: max-age=300`.
+6. `https://glp1-fund.com/sitemap.xml` lists apex URLs, not the old placeholder host.
+7. An alert signup returns 200 and the KV record appears.
+8. The tool completes at 390px on a real phone with no horizontal scroll.
 
 **Headers and redirects** are in `public/_headers` and `public/_redirects`, generated by `tools/build-pages.mjs`. Note the caching split: assets and engine modules cache for an hour, but `pricing.json` and `changelog.json` cache for **five minutes** -- on a price-change day a hard-cached data file is the exact failure this site exists to avoid.
 
-**Domain:** `glp1pricecheck.com` is a **placeholder and has not been checked with a registrar.** It appears in `public/engine/config.js` and flows into canonical URLs, the sitemap and JSON-LD. Change it there and re-run `tools/build-pages.mjs`; nothing depends on it resolving.
+**Domain:** `glp1-fund.com`, registered through Cloudflare. Defined once in `public/engine/config.js` and flowing into canonical URLs, the sitemap, `robots.txt` and every JSON-LD block. To change it: edit `config.js`, update the self host in the allowlist in `test/integrity.test.js`, run `node tools/build-pages.mjs`, then `npm test`. The allowlist deliberately fails the build on a canonical URL pointing at a host we do not control.
 
 **Deploy verification**, every time:
 

@@ -134,8 +134,10 @@ const ALLOWED_HOSTS = new Set([
   'www.novocare.com', 'novocare.com',
   'www.wegovy.com', 'wegovy.com', 'www.ozempic.com', 'ozempic.com',
   'www.novonordiskpap.com', 'novonordiskpap.com',
-  // Self.
-  'glp1pricecheck.com', 'www.glp1pricecheck.com',
+  // Self. Must match DOMAIN in public/engine/config.js, or the build fails on
+  // its own canonical URL -- which is the intended behaviour, since a canonical
+  // pointing at a host we do not control is worse than a failing test.
+  'glp1-fund.com', 'www.glp1-fund.com',
   // Vocabulary and namespace identifiers. These appear in JSON-LD `@context` and
   // in the sitemap's XML namespace declaration. They identify a schema; they are
   // not links a visitor can follow or that pass any authority.
@@ -323,6 +325,69 @@ test('stripComments hides prose but never hides code', () => {
 
   // Line numbers are preserved so a reported violation points at the right line.
   assert.equal(stripComments('a\n// c\nb').split('\n').length, 3);
+});
+
+/* ------------------------------------------------------------------------- *
+ * 3b. NO CREDENTIALS IN THE REPOSITORY
+ * ------------------------------------------------------------------------- */
+
+test('no credential is committed to the repository', () => {
+  // A Cloudflare Pages token can publish arbitrary content to a live health
+  // information site, so a leaked one is a defacement risk rather than merely an
+  // embarrassment. This test exists because the moment of highest risk is the
+  // moment someone is holding a fresh token and looking for somewhere to put it.
+  //
+  // The right place is GitHub Actions secrets, which are write-only once saved.
+  // See docs/ops-runbook.md section 6.0.
+  const PATTERNS = [
+    // Cloudflare API tokens: 40 chars of base62 with - and _ .
+    { name: 'Cloudflare API token', re: /\b[A-Za-z0-9_-]{40}\b/, confirm: /(cloudflare|api[_-]?token|CF_API)/i },
+    { name: 'Cloudflare global API key', re: /\b[0-9a-f]{37}\b/, confirm: /(cloudflare|api[_-]?key)/i },
+    { name: 'AWS access key id', re: /\bAKIA[0-9A-Z]{16}\b/, confirm: null },
+    { name: 'GitHub token', re: /\bgh[pousr]_[A-Za-z0-9]{16,}\b/, confirm: null },
+    { name: 'private key block', re: /-----BEGIN (RSA |EC |OPENSSH |PGP )?PRIVATE KEY-----/, confirm: null },
+    { name: 'Bearer token literal', re: /Bearer\s+[A-Za-z0-9_\-.]{24,}/, confirm: null },
+  ];
+
+  const violations = [];
+
+  for (const file of ALL_FILES) {
+    const rel = relative(ROOT, file);
+    // This file necessarily contains the patterns it forbids.
+    if (rel === 'test/integrity.test.js') continue;
+    // Frozen research fixtures contain long hashes and URL slugs that trip the
+    // generic 40-character heuristic without being credentials.
+    if (rel.startsWith('test/fixtures/')) continue;
+
+    const text = readFileSync(file, 'utf8');
+
+    for (const { name, re, confirm } of PATTERNS) {
+      const match = text.match(re);
+      if (!match) continue;
+      // The generic length heuristics need a nearby keyword to avoid firing on
+      // git SHAs, base64 asset data and long URL paths. The specific prefixed
+      // formats need no confirmation -- they are unambiguous.
+      if (confirm && !confirm.test(text)) continue;
+      const line = text.slice(0, match.index).split('\n').length;
+      violations.push(`${rel}:${line} looks like a ${name}: ${match[0].slice(0, 8)}...`);
+    }
+  }
+
+  assert.deepEqual(
+    violations,
+    [],
+    'A credential appears to be committed. Revoke it in the provider dashboard ' +
+      'FIRST, then remove it from the repository and its history.\n' +
+      violations.join('\n')
+  );
+});
+
+test('no secret-bearing filename is tracked', () => {
+  const FORBIDDEN_NAMES = ['.dev.vars', '.env', 'credentials.json', 'secrets.json'];
+  const offenders = ALL_FILES.map((f) => relative(ROOT, f)).filter((rel) =>
+    FORBIDDEN_NAMES.some((n) => rel === n || rel.endsWith(`/${n}`))
+  );
+  assert.deepEqual(offenders, [], `these are gitignored for a reason: ${offenders.join(', ')}`);
 });
 
 /* ------------------------------------------------------------------------- *
