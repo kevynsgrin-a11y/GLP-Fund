@@ -1,0 +1,43 @@
+{
+  "retrieved_at": "2026-07-30T10:28:58Z",
+  "url": "internal://websearch-result-snippets (multiple queries)",
+  "http_status": "ok (search snippets only - NO underlying page was ever fetched)",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "WARNING": "These are search-engine-generated summaries of pages that were NEVER retrieved. They are LOCATOR leads only. Per the rules of evidence they may never confirm a figure. Every number here is UNVERIFIED and must carry a null value downstream.",
+    "candidate_claims_to_be_verified_later": {
+      "wegovy_injection_self_pay": {
+        "claim": "$199/month is an INTRODUCTORY price for patients new to self-pay, limited to the two lowest doses (0.25 mg and 0.5 mg), for 2 monthly fills, through December 31 2026; then $349/month for 0.25/0.5/1/1.7/2.4 mg and $399/month for Wegovy HD 7.2 mg",
+        "implication_for_test_vector_4": "Directly contradicts flat-rate pricing across all doses. Dose 'any' appears to be an invalid modeling assumption."
+      },
+      "wegovy_pill_self_pay": {
+        "claim": "$149/month for 1.5 mg and for 4 mg, with the 4 mg offer only through August 31 2026 then $199/month for 4 mg; $299/month for 9 mg and 25 mg. One month = 1 bottle of 30 tablets.",
+        "implication_for_the_149_vs_199_conflict": "Suggests $149 and $199 are not competing claims about one price but two different strengths/time windows. UNVERIFIED."
+      },
+      "ozempic_self_pay": {
+        "claim": "$199/month for 0.25 mg and 0.5 mg for 2 monthly fills through June 30 2026 (window may have already closed as of today 2026-07-30), then $349/month for 0.25/0.5/1 mg and $499/month for 2 mg. One month = 1 box of 1 pen."
+      },
+      "list_prices": {
+        "claim": "Wegovy list price $1,349/month; Ozempic list price $1,028/month. Separately reported: Novo will cut both to $675/month effective January 1 2027, said not to affect self-pay prices.",
+        "note": "The task's alternative Ozempic figure of $935 was not corroborated by these snippets; a $936-$998 per-pen range was also mentioned by one aggregator. Unresolved."
+      },
+      "savings_card": {
+        "claim": "Commercial copay as little as $25 per fill; savings capped around $100 per 1-month supply. Medicare, Medicaid, TRICARE, VA, DOD beneficiaries not eligible.",
+        "note": "NO verbatim exclusion language was obtained. The exact legal text remains unretrieved."
+      },
+      "patient_assistance_program": {
+        "claim": "At or below 200% FPL for Ozempic, at or below 400% FPL for other products; must be US citizen or legal resident; must be uninsured or have Medicare (commercial insurance disqualifies); cannot be enrolled in or eligible for Medicaid, LIS, or VA.",
+        "note": "Whether Wegovy (either formulation) is covered by PAP at all was NOT established."
+      },
+      "oral_product_identity": {
+        "claim": "Marketed as 'Wegovy pill' / Wegovy tablets, oral semaglutide, FDA approved December 22 2025, strengths 1.5/4/9/25 mg, US launch early January 2026. FDA application number appears to be NDA 218316.",
+        "note": "The approved proprietary name was NOT confirmed against an FDA label. 'Wegovy pill' may be marketing styling rather than the approved proprietary name."
+      },
+      "oasis_4_efficacy": {
+        "claim": "16.6% mean weight loss when treatment was adhered to, oral semaglutide 25 mg once daily, adults with obesity or overweight plus one or more comorbidities. The 13.6% primary-analysis, 76.3% vs 31.3% responder figures were NOT corroborated by any retrieved source.",
+        "note": "Efficacy figures unverified; do not publish."
+      }
+    }
+  },
+  "verbatim_excerpt": "Search snippet, novocare.com Wegovy_Price_Guide.pdf lead: \"For 1.5 mg and 4 mg doses: $149 per month (the 4 mg offer is only available until August 31, 2026, then $199 per month). For 9 mg and 25 mg doses: $299 per month. One month is defined as 1 bottle of 30 tablets of Wegovy\" -- NOTE: this text came from a search index, not from the PDF itself, which returned 403."
+}

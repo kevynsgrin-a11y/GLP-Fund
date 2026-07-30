@@ -1,0 +1,38 @@
+{
+  "retrieved_at": "2026-07-30T10:28:58Z",
+  "url": "http://127.0.0.1:40851/__agentproxy/status",
+  "http_status": "ok",
+  "source_type": "primary_government",
+  "extracted": {
+    "what_this_is": "Local agent-proxy diagnostic. This is the ONLY thing successfully retrieved this session. It documents why no primary pricing source could be read.",
+    "proxy_enabled": true,
+    "hosts_probed_and_refused_connect_403": [
+      "www.novocare.com",
+      "novocare.com",
+      "wegovy.com",
+      "www.wegovy.com",
+      "www.ozempic.com",
+      "www.novonordisk.com",
+      "www.fda.gov",
+      "fda.gov",
+      "accessdata.fda.gov",
+      "www.accessdata.fda.gov",
+      "www.cms.gov",
+      "www.medicare.gov",
+      "trumprx.gov",
+      "www.prnewswire.com"
+    ],
+    "webfetch_403_hosts": [
+      "www.novocare.com",
+      "www.wegovy.com",
+      "www.novonordisk.com",
+      "www.accessdata.fda.gov",
+      "www.prnewswire.com",
+      "en.wikipedia.org"
+    ],
+    "webfetch_control_test": "en.wikipedia.org also returned 403, establishing that WebFetch is blocked universally rather than being blocked by Novo Nordisk bot protection specifically.",
+    "readme_directive": "/root/.ccr/README.md states: 403/407 from the proxy means the destination host is not allowed by organization egress policy. Do not retry or route around it - report the blocked host.",
+    "consequence": "Zero primary sources were readable. Under the rules of evidence no figure in this gate can be confirmed."
+  },
+  "verbatim_excerpt": "\"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\", \"host\": \"www.novocare.com:443\" ... \"host\": \"www.wegovy.com:443\" ... \"host\": \"www.ozempic.com:443\" ... \"host\": \"www.novonordisk.com:443\" ... \"host\": \"www.fda.gov:443\""
+}

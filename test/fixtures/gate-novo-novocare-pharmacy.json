@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:28:58Z",
+  "url": "https://www.novocare.com/pharmacy.html",
+  "http_status": "403 Forbidden from WebFetch (egress blocked) - PAGE NOT RETRIEVED",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "RETRIEVAL_FAILED": true,
+    "figures_extracted": null,
+    "sought_but_not_obtained": [
+      "NovoCare Pharmacy self-pay prices for Wegovy injection, Wegovy pill, Ozempic",
+      "whether self-pay pricing is flat across doses or dose-tiered"
+    ],
+    "note": "No content was returned. Nothing from this URL may be treated as confirmed."
+  },
+  "verbatim_excerpt": "(none - no response body was returned; the request was refused before any page content was served)"
+}

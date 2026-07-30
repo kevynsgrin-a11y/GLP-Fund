@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:28:58Z",
+  "url": "https://www.novonordisk.com/content/nncorp/global/en/news-and-media/news-and-ir-materials/news-details.html?id=916472",
+  "http_status": "403 Forbidden from WebFetch (egress blocked) - PAGE NOT RETRIEVED",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "RETRIEVAL_FAILED": true,
+    "figures_extracted": null,
+    "sought_but_not_obtained": [
+      "oral semaglutide FDA approval date",
+      "approved brand name",
+      "tablet strengths",
+      "US launch timing",
+      "OASIS 4 efficacy figures"
+    ],
+    "note": "No content was returned. Nothing from this URL may be treated as confirmed."
+  },
+  "verbatim_excerpt": "(none - no response body was returned; the request was refused before any page content was served)"
+}

@@ -133,8 +133,11 @@ const ALLOWED_HOSTS = new Set([
   'www.novonordiskpap.com', 'novonordiskpap.com',
   // Self.
   'glp1pricecheck.com', 'www.glp1pricecheck.com',
-  // Schema vocabulary, referenced in JSON-LD but never fetched by the visitor.
+  // Vocabulary and namespace identifiers. These appear in JSON-LD `@context` and
+  // in the sitemap's XML namespace declaration. They identify a schema; they are
+  // not links a visitor can follow or that pass any authority.
   'schema.org',
+  'www.sitemaps.org',
 ]);
 
 /**
@@ -255,6 +258,22 @@ test('the affiliate slot flag ships disabled', () => {
  * 3. NO HEALTH-INFORMATION PERSISTENCE
  * ------------------------------------------------------------------------- */
 
+/**
+ * Strip comments so the lint reads CODE, not prose.
+ *
+ * Without this, app.js fails its own check purely for containing a comment that
+ * promises not to use localStorage. A lint that punishes documenting the rule
+ * teaches people to stop documenting the rule.
+ *
+ * Newlines are preserved so reported line numbers stay accurate.
+ */
+function stripComments(source) {
+  return source
+    .replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '))
+    .replace(/(^|[^:])\/\/[^\n]*/g, (m, p1) => p1 + ' '.repeat(m.length - p1.length))
+    .replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, ' '));
+}
+
 test('the dose and insurance selections are never persisted or transmitted', () => {
   const FORBIDDEN_APIS = [
     'localStorage', 'sessionStorage', 'indexedDB', 'document.cookie',
@@ -263,11 +282,12 @@ test('the dose and insurance selections are never persisted or transmitted', () 
   const violations = [];
 
   for (const file of PUBLIC_FILES.filter((f) => extname(f) === '.js' || extname(f) === '.html')) {
-    const text = readFileSync(file, 'utf8');
+    const text = stripComments(readFileSync(file, 'utf8'));
     const rel = relative(ROOT, file);
     for (const api of FORBIDDEN_APIS) {
-      if (text.includes(api)) {
-        const line = text.slice(0, text.indexOf(api)).split('\n').length;
+      const index = text.indexOf(api);
+      if (index !== -1) {
+        const line = text.slice(0, index).split('\n').length;
         violations.push(`${rel}:${line} references ${api}`);
       }
     }
@@ -280,6 +300,26 @@ test('the dose and insurance selections are never persisted or transmitted', () 
       'ephemeral client-side state: never persisted, never transmitted. The only ' +
       `permitted network write is the alert-list email capture.\n${violations.join('\n')}`
   );
+});
+
+test('stripComments hides prose but never hides code', () => {
+  // A lint that has quietly stopped detecting anything is worse than no lint, so
+  // the comment-stripper is itself tested.
+  assert.ok(!stripComments('// we never use localStorage here').includes('localStorage'));
+  assert.ok(!stripComments('/* no localStorage, no sessionStorage */').includes('localStorage'));
+  assert.ok(!stripComments('<!-- localStorage is forbidden -->').includes('localStorage'));
+
+  // Real usage survives, in every form that matters.
+  assert.ok(stripComments('localStorage.setItem("dose", d)').includes('localStorage'));
+  assert.ok(stripComments('window.localStorage["dose"] = d').includes('localStorage'));
+  assert.ok(stripComments('const s = sessionStorage; s.setItem("x", 1)').includes('sessionStorage'));
+
+  // A URL's double slash must not be mistaken for a line comment and swallow the
+  // rest of the line.
+  assert.ok(stripComments('const u = "https://example.gov/x"; localStorage.clear()').includes('localStorage'));
+
+  // Line numbers are preserved so a reported violation points at the right line.
+  assert.equal(stripComments('a\n// c\nb').split('\n').length, 3);
 });
 
 /* ------------------------------------------------------------------------- *

@@ -1,0 +1,33 @@
+{
+  "retrieved_at": "2026-07-30T10:32:00Z",
+  "url": "https://example.com/ (control) plus every primary host required by GATE-CROSS-RULES, enumerated below",
+  "http_status": "TOTAL DIRECT-READ FAILURE. WebFetch returned 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' for every URL attempted, INCLUDING the https://example.com/ control. curl through the mandated egress proxy returned 'curl: (56) CONNECT tunnel failed, response 403' with http_code=000 for all 15 hosts attempted. NOT ONE BYTE OF ANY PRIMARY SOURCE WAS READ.",
+  "source_type": "primary_government",
+  "extracted": {
+    "FINDING": "GATE-CROSS-RULES could not be resolved by direct read of any primary source. The session egress policy denies CONNECT to every host, so no eligibility rule in this gate carries a verbatim quote taken from a page this session actually read.",
+    "control_test_proves_blockade_is_not_bot_protection": "https://example.com/ is denied 403 at CONNECT exactly like lilly.com and cms.gov. The denial happens at the egress gateway before any TLS session with the origin is established. Therefore a 403 on a manufacturer URL carries NO information about that manufacturer's bot policy or about programmatic-access permission.",
+    "hosts_attempted_all_denied_403_connect": [
+      "zepbound.lilly.com",
+      "www.lilly.com",
+      "pricinginfo.lilly.com",
+      "www.lillycares.com",
+      "www.novocare.com",
+      "www.wegovy.com",
+      "www.ozempic.com",
+      "www.novonordisk.com",
+      "novonordisk-us.com",
+      "aspe.hhs.gov",
+      "www.hhs.gov",
+      "www.cms.gov",
+      "www.medicare.gov",
+      "trumprx.gov",
+      "www.fda.gov"
+    ],
+    "webfetch_channel_status": "Non-functional in this session for all hosts. Verified with the example.com control. WebFetch cannot be used as a confirmation channel here at all.",
+    "only_available_channel": "Domain-restricted WebSearch, which returns a language model's summary of a search index's cached view of pages. It is NOT a direct read, and its prose is PARAPHRASE, not verbatim page text. Under this project's rules of evidence it can only LOCATE, never CONFIRM.",
+    "CONSEQUENCE": "Every value in the data array of this gate is null with confidence unverified. Every entry in eligibility_rules carries a provenance-tagged located claim in place of a true verbatim primary quote, because no verbatim primary text was obtainable. The engine MUST NOT encode any of these rules as verified fact on the strength of this session.",
+    "programmatic_access_note": "robots.txt was unreachable on every host. Programmatic-access permission for all manufacturer and government properties is UNKNOWN, not permitted. No scraping may be built into this project on the strength of this session.",
+    "readme_guidance_followed": "/root/.ccr/README.md states for 403/407: 'The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it - report the blocked host.' The blockade is reported here rather than circumvented."
+  },
+  "verbatim_excerpt": "curl, representative of all 15 hosts: 'curl: (56) CONNECT tunnel failed, response 403' with 'http_code=000'. WebFetch, including on the example.com control: 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' Proxy status endpoint recentRelayFailures: {'kind': 'connect_rejected', 'detail': 'gateway answered 403 to CONNECT (policy denial or upstream failure)'}."
+}
