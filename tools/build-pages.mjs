@@ -614,7 +614,14 @@ const PATHWAY_PAGES = [
       {
         h: 'What we can and cannot tell you about current TrumpRx prices',
         p: [
-          'Programmatic access to trumprx.gov is not available to this site. Every automated request we made on 2026-07-30 was refused, so we cannot read the live platform and we do not pretend to. Figures for this pathway are curated by hand.',
+          // Precise about WHERE the refusal happened. The 403s came from our own
+          // network's egress gateway, before any connection to trumprx.gov was
+          // established, so we learned nothing about what the platform itself
+          // permits. Saying "our requests were refused" would let a reader infer
+          // the platform blocked us. On a page whose entire claim is precision
+          // about provenance, misattributing our own limitation would be exactly
+          // the error we criticise other sites for.
+          'We cannot read the live platform automatically, so figures for this pathway are curated by hand. To be precise about why: the refusals we hit on 2026-07-30 came from our own network before any connection to trumprx.gov was made, so they tell us nothing about what the platform itself allows. Either way, we have not read it, and we do not pretend to have.',
           'The published figures have also moved repeatedly. A November 2025 announcement described roughly $350 a month for Ozempic and Wegovy and roughly $346 for Zepbound. Later readings of the live site described materially lower figures. These conflict, and the live site governs.',
           'Because we could not read the live site and no government page we could reach states a current per-drug price, we file every TrumpRx figure as unverified or conflicting. It renders as "price not currently verified" with a link to the platform, never as a number. This is the honest position, and it is the difference between this page and an aggregator that is still quoting the November announcement as though it were current.',
         ],
@@ -699,7 +706,7 @@ const PATHWAY_PAGES = [
       {
         h: 'What we could not confirm, and what we did about it',
         p: [
-          'We could not reach CMS to confirm any of it: whether the program launched on its reported date, its actual eligibility criteria, or its actual beneficiary cost. Every automated request to cms.gov and medicare.gov was refused on 2026-07-30.',
+          'We could not reach CMS to confirm any of it: whether the program launched on its reported date, its actual eligibility criteria, or its actual beneficiary cost. The refusals we hit on 2026-07-30 came from our own network rather than from CMS, but the effect is the same: we have not read those pages.',
           'So the cost renders as unverified rather than as a number. The exclusions, however, we apply anyway, because applying them is the cautious direction. If we are wrong about the sleep apnea exclusion, we have told an eligible beneficiary to check with Medicare. If we omitted it and it is real, we would have quoted a price to someone who cannot get it. Between those two errors there is no contest.',
           'Confirm your own eligibility with Medicare directly before relying on anything here.',
         ],
