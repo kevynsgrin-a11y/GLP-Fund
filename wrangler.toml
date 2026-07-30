@@ -1,0 +1,43 @@
+# Cloudflare Pages configuration.
+#
+# THERE IS NO BUILD STEP. `pages_build_output_dir` points at the directory that is
+# already committed and ready to serve. Cloudflare runs no build command, installs
+# nothing, and compiles nothing. If a build command ever appears in the Pages
+# project settings, something has gone wrong.
+#
+# Deploy:  npx wrangler pages deploy public --project-name glp1-fund
+# Or let  .github/workflows/deploy.yml  do it on every push to main.
+#
+# Required secrets, held in GitHub Actions secrets and NEVER in this repository:
+#   CLOUDFLARE_API_TOKEN   scoped to: Account > Cloudflare Pages > Edit
+#   CLOUDFLARE_ACCOUNT_ID
+#
+# See docs/ops-runbook.md section 6 for the full procedure and the exact token
+# scopes, and for why the token must not be committed.
+
+name = "glp1-fund"
+compatibility_date = "2026-07-30"
+pages_build_output_dir = "public"
+
+# ---------------------------------------------------------------------------
+# KV: the price-change alert list. The ONLY server-side state in the project.
+#
+# The Pages Function at functions/api/alerts.js reads this binding as env.ALERTS
+# and stores exactly two fields per subscriber: an email address and a medication
+# preference. It never receives, and has no field to receive, the visitor's dose
+# or insurance situation -- those are health information and never leave the
+# browser.
+#
+# Create the namespaces once, then paste the returned ids below:
+#   npx wrangler kv namespace create ALERTS
+#   npx wrangler kv namespace create ALERTS --preview
+#
+# Until the ids are filled in, the alert endpoint returns 503 and logs the
+# missing binding. Every other part of the site is unaffected, which is the
+# intended failure mode: a broken mailing list must never take down a page
+# somebody is reading at a pharmacy counter.
+# ---------------------------------------------------------------------------
+[[kv_namespaces]]
+binding = "ALERTS"
+id = ""
+preview_id = ""

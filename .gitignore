@@ -1,5 +1,14 @@
 node_modules/
 .DS_Store
-.wrangler/
-.dev.vars
 *.log
+
+# Cloudflare and Wrangler local state.
+.wrangler/
+
+# Secrets. The Cloudflare API token belongs in GitHub Actions secrets, never in a
+# file in this repository. See docs/ops-runbook.md section 6.0.
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+*.env

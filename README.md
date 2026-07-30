@@ -98,4 +98,4 @@ This is not medical advice.
 
 Cloudflare Pages. Build command **empty**, output directory `public`, functions auto-detected at `functions/`. One KV namespace bound as `ALERTS`. Full notes in `docs/ops-runbook.md`.
 
-`glp1pricecheck.com` in `config.js` is a **placeholder that has not been checked with a registrar.** Nothing depends on it resolving.
+Live domain: **`glp1-fund.com`**, registered through Cloudflare. Defined once in `public/engine/config.js`; see `docs/ops-runbook.md` §6 for the deploy procedure and the token scopes it needs.

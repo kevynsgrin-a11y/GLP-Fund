@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://glp1pricecheck.com/sitemap.xml
+Sitemap: https://glp1-fund.com/sitemap.xml

@@ -1,0 +1,93 @@
+name: Deploy to Cloudflare Pages
+
+# Deploys on every push to main, and on demand.
+#
+# The gate matters: deployment is blocked behind the full test suite and the
+# browser QA pass. This site's entire value is that it does not publish a number
+# it cannot source, and the integrity invariant that guarantees that is a test.
+# Shipping past a red suite would mean shipping past the guarantee.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # Never let two deploys race. The later push wins; an in-flight older one is
+  # cancelled rather than landing on top of it.
+  group: deploy-pages
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify before deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Generated pages are up to date with the data file
+        run: |
+          node tools/build-pages.mjs
+          if ! git diff --exit-code -- public/; then
+            echo "::error::Generated pages are stale. Run 'node tools/build-pages.mjs' and commit the result."
+            exit 1
+          fi
+
+      - name: Install Chromium for browser QA
+        run: npx --yes playwright@latest install --with-deps chromium
+
+      - name: Browser QA at 390px with measured CLS
+        run: |
+          BIN=$(find "$HOME/.cache/ms-playwright" -name chrome -type f | head -n1)
+          CHROMIUM_PATH="$BIN" node tools/qa.mjs
+
+  deploy:
+    name: Deploy
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: production
+      url: https://glp1-fund.com
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail early with a useful message if secrets are missing
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          missing=0
+          [ -z "$TOKEN" ] && echo "::error::CLOUDFLARE_API_TOKEN secret is not set." && missing=1
+          [ -z "$ACCOUNT" ] && echo "::error::CLOUDFLARE_ACCOUNT_ID secret is not set." && missing=1
+          if [ "$missing" = "1" ]; then
+            echo "::error::Add both under Settings > Secrets and variables > Actions. Token scope: Account > Cloudflare Pages > Edit. See docs/ops-runbook.md section 6."
+            exit 1
+          fi
+
+      # Publishes the committed contents of public/ exactly as they are. No build
+      # command, no bundler, no install of site dependencies -- there are none.
+      - name: Deploy public/ to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=glp1-fund --branch=main
+
+      - name: Post-deploy smoke check
+        run: |
+          set +e
+          for path in "/" "/methodology/" "/zepbound-cost/" "/data/pricing.json"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://glp1-fund.com$path")
+            echo "$code  https://glp1-fund.com$path"
+            if [ "$code" != "200" ]; then
+              echo "::warning::$path returned $code. If this is the first deploy, DNS or the custom domain may still be propagating."
+            fi
+          done
