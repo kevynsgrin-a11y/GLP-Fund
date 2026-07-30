@@ -1,0 +1,15 @@
+{
+  "retrieved_at": "2026-07-30T10:21:00Z",
+  "url": "WebSearch result set only. Primary targets https://pricinginfo.lilly.com/mounjaro and https://www.lilly.com/lillydirect/medicines were 403 at CONNECT and never read.",
+  "http_status": "403 on the primary sources. LOCATED claims only.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. All values null.",
+    "claimed_mounjaro_lillydirect_self_pay": "$499 per month, flat, for ALL dose strengths, described as roughly 54 percent off list. Note this is a FLAT price with no dose tiering, structurally unlike Zepbound vials. If true, Mounjaro must not inherit Zepbound's dose-tier logic.",
+    "claimed_mounjaro_list_price": "NOT OBTAINED as a specific figure. Only the derived claim 'about a 54 percent discount off list price' was located, which would imply roughly $1,085 but that is BACK-CALCULATED, not observed. A back-calculated list price must never be shipped.",
+    "claimed_expansion_commitment": "Emgality (galcanezumab-gnlm), Trulicity (dulaglutide) and Mounjaro (tirzepatide) to be added to LillyDirect for self-pay patients at pricing 50-60 percent off their then-current list prices, tied to a November 2025 agreement between Lilly and the U.S. government.",
+    "trulicity_emgality_prices": "NOT OBTAINED. The search result set explicitly noted that Lilly's own pricing pages show placeholders ('$XXX') rather than concrete prices for these. That placeholder observation is itself second-hand and unverified.",
+    "INDICATION_ELIGIBILITY_WARNING": "Mounjaro is approved for type 2 diabetes, NOT for weight management. Zepbound is the weight-management tirzepatide. Same molecule, different indication and different label. Any eligibility logic that offers Mounjaro to a user seeking weight-loss treatment is presenting an off-label pathway and is a clinical and compliance hazard. This distinction is confirmed by the drugs' labels as a matter of general record but the label text itself was not read in this session (fda.gov and lilly.com both denied)."
+  },
+  "verbatim_excerpt": "From the WebSearch summary, quoted: 'Mounjaro self-pay is $499 per month for all doses through LillyDirect in 2026. For Mounjaro, LillyDirect charges a flat $499 per month for all dose strengths, representing about a 54 percent discount off list price.' and 'Emgality (galcanezumab-gnlm), Trulicity (dulaglutide) and Mounjaro (tirzepatide) will be added to LillyDirect and made available for self-pay patients with pricing 50-60% off their current list prices.'"
+}

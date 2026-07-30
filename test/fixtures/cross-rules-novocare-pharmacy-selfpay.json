@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-07-30T10:35:00Z",
+  "url": "https://www.novocare.com/eligibility/pharmacy.html (also https://www.novocare.com/eligibility/obesity-pharmacy.html)",
+  "http_status": "403 Forbidden. NO DIRECT PAGE READ. Content below is SEARCH-INDEX-MEDIATED PARAPHRASE ONLY, not verbatim page text.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "THE_CASH_PAY_CARVE_OUT_LOCATED_AFFIRMATIVELY": {
+      "located_claim": "Patients must either be uninsured or have insurance (either commercial or government-funded), but decide to self-pay.",
+      "reading": "This is AFFIRMATIVE INCLUSION of government-funded-insurance holders in the NovoCare Pharmacy cash/self-pay channel, provided they forgo insurance. It is structurally different from an exclusion list, which makes it less likely to be a summarizer conflation - but it is still NOT CONFIRMED.",
+      "supporting_located_language": "If you have Medicare, Medicare Part D, a Medicare Advantage Prescription drug plan, or any other state or federal health insurance plan, you agree to the following: You will not ask your insurance to pay you back for the money that you self-paid for your medication using this offer. Additionally, you will not attempt to count the cost of this medicine toward your insurance deductible or out-of-pocket limit.",
+      "why_this_language_is_significant": "The terms address Medicare holders DIRECTLY and impose conditions on them rather than barring them. A document that barred them would have no reason to spell out what they must agree to."
+    },
+    "contrast_with_the_savings_offer": "The Wegovy and Ozempic SAVINGS OFFER terms separately state that federal/state program enrollees may not use THAT program even if processed as self-paying. The savings offer and the NovoCare Pharmacy cash channel are DIFFERENT programs with DIFFERENT rules. The engine must not apply the savings-offer bar to the cash channel.",
+    "prescription_requirement": "Patients must have a valid prescription for Wegovy or Ozempic. A valid Prescriber ID# is required on the prescription.",
+    "indication_requirement": "Patients may only participate for Wegovy or Ozempic if prescribed for an FDA-approved indication within that product's labeling.",
+    "insurance_not_accepted": "NovoCare Pharmacy operates through licensed pharmacies that dispense product under a cash/self-pay model, and insurance is not accepted. Prescriptions filled by Centerwell Pharmacy or CoAssist Pharmacy d/b/a NovoCare Pharmacy.",
+    "no_reimbursement": "Patient agrees they will not seek reimbursement or otherwise submit a claim to any insurer (primary, secondary, commercial, employer, government nor supplemental) for any medication received through this program.",
+    "no_prior_auth": "No prior authorization is required and delivery is free.",
+    "phone": "1-888-809-3942",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Must not be shipped as a quotation."
+  },
+  "verbatim_excerpt": "(none - no page text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'To participate in the NovoCare Pharmacy cash/self-pay program, patients must have a valid prescription for Wegovy or Ozempic. Patients must either be uninsured or have insurance (either commercial or government-funded), but decide to self-pay.')"
+}

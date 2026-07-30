@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-07-30T10:37:00Z",
+  "url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines (detailed table PDF: https://aspe.hhs.gov/sites/default/files/documents/b1bfa16b20ae9b89d525bc35de7c1643/detailed-guidelines-2026.pdf ; Federal Register: https://www.federalregister.gov/documents/2026/01/15/2026-00755/annual-update-of-the-hhs-poverty-guidelines)",
+  "http_status": "403 Forbidden on aspe.hhs.gov and www.hhs.gov (CONNECT tunnel failed, response 403). NO DIRECT READ OF THE FPL TABLE. This is the load-bearing table for every PAP income tier and it could not be read.",
+  "source_type": "primary_government",
+  "extracted": {
+    "fpl_table_year": "2026",
+    "effective_date_located": "2026-01-13",
+    "cpi_increase_located": "2.63 percent price increase between calendar years 2024 and 2025",
+    "federal_register_document_number": "2026-00755, published 2026-01-15",
+    "dollar_figures_located_but_REJECTED": {
+      "individual_48_states_and_DC": "$15,960 (LOCATED, SECONDARY ONLY, AND ARITHMETICALLY SUSPECT - see below)",
+      "family_of_four_48_states_and_DC": "$33,000 (LOCATED, SECONDARY ONLY)"
+    },
+    "ARITHMETIC_INCONSISTENCY_FOUND_IN_THE_LOCATED_FIGURES": {
+      "test": "The 2025 guideline for an individual in the 48 contiguous states was $15,650 and for a family of four was $32,150. Applying the located 2.63% increase: 15650 * 1.0263 = 16,061.6, which rounds to $16,060, NOT $15,960. Meanwhile 32150 * 1.0263 = 32,995.6, which rounds to $33,000 and DOES match the located figure.",
+      "conclusion": "The family-of-four figure is internally consistent with the stated CPI adjustment; the individual figure is NOT. The located $15,960 is therefore probably a transcription error (a $100 slip from $16,060) propagated by secondary aggregators. This is independent, on-its-face grounds to refuse the individual figure even setting aside the source-type rule.",
+      "engine_consequence": "The FPL table MUST NOT be populated from this session. Every PAP income gate (Lilly Cares 300/400/500%, Novo 200/400%) is therefore UNEVALUABLE, because the percentage is meaningless without a trustworthy base table."
+    },
+    "alaska_and_hawaii": "NOT LOCATED. Alaska and Hawaii have separate, higher guideline tables. No figures for them were obtained at all, so any user in those states cannot be income-tiered even approximately.",
+    "per_household_increment": "NOT LOCATED. The per-additional-person increment is required to compute thresholds for household sizes other than those quoted. Without it the table cannot be reconstructed.",
+    "provenance_warning": "Domain-restricted search to aspe.hhs.gov/hhs.gov/federalregister.gov returned NO dollar figures at all - the summarizer explicitly said the figures were not in the excerpts. The figures above came only from an unrestricted search hitting masslegalservices.org, medicaidplanningassistance.org, peoplekeep.com, benefitsusa.org, healthinsurance.org - all SECONDARY.",
+    "NOT_VERBATIM_WARNING": "No primary text obtained. Nothing here is a quotation from a government page."
+  },
+  "verbatim_excerpt": "(none - no primary page or PDF text was ever served. From the domain-restricted search summary, which is itself an admission of failure: 'the specific dollar figures for family sizes one, two, and three are not fully displayed in the search result excerpts'. The rejected secondary figures: 'The 2026 federal poverty level (FPL) is $15,960 per year for an individual and $33,000 per year for a family of four in the 48 contiguous states and Washington, D.C.')"
+}

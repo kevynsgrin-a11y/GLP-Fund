@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:02:55Z",
+  "url": "https://pi.lilly.com/us/foundayo-uspi.pdf",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. This is Lilly's hosted US prescribing information PDF for Foundayo and was the fallback for the FDA label PDF (also 403). https://medical.lilly.com/us/products/answers/what-is-the-approved-dosing-for-foundayo-orforglipron-for-weight-management-320858 was also attempted and returned 403.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "search_result_title": "Foundayo (orforglipron) tablets for oral use.",
+    "not_obtained": [
+      "verbatim BOXED WARNING",
+      "verbatim DOSAGE FORMS AND STRENGTHS",
+      "verbatim dose escalation schedule",
+      "Initial U.S. Approval year"
+    ],
+    "consequence": "No verbatim boxed warning text was obtained from any primary source in this gate. The boxed warning SUBJECT (thyroid C-cell tumors) is reported at low evidentiary strength only."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

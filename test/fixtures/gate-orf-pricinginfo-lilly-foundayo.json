@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:02:05Z",
+  "url": "https://pricinginfo.lilly.com/foundayo",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. This is Lilly's statutory list-price disclosure page and would have been the authoritative source for Foundayo WAC / list price. It could NOT be read, so no list price is reported for Foundayo in this gate.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "Foundayo Cost Information | With or Without Insurance | Foundayo (orforglipron) tablets",
+    "not_obtained": [
+      "WAC / list price per 1-month supply",
+      "per-strength list prices",
+      "effective date of the posted price"
+    ],
+    "provenance_warning": "No figure is taken from this source. The Foundayo list price is recorded as UNRESOLVED for GATE-ORF."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

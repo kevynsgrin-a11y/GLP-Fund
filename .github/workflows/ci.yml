@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+# The brief requires that a failing price test be a build-stopping event rather
+# than a warning. That is only true if something actually stops the build, so it
+# is enforced here on every push.
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # No install step. The project has zero dependencies; package.json exists
+      # only to invoke node --test.
+      - name: Unit tests
+        run: npm test
+
+      # Pages are generated from data/pricing.json and committed. If someone
+      # edits the data file and forgets to regenerate, the site would serve
+      # prices that disagree with the spine -- which is exactly the drift this
+      # project exists to prevent. Regenerating and diffing catches it.
+      - name: Generated pages are up to date with the data file
+        run: |
+          node tools/build-pages.mjs
+          if ! git diff --exit-code -- public/; then
+            echo "::error::Generated pages are stale. Run 'node tools/build-pages.mjs' and commit the result."
+            exit 1
+          fi
+
+  browser-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # tools/qa.mjs drives Chromium over CDP with Node builtins only. It needs a
+      # browser binary but no Playwright runtime, so only the browser is fetched.
+      - name: Install Chromium
+        run: npx --yes playwright@latest install --with-deps chromium
+
+      - name: Locate Chromium for the harness
+        run: |
+          BIN=$(find "$HOME/.cache/ms-playwright" -name chrome -type f | head -n1)
+          echo "Found: $BIN"
+          echo "CHROMIUM_PATH=$BIN" >> "$GITHUB_ENV"
+
+      - name: Browser QA at 390px, with measured CLS
+        run: node tools/qa.mjs
+
+      - name: Upload QA report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report
+          path: |
+            docs/qa-report.json
+            docs/screenshots/
+          if-no-files-found: warn

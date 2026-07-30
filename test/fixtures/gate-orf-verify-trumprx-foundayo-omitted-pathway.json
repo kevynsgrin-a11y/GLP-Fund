@@ -1,0 +1,15 @@
+{
+  "retrieved_at": "2026-07-30T10:35:10Z",
+  "url": "https://trumprx.gov/p/foundayo",
+  "http_status": "403 on direct WebFetch (same blanket fetch-layer 403 returned for example.com); page located via WebSearch restricted to allowed_domains=[trumprx.gov]",
+  "source_type": "primary_government_located_not_read",
+  "extracted": {
+    "finding": "A Foundayo product page EXISTS on trumprx.gov, a domain explicitly on this gate's PRIMARY whitelist. The original GATE-ORF findings contain no trumprx pathway row at all. An entire purchase channel is missing from the gate.",
+    "page_title_as_indexed": "Foundayo(TM) - Compare Prescription Prices",
+    "reported_price_not_confirmed": "starts at $149.00 per month, described as an out-of-pocket price under Most-Favored-Nation pricing, with a note that a co-pay may be lower with insurance",
+    "why_still_unverified": "The page body was never read. The figure comes from a WebSearch summary, and WebSearch is a locator, not a confirmer, even when restricted to a primary domain. Value must stay null.",
+    "dose_tier_hazard": "The trumprx.gov framing is 'starts at $149.00'. If a tool surfaces $149 as 'the TrumpRx price', a patient titrated to 14.5 mg or 17.2 mg would arrive at the counter expecting $149 against a reported regular price of $349.",
+    "sibling_pages_observed": ["https://trumprx.gov/p/wegovy-pill", "https://trumprx.gov/p/wegovy", "https://trumprx.gov/p/ozempic"]
+  },
+  "verbatim_excerpt": "WebSearch restricted to trumprx.gov returned the result \"Foundayo(TM) - Compare Prescription Prices\" at https://trumprx.gov/p/foundayo and summarized: \"Foundayo starts at $149.00 per month. This is an out-of-pocket price, and if you have insurance, your co-pay may be even lower.\" Direct WebFetch of the same URL returned \"The server returned HTTP 403 Forbidden.\""
+}

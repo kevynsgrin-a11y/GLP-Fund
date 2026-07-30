@@ -1,0 +1,22 @@
+{
+  "retrieved_at": "2026-07-30T10:36:00Z",
+  "url": "https://www.lillycares.com/how-to-apply (and https://investor.lilly.com/news-releases/news-release-details/lilly-broadens-income-eligibility-patient-assistance-programs)",
+  "http_status": "403 Forbidden on www.lillycares.com and investor.lilly.com. NO DIRECT PAGE READ. The WebSearch used here was UNRESTRICTED and returned mostly SECONDARY sources.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "income_tiers_located": {
+      "group_1_medications": "no insurance or Medicare Part D, household annual adjusted gross income at or below 300% FPL",
+      "group_2_medications": "no insurance or Medicare Part D, household annual adjusted gross income at or below 400% FPL",
+      "group_3_and_4_medications": "no insurance or Medicare Part D (not applicable to infused medications), or Medicare Part B with no supplemental or secondary insurance, household annual adjusted gross income at or below 500% FPL"
+    },
+    "BLOCKING_UNKNOWN_WHICH_GROUP": "Nothing located tells us which group, if any, Zepbound or Mounjaro fall into - or whether Lilly Cares covers them for obesity AT ALL. Without the group assignment the income threshold cannot be evaluated for these drugs. This makes the Lilly Cares income tier UNUSABLE by the engine right now even if the percentages were confirmed.",
+    "insurance_status_requirement": "Must be uninsured or enrolled in Medicare Part D with no other prescription coverage. Located secondary claim adds that some Medicare Part D patients may be eligible if spending 4% or more of gross annual income on prescription drugs - UNCONFIRMED and inconsistent in the sources.",
+    "residency": "Permanent legal resident of the United States, Puerto Rico, or the U.S. Virgin Islands.",
+    "prescription_requirement": "Must have a prescription for a qualifying Lilly medication.",
+    "household_size": "Household size is the total number of persons in the household including the applicant, and it determines the applicable dollar threshold.",
+    "fpl_reference_pointer": "Lilly Cares is reported to direct applicants to www.aspe.hhs.gov/poverty for the current guidelines - meaning the engine must join this percentage to the ASPE table, which this session also could not read.",
+    "provenance_warning": "Search links were dominated by help.sengov.com, simplefill.com, healthrx.com, advocatemymeds.com, telehealthally.com, medxdrg.com, formblends.com - all SECONDARY and several commercially interested in patient-assistance lead generation. These may not confirm anything.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose over mostly secondary sources. Not a quotation from any primary page."
+  },
+  "verbatim_excerpt": "(none - no primary page text was ever served. Search-summary paraphrase over secondary sources, explicitly NOT a quotation: 'The Lilly Cares Foundation uses income limits that are 300% (Group 1 Medications), 400% (Group 2 Medications), and 500% (Group 3 & 4 Medications) of the Federal Poverty Guidelines.')"
+}

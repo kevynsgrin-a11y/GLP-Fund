@@ -1,0 +1,28 @@
+{
+  "retrieved_at": "2026-07-30T11:02:00Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge (located via cms.gov / medicare.gov-restricted WebSearch)",
+  "http_status": "403 at CONNECT for www.cms.gov and www.medicare.gov. NO DIRECT READ. Located via domain-restricted WebSearch paraphrase only.",
+  "source_type": "primary_government",
+  "extracted": {
+    "REPORT_CLAIMS_THAT_SURVIVED_SCRUTINY": {
+      "fifty_dollar_copay": "Corroborated as the beneficiary copay for a one-month supply.",
+      "two_forty_five_net_price": "Corroborated as the CMS-negotiated net price per monthly supply, and corroborated as NOT consumer-facing. The report's insistence that $245 must never be displayed as a user-paid price is upheld.",
+      "same_program_not_distinct_from_GATE_BRIDGE": "Upheld. $50 and $245 are two sides of one program.",
+      "covered_products": "Foundayo (tablet), Wegovy (injection or tablet), Zepbound (KwikPen only). Single-dose Zepbound vials and pens NOT covered. Upheld.",
+      "no_TrOOP_accrual": "Corroborated - neither the $245 net price nor the $50 copay counts toward gross covered prescription drug costs (GCPDC) or true out-of-pocket costs (TrOOP).",
+      "program_window": "July 1 2026 through December 31 2027. Upheld, and note the program is LIVE as of today 2026-07-30.",
+      "foundayo_is_a_real_product": "Confirmed as a real entity, not a transcription artifact - it is orforglipron, per the title of an investor.lilly.com news release located this session. I had flagged this name for checking and it holds."
+    },
+    "OMISSIONS_IN_THE_REPORT": {
+      "consumer_facing_factsheet_never_cited": "https://www.medicare.gov/publications/12234-medicare-glp-1-bridge-glp-1-drugs-for-50-a-month.pdf - a beneficiary-facing Medicare fact sheet titled 'Medicare GLP-1 Bridge: GLP-1 Drugs for $50 a Month'. This is the most directly consumer-relevant primary artifact for the headline figure and it appears nowhere in the report's sources array.",
+      "medicare_gov_coverage_page_never_cited": "https://www.medicare.gov/coverage/weight-loss-drugs",
+      "three_cms_subpages_never_cited": "The Bridge has dedicated CMS sub-pages for Part D Plans, Providers and Pharmacies (.../medicare-glp-1-bridge/information-part-d-plans, /information-providers, /information-pharmacies) plus a prescriber PDF (https://www.cms.gov/files/document/glp-1-prescribers-c-1.pdf). None are listed. The pharmacy-facing page is where point-of-sale mechanics would be settled.",
+      "lilly_medicare_routing_page_never_cited": "https://www.lilly.com/lillydirect/medicare - the manufacturer's own Bridge routing page, relevant to the unresolved LillyDirect Self Pay question.",
+      "significance": "These are additional blocked-but-identified primary targets. Their absence does not change any value, but it understates the retrieval queue a future unblocked session must work through, and it means the single most consumer-facing Bridge document was never even queued."
+    },
+    "REPORT_SAFETY_POINT_UPHELD_AND_WORTH_PRESERVING": "The report's LIS warning stands: the Bridge provides no low-income subsidy, so an LIS beneficiary may do WORSE at $50/month than under their subsidized Part D benefit, and Bridge spending never advances them toward the annual out-of-pocket cap. This is a genuine safety insight and should be carried forward rather than dropped.",
+    "part_d_cap_2026": "The $2,100 figure was relocated and is described as the 2025 $2,000 cap indexed for inflation. Still NOT CONFIRMED - both medicare.gov and cms.gov are blocked. Remains unverified with value null.",
+    "confidence": "unverified - all values null. cms.gov and medicare.gov were never read."
+  },
+  "verbatim_excerpt": "From the cms.gov/medicare.gov-restricted WebSearch (PARAPHRASE of a search index, NOT a quotation from a page this session read): 'CMS negotiated GLP-1 drugs at a net price of $245 per monthly supply, and no part of the $245 net price or the $50 copay counts toward an eligible beneficiary's gross covered prescription drug costs (GCPDC) or true out-of-pocket costs (TrOOP) under their Part D plan.' And: 'Starting July 1, 2026, Medicare covers these GLP-1 drugs: Foundayo (tablet), Wegovy (injection or tablet), and Zepbound (KwikPen only). The program doesn't cover single-dose Zepbound vials or pens.' And: 'You'll pay a $50 copayment to the pharmacy for a one-month supply (either 28 or 30 days, depending on drug).'"
+}

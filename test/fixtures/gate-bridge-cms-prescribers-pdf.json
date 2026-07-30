@@ -1,0 +1,24 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/files/document/glp-1-prescribers-c-1.pdf",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PDF READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov) only. Search-index-mediated text attributed to this primary PDF. NOT a verbatim direct read.",
+  "extracted": {
+    "document_title": "Medicare GLP-1 Bridge INFORMATION FOR PRESCRIBERS",
+    "age_requirement": "at least 18 years of age",
+    "indication_requirement": "GLP-1 must be prescribed to reduce excess body weight and maintain weight reduction, in combination with current and ongoing lifestyle modification, and not for any other approved indication",
+    "assessment_timing": "BMI and comorbidities are evaluated at the time the patient initiated GLP-1 therapy, NOT at the time of the prior authorization request",
+    "bmi_criteria_structure": "at least one of three tiers must be true",
+    "bmi_tier_1": "BMI of at least 35 (no comorbidity required)",
+    "bmi_tier_2": "BMI of at least 30 AND a diagnosis of one or more of: (A) heart failure with preserved ejection fraction, (B) uncontrolled hypertension (systolic BP above 140 mm Hg or diastolic above 90 mm Hg, despite concurrent treatment with two antihypertensive medications), or (C) chronic kidney disease stage 3a or above",
+    "bmi_tier_3": "BMI of at least 27 AND a diagnosis of one or more of: (A) pre-diabetes, (B) previous myocardial infarction, (C) previous stroke, or (D) symptomatic peripheral artery disease",
+    "eligible_drugs": ["Foundayo", "Wegovy (injection and tablets)", "Zepbound (KwikPen)"],
+    "part_d_eligible_diagnoses_that_disqualify": [
+      "type 2 diabetes",
+      "moderate to severe obstructive sleep apnea",
+      "noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH)"
+    ]
+  },
+  "verbatim_excerpt": "At the time a patient starts GLP-1 therapy, at least one of the following must be true: My patient has a body mass index (BMI) of at least 35; My patient has a BMI of at least 30 AND a diagnosis of one or more of the following: (A) heart failure with preserved ejection fraction, (B) uncontrolled hypertension (defined as systolic blood pressure above 140 mm Hg or diastolic blood pressure above 90 mm Hg, despite concurrent treatment with two antihypertensive medications), or (C) chronic kidney disease stage 3a or above; My patient has a BMI of at least 27 AND a diagnosis of one or more of the following: (A) pre-diabetes, (B) previous myocardial infarction, (C) previous stroke, or (D) symptomatic peripheral artery disease. -- NOTE: reproduced from domain-restricted search output, not a direct read of the PDF."
+}

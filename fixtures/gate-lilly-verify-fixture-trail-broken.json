@@ -1,0 +1,29 @@
+{
+  "retrieved_at": "2026-07-30T10:47:00Z",
+  "url": "Local filesystem and git history of /home/user/GLP-Fund (no network involved)",
+  "http_status": "n/a - local verification",
+  "source_type": "primary_local_repository",
+  "extracted": {
+    "FINDING": "Every one of the seven paths listed in the prior gate's fixtures_written array is MISSING at the stated location. The directory /home/user/GLP-Fund/fixtures/ did not exist at all when I checked (ls: cannot access 'fixtures/': No such file or directory).",
+    "claimed_paths_all_absent": [
+      "/home/user/GLP-Fund/fixtures/gate-lilly-retrieval-blockade-record.json",
+      "/home/user/GLP-Fund/fixtures/gate-lilly-zepbound-vials-located-unconfirmed.json",
+      "/home/user/GLP-Fund/fixtures/gate-lilly-zepbound-kwikpen-located-unconfirmed.json",
+      "/home/user/GLP-Fund/fixtures/gate-lilly-zepbound-list-price-conflict.json",
+      "/home/user/GLP-Fund/fixtures/gate-lilly-mounjaro-located-unconfirmed.json",
+      "/home/user/GLP-Fund/fixtures/gate-lilly-savings-card-located-unconfirmed.json",
+      "/home/user/GLP-Fund/fixtures/gate-lilly-lillycares-located-unconfirmed.json"
+    ],
+    "ACTUAL_LOCATION_FOUND": "All seven files DO exist, with the same basenames, under /home/user/GLP-Fund/test/fixtures/. The content is intact and parses as valid JSON. So the data was not lost - the reported paths are simply wrong.",
+    "MISDIAGNOSIS_IN_PRIOR_NARRATIVE": "The prior narrative claims 'fixtures I wrote at 10:24Z were destroyed mid-task by a concurrent process ... commit a3cf13e emptied fixtures/ of everything'. Git disagrees. a3cf13e shows the gate-lilly and gate-orf and gate-bridge fixture files as RENAMES into test/fixtures/ with zero line changes (git --stat renders them as '.../gate-lilly-mounjaro-located-unconfirmed.json | 15 +' and '{fixtures => test/fixtures}' pure moves). The files were MOVED by a refactor, not destroyed by a hostile concurrent writer. The prior report's further claim that it 'rewrote my seven files and verified them present' at fixtures/ is not borne out - they are not there.",
+    "current_worktree_state": "git status shows the entire fixtures/ tree as deleted (D) relative to HEAD, including cross-rules-* and gate-bridge-verify-* and gate-orf-verify-* files committed in 57bf898. A later reorganization, not a race, is the parsimonious explanation.",
+    "CONSEQUENCE": "An orchestrator or reviewer following the prior gate's fixtures_written array would find nothing at any listed path and could conclude the evidence freeze never happened. The verification trail is broken as published, which is a process defect independent of the price findings.",
+    "commits_examined": [
+      "a3cf13e Phase 1-2: verification blockade documented, engine complete, 95 tests green",
+      "6185cd1 Phase 3-5: frontend shell, 20 static pages, alert capture, compliance",
+      "57bf898 Phase 6: browser QA at 390px, gate writeups, handoff and ops runbook"
+    ],
+    "corroboration_of_blockade_from_commit_message": "a3cf13e's own commit message independently corroborates the egress denial and lists the denied hosts including sec.gov, which the prior gate's sources array asserts but never documents with an attempt record."
+  },
+  "verbatim_excerpt": "From git show --stat a3cf13e: '.../gate-lilly-mounjaro-located-unconfirmed.json   |  15 +' and '.../gate-lilly-retrieval-blockade-record.json      |  44 ++'. From the a3cf13e commit message: 'PHASE 1 OUTCOME: no primary source could be read. The build environment's egress policy answers 403 to CONNECT for every one of fda.gov, accessdata.fda.gov, api.fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, lilly.com, investor.lilly.com, lillydirect.lilly.com, novonordisk.com, novocare.com, wegovy.com and ozempic.com.'"
+}

@@ -1,0 +1,22 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/media/185526/download",
+  "also_covers_urls": [
+    "https://www.fda.gov/media/184606/download",
+    "https://www.fda.gov/media/185577/download",
+    "https://dps.fda.gov/drugshortages/searchresult?type=tirzepatide",
+    "https://accessdata.fda.gov/scripts/drugshortages/dsp_ActiveIngredientDetails.cfm?AI=Semaglutide+%28Ozempic%29+Injection"
+  ],
+  "http_status": "403 Forbidden on direct read for all URLs above. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "These are FDA declaratory orders and the FDA drug shortage database. Would be primary_government if directly read. Treat as UNVERIFIED.",
+  "extracted": {
+    "tirzepatide_shortage_resolved": "FDA determined the shortage of tirzepatide injection has been resolved. Index attributes the determination date as October 2, 2024, with the formal declaratory order reaffirming resolution in December 2024 (December 19, 2024 referenced). Tirzepatide injection had been in shortage since 2022 due to increased demand.",
+    "semaglutide_shortage_resolved": "FDA determined the semaglutide injection product shortage is resolved, based on the analysis set forth in FDA's decision memorandum dated February 21, 2025.",
+    "still_off_the_list_as_of_2026_07": "The index reports both remain resolved and that neither tirzepatide nor semaglutide appears on FDA's drug shortage list. NO EVIDENCE of any re-listing was found. This is an absence-of-evidence finding from an index, not a confirmed present-tense database read.",
+    "dose_specific_or_presentation_specific_relisting": "NOT CHECKED and NOT CHECKABLE. The FDA shortage database is per-presentation. A dose- or presentation-level shortage entry could exist without appearing in index summaries. dps.fda.gov is a JavaScript application and was unreachable regardless.",
+    "why_this_matters": "Removal from the shortage list is the single legal fact that terminates the section 503A(b)(1)(D) and 503B(a)(5) 'essentially a copy' exemption for mass compounding. Both drugs being off the list is the load-bearing premise of exclusion."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"FDA has determined that the semaglutide injection product shortage is resolved, based on analysis set forth in FDA's decision memorandum dated February 21, 2025.\" ... \"The U.S. Food and Drug Administration determined the shortage of tirzepatide injection has been resolved as of October 2, 2024. FDA confirmed with the drug's manufacturer that their stated product availability and manufacturing capacity can meet the present and projected national demand.\" ... \"patients and prescribers may still see intermittent localized supply disruptions as the products move through the supply chain\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

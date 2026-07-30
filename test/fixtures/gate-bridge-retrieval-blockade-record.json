@@ -1,0 +1,40 @@
+{
+  "retrieved_at": "2026-07-30T09:59:22Z",
+  "url": "N/A - this fixture records the retrieval-channel failure that constrains every other fixture in this gate",
+  "http_status": "TOTAL DIRECT-READ FAILURE. WebFetch returned 'The server returned HTTP 403 Forbidden' for every URL attempted, including https://example.com/ (control test). curl through the mandated egress proxy returned 'CONNECT tunnel failed, response 403' for every host attempted.",
+  "source_type": "primary_government",
+  "retrieval_method": "Diagnostic. Proxy status endpoint http://127.0.0.1:40851/__agentproxy/status was readable and logged the denials.",
+  "extracted": {
+    "webfetch_status": "403 on 100 percent of attempts, including a non-government control URL (example.com). WebFetch is unavailable session-wide, not host-specific.",
+    "webfetch_urls_attempted_403": [
+      "https://www.cms.gov/newsroom/press-releases/coming-soon-cms-provide-50-monthly-access-glp-1-medications-medicare-beneficiaries",
+      "https://cms.gov/newsroom/press-releases/coming-soon-cms-provide-50-monthly-access-glp-1-medications-medicare-beneficiaries",
+      "https://www.cms.gov/newsroom/press-releases/cms-launches-medicare-glp-1-bridge-expanding-access-glp-1-medications",
+      "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge",
+      "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-pharmacies",
+      "https://www.cms.gov/glp-1-bridge.pdf",
+      "https://www.medicare.gov/coverage/glp-1-bridge",
+      "https://www.medicare.gov/publications/12234-medicare-glp-1-bridge-glp-1-drugs-for-50-a-month.pdf",
+      "https://www.kff.org/medicare/what-to-know-about-the-balance-model-for-glp-1s-in-medicare-and-medicaid/",
+      "https://www.cnbc.com/2026/06/30/medicare-obesity-drug-glp-1-coverage-starting-july-1.html",
+      "https://medicareagentshub.com/articles/medicare-glp-1-bridge-program-weight-loss-drugs-coverage",
+      "https://example.com/"
+    ],
+    "proxy_denied_hosts_connect_403": [
+      "www.cms.gov:443",
+      "cms.gov:443",
+      "www.medicare.gov:443",
+      "medicare.gov:443",
+      "www.hhs.gov:443",
+      "innovation.cms.gov:443",
+      "trumprx.gov:443",
+      "api.fda.gov:443",
+      "www.kff.org:443"
+    ],
+    "proxy_failure_detail_verbatim": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+    "only_working_channel": "WebSearch, constrained with allowed_domains to cms.gov / medicare.gov / medicaid.gov / hhs.gov",
+    "evidentiary_consequence": "ZERO primary pages were directly read in this gate. All figures below are search-index-mediated attributions to primary URLs. Under the gate's rules of evidence a figure may be CONFIRMED only by a primary source actually read; therefore every numeric value in this gate is reported with value null and confidence 'unverified', regardless of how consistently the search index reproduced it across multiple independent primary CMS documents.",
+    "remediation_required": "Re-run this gate with a working fetch channel (allowlist www.cms.gov, www.medicare.gov, www.medicaid.gov, aspe.hhs.gov at the egress gateway) before any figure ships to users."
+  },
+  "verbatim_excerpt": "curl: (56) CONNECT tunnel failed, response 403 -- and from the proxy status endpoint: {\"ts\": \"2026-07-30T09:58:50.655Z\", \"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\", \"host\": \"www.cms.gov:443\"}"
+}

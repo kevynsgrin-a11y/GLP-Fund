@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/priorities/innovation/files/balance-state-medicaid-rfa.pdf",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "The reported findings' GATE-MEDICAID conclusion SURVIVES. This verifier ran independent searches of cms.gov and medicaid.gov and also found NO Medicaid beneficiary cost-sharing figure and NO published list of participating states.",
+    "no_medicaid_patient_figure": true,
+    "no_participating_state_list": true,
+    "caution_on_a_near_miss": "One search rendering placed the '$125 cost-sharing on model drugs' figure under a heading the summarizer labelled 'Medicaid Beneficiary Cost Sharing'. A follow-up targeted search established that $125 applies to BASIC PART D PLANS (coverage options equivalent in value to the defined standard benefit), not to Medicaid. Do not let this figure leak into a Medicaid display.",
+    "state_join_window_CORROBORATED": "State Medicaid agencies can join the model beginning in May 2026 through January 1, 2027; participating states adopt the Medicaid Key Terms through a supplemental rebate agreement (SRA) with each participating manufacturer; the Model SRA start date is a date of the participating state's choosing between May 1, 2026 and January 1, 2027",
+    "manufacturer_negotiations_CORROBORATED": "CMS has completed negotiations with Eli Lilly and Novo Nordisk",
+    "lifestyle_program": "All beneficiaries receiving GLP-1s for weight management under BALANCE in Medicaid get access to a manufacturer-provided lifestyle support program at no cost",
+    "medicaid_display_directive_UPHELD": "The tool must show NO Medicaid number. Render as 'depends on your state, and only if your state joined the model.'",
+    "value": "null / unverified - no primary read and no figure exists to read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"State Medicaid agencies can apply to participate in the model through the State Request for Applications and can join the model beginning in May 2026 through January 1, 2027.\" / \"Participating states will adopt the Medicaid Key Terms through a supplemental rebate agreement (SRA) with each participating manufacturer.\" No beneficiary cost-sharing amount was returned for Medicaid by any query."
+}

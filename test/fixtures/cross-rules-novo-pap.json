@@ -1,0 +1,21 @@
+{
+  "retrieved_at": "2026-07-30T10:36:30Z",
+  "url": "https://www.novocare.com/diabetes/help-with-costs/pap.html (application PDF: https://www.novocare.com/content/dam/novonordisk/novocare/forms/PAP_Application_EN.pdf)",
+  "http_status": "403 Forbidden. NO DIRECT PAGE OR PDF READ. Content below is SEARCH-INDEX-MEDIATED PARAPHRASE ONLY.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "income_thresholds_located": {
+      "ozempic": "total household income at or below 200% of the federal poverty level",
+      "all_other_medications": "total household income at or below 400% of the federal poverty level",
+      "wegovy_status": "NOT SPECIFIED in anything located. Whether Wegovy sits at 200% (like Ozempic) or 400% (all other) is UNKNOWN. The engine cannot evaluate a Wegovy PAP income tier without this."
+    },
+    "insurance_status_requirement": "Patients must have Medicare or no insurance. If the patient has private or commercial insurance they are NOT eligible for the PAP.",
+    "CONFLICT_WITH_OZEMPIC_SAVINGS_DOC": "The Ozempic savings-offer search summary asserted 'Medicare beneficiaries with Part D coverage are not eligible to receive Ozempic through the Patient Assistance Program', which directly contradicts the PAP page's located 'patients must have Medicare or no insurance'. UNRESOLVED. One of these two located claims is wrong, and the engine must not encode either until a direct read settles it.",
+    "medicaid_denial_requirement": "Uninsured patients must provide proof of a Medicaid denial prior to enrollment if total household income meets their state's federal poverty limit thresholds.",
+    "extra_help_denial_requirement": "Medicare beneficiaries with total household income below 150% of the federal poverty level must provide proof of denial for Part D Extra Help to qualify.",
+    "removed_requirement": "Novo Nordisk reportedly no longer requires that Medicare Part D patients spend $1000 out of pocket to be eligible.",
+    "household_size_dependence": "Thresholds are percentages of FPL, so they are household-size dependent via the FPL table. Novo reportedly points applicants to the NeedyMeds website for current FPL figures rather than to ASPE directly - a SECONDARY pointer, which the engine should not follow for authoritative dollar values.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Not a quotation from any page this session read."
+  },
+  "verbatim_excerpt": "(none - no page text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'Total household income must be at or below 200% of the federal poverty level for Ozempic. For all other medications, total household income must be at or below 400% of the federal poverty level.' And: 'To be eligible, patients must have Medicare or no insurance.')"
+}

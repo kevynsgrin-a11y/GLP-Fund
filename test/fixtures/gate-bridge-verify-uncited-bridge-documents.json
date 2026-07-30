@@ -1,0 +1,24 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. This fixture records document DISCOVERY via domain-restricted WebSearch, not content.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "COVERAGE GAP. The reported findings present an 18-source list as the gate's coverage. Domain-restricted search surfaced these primary-domain documents that the reported source list omits entirely - and several carry precisely the facts the reported findings are missing.",
+    "omitted_documents": [
+      "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-part-d-plans (carries LIS non-application and phase-invariance - the blocking omission)",
+      "https://www.cms.gov/files/document/glp-1-pharmacies-c.pdf",
+      "https://www.cms.gov/files/document/medicare-glp-1-bridge-pharmacywebinarslides-061126.pdf (Bridge pharmacy webinar slides, June 11 2026)",
+      "https://www.cms.gov/files/document/status-update-bridge-demo-balance-model-part-d-cy2027-g-pdf.pdf (HPMS e-mail dated April 21 2026 - Bridge demo and BALANCE Part D CY2027 status update; a likely supersession vector)",
+      "https://www.cms.gov/priorities/innovation/files/balance-rfa.pdf (the general BALANCE RFA, distinct from the Part D and State Medicaid RFAs)",
+      "https://www.cms.gov/priorities/innovation/files/balance-cy27-pde-submission-guidance.pdf (actual home of the $47 / $130 example figures)",
+      "https://www.cms.gov/newsroom/fact-sheets/contract-year-2026-policy-and-technical-changes-medicare-advantage-program-medicare-prescription-final (CMS-4208-F - resolves the reported findings' open question)",
+      "https://www.medicare.gov/coverage/weight-loss-drugs",
+      "https://www.cms.gov/training-education/medicare-learning-network/newsletter/mln-connects-newsletter-june-4-2026"
+    ],
+    "source_type_mislabel": "The reported source list assigns source_type 'primary_government' to http://127.0.0.1:40851/__agentproxy/status, a localhost diagnostic endpoint. The researcher disclosed this was done to satisfy the schema enumeration, but the record as written asserts a false source_type and should be corrected or the row removed.",
+    "pathway_mislabel": "The Part D statutory weight-loss-exclusion rule is tagged pathway 'list_price', which is not a coverage pathway and will mis-route the rule in any rules engine.",
+    "value": "null / unverified"
+  },
+  "verbatim_excerpt": "Document titles as returned by domain-restricted WebSearch against cms.gov and medicare.gov, including \"Information for Part D Plans | CMS\", \"Medicare GLP-1 Bridge: Information for Pharmacies\", \"HPMS E-Mail Date: April 21, 2026 Subject:\", and \"Contract Year 2026 Policy and Technical Changes ... (CMS-4208-F) | CMS\"."
+}

@@ -1,0 +1,33 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s",
+  "also_covers_urls": [
+    "https://www.fda.gov/drugs/human-drug-compounding/fda-telehealth-companies-what-know-when-promoting-compounded-drugs",
+    "https://www.fda.gov/news-events/press-announcements/fda-intends-take-action-against-non-fda-approved-glp-1-drugs",
+    "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/hims-hers-health-inc-dba-hers-716825-09092025",
+    "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/medica-weight-loss-728284-06082026",
+    "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/weightless-medical-llc-dba-weightcare-721478-02202026"
+  ],
+  "http_status": "403 Forbidden on direct read for all URLs above. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "Would be primary_government if directly read. Treat as UNVERIFIED.",
+  "extracted": {
+    "MOST_IMPORTANT_FINDING_FOR_THIS_PRODUCT": "FDA is actively issuing warning letters to CONSUMER-FACING WEBSITES for how they PRESENT compounded GLP-1s. The regulated conduct is presentation and claims, not just manufacturing. A price-comparison site that displayed compounded GLP-1s alongside approved drugs would be engaging in precisely the category of conduct FDA is policing.",
+    "thirty_warning_letters": "FDA issued 30 warning letters to telehealth companies for making false or misleading claims regarding compounded GLP-1 products offered on their websites. Described as the second group of warning letters to telehealth firms since a September crackdown on misleading direct-to-consumer pharmaceutical advertisements.",
+    "september_2025_first_wave": "In September 2025 FDA announced measures addressing misleading direct-to-consumer prescription drug advertisements and issued enforcement correspondence to compounding pharmacies and telehealth companies. Individual warning letters dated 09/09/2025 were located for: Hims & Hers Health Inc. dba Hers (716825), Curex (716821), Lumimeds (716510), TRYM Health (716699), GLP-1 Solution (715883), FitRX LLC dba Zealthy (716501), Remedy Meds (716830), GenLabMeds.",
+    "enforcement_continuing_into_2026": "Warning letters located with 2026 dates: Weightless Medical LLC dba WeightCare (721478, 02/20/2026) and Medica Weight Loss (728284, 06/08/2026). Enforcement is ongoing as of two months ago, not historical.",
+    "prohibited_claims_enumerated_by_fda": [
+      "Using branding that falsely or misleadingly implies the telehealth company is the compounder.",
+      "Describing a compounded drug as a generic version of an FDA-approved drug, or as the same as a drug approved by FDA.",
+      "Claiming a compounded drug uses the same active ingredient as the FDA-approved drug.",
+      "Claiming a compounded drug is clinically proven to produce results for the patient.",
+      "Claiming a compounded drug is sourced from an FDA-approved or FDA-licensed pharmacy or outsourcing facility."
+    ],
+    "fda_stated_rationale": "FDA is concerned about telehealth companies promoting compounded drugs, including GLP-1s, with false or misleading claims, which puts patients at risk as they cannot make an informed decision about their health based on false or misleading claims.",
+    "escalation_language": "Entities engaged in the manufacture, distribution, or marketing of unapproved compounded GLP-1 products should be aware that failure to adequately address any violations may result in legal action without further notice, including, without limitation, seizure and injunction.",
+    "named_company": "FDA's announcement of intent to restrict GLP-1 APIs for non-FDA-approved compounded drugs specifically named Hims & Hers among companies mass-marketing them as similar alternatives to FDA-approved drugs.",
+    "IMPLICIT_RANKING_CLAIM_HAZARD": "Placing a compounded product in a ranked cost list next to Zepbound or Wegovy makes an implicit substitutability and equivalence claim by layout alone, even with no equivalence text. That is the claim FDA enumerates as prohibited. Cost-ranking adjacency is itself the violation surface."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"FDA issued 30 warning letters to telehealth companies for making false or misleading claims regarding compounded GLP-1 products offered on their websites.\" ... \"In promotional materials, companies cannot claim that non-FDA-approved compounded products are generic versions or the same as drugs approved by FDA, and they also cannot state compounded drugs use the same active ingredient as the FDA-approved drugs or that compounded drugs are clinically proven to produce results for the patient.\" ... \"Entities engaged in the manufacture, distribution, or marketing of unapproved compounded GLP-1 products should be aware that failure to adequately address any violations may result in legal action without further notice, including, without limitation, seizure and injunction.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

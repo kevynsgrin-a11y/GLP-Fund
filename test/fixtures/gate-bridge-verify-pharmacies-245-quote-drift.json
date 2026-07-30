@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-pharmacies",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "QUOTE FABRICATION EVIDENCE. The reported findings place a synthesized string in a field named verbatim_quote / key_quote.",
+    "reported_as_verbatim": "The $245 net price for eligible GLP-1 drugs prescribed under the Medicare GLP-1 Bridge means that no part of this price or the $50 copay counts toward an eligible beneficiary's gross covered prescription drug costs (GCPDC) or true out-of-pocket costs (TrOOP) under their Part D plan.",
+    "what_the_index_returns": "No part of the $245 net price for eligible GLP-1 drugs prescribed for uses covered under the Medicare GLP-1 Bridge counts toward an eligible beneficiary's gross covered prescription drug costs (GCPDC), and no part of the $50 copay counts toward the beneficiary's true out-of-pocket costs (TrOOP) under their Part D plan.",
+    "why_it_matters": "The source assigns TWO DISTINCT accounting rules to two different amounts: $245 -> not toward GCPDC; $50 copay -> not toward TrOOP. The reported string merges them and mis-assigns both exclusions to both amounts. The substantive takeaway (neither advances the beneficiary toward catastrophic protection) is unchanged, but the string is a rewrite, not a quote.",
+    "dispensing_fee_omitted_from_reported_findings": "The CMS central processor will pay a dispensing fee of $3 for each Bridge claim ($5 for a beneficiary residing in long-term care). The reported findings characterize $245 as the government-side net price without this component.",
+    "fill_window_CORROBORATED": "Only 28-day or 30-day fills are covered under Medicare GLP-1 Bridge, not longer time periods.",
+    "245_is_not_a_patient_price_CORROBORATED": true,
+    "value": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"No part of the $245 net price for eligible GLP-1 drugs prescribed for uses covered under the Medicare GLP-1 Bridge counts toward an eligible beneficiary's gross covered prescription drug costs (GCPDC), and no part of the $50 copay counts toward the beneficiary's true out-of-pocket costs (TrOOP) under their Part D plan.\" / \"The CMS central processor will pay a dispensing fee of $3 for each Medicare GLP-1 Bridge claim ($5 for a beneficiary residing in long-term care).\""
+}

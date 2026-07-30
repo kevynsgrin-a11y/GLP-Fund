@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:00:30Z",
+  "url": "https://www.globenewswire.com/news-release/2026/02/02/3230115/0/en/Aquestive-Therapeutics-Announces-FDA-Issuance-of-Complete-Response-Letter-for-Anaphylm.html",
+  "http_status": "ok (surfaced via WebSearch; not directly fetched)",
+  "source_type": "secondary_press",
+  "retrieval_note": "Candidate alternative explanation for Claim B, investigated and RULED OUT. An SEC 8-K exhibit for this CRL (https://www.sec.gov/Archives/edgar/data/1398733/000139873326000005/anaphylmcrlpressrelease2.htm) initially appeared in a search for an April 10 2026 CRL, so it was checked. It does not match: wrong date and wrong drug.",
+  "extracted": {
+    "crl_date": "January 30, 2026",
+    "announcement_date": "February 2, 2026",
+    "sponsor": "Aquestive Therapeutics, Inc.",
+    "product": "Anaphylm (dibutepinephrine) Sublingual Film",
+    "proposed_indication": "Type I allergic reactions, including anaphylaxis, in patients weighing 30kg or more",
+    "cited_deficiencies": "issues limited to human factors and a supportive PK study",
+    "ruled_out_because": "CRL is dated January 30, 2026, not April 10, 2026; drug is sublingual epinephrine, unrelated to orforglipron; sponsor is not Eli Lilly."
+  },
+  "verbatim_excerpt": "Search summary, quoted verbatim: \"Aquestive Therapeutics received a Complete Response Letter (CRL) from the U.S. Food and Drug Administration (FDA) on January 30, 2026 for the New Drug Application (NDA) seeking approval of Anaphylm (dibutepinephrine) Sublingual Film\"."
+}

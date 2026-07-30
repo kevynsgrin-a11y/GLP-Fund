@@ -1,0 +1,24 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://trumprx.gov/p/wegovy",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_primary_page",
+  "extracted": {
+    "finding": "The prior researcher's dose attribution for the $199 introductory price is WRONG and the error is patient-facing.",
+    "prior_researcher_claim": "dose_or_tier recorded as 'Pen 0.25/0.5/1/1.7/2.4 mg - INTRODUCTORY price, first two monthly fills only', i.e. the $199 introductory price attributed to ALL FIVE dose strengths.",
+    "what_the_index_actually_attributes_to_the_page": "The $199 introductory price applies ONLY to the 0.25 mg and 0.5 mg starting doses. The 1 mg, 1.7 mg and 2.4 mg strengths are listed at $349/month with NO introductory tier.",
+    "conditions_the_prior_researcher_omitted_entirely": {
+      "dose_restriction": "$199 intro applies to 0.25 mg and 0.5 mg only",
+      "new_patient_restriction": "described as applying to NEW patients",
+      "offer_window": "offer available for 2 monthly fills between 11/17/2025 and 12/31/2026",
+      "fill_count_limit": "2 monthly fills (this one the prior researcher did capture)"
+    },
+    "post_introductory_prices_index_attributed": {
+      "usd_per_month_349": "0.25 mg, 0.5 mg, 1 mg, 1.7 mg, 2.4 mg",
+      "usd_per_month_399": "Wegovy HD 7.2 mg"
+    },
+    "patient_harm_if_uncorrected": "A patient titrated to 1 mg, 1.7 mg or 2.4 mg who reads a '$199 for first two fills' row would arrive at the pharmacy counter expecting $199 and be charged $349 on the FIRST fill. This is a $150 first-fill surprise, distinct from and additional to the third-fill step-up the prior researcher did identify.",
+    "confirmation_status": "NOT CONFIRMED. Index-mediated only. Value must remain null. The CONDITIONS, however, must be corrected in the dataset regardless, because the prior researcher's condition string is affirmatively wrong rather than merely unverified."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to trumprx.gov/p/wegovy: \"New patients pay $199 for the first two monthly fills of Wegovy (semaglutide) injection 0.25mg and 0.5mg, then $349/month. This offer is only available for 2 monthly fills between 11/17/2025- 12/31/2026.\" and \"For each fill after the initial two, you pay $349/month for Wegovy 0.25mg, 0.5mg, 1mg, 1.7mg, or 2.4mg and $399/month for Wegovy HD 7.2mg.\" -- reproduced from search-index output, NOT a direct read."
+}

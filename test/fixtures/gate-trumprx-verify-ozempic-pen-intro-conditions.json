@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://trumprx.gov/p/ozempic",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_primary_page",
+  "extracted": {
+    "finding": "Same dose-attribution error as Wegovy Pen, plus a set of hard eligibility restrictions the prior researcher did not record at all.",
+    "prior_researcher_claim": "dose_or_tier recorded as 'Pen 0.25/0.5/1 mg - INTRODUCTORY price, first two monthly fills only', i.e. $199 intro attributed to 0.25, 0.5 AND 1 mg.",
+    "what_the_index_actually_attributes_to_the_page": "$199 introductory price applies to 0.25 mg OR 0.5 mg only. 1 mg is $349/month with no introductory tier.",
+    "post_introductory_prices_index_attributed": {
+      "usd_per_month_349": "0.25 mg, 0.5 mg, 1 mg",
+      "usd_per_month_499": "2 mg"
+    },
+    "eligibility_conditions_omitted_by_prior_researcher": [
+      "NEW patients only",
+      "SELF-PAY patients only",
+      "US resident or US Territory resident",
+      "18 years of age or older",
+      "valid prescription required",
+      "coupon must be PRESENTED AT THE PHARMACY to claim the price",
+      "offer window 11/17/2025 to 12/31/2026, 2 monthly fills"
+    ],
+    "why_this_matters_beyond_price": "The prior researcher's only eligibility rule on cash pricing said 'if you have insurance, your co-pay may be even lower'. That framing implies insured patients are simply better off. The actual terms restrict the offer to SELF-PAY patients. An insured patient is not eligible for this price at all rather than merely able to beat it.",
+    "confirmation_status": "NOT CONFIRMED. Index-mediated only. Value must remain null; conditions must be corrected."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to trumprx.gov/p/ozempic: \"New self-pay patients pay $199 for the first two monthly fills of Ozempic (semaglutide) injection 0.25mg or 0.5mg. The offer is only available for 2 monthly fills between 11/17/2025 - 12/31/2026.\" ... \"After the first two fills, patients pay $349/month for Ozempic 0.25mg, 0.5mg or 1mg, and $499/month for Ozempic 2mg.\" ... \"To claim the TrumpRx savings, patients must present the coupon at their pharmacy. The offer is available for self-pay patients only who are residents of the United States or a United States Territory and are 18 years of age or older with a valid prescription.\" -- reproduced from search-index output, NOT a direct read."
+}

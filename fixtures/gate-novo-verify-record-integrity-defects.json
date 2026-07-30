@@ -1,0 +1,33 @@
+{
+  "retrieved_at": "2026-07-30T10:57:00Z",
+  "url": "local filesystem and record inspection, no network",
+  "http_status": "n/a",
+  "source_type": "record_integrity_audit",
+  "extracted": {
+    "defect_1_fixture_paths_all_wrong": {
+      "claimed_in_fixtures_written": "/home/user/GLP-Fund/fixtures/gate-novo-*.json (14 files)",
+      "actual_location_on_disk": "/home/user/GLP-Fund/test/fixtures/gate-novo-*.json (14 files present)",
+      "contents_of_claimed_directory_before_this_verification": "only gate-lilly-verify-*.json, written by a sibling verifier. Zero gate-novo files.",
+      "impact": "Every one of the 14 declared fixture paths resolves to file-not-found for an orchestrator. The evidence exists but is unreachable at the declared addresses.",
+      "verified_by": "find / -name '*gate-novo*'"
+    },
+    "defect_2_localhost_labeled_primary_government": {
+      "url_in_sources_array": "http://127.0.0.1:40851/__agentproxy/status",
+      "declared_source_type": "primary_government",
+      "problem": "A loopback proxy diagnostic endpoint is labeled a primary government source. Any downstream check of the form 'does this gate rest on at least one primary_government source' passes falsely. It is session telemetry, not evidence about drug pricing.",
+      "remedy": "Relabel as session_diagnostic or remove from the sources array entirely."
+    },
+    "defect_3_source_type_contradicts_itself_across_arrays": {
+      "example_url": "https://www.novocare.com/pharmacy.html",
+      "label_in_data_array": "secondary_aggregator",
+      "label_in_sources_array": "primary_manufacturer",
+      "problem": "The same URL carries two different source_type values inside one record. The intent (evidence came only from search snippets, so it cannot confirm) is defensible and conservative on confidence, but the encoding asserts that novocare.com IS a secondary aggregator. A consumer reading data[].source_type would conclude Novo's own patient-facing pharmacy site is an aggregator.",
+      "remedy": "Keep source_url pointing at the primary URL, set source_type to primary_manufacturer, and carry the not-actually-read status in a separate retrieval_status field. Confidence stays unverified either way."
+    },
+    "defect_4_stale_date_placeholders_in_task_frame": {
+      "observation": "The verification task itself arrived with 'Today is undefined' and a fixture directory of 'undefined/'. Fixtures were written to /home/user/GLP-Fund/fixtures/ to match the sibling gate-lilly verifier convention.",
+      "impact": "Not a defect in the findings under review; recorded so the orchestrator knows fixture directory resolution was chosen, not specified."
+    }
+  },
+  "verbatim_excerpt": "fixtures_written declared: /home/user/GLP-Fund/fixtures/gate-novo-egress-policy-block.json ... actual: /home/user/GLP-Fund/test/fixtures/gate-novo-egress-policy-block.json"
+}

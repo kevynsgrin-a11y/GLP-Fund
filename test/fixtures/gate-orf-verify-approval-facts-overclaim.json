@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:37:00Z",
+  "url": "internal: audit of the original GATE-ORF resolution and narrative section 1",
+  "http_status": "n/a (record audit)",
+  "source_type": "verifier_audit",
+  "extracted": {
+    "defect": "The gate's resolution field and narrative section 1 assert approval facts as established while conceding that zero primary sources were read. The asserted facts are: brand Foundayo, NDA 220934 Orig1s000, approval date April 1 2026, the full indication sentence, the boxed warning, first NME under the CNPV pilot, 50 days after filing, 294 days before a PDUFA date of January 20 2027.",
+    "why_this_is_an_overclaim": "The supporting argument is that FDA publishes /drugsatfda_docs/appletter/ documents only for approvals, and that an appletter and a label exist for 220934 in the 2026 directory. But the existence of those documents was inferred from search-result titles, which are secondary renderings, and both URLs 403'd. Under this gate's own rules of evidence, secondary sources may locate but never confirm. The structural inference is reasonable, but it is an inference layered on secondary evidence, not primary confirmation.",
+    "verifier_position": "This verifier independently located the same approval facts from multiple secondary sources and considers approval highly likely to be true. That is not the same as confirmed. The gate should mark the approval facts located-not-confirmed, consistent with how it treated every price.",
+    "specific_unsupported_numerics": [
+      "294 days before the PDUFA date of January 20, 2027 - derived arithmetic on a PDUFA date that was itself never primary-confirmed",
+      "50 days after filing - located only",
+      "ATTAIN-1 on-treatment mean loss 27.3 pounds (12.4 percent) vs 2.2 pounds (0.9 percent) placebo - located only, from a 403'd press release"
+    ],
+    "cross_check_note": "One located secondary source describes the approval as the fastest NME approval since 2002 rather than as the first NME under CNPV. These are different claims and the gate adopted only one of them.",
+    "impact": "Not blocking at the pharmacy counter. Material, because the gate recommends shipping 'the approval status and the eligibility structure' while withholding prices, so approval status is the one thing this gate would actually publish, and it is published at a higher confidence than its evidence supports."
+  },
+  "verbatim_excerpt": "Original resolution field: \"APPROVED 2026-04-01 as Foundayo (orforglipron), NDA 220934 ... but ZERO primary sources were directly retrievable (all HTTP 403), so NO price is confirmable\". The same sentence asserts an approval fact and concedes no primary source was read."
+}

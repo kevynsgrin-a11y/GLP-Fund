@@ -1,0 +1,30 @@
+{
+  "retrieved_at": "2026-07-30T10:58:45Z",
+  "url": "WebSearch result sets; targets (unread, 403): https://www.novocare.com/patient/medicines/wegovy/savings-offer.html and https://www.novocare.com/diabetes/help-with-costs/pap.html",
+  "http_status": "WebSearch returned snippets; both primary pages 403",
+  "source_type": "secondary_search_index_snippet",
+  "extracted": {
+    "defect_1_fabricated_rule_clause": {
+      "original_rule_text": "enrolled_in(Medicare | Medicaid | TRICARE | VA | DOD | any_federal_or_state_healthcare_program) => NOT ELIGIBLE for commercial savings card, including when the beneficiary offers to pay cash",
+      "problem": "The trailing clause 'including when the beneficiary offers to pay cash' appears in NO located source. The original run correctly recorded that no verbatim quote was obtained, then authored a rule containing an invented provision. An unsupported clause in a legal-eligibility rule is a fabrication regardless of whether it happens to be true of real copay-card terms.",
+      "remedy": "Strike the clause. Keep only predicates that located text supports."
+    },
+    "defect_2_max_benefit_reported_as_unestablished": {
+      "original_claim": "Maximum annual benefit NOT established; monthly savings reportedly capped near $100 per 1-month supply.",
+      "located_structure": "maximum savings of $100 per 1-month prescription, $200 per 2-month prescription, or $300 per 3-month prescription",
+      "problem": "The per-prescription cap structure was locatable and was reported as unestablished. Still secondary, so value stays null, but the record understates what is known and omits the 2-month and 3-month tiers.",
+      "note": "An annual cap remains genuinely unlocated."
+    },
+    "defect_3_pap_wegovy_coverage_framed_as_unknown": {
+      "original_claim": "whether EITHER Wegovy formulation is covered by PAP at all was never established",
+      "located_evidence": "PAP covers insulins, Ozempic, Rybelsus, Victoza. Wegovy and Saxenda are NOT currently covered.",
+      "problem": "This is a located POSITIVE EXCLUSION, not an unknown. Framing it as unknown leaves open the possibility that a downstream build offers a PAP pathway for Wegovy. A patient would be routed to apply for a program that does not cover their drug.",
+      "remedy": "Encode as 'located: Wegovy not a PAP covered product', confidence unverified, value null."
+    },
+    "defect_4_fpl_two_tier_confirmed_as_located": {
+      "located": "Household income at or below 200% FPL for Ozempic; at or below 400% FPL for all other medications. Patients must be uninsured or have Medicare; private/commercial insurance disqualifies.",
+      "assessment": "The original run's two-tier reading is corroborated by secondary sources. Its objection to the task's single-threshold premise is well founded. No defect here."
+    }
+  },
+  "verbatim_excerpt": "You are not eligible for a savings card if you do not have commercial drug insurance or if you are enrolled in any state, federal, or government-funded healthcare program, including, without limitation, Medicaid, Medicare, Medicare Part D, Medicare Advantage, Medigap, DoD, VA, TRICARE CHAMPUS, or any state healthcare program. ... The maximum savings are $100 per 1-month prescription, $200 per 2-month prescription, or $300 per 3-month prescription. ... Total household income must be at or below 200% of the federal poverty level for Ozempic. For all other medications, total household income must be at or below 400% of the federal poverty level. ... The PAP primarily covers diabetes medications such as insulin, Ozempic, Rybelsus, and Victoza. Wegovy and Saxenda are not currently covered."
+}

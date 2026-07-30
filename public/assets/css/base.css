@@ -1,0 +1,573 @@
+/**
+ * Base styles. Deliberately minimal.
+ *
+ * This is a SHELL for a later design pass, not a finished skin. It establishes
+ * layout, reading order, hit targets, focus visibility and contrast, and it
+ * reserves ad space so the design pass inherits a zero-CLS page. It does not
+ * establish a brand.
+ *
+ * Mobile-first with no lower breakpoint: the median visitor is on a phone,
+ * standing in a pharmacy, mildly stressed. The desktop layout is the exception
+ * handled by a media query, not the default.
+ *
+ * The design pass may replace every rule in this file. It may not change the
+ * engine or its data contract. See docs/v0-handoff.md.
+ */
+
+:root {
+  --ink: #14171a;
+  --ink-soft: #4a5259;
+  --ink-faint: #6b747c;
+  --paper: #ffffff;
+  --paper-sunk: #f4f6f8;
+  --rule: #d8dde2;
+  --rule-strong: #b6bfc7;
+
+  --accent: #0b5c4a;
+  --accent-ink: #ffffff;
+
+  --confirmed: #14603f;
+  --warn: #7a4b00;
+  --warn-bg: #fff6e5;
+  --urgent: #8a1c11;
+  --urgent-bg: #fdecea;
+  --unverified: #55606a;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: 1.375rem;
+  --step-3: 1.75rem;
+  --price: 2.5rem;
+
+  --gap-xs: 0.25rem;
+  --gap-sm: 0.5rem;
+  --gap: 1rem;
+  --gap-lg: 1.5rem;
+  --gap-xl: 2.5rem;
+
+  --radius: 0.5rem;
+  --measure: 42rem;
+
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-num: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Prevents the whole-page horizontal scroll that a single overflowing table
+     would otherwise cause. Wide content scrolls inside its own container. */
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  /* The disclaimer is non-dismissible and sits at the end of the document, so
+     the page must always be tall enough to reach it. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--gap-sm);
+  font-weight: 650;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); margin-top: var(--gap-xl); }
+h3 { font-size: var(--step-1); margin-top: var(--gap-lg); }
+
+p { margin: 0 0 var(--gap); }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+/* A visible focus ring is not optional on a form a stressed person is filling
+   in. Never remove this without replacing it. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+svg { display: inline-block; vertical-align: -0.15em; flex: none; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gap);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gap);
+  top: -3rem;
+  z-index: 20;
+  padding: var(--gap-sm) var(--gap);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  transition: top 120ms ease;
+}
+.skip-link:focus { top: var(--gap-sm); }
+
+/* --------------------------------------------------------------------------
+   Masthead
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding-block: var(--gap-sm);
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  flex-wrap: wrap;
+}
+
+.masthead__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  font-weight: 700;
+  font-size: var(--step-1);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.masthead__nav {
+  margin-left: auto;
+  display: flex;
+  gap: var(--gap);
+  font-size: var(--step--1);
+  flex-wrap: wrap;
+}
+
+.masthead__nav a { color: var(--ink-soft); }
+
+.data-stamp {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  margin-block: var(--gap-sm) 0;
+}
+
+/* --------------------------------------------------------------------------
+   Main
+   -------------------------------------------------------------------------- */
+
+main { flex: 1 0 auto; padding-block: var(--gap-lg) var(--gap-xl); }
+
+.lede {
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+
+/* --------------------------------------------------------------------------
+   The tool: three inputs, one screen, no scrolling to start
+   -------------------------------------------------------------------------- */
+
+.tool {
+  margin-block: var(--gap-lg);
+  padding: var(--gap);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-sunk);
+}
+
+.tool__grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+
+.field { display: flex; flex-direction: column; gap: var(--gap-xs); }
+
+.field__label { font-weight: 600; font-size: var(--step--1); }
+
+.field__hint { font-size: var(--step--1); color: var(--ink-faint); }
+
+.field select {
+  font: inherit;
+  font-size: var(--step-0);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.75rem;
+  /* 44px minimum touch target. A mis-tap on a pricing tool is a mis-priced
+     decision. */
+  min-height: 2.75rem;
+  width: 100%;
+}
+
+.field select:disabled { background: var(--paper-sunk); color: var(--ink-faint); }
+
+.privacy-note {
+  display: flex;
+  gap: var(--gap-sm);
+  align-items: flex-start;
+  margin-top: var(--gap);
+  padding-top: var(--gap);
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Results
+   -------------------------------------------------------------------------- */
+
+.results { margin-top: var(--gap-lg); }
+
+.results__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gap);
+  flex-wrap: wrap;
+  margin-bottom: var(--gap);
+}
+
+.results__count { font-size: var(--step--1); color: var(--ink-faint); }
+
+.banner {
+  display: flex;
+  gap: var(--gap-sm);
+  align-items: flex-start;
+  padding: var(--gap);
+  border-radius: var(--radius);
+  margin-bottom: var(--gap);
+  font-size: var(--step--1);
+  border: 1px solid transparent;
+}
+
+.banner--warn { background: var(--warn-bg); border-color: #e8c583; color: var(--warn); }
+.banner--urgent { background: var(--urgent-bg); border-color: #eda9a1; color: var(--urgent); }
+.banner strong { display: block; font-size: var(--step-0); }
+
+.card-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--gap); }
+
+.card {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  background: var(--paper);
+}
+
+.card--best { border-color: var(--accent); border-width: 2px; }
+
+.card__rank {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  font-size: var(--step--1);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: var(--gap-xs);
+}
+
+.card__name { font-size: var(--step-1); font-weight: 650; margin: 0; }
+
+.card__cost {
+  font-family: var(--font-num);
+  font-size: var(--price);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-block: var(--gap-sm) 0;
+  /* Reserved so a slow data fetch cannot shift the card. */
+  min-height: calc(var(--price) * 1.05);
+}
+
+.card__cost--unverified {
+  font-family: var(--font);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--unverified);
+}
+
+.card__annual { font-size: var(--step--1); color: var(--ink-soft); margin-block: var(--gap-xs) 0; }
+
+.card__notes { margin: var(--gap) 0 0; padding: 0; list-style: none; display: grid; gap: var(--gap-sm); }
+
+.card__note,
+.card__caveat {
+  display: flex;
+  gap: var(--gap-sm);
+  align-items: flex-start;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.card__caveat { color: var(--warn); }
+
+/* The verified stamp is never optional. It is styled as part of the price, not
+   as fine print, because it is the site's entire argument. */
+.card__verified {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin-top: var(--gap);
+  padding-top: var(--gap-sm);
+  border-top: 1px dashed var(--rule);
+  font-size: var(--step--1);
+}
+
+.card__verified-state { display: inline-flex; align-items: center; gap: var(--gap-xs); font-weight: 600; }
+.card__verified-state--fresh { color: var(--confirmed); }
+.card__verified-state--warn { color: var(--warn); }
+.card__verified-state--urgent { color: var(--urgent); }
+.card__verified-state--unverified { color: var(--unverified); }
+
+.card__source { margin-left: auto; display: inline-flex; align-items: center; gap: var(--gap-xs); }
+
+.savings {
+  margin-top: var(--gap-lg);
+  padding: var(--gap);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--paper-sunk);
+}
+
+.savings__figure { font-family: var(--font-num); font-size: var(--step-3); font-weight: 700; }
+
+.suppressed { margin-top: var(--gap-lg); }
+.suppressed summary { cursor: pointer; font-weight: 600; font-size: var(--step--1); }
+.suppressed ul { list-style: none; margin: var(--gap) 0 0; padding: 0; display: grid; gap: var(--gap-sm); }
+.suppressed li { font-size: var(--step--1); color: var(--ink-soft); border-left: 3px solid var(--rule); padding-left: var(--gap-sm); }
+
+.empty {
+  padding: var(--gap-lg);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Tables (methodology, changelog). Scroll inside their own container so the
+   page body never scrolls horizontally.
+   -------------------------------------------------------------------------- */
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  margin-block: var(--gap);
+  -webkit-overflow-scrolling: touch;
+}
+
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+
+caption { text-align: left; padding: var(--gap); color: var(--ink-soft); font-size: var(--step--1); }
+
+th,
+td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+
+th { background: var(--paper-sunk); font-weight: 650; white-space: nowrap; position: sticky; top: 0; }
+
+td.num { font-family: var(--font-num); white-space: nowrap; }
+
+tbody tr:last-child td { border-bottom: 0; }
+
+/* Receipt treatment for the methodology table: the brief asks for a receipt,
+   not a disclaimer. */
+.receipt {
+  font-family: var(--font-num);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  background: var(--paper);
+  font-size: var(--step--1);
+}
+.receipt__row { display: flex; justify-content: space-between; gap: var(--gap); padding-block: 0.35rem; border-bottom: 1px dotted var(--rule); }
+.receipt__row:last-child { border-bottom: 0; }
+.receipt__total { font-weight: 700; border-top: 2px solid var(--ink); margin-top: var(--gap-sm); padding-top: var(--gap-sm); }
+
+.pill {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 1rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.pill--confirmed { color: var(--confirmed); }
+.pill--conflicting { color: var(--warn); }
+.pill--unverified { color: var(--unverified); }
+.pill--primary { color: var(--confirmed); }
+.pill--secondary { color: var(--warn); }
+
+/* --------------------------------------------------------------------------
+   Ad slots. CLS-safe by construction: the box occupies its final height before
+   any script runs, so nothing below it can move. Health and pharma display RPM
+   is strong and layout shift is what kills it.
+   -------------------------------------------------------------------------- */
+
+.ad-slot {
+  display: block;
+  margin-block: var(--gap-lg);
+  background: var(--paper-sunk);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  /* contain:layout stops a misbehaving creative from reflowing the document. */
+  contain: layout size;
+}
+
+.ad-slot__label {
+  display: block;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  text-align: center;
+  padding-top: var(--gap-xs);
+}
+
+/* Fixed dimensions per placement. Height is declared, never derived from the
+   creative. */
+.ad-slot--leaderboard { height: 6.25rem; }
+.ad-slot--inline { height: 15.625rem; }
+.ad-slot--footer { height: 6.25rem; }
+
+@media (min-width: 48rem) {
+  .ad-slot--leaderboard { height: 5.625rem; }
+}
+
+/* Affiliate slots ship built but empty and disabled. The rule below is a second
+   line of defence behind the config flag and the link-allowlist test: even if
+   markup were added, it would not render. */
+.affiliate-slot { display: none; }
+
+/* --------------------------------------------------------------------------
+   Alert capture
+   -------------------------------------------------------------------------- */
+
+.alerts-form { display: grid; gap: var(--gap); margin-top: var(--gap); }
+
+.alerts-form input[type='email'],
+.alerts-form select {
+  font: inherit;
+  padding: 0.7rem 0.75rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  width: 100%;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 650;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.form-status { font-size: var(--step--1); min-height: 1.5rem; }
+.form-status--error { color: var(--urgent); }
+.form-status--ok { color: var(--confirmed); }
+
+/* --------------------------------------------------------------------------
+   Footer. The disclaimer is persistent and non-dismissible. There is no
+   dismiss control in the markup and none may be added.
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  flex: none;
+  border-top: 2px solid var(--ink);
+  background: var(--paper-sunk);
+  padding-block: var(--gap-lg);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.site-footer h2 { font-size: var(--step-0); margin-top: 0; }
+
+.disclaimer {
+  border-left: 4px solid var(--ink);
+  padding-left: var(--gap);
+  margin-bottom: var(--gap-lg);
+}
+
+.non-affiliation { font-weight: 600; color: var(--ink); }
+
+.footer-nav { display: flex; flex-wrap: wrap; gap: var(--gap); margin-block: var(--gap-lg) 0; padding: 0; list-style: none; }
+
+/* --------------------------------------------------------------------------
+   Wider viewports
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 40rem) {
+  :root { --price: 3rem; }
+  .tool__grid { grid-template-columns: repeat(3, 1fr); }
+  .alerts-form { grid-template-columns: 2fr 1fr auto; align-items: end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .ad-slot, .masthead__nav, .alerts-form { display: none; }
+  body { color: #000; }
+}

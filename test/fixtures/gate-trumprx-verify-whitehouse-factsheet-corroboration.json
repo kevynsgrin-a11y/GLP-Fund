@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://www.whitehouse.gov/fact-sheets/2026/02/fact-sheet-president-donald-j-trump-launches-trumprx-gov-to-bring-lower-drug-prices-to-american-patients/",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_government_page",
+  "extracted": {
+    "finding": "On the fact sheet figures specifically, the prior researcher's capture HOLDS UP under independent re-query. I could not refute it.",
+    "figures_reproduced_independently": {
+      "ozempic_injectable_list_to_program": "from $1,028 to an average price of $350 and as low as $199, depending on dosage strength",
+      "wegovy_injectable_list_to_program": "from $1,349 to an average price of $350 and as low as $199, depending on dosage strength",
+      "zepbound_list_to_program": "from $1,088 to an average price of $346 and as low as $299, depending on dosage strength",
+      "wegovy_pill_list_to_program": "from $1,349 to as low as $149, depending on dosage strength"
+    },
+    "average_versus_lowest_dose_question": "The prior researcher asserted flatly that $350 and $199 do not conflict because the source states them as 'an average price of $350 and as low as $199'. My re-query reproduces that same phrasing, so their reading is corroborated. It remains a corroborated INTERPRETATION of an unreadable page, not a confirmed fact, and their resolution field states it as settled ('is not a conflict') which overstates its standing.",
+    "zepbound_list_price_rounding_note": "The fact sheet figure is $1,088. The prior researcher presented $1,088 / $1,087 / $1,086.37 / a $1,059-$1,086 range as a 'FOUR-WAY CONFLICT'. $1,086.37 and $1,087 are the same figure at different rounding, and $1,088 may be the fact sheet's own rounding. Presenting rounding variants as independent conflicting claims inflates the apparent conflict; the substantive open question is only whether the true WAC is ~$1,086.37 or something else.",
+    "allowlist_note": "whitehouse.gov is NOT on this gate's enumerated PRIMARY allowlist (fda.gov, cms.gov, medicare.gov, trumprx.gov, hhs.gov, trumprx/company domains, sec.gov). The prior researcher labeled it source_type 'primary_government' anyway. Under the stated rules of evidence it cannot confirm a figure for this gate regardless of it being a government publisher.",
+    "additional_pages_the_prior_researcher_missed": [
+      "https://www.whitehouse.gov/releases/2026/02/president-trump-launches-trumprx-gov-delivering-massive-immediate-savings-to-millions-of-americans/",
+      "https://www.whitehouse.gov/research/2026/05/savings-from-most-favored-nation-drug-pricing-policy/",
+      "https://www.whitehouse.gov/wp-content/uploads/2026/05/Savings-from-MFN-Drug-Pricing-Policy.pdf",
+      "https://www.whitehouse.gov/fact-sheets/2025/11/fact-sheet-president-donald-j-trump-announces-major-developments-in-bringing-most-favored-nation-pricing-to-american-patients/",
+      "https://www.whitehouse.gov/fact-sheets/2025/12/fact-sheet-president-donald-j-trump-announces-largest-developments-to-date-in-bringing-most-favored-nation-pricing-to-american-patients/"
+    ],
+    "confirmation_status": "NOT CONFIRMED. Index-mediated only. All values remain null."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to whitehouse.gov: \"The monthly prices of Ozempic and injectable Wegovy will fall from $1,028 and $1,349, respectively, to an average price of $350 and as low as $199, depending on dosage strength.\" ... \"The monthly price of Zepbound will fall from $1,088 to an average price of $346 and as low as $299, depending on dosage strength.\" ... \"The monthly price of the Wegovy pill will fall from $1,349 to as low as $149, depending on dosage strength.\" -- reproduced from search-index output, NOT a direct read."
+}

@@ -1,0 +1,167 @@
+{
+  "ranAt": "2026-07-30T11:20:51.399Z",
+  "viewport": "390x844",
+  "chromium": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+  "checks": [
+    {
+      "name": "landing page has no horizontal scroll",
+      "pass": true,
+      "detail": "scrollWidth 390 vs clientWidth 390"
+    },
+    {
+      "name": "all three inputs are reachable without scrolling",
+      "pass": true,
+      "detail": "form bottom at 720px, viewport 844px"
+    },
+    {
+      "name": "dose selector repopulates for the chosen drug",
+      "pass": true,
+      "detail": "value \"15mg\""
+    },
+    {
+      "name": "completed flow has no horizontal scroll",
+      "pass": true,
+      "detail": "clean"
+    },
+    {
+      "name": "results render for a completed flow",
+      "pass": true,
+      "detail": "4 cards"
+    },
+    {
+      "name": "shipped data renders no price as a number",
+      "pass": true,
+      "detail": "LillyDirect Self Pay: Price not currently verified | Medicare Part D: Price not currently verified | Patient assistance program: Price not currently verified | "
+    },
+    {
+      "name": "every card carries a source link and a verification date",
+      "pass": true,
+      "detail": "4 cards checked"
+    },
+    {
+      "name": "vector 1 on screen: LillyDirect first at $299, $3,588 per year",
+      "pass": true,
+      "detail": "LillyDirect Self Pay / $299 / $3,588 per year"
+    },
+    {
+      "name": "vector 2 on screen: 5mg renders $399, proving dose tiers are live",
+      "pass": true,
+      "detail": "$399"
+    },
+    {
+      "name": "vector 3 on screen: 15mg renders $449 with the refill-window caveat",
+      "pass": true,
+      "detail": "$449, caveats: 2"
+    },
+    {
+      "name": "vector 7 on screen: the savings card is absent for a Medicare user",
+      "pass": true,
+      "detail": "rendered: Medicare GLP-1 Bridge, TrumpRx, LillyDirect Self Pay, Patient assistance program"
+    },
+    {
+      "name": "the suppression is explained rather than silent",
+      "pass": true,
+      "detail": "disclosure present: true"
+    },
+    {
+      "name": "vector 6 on screen: the copay card ranks first with commercial coverage",
+      "pass": true,
+      "detail": "Manufacturer savings card / $25"
+    },
+    {
+      "name": "vector 12 on screen: tied costs order deterministically",
+      "pass": true,
+      "detail": "NovoCare Pharmacy < TrumpRx"
+    },
+    {
+      "name": "vector 11 on screen: the savings delta renders",
+      "pass": true,
+      "detail": "$1,150 a month"
+    },
+    {
+      "name": "CLS on / is near zero",
+      "pass": true,
+      "detail": "CLS 0.0000 across 0 shift entries"
+    },
+    {
+      "name": "CLS on /zepbound-cost/ is near zero",
+      "pass": true,
+      "detail": "CLS 0.0000 across 0 shift entries"
+    },
+    {
+      "name": "CLS on /methodology/ is near zero",
+      "pass": true,
+      "detail": "CLS 0.0000 across 0 shift entries"
+    },
+    {
+      "name": "CLS on /changelog/ is near zero",
+      "pass": true,
+      "detail": "CLS 0.0000 across 0 shift entries"
+    },
+    {
+      "name": "every ad slot reserves a non-zero height before any creative loads",
+      "pass": true,
+      "detail": "leaderboard:100px inline:250px footer:100px"
+    },
+    {
+      "name": "a 120-day-old verified_date raises the prominent urgent banner",
+      "pass": true,
+      "detail": "role=\"alert\""
+    },
+    {
+      "name": "the urgent banner renders above the results",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "all 16 pages pass compliance and layout audit",
+      "pass": true,
+      "detail": "no issues"
+    },
+    {
+      "name": "no console errors during the flow",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "name": "every source URL was checked and its status recorded",
+      "pass": true,
+      "detail": "8 URLs; 8 unreachable from this network"
+    }
+  ],
+  "failures": 0,
+  "urlLiveness": [
+    {
+      "url": "https://lillydirect.lilly.com/",
+      "status": "403"
+    },
+    {
+      "url": "https://trumprx.gov/",
+      "status": "403"
+    },
+    {
+      "url": "https://www.medicare.gov/",
+      "status": "403"
+    },
+    {
+      "url": "https://www.novocare.com/",
+      "status": "403"
+    },
+    {
+      "url": "https://pricinginfo.lilly.com/foundayo",
+      "status": "403"
+    },
+    {
+      "url": "https://www.lillycares.com/",
+      "status": "403"
+    },
+    {
+      "url": "https://www.medicare.gov/drug-coverage-part-d",
+      "status": "403"
+    },
+    {
+      "url": "https://www.novonordiskpap.com/",
+      "status": "blocked"
+    }
+  ]
+}

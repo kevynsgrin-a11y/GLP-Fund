@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://trumprx.gov/p/ozempic-pill",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_primary_page",
+  "extracted": {
+    "finding": "The prior researcher stated 'NO price was obtainable for it, not even index-mediated' and listed this as an unresolved data gap. That is refuted: a price is obtainable by exactly the method they were already using.",
+    "price_index_attributed": "Ozempic Pill starts at $149.00 per month.",
+    "unit_definition": "One month is defined as 1 bottle of 30 tablets.",
+    "qualifiers": [
+      "'starts at' -- self-pay pricing varies by dose, so this is a floor not a flat price",
+      "eligibility and restrictions apply",
+      "offering is limited to NON-GOVERNMENT beneficiaries"
+    ],
+    "significance": "This is a completeness failure rather than an over-claim. The prior researcher's conclusion (value null, unverified) happens to remain correct, but they reported the datum as unobtainable when it was obtainable, which would cause a human curator to skip a page that in fact has a figure to transcribe.",
+    "confirmation_status": "NOT CONFIRMED. Index-mediated only. Value remains null."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to trumprx.gov/p/ozempic-pill: \"Ozempic Pill starts at $149.00 per month, and one month is defined as 1 bottle of 30 tablets. Self-pay pricing varies by dose, and eligibility and restrictions apply. The offering is limited to non-government beneficiaries.\" -- reproduced from search-index output, NOT a direct read."
+}

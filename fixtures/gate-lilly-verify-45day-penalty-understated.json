@@ -1,0 +1,28 @@
+{
+  "retrieved_at": "2026-07-30T10:48:00Z",
+  "url": "WebSearch result set only. Primary target https://www.lilly.com/lillydirect/medicines/zepbound/self-pay-journey-program-purchase-offer-full-terms-conditions was 403 at CONNECT and never read.",
+  "http_status": "403 on the primary source. This fixture records LOCATED claims from search-index summaries.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. Value stays null. Recorded because the prior report MATERIALLY UNDERSTATED the lapse penalty.",
+    "PRIOR_REPORT_CHARACTERIZATION": "The prior gate said an aggregator claims the penalty price is '$499-$699', calling it 'a vague range, not a price'.",
+    "WHAT_SEARCH_ACTUALLY_RETURNS": "The located penalty is not a range at all. It is a PER-DOSE schedule, and its ceiling is far above $699.",
+    "located_penalty_schedule_query_A": {
+      "7.5 mg": "$599",
+      "10 mg": "$699",
+      "12.5 mg": "$849",
+      "15 mg": "$1,049"
+    },
+    "located_penalty_schedule_query_B": {
+      "7.5 mg": "$499",
+      "10 mg": "$699",
+      "12.5 mg": "$849",
+      "15 mg": "$1,049"
+    },
+    "INTERNAL_CONFLICT_LOCATED": "The 7.5 mg penalty is reported as BOTH $599 and $499 across two independent search queries in this session. The 10 mg, 12.5 mg and 15 mg figures were stable at $699 / $849 / $1,049 across both. Confidence for this datum is 'conflicting' on the 7.5 mg point, and in every case the value remains null.",
+    "WHY_THIS_MATTERS": "BLOCKING severity. The prior report's stated ceiling of $699 understates the located worst case of $1,049 for 15 mg by roughly 50 percent. This is the price a patient actually pays when the refill window lapses, so a tool that displayed the prior report's range as a worst case would under-warn the most exposed patients.",
+    "located_45_day_mechanics": "'To keep the discounted $449 price, you must refill within 45 days of your previous delivery. You must complete your refill purchase within 45 days of the delivery/received date of your previous shipment - not the order date, the date the package arrived.' Each fill is described as a 28-day supply, leaving roughly a 17-day buffer.",
+    "STILL_UNCONFIRMED": "No verbatim Lilly terms-and-conditions wording for the 45-day condition was obtained. The condition remains unconfirmable from this session, exactly as the prior report concluded. Only its numeric consequence was mischaracterized."
+  },
+  "verbatim_excerpt": "Quoted from WebSearch summaries: 'The newly reduced prices for the four highest dosages are available only as long as they're refilled within 45 days of the previous delivery. If you miss the 45-day window for doses 7.5 mg and above, you'll pay the standard self-pay price for that refill: 7.5 mg: $599, 10 mg: $699, 12.5 mg: $849, 15 mg: $1,049.' A second query returned: 'If you miss the 45-day refill window, you pay the standard price: $499 for 7.5 mg, $699 for 10 mg, $849 for 12.5 mg, and $1,049 for 15 mg.'"
+}

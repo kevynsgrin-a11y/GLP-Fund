@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:58:15Z",
+  "url": "WebSearch result sets, reproducing the original run's located leads",
+  "http_status": "WebSearch snippets only; all underlying primary pages 403",
+  "source_type": "secondary_search_index_snippet",
+  "extracted": {
+    "purpose": "An adversarial pass must record what survives, not only what fails. These original-run claims were re-probed and held up.",
+    "upheld_1_blockade_and_all_null": "Independently reconfirmed on novocare.com, fda.gov and novonordisk.mediaroom.com. Holding every value null with confidence unverified is the correct disposition, not excessive caution.",
+    "upheld_2_no_embellishment_of_snippets": "The located leads reproduce almost exactly as the original run characterized them. No invented figures were found in the data array. This is worth stating plainly given how often unread-source runs drift.",
+    "upheld_3_wegovy_injection_tiering": "Located: $199/month intro for 0.25 mg and 0.5 mg, 2 monthly fills through 2026-12-31; then $349/month for 0.25-2.4 mg; $399/month for Wegovy HD 7.2 mg. The original run's objection that test vector 4's flat $199 at dose 'any' is invalid is well founded.",
+    "upheld_4_wegovy_pill_149_vs_199_resolution": "Located: $149 for 1.5 mg; $149 for 4 mg as a limited-time offer until 2026-08-31; $199 for 4 mg thereafter; $299 for 9 mg and 25 mg. Encoding these as separate objects rather than collapsing them was correct. The 2026-08-31 staleness cliff is real and is about one month out.",
+    "upheld_5_ozempic_list_price_conflict_left_open": "Located figures remain incompatible: $1,028, $935, $936-$998 per pen, $968-$1,029 per month. Refusing to average was correct.",
+    "upheld_6_wegovy_list_price_and_2027_cut": "Located: current list $1,349/month; $675/month across Wegovy, Ozempic and Rybelsus effective 2027-01-01, announced 2026-02-24, with self-pay direct-to-patient pricing reported unchanged. Correctly held unverified.",
+    "upheld_7_oasis4_efficacy_caution": "Located only the 16.6% figure, and located it with its adherence condition intact ('if all patients remained on treatment', vs 2.7% placebo). The 13.6% primary analysis and the 76.3% vs 31.3% responder figures did not corroborate. Refusing to publish any OASIS 4 number was correct.",
+    "upheld_8_proprietary_name_doubt": "Secondary sources say 'oral Wegovy' and 'Wegovy tablets' but no FDA label was readable. The original run's refusal to treat 'Wegovy pill' as the confirmed approved proprietary name is correct and should be preserved."
+  },
+  "verbatim_excerpt": "After the introductory period, prices are $349 per month for Wegovy 0.25 mg, 0.5 mg, 1 mg, 1.7 mg or 2.4 mg and $399 per month for Wegovy HD (semaglutide) injection 7.2 mg. ... Participants receiving once-daily oral semaglutide 25 mg achieved a mean weight reduction of 16.6% at week 64 if all patients remained on treatment, compared with 2.7% with placebo."
+}

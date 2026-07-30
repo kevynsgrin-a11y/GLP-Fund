@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:36:00Z",
+  "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8ac446c5-feba-474f-a103-23facb9b5c62 and https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/8ac446c5-feba-474f-a103-23facb9b5c62/spl-doc",
+  "http_status": "403 on both (blanket fetch-layer 403)",
+  "source_type": "primary_government_located_not_read",
+  "extracted": {
+    "new_primary_routes_the_original_report_never_attempted": [
+      "dailymed.nlm.nih.gov SPL record, setid 8ac446c5-feba-474f-a103-23facb9b5c62",
+      "nctr-crs.fda.gov/fdalabel SPL document service (an fda.gov host)",
+      "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2026/220934Orig1s000OtherR.pdf",
+      "https://pi.lilly.com/us/foundayo-us-mg.pdf (Medication Guide)"
+    ],
+    "strengths_located_with_tablet_descriptions": "0.8 mg pink round debossed L / G1; 2.5 mg light yellow round debossed L / G2; 5.5 mg grayish purple round debossed L / G3; 9 mg pink modified oval debossed Lilly / G4; 14.5 mg light yellow modified oval debossed Lilly / G5; 17.2 mg grayish purple modified oval debossed Lilly / G6. Located only, not read from label.",
+    "material_correction_to_original_boxed_warning_claim": "The original report presented the boxed warning as a categorical thyroid C-cell tumor warning. Located label text indicates the warning explicitly states that orforglipron is NOT pharmacologically active in rats or mice and did NOT produce tumors in rodents, and that the human relevance of GLP-1-receptor-dependent rodent thyroid C-cell tumors has not been determined. Omitting that qualifying language materially misrepresents the warning.",
+    "unsupported_section_attribution": "The original report's eligibility_rules entry encodes 'contraindicated_if(personal_or_family_history_of_medullary_thyroid_carcinoma ...)'. The located wording is 'should not be used in', and no source read established that this sits in section 4 CONTRAINDICATIONS rather than in the boxed warning or section 5. Asserting a formal contraindication is an unsupported upgrade.",
+    "initial_us_approval_located": "Initial U.S. Approval: 2026 (from SPL highlights title text)"
+  },
+  "verbatim_excerpt": "Located label highlights title: \"These highlights do not include all the information needed to use FOUNDAYO safely and effectively. See full prescribing information for FOUNDAYO. FOUNDAYO (orforglipron) tablets, for oral use. Initial U.S. Approval: 2026\". Located warning language: \"Orforglipron is not pharmacologically active in rats or mice and did not produce tumors in rodents. While orforglipron is pharmacologically active at the human GLP-1 receptor, the human relevance of GLP-1 receptor-dependent thyroid C-cell tumors observed in rodents has not been determined.\""
+}

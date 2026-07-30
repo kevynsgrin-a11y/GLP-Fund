@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T09:59:45Z",
+  "url": "https://www.lilly.com/lillydirect/foundayo",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. The alternate LillyDirect pharmacy path https://lillydirect.lilly.com/pharmacy/products/foundayo also returned 403. The task explicitly required fetching the LillyDirect product page to establish the price ACTUALLY charged today (2026-07-30) rather than pre-approval agreement pricing. That requirement could NOT be satisfied.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "Authentic Foundayo (orforglipron) Shipped to You | LillyDirect",
+    "leads_only_NOT_CONFIRMED": {
+      "self_pay_entry_price": "starting at $149 per month for the lowest dose",
+      "commercial_insured_entry_price": "starting at $25 per month for eligible commercially insured patients",
+      "fulfillment": "self-pay available through LillyDirect and the Foundayo Self Pay Journey Program with free home delivery, as well as from local pharmacy"
+    },
+    "today_vs_launch_price_check": "UNRESOLVED. No primary page could be read on 2026-07-30, so it is NOT established whether the April 2026 launch prices are still the prices charged today. Secondary aggregators state no change, but secondary sources cannot confirm a price.",
+    "provenance_warning": "Leads only. Values recorded as null."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

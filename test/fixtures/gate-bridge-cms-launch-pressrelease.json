@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/newsroom/press-releases/cms-launches-medicare-glp-1-bridge-expanding-access-glp-1-medications",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov) only. Search-index-mediated text attributed to this primary URL. NOT a verbatim direct read.",
+  "extracted": {
+    "significance": "This is the LAUNCH confirmation press release, distinct from the earlier 'Coming Soon' announcement.",
+    "press_release_date_reported_by_search": "2026-07-01",
+    "launch_confirmed": true,
+    "launch_language": "present tense - 'may now get'",
+    "patient_cost_usd_per_month": 50,
+    "eligible_drugs": ["Foundayo", "Wegovy (injection and tablets)", "Zepbound (KwikPen)"],
+    "period": "2026-07-01 through 2027-12-31",
+    "ineligibility_note": "Not all Medicare beneficiaries will qualify, including individuals who already receive GLP-1 medications through their existing Medicare prescription drug coverage or are eligible for GLP-1 coverage through the Medicare Part D benefit.",
+    "administration": "CMS uses a single central processor for prior authorization, claims adjudication, and payment to pharmacies; the processor is Humana, current administrator of the Limited Income Newly Eligible Transition (LI NET) program."
+  },
+  "verbatim_excerpt": "Eligible Medicare beneficiaries may now get certain GLP-1 medications for $50 per month through the Medicare GLP-1 Bridge, a new Centers for Medicare & Medicaid Services (CMS) initiative designed to expand access to innovative treatments and test the impacts of increased access to GLP-1 drugs for weight management on the Medicare program. -- NOTE: reproduced from domain-restricted search output, not a direct read."
+}

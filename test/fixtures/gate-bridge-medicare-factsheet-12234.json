@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.medicare.gov/publications/12234-medicare-glp-1-bridge-glp-1-drugs-for-50-a-month.pdf",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.medicare.gov:443. NO DIRECT PDF READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / medicare.gov) only. Search-index-mediated text attributed to this primary PDF. NOT a verbatim direct read.",
+  "extracted": {
+    "document_title": "Fact sheet Medicare GLP-1 Bridge: GLP-1 Drugs for $50 a Month",
+    "spanish_version_url": "https://www.medicare.gov/publications/12234-s-medicare-glp-1-bridge-glp-1-drugs-for-50-a-monthpdf.pdf",
+    "patient_cost_usd_per_month": 50,
+    "income_dependence": "none - $50 per month no matter your income level",
+    "covered_drugs": "Foundayo (tablet), Wegovy (injection or tablet), and Zepbound (KwikPen only)",
+    "explicitly_not_covered": "The single-dose Zepbound pen and Zepbound vials are NOT covered.",
+    "cost_accounting": "The $50 payment doesn't count toward your Medicare drug plan deductible or yearly out-of-pocket limit.",
+    "enrollment_requirement": "must have Medicare Part D drug coverage, under either a standalone Medicare Drug Plan or a Medicare health plan that includes drug coverage"
+  },
+  "verbatim_excerpt": "The Medicare GLP-1 Bridge covers Foundayo (tablet), Wegovy (injection or tablet), and Zepbound (KwikPen only). The single-dose Zepbound pen and Zepbound vials are NOT covered. ... The cost for these covered drugs under this program is $50 per month, no matter your income level. This $50 payment doesn't count toward your Medicare drug plan deductible or yearly out-of-pocket limit. -- NOTE: reproduced from domain-restricted search output, not a direct read of the PDF."
+}

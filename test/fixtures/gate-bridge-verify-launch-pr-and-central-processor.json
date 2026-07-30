@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/newsroom/press-releases/cms-launches-medicare-glp-1-bridge-expanding-access-glp-1-medications",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "launch_press_release_exists_CORROBORATED": "The URL resolves in a domain-restricted cms.gov search and is titled 'CMS Launches Medicare GLP-1 Bridge, Expanding Access to GLP-1 Medications'. It is not a fabricated URL.",
+    "launch_language": "Eligible Medicare beneficiaries may now get certain GLP-1 medications for $50 per month",
+    "launch_date_language": "Beginning July 1, Medicare beneficiaries with Part D coverage may be eligible to access certain GLP-1 medications at $50 for a monthly supply",
+    "end_date": "The initiative will remain available through December 31, 2027",
+    "authority": "operates under the Secretary's authority to test new approaches to care delivery under Medicare",
+    "masthead_date_still_unread": "The reported findings dated the release 2026-07-01 from the search index. This verifier likewise could not read the page masthead. The July 1 start is corroborated as a program start date; the release's own publication date remains unread.",
+    "central_processor_identity": "CMS is using Humana, the current administrator of the Limited Income Newly Eligible Transition (LI NET) program, as the central processor for the Medicare GLP-1 Bridge. The reported findings asserted 'Humana, the LI NET administrator' while offering a quote from this press release that names no entity - the assertion is correct but was unsourced as presented; it is supported on the Bridge Part D plans / providers pages instead.",
+    "claims_channel": "central processor processes claims via the NCPDP Telecommunication Standard; paper claims and direct member reimbursements will not be accepted",
+    "value": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"Eligible Medicare beneficiaries may now get certain GLP-1 medications for $50 per month through the Medicare GLP-1 Bridge... Beginning July 1, Medicare beneficiaries with Part D coverage may be eligible to access certain GLP-1 medications at $50 for a monthly supply.\" / \"CMS will be utilizing Humana, the current administrator of the Limited Income Newly Eligible Transition (LI NET) program, as the central processor for the Medicare GLP-1 Bridge.\""
+}

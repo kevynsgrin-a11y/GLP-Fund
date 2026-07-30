@@ -1,0 +1,1188 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology: how every GLP-1 price on this site is sourced</title>
+<meta name="description" content="Every price figure, its source, its source type, its verification date and its confidence level. The complete evidence table, including what we could not confirm.">
+<link rel="canonical" href="https://glp1pricecheck.com/methodology/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Methodology: how every GLP-1 price on this site is sourced">
+<meta property="og:description" content="Every price figure, its source, its source type, its verification date and its confidence level. The complete evidence table, including what we could not confirm.">
+<meta property="og:url" content="https://glp1pricecheck.com/methodology/">
+<meta property="og:site_name" content="GLP-1 Price Check">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/css/base.css">
+
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="masthead__brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 2.75h14v16.6l-2.33-1.4-2.34 1.4-2.33-1.4-2.34 1.4L7.33 18 5 19.35Z"/><line x1="8.25" y1="7.5" x2="15.75" y2="7.5"/><line x1="8.25" y1="11" x2="15.75" y2="11"/><line x1="8.25" y1="14.5" x2="13" y2="14.5"/></svg>
+      GLP-1 Price Check
+    </a>
+    <nav class="masthead__nav" aria-label="Primary">
+      <a href="/">Price tool</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/changelog/">Price changes</a>
+      <a href="/alerts/">Alerts</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <h1>Methodology</h1>
+  <p class="lede">
+    This page is the receipt. Every figure this site holds is below, with where it
+    came from, what kind of source that is, when we last checked it, and whether we
+    were able to confirm it. Nothing is aggregated away.
+  </p>
+  
+      <p class="data-stamp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.75"/><path d="M12 7.25V12l3.4 2.1"/></svg>
+        Pricing data as of <time datetime="2026-07-30">2026-07-30</time>.
+      </p>
+
+  <h2>The tally</h2>
+  <div class="receipt">
+    <div class="receipt__row"><span>Price figures tracked</span><span>45</span></div>
+    <div class="receipt__row"><span>Confirmed against a primary source</span><span>0</span></div>
+    <div class="receipt__row"><span>Sources conflict</span><span>8</span></div>
+    <div class="receipt__row"><span>Not verified</span><span>37</span></div>
+    <div class="receipt__row"><span>Eligibility rules applied</span><span>17</span></div>
+    <div class="receipt__row"><span>Rules that remove a pathway</span><span>5</span></div>
+    <div class="receipt__row"><span>Rules awaiting a verbatim source quote</span><span>5</span></div>
+    <div class="receipt__row receipt__total"><span>Figures rendered as a number</span><span>0</span></div>
+  </div>
+
+  <h2>Our rules of evidence</h2>
+  <p>
+    Only a primary source can confirm a figure. For us that means the manufacturer’s
+    own site or investor relations, or a government source: fda.gov, cms.gov,
+    medicare.gov, hhs.gov, trumprx.gov.
+  </p>
+  <p>
+    A secondary source may <em>locate</em> a fact. It may never <em>confirm</em> one.
+    Press coverage, price aggregators and drug databases are how we find out that a
+    price may have changed; they are not how we establish what it is. A press-release
+    wire copy of a company announcement is secondary. The company’s own page is
+    primary.
+  </p>
+  <p>
+    We do not reconcile conflicting figures into a midpoint. If two sources disagree,
+    we mark the figure as conflicting and show you both positions, because the average
+    of two prices is a price that nobody charges.
+  </p>
+  <p>
+    <strong>Any figure we cannot confirm against a primary source does not render as a
+    number anywhere on this site.</strong> It renders as "price not currently verified"
+    with a link to the pathway’s official page. That rule is enforced in our code by
+    a single function and asserted by a test that tries to break it, not by editorial
+    discipline.
+  </p>
+
+  <h2>Current verification status: an honest problem</h2>
+  <div class="banner banner--urgent" role="alert">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 21.5 20H2.5Z"/><line x1="12" y1="9.75" x2="12" y2="14"/><line x1="12" y1="16.75" x2="12" y2="16.85"/></svg>
+    <span>
+      <strong>We currently publish no verified prices at all.</strong>
+      On 2026-07-30, the network our build runs on refused outbound connections to
+      every primary source we rely on: fda.gov, cms.gov, medicare.gov, hhs.gov,
+      trumprx.gov, sec.gov, and every Eli Lilly and Novo Nordisk domain. We could
+      search, but we could not read. Under our own rules of evidence a search result
+      summarising a page is not the same as reading it, so every figure below is filed
+      as unverified and none of them renders as a number.
+    </span>
+  </div>
+  <p>
+    We could have printed the figures anyway. Every competitor does, and most readers
+    would not have noticed. We would rather show you an empty column than a number we
+    have not seen with our own eyes, because the cost of being wrong here is somebody
+    at a pharmacy counter who cannot pay for their medication.
+  </p>
+  <p>
+    Alongside each unverified figure we record what our research located and the
+    provenance we actually hold for it, so that a single verification pass can promote
+    it. That data is in the site’s price file and is summarised in the table below.
+  </p>
+
+  <h2>Staleness</h2>
+  <p>
+    Every figure carries the date we last verified it, and every rendered price passes
+    through the same check. Past 30 days a figure is flagged as
+    possibly outdated. Past 60 days a prominent warning appears
+    above all results. Prices in this market have moved repeatedly, so age is part of
+    the price, not a footnote to it.
+  </p>
+
+  <h2>What we do not do</h2>
+  <ul>
+    <li>We sell nothing, and there is nothing to buy here.</li>
+    <li>No telehealth links. No pharmaceutical affiliate links. No compounding-pharmacy links. Anywhere. This is enforced by an allowlist test that fails our build if an outbound link is not a primary source.</li>
+    <li>No compounded GLP-1 products appear in our ranked results. See below.</li>
+    <li>We collect no health information. Your medication, insurance situation and dose are never stored or transmitted.</li>
+    <li>We take no money from any manufacturer or government program.</li>
+  </ul>
+
+  <h2>Compounded GLP-1 products</h2>
+  <p>
+    Compounded semaglutide and tirzepatide are excluded from this tool. The regulatory
+    position has shifted with FDA shortage-list resolutions and subsequent litigation,
+    and we were unable to establish the current lawful status against FDA sources
+    directly. Our default in that situation is exclusion.
+  </p>
+  <p>
+    This is also where the competitive conflict in this market is most acute: much of
+    the GLP-1 cost content that ranks well is published by companies selling compounded
+    products. We are not going to rank a product category we cannot verify the legality
+    of, and we would not rank it alongside approved products even if we could.
+  </p>
+
+  <h2>Every eligibility rule we apply</h2>
+  <p>
+    These rules decide which pathways you are shown. A rule that removes a pathway is a
+    claim about what you may legally do, so each one carries its source. Where we could
+    not retrieve the verbatim terms, the rule is marked pending and the basis we are
+    relying on is stated, rather than a quote being invented.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Rule</th>
+          <th scope="col">Pathway</th>
+          <th scope="col">Effect</th>
+          <th scope="col">Status</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>Manufacturer savings cards exclude anyone enrolled in a federal healthcare program, including Medicare, Medicaid, TRICARE and VA coverage. This pathway is not available to you.</td>
+          <td>Manufacturer savings card</td>
+          <td>suppress</td>
+          <td><span class="pill pill--unverified">Pending verification</span></td>
+          <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+        </tr>
+        <tr>
+          <td>A manufacturer savings card requires commercial insurance. It cannot be used without coverage.</td>
+          <td>Manufacturer savings card</td>
+          <td>require</td>
+          <td><span class="pill pill--unverified">Pending verification</span></td>
+          <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+        </tr>
+        <tr>
+          <td>This pathway is available only to Medicare beneficiaries.</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>require</td>
+          <td><span class="pill pill--unverified">Pending verification</span></td>
+          <td><a href="https://www.medicare.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+        </tr>
+        <tr>
+          <td>Requires a valid prescription from a licensed healthcare provider.</td>
+          <td>All</td>
+          <td>caveat</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Paying cash bypasses your insurance, so what you spend here does not count toward your deductible or your out-of-pocket maximum.</td>
+          <td>LillyDirect Self Pay</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Paying cash bypasses your insurance, so what you spend here does not count toward your deductible or your out-of-pocket maximum.</td>
+          <td>NovoCare Pharmacy</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Patient assistance programs are income-gated and require an application, usually with proof of income and a prescriber&#39;s involvement. Approval is not immediate.</td>
+          <td>Patient assistance program</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Patient assistance is limited to applicants below an income threshold.</td>
+          <td>Patient assistance program</td>
+          <td>require</td>
+          <td><span class="pill pill--unverified">Pending verification</span></td>
+          <td><a href="https://www.lillycares.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+        </tr>
+        <tr>
+          <td>Programmatic access to trumprx.gov is not available to this site, so figures for this pathway are curated by hand and may lag the live platform. Check trumprx.gov directly before relying on a price.</td>
+          <td>TrumpRx</td>
+          <td>caveat</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Mounjaro is approved for type 2 diabetes, not for weight management. Coverage and program eligibility follow the diabetes indication.</td>
+          <td>All</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Ozempic is approved for type 2 diabetes, not for weight management. Coverage and program eligibility follow the diabetes indication.</td>
+          <td>All</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>This program is reported to be for beneficiaries who cannot already get a GLP-1 through their Part D plan. A diagnosis of type 2 diabetes, moderate to severe obstructive sleep apnea, or noncirrhotic MASH is reported to confer Part D GLP-1 eligibility and therefore to disqualify you from this program, even if you meet every clinical criterion. Confirm your own position with Medicare.</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>suppress</td>
+          <td><span class="pill pill--unverified">Pending verification</span></td>
+          <td><a href="https://www.medicare.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+        </tr>
+        <tr>
+          <td>This program is reported to require a BMI of at least 35, or at least 27 with a weight-related comorbid condition, and to run for a bounded period through the end of 2027. It is reported to cover Foundayo, Wegovy injection and tablets, and the Zepbound KwikPen specifically rather than Zepbound vials. None of these criteria is yet confirmed against CMS.</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Medicaid GLP-1 coverage is state-by-state. A federal program reported for 2026 negotiates terms on behalf of state Medicaid agencies, but participation is voluntary and what you pay depends on your own state. There is no national Medicaid price for these medications and this site does not publish one.</td>
+          <td>All</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>IMPORTANT AND UNRESOLVED: sources disagree about whether Medicare and Medicaid beneficiaries may buy through this cash-pay program at all. One reading excludes government-programme beneficiaries outright; another permits anyone with a prescription who chooses to pay cash. We could not settle it, so we are neither hiding this pathway from you nor telling you it is available. Call the program and ask before you rely on it.</td>
+          <td>LillyDirect Self Pay</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>This cash-pay pharmacy appears to be open to people who have Medicare or other government coverage but choose to pay cash and not use it. That is a different rule from the manufacturer savings card, which bars government-programme beneficiaries outright. We have not confirmed it directly, so verify before you rely on it.</td>
+          <td>NovoCare Pharmacy</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Patient assistance programmes generally require that you have Medicare or no insurance at all. If you have commercial insurance you are typically not eligible, even if your plan does not cover the medication. Income thresholds also vary by product and we have not confirmed which applies here.</td>
+          <td>Patient assistance program</td>
+          <td>note</td>
+          <td><span class="pill pill--unverified">Editorial</span></td>
+          <td>&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The complete price table</h2>
+  <p>Every figure, every source, every date. 45 rows.</p>
+  
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Medication</th>
+              <th scope="col">Pathway</th>
+              <th scope="col">Dose or tier</th>
+              <th scope="col">Monthly</th>
+              <th scope="col">Confidence</th>
+              <th scope="col">Source type</th>
+              <th scope="col">Verified</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>Zepbound</td>
+              <td>LillyDirect Self Pay</td>
+              <td>2.5mg</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>LillyDirect Self Pay</td>
+              <td>5mg</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>LillyDirect Self Pay</td>
+              <td>all other doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>TrumpRx</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>Manufacturer savings card</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>Medicare GLP-1 Bridge</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>List price, no program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>Manufacturer savings card</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>List price, no program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Ozempic</td>
+              <td>NovoCare Pharmacy</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Ozempic</td>
+              <td>TrumpRx</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Ozempic</td>
+              <td>Manufacturer savings card</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Ozempic</td>
+              <td>List price, no program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy tablets</td>
+              <td>NovoCare Pharmacy</td>
+              <td>1.5mg</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy tablets</td>
+              <td>NovoCare Pharmacy</td>
+              <td>higher doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy tablets</td>
+              <td>List price, no program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Mounjaro</td>
+              <td>LillyDirect Self Pay</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Mounjaro</td>
+              <td>Manufacturer savings card</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Mounjaro</td>
+              <td>List price, no program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>NovoCare Pharmacy</td>
+              <td>low doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>NovoCare Pharmacy</td>
+              <td>standard doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>Medicare GLP-1 Bridge</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy tablets</td>
+              <td>Medicare GLP-1 Bridge</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>LillyDirect Self Pay</td>
+              <td>0.8mg</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>LillyDirect Self Pay</td>
+              <td>2.5mg</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>LillyDirect Self Pay</td>
+              <td>mid doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>LillyDirect Self Pay</td>
+              <td>top doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>Manufacturer savings card</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://lillydirect.lilly.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>TrumpRx</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>Medicare GLP-1 Bridge</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>List price, no program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://pricinginfo.lilly.com/foundayo" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>TrumpRx</td>
+              <td>low doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>TrumpRx</td>
+              <td>standard doses</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>Patient assistance program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.lillycares.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Zepbound</td>
+              <td>Medicare Part D</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/drug-coverage-part-d" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>Patient assistance program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novonordiskpap.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy</td>
+              <td>Medicare Part D</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/drug-coverage-part-d" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Ozempic</td>
+              <td>Patient assistance program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novonordiskpap.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Ozempic</td>
+              <td>Medicare Part D</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/drug-coverage-part-d" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Mounjaro</td>
+              <td>Patient assistance program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.lillycares.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Mounjaro</td>
+              <td>Medicare Part D</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/drug-coverage-part-d" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy tablets</td>
+              <td>Patient assistance program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.novonordiskpap.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Wegovy tablets</td>
+              <td>Medicare Part D</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/drug-coverage-part-d" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>Patient assistance program</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, manufacturer</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.lillycares.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+            <tr>
+              <td>Foundayo</td>
+              <td>Medicare Part D</td>
+              <td>any</td>
+              <td class="num">Not verified</td>
+              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td><span class="pill pill--primary">Primary, government</span></td>
+              <td class="num">2026-07-30</td>
+              <td><a href="https://www.medicare.gov/drug-coverage-part-d" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  <h2>What our research located but could not confirm</h2>
+  <p>
+    For transparency, these are the figures our research surfaced together with the
+    provenance we hold. <strong>None of these is a price we are publishing.</strong>
+    They are shown so you can see the gap between what is in circulation and what has
+    actually been verified.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Medication</th>
+          <th scope="col">Pathway</th>
+          <th scope="col">Tier</th>
+          <th scope="col">Figure located</th>
+          <th scope="col">What we hold</th>
+          <th scope="col">What would confirm it</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>Zepbound</td>
+          <td>LillyDirect Self Pay</td>
+          <td>2.5mg</td>
+          <td class="num">$299</td>
+          <td>Located via search-index summaries of a Lilly announcement dated 2025-12-01 reporting a reduction from 349 to 299 for the 2.5 mg vial. NOT a direct read of any Lilly page.</td>
+          <td>One direct read of lillydirect.lilly.com to confirm the figure is still current.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>LillyDirect Self Pay</td>
+          <td>5mg</td>
+          <td class="num">$399</td>
+          <td>Located via search-index summaries of the same 2025-12-01 Lilly announcement, reporting a reduction from 499 to 399 for the 5 mg vial. NOT a direct read.</td>
+          <td>One direct read of lillydirect.lilly.com.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>LillyDirect Self Pay</td>
+          <td>all other doses</td>
+          <td class="num">$449</td>
+          <td>Located via search-index summaries of the 2025-12-01 Lilly announcement, reporting a reduction from 499 to 449 for all other approved doses. NOT a direct read.</td>
+          <td>Direct read of lillydirect.lilly.com, and explicit confirmation of the 45-day refill condition, which materially changes real monthly cost.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>TrumpRx</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 to every request on 2026-07-30.</td>
+          <td>A direct read of trumprx.gov. Until then this figure must not render as a number in any state.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>Manufacturer savings card</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Copay card amounts are tiered by whether the plan covers the indication, and the terms could not be retrieved. No single figure is defensible.</td>
+          <td>Direct read of the Zepbound savings card terms, including the maximum annual benefit.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>any</td>
+          <td class="num">$50</td>
+          <td>Reported as 50 per month from 2026-07-01. cms.gov and medicare.gov were both denied by the egress policy on 2026-07-30, so neither the launch nor the amount could be confirmed.</td>
+          <td>A direct read of a CMS page confirming the program launched, its beneficiary cost, and its eligibility criteria.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>List price, no program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Four mutually inconsistent figures located: 1086, 1059, 1059.87 and 1087. Averaging them would invent a price nobody charges.</td>
+          <td>A current WAC or list figure from a Lilly source, with its as-of date.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>Manufacturer savings card</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Terms unretrievable on 2026-07-30.</td>
+          <td>Direct read of the Wegovy savings card terms.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>List price, no program</td>
+          <td>any</td>
+          <td class="num">$1,349</td>
+          <td>Reported at approximately 1349 per month. Not confirmable without a direct read.</td>
+          <td>A current list figure from a Novo Nordisk source.</td>
+        </tr>
+        <tr>
+          <td>Ozempic</td>
+          <td>NovoCare Pharmacy</td>
+          <td>any</td>
+          <td class="num">$199</td>
+          <td>Reported at 199 per month. novocare.com denied by egress policy on 2026-07-30.</td>
+          <td>Direct read of novocare.com.</td>
+        </tr>
+        <tr>
+          <td>Ozempic</td>
+          <td>TrumpRx</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Conflicting, neither confirmable. HTTP 403 on 2026-07-30.</td>
+          <td>A direct read of trumprx.gov.</td>
+        </tr>
+        <tr>
+          <td>Ozempic</td>
+          <td>Manufacturer savings card</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Terms unretrievable on 2026-07-30.</td>
+          <td>Direct read of the Ozempic savings card terms.</td>
+        </tr>
+        <tr>
+          <td>Ozempic</td>
+          <td>List price, no program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Two figures in circulation, neither confirmable.</td>
+          <td>A current list figure from a Novo Nordisk source.</td>
+        </tr>
+        <tr>
+          <td>Wegovy tablets</td>
+          <td>NovoCare Pharmacy</td>
+          <td>1.5mg</td>
+          <td class="num">none</td>
+          <td>Reported at the lower of the two circulating figures for this strength. The apparent 149-versus-199 conflict is reported to resolve as a strength-and-deadline distinction rather than a contradiction, but neither figure was read from a Novo Nordisk page.</td>
+          <td>A direct read of novocare.com establishing which figure applies to which purchase channel. Until then this renders as unverified rather than picking a side.</td>
+        </tr>
+        <tr>
+          <td>Wegovy tablets</td>
+          <td>NovoCare Pharmacy</td>
+          <td>higher doses</td>
+          <td class="num">none</td>
+          <td>No figure located for the higher oral doses.</td>
+          <td>Direct read of novocare.com.</td>
+        </tr>
+        <tr>
+          <td>Wegovy tablets</td>
+          <td>List price, no program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Not located.</td>
+          <td>A current list figure from a Novo Nordisk source.</td>
+        </tr>
+        <tr>
+          <td>Mounjaro</td>
+          <td>LillyDirect Self Pay</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain.</td>
+          <td>Direct read of lillydirect.lilly.com for an actual Mounjaro self-pay figure.</td>
+        </tr>
+        <tr>
+          <td>Mounjaro</td>
+          <td>Manufacturer savings card</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Terms unretrievable on 2026-07-30.</td>
+          <td>Direct read of the Mounjaro savings card terms.</td>
+        </tr>
+        <tr>
+          <td>Mounjaro</td>
+          <td>List price, no program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Not separately located from Zepbound reporting.</td>
+          <td>A current list figure from a Lilly source.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>NovoCare Pharmacy</td>
+          <td>low doses</td>
+          <td class="num">none</td>
+          <td>A low introductory figure and a higher ongoing figure are both reported for these doses. Which applies depends on fill number and on an offer end date. Not confirmable without a direct read.</td>
+          <td>A direct read of novocare.com establishing the introductory price, how many fills it covers, its end date, and the ongoing price after it.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>NovoCare Pharmacy</td>
+          <td>standard doses</td>
+          <td class="num">none</td>
+          <td>Reported at a materially higher ongoing figure than the introductory price quoted for the lowest doses. Not confirmable without a direct read.</td>
+          <td>A direct read of novocare.com for the per-dose price table.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>any</td>
+          <td class="num">$50</td>
+          <td>Reported at 50 dollars per month for eligible beneficiaries. cms.gov and medicare.gov both denied by egress policy on 2026-07-30.</td>
+          <td>A direct read of a CMS page confirming cost and covered formulations.</td>
+        </tr>
+        <tr>
+          <td>Wegovy tablets</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>any</td>
+          <td class="num">$50</td>
+          <td>Reported at 50 dollars per month for eligible beneficiaries. cms.gov and medicare.gov both denied by egress policy on 2026-07-30.</td>
+          <td>A direct read of a CMS page confirming cost and covered formulations.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>LillyDirect Self Pay</td>
+          <td>0.8mg</td>
+          <td class="num">$149</td>
+          <td>Reported at 149 per month post-launch. lilly.com denied at the egress gateway on 2026-07-30.</td>
+          <td>A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>LillyDirect Self Pay</td>
+          <td>2.5mg</td>
+          <td class="num">$199</td>
+          <td>Reported at 199 per month post-launch. Not read.</td>
+          <td>A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>LillyDirect Self Pay</td>
+          <td>mid doses</td>
+          <td class="num">$299</td>
+          <td>Reported at 299 per month for both 5.5 mg and 9 mg. Not read.</td>
+          <td>A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>LillyDirect Self Pay</td>
+          <td>top doses</td>
+          <td class="num">none</td>
+          <td>Post-launch reporting gives 349 as the regular price and 299 when refilled within 45 days. Pre-approval reporting gave a top-of-range figure of 399, which is an agreement price rather than a launched one. The brief warned specifically against shipping pre-approval pricing, so no figure is adopted.</td>
+          <td>A direct read establishing the regular price, the conditional price, and the exact refill terms.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>Manufacturer savings card</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Reported as &quot;as little as&quot; 25 dollars. An &quot;as little as&quot; figure is a floor, not a price, and it is conditional on the plan covering this drug rather than merely on having commercial insurance.</td>
+          <td>A direct read of the savings card terms, including the maximum benefit and what a covered-plan-excluded-indication patient actually pays.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>TrumpRx</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>A Foundayo product page was located on trumprx.gov. No price was obtained. This pathway was missing entirely from an earlier version of this file, which is a coverage gap rather than a wrong price.</td>
+          <td>A direct read of the trumprx.gov Foundayo product page.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>Medicare GLP-1 Bridge</td>
+          <td>any</td>
+          <td class="num">$50</td>
+          <td>Reported at 50 dollars per month. cms.gov and medicare.gov both denied at the egress gateway on 2026-07-30.</td>
+          <td>A direct read of a CMS page.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>List price, no program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No list or WAC figure was obtained. Lilly&#39;s statutory price-disclosure page for this product could not be read.</td>
+          <td>A direct read of the Lilly pricing-information page.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>TrumpRx</td>
+          <td>low doses</td>
+          <td class="num">none</td>
+          <td>An &quot;as low as&quot; introductory figure was reported for the starting doses. The platform could not be read.</td>
+          <td>A direct read of the trumprx.gov Wegovy product page, per dose.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>TrumpRx</td>
+          <td>standard doses</td>
+          <td class="num">none</td>
+          <td>Reported at a materially higher figure than the advertised introductory price, applying immediately rather than after a promotional period.</td>
+          <td>A direct read of the trumprx.gov Wegovy product page, per dose.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>Patient assistance program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
+          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+        </tr>
+        <tr>
+          <td>Zepbound</td>
+          <td>Medicare Part D</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No single price exists for this pathway by its nature. A national figure would be wrong for almost everyone, so none is published.</td>
+          <td>Not a figure this site can ever publish. The useful additions are the current annual out-of-pocket cap and whether the monthly payment-smoothing programme applies, both from CMS.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>Patient assistance program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
+          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+        </tr>
+        <tr>
+          <td>Wegovy</td>
+          <td>Medicare Part D</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No single price exists for this pathway by its nature. A national figure would be wrong for almost everyone, so none is published.</td>
+          <td>Not a figure this site can ever publish. The useful additions are the current annual out-of-pocket cap and whether the monthly payment-smoothing programme applies, both from CMS.</td>
+        </tr>
+        <tr>
+          <td>Ozempic</td>
+          <td>Patient assistance program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
+          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+        </tr>
+        <tr>
+          <td>Ozempic</td>
+          <td>Medicare Part D</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No single price exists for this pathway by its nature. A national figure would be wrong for almost everyone, so none is published.</td>
+          <td>Not a figure this site can ever publish. The useful additions are the current annual out-of-pocket cap and whether the monthly payment-smoothing programme applies, both from CMS.</td>
+        </tr>
+        <tr>
+          <td>Mounjaro</td>
+          <td>Patient assistance program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
+          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+        </tr>
+        <tr>
+          <td>Mounjaro</td>
+          <td>Medicare Part D</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No single price exists for this pathway by its nature. A national figure would be wrong for almost everyone, so none is published.</td>
+          <td>Not a figure this site can ever publish. The useful additions are the current annual out-of-pocket cap and whether the monthly payment-smoothing programme applies, both from CMS.</td>
+        </tr>
+        <tr>
+          <td>Wegovy tablets</td>
+          <td>Patient assistance program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
+          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+        </tr>
+        <tr>
+          <td>Wegovy tablets</td>
+          <td>Medicare Part D</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No single price exists for this pathway by its nature. A national figure would be wrong for almost everyone, so none is published.</td>
+          <td>Not a figure this site can ever publish. The useful additions are the current annual out-of-pocket cap and whether the monthly payment-smoothing programme applies, both from CMS.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>Patient assistance program</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
+          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+        </tr>
+        <tr>
+          <td>Foundayo</td>
+          <td>Medicare Part D</td>
+          <td>any</td>
+          <td class="num">none</td>
+          <td>No single price exists for this pathway by its nature. A national figure would be wrong for almost everyone, so none is published.</td>
+          <td>Not a figure this site can ever publish. The useful additions are the current annual out-of-pocket cap and whether the monthly payment-smoothing programme applies, both from CMS.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Corrections</h2>
+  <p>
+    If a figure here is wrong, it is worth more to us to know than to look right. Every
+    change we make is logged with its date and source on the
+    <a href="/changelog/">price changelog</a>, including corrections.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    
+      <aside class="ad-slot ad-slot--footer" data-ad-slot="footer" aria-hidden="true">
+        <span class="ad-slot__label">Advertisement</span>
+      </aside>
+
+    <h2>Important information</h2>
+    <p class="disclaimer">This tool provides pricing information only. It is not medical advice and is not a substitute for consultation with a licensed healthcare provider. Prices change frequently and may differ at your pharmacy. Verify all costs directly with the manufacturer, your insurer, or your pharmacy before making decisions about your treatment.</p>
+    <p class="non-affiliation">Not affiliated with, endorsed by, or sponsored by Eli Lilly, Novo Nordisk, the U.S. Department of Health and Human Services, or any government program.</p>
+    <p>
+      This site sells nothing. It carries no telehealth referrals, no
+      pharmaceutical affiliate links and no compounding-pharmacy links. It does
+      not collect health information: the medication, insurance situation and
+      dose you select are never stored or transmitted.
+      <a href="/methodology/">See how every figure here is sourced</a>.
+    </p>
+    <ul class="footer-nav">
+      <li><a href="/zepbound-cost/">Zepbound</a></li>
+      <li><a href="/wegovy-cost/">Wegovy</a></li>
+      <li><a href="/ozempic-cost/">Ozempic</a></li>
+      <li><a href="/mounjaro-cost/">Mounjaro</a></li>
+      <li><a href="/wegovy-pill-cost/">Wegovy tablets</a></li>
+      <li><a href="/foundayo-cost/">Foundayo</a></li>
+      <li><a href="/trumprx/">TrumpRx</a></li>
+      <li><a href="/lillydirect/">LillyDirect</a></li>
+      <li><a href="/novocare/">NovoCare</a></li>
+      <li><a href="/medicare-glp1-bridge/">Medicare Bridge</a></li>
+      <li><a href="/patient-assistance/">Patient assistance</a></li>
+      <li><a href="/methodology/">Methodology</a></li>
+      <li><a href="/changelog/">Price changes</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+    <p>Pricing data as of <time datetime="2026-07-30">2026-07-30</time>.</p>
+  </div>
+</footer>
+

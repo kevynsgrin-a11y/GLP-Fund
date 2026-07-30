@@ -1,0 +1,25 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://lotilabs.com/resources/compounded-semaglutide-tirzepatide-legal-status-2026-fda-503b-ban",
+  "also_covers_urls": [
+    "https://trimrx.com/blog/compounded-glp-1-fda-crackdown-2026/",
+    "https://www.portraitcare.com/post/2026-fda-rules-and-news-for-compounded-tirzepatide",
+    "[link withheld: telehealthally.com -- commercially interested source, not linked per neutrality policy]",
+    "https://trytrimi.com/blog/fda-compounding-exemption-2026",
+    "https://medspastandards.com/blog/glp1-med-spa-compliance-2026-complete-guide",
+    "https://www.glp1clinics.org/blog/fda-permanent-glp1-bulk-compounding-ban-2026-05-14",
+    "https://www.giftfromwithin.org/tirzepatide/compounded-vs-brand-name/"
+  ],
+  "http_status": "Not fetched. Located via WebSearch only and deliberately NOT read as evidence.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "PURPOSE_OF_THIS_FIXTURE": "To record, for the audit trail, WHO is publishing the claim that compounded semaglutide and tirzepatide remain lawfully available in 2026, and to document that this claim has no primary support.",
+    "pattern_observed": "Every source located that frames compounded GLP-1s as a currently-available consumer option in 2026 is either a seller of compounded GLP-1s, a telehealth intermediary, or a marketing property serving that industry. Several rank for search queries a cost-conscious patient would plausibly type.",
+    "specific_claim_they_make": "That 503A patient-specific compounding of semaglutide and tirzepatide is legal in 2026 where the prescription is patient-specific and the preparation is not essentially a copy without a documented clinical difference.",
+    "why_it_is_not_evidence": "No primary FDA source endorsing this pathway was located. The claim is advanced by parties with direct financial interest in patients believing it. Under this project's rules of evidence these sources may LOCATE a fact and may NEVER confirm one.",
+    "PRODUCT_SIGNIFICANCE": "This is the competitive field the tool is defined against. These pages exist to convert a price-shopping patient into a compounded-GLP-1 customer. If this tool renders compounded options at all - even in a separate, warning-labeled section - it supplies the one thing these sellers cannot buy: a neutral-looking third party appearing to treat compounded products as a legitimate member of the choice set. The labeling does not undo that; the presence does the work.",
+    "no_price_was_recorded": "No compounded price was extracted from any of these sources and none should ever enter the dataset. Recorded here as a provenance warning only."
+  },
+  "verbatim_excerpt": "Not quoted. These sources were located but deliberately not relied upon. Recorded to document the commercial-interest pattern behind the only claims of continued lawful availability, and to make explicit that no figure from them entered the dataset.",
+  "_neutrality_note": "Links to commercially interested hosts were withheld from this research record. Host NAMES are retained because identifying which sources are conflicted is the point of the audit; the links are not, and test/integrity.test.js forbids them repository-wide. Withheld: telehealthally.com."
+}

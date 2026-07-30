@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T10:21:00Z",
+  "url": "WebSearch result set only. Primary target https://pricinginfo.lilly.com/zepbound (Lilly's own list-price disclosure page) was 403 at CONNECT and never read.",
+  "http_status": "403 on the primary source. LOCATED claims only, and they CONFLICT.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED, AND MUTUALLY INCONSISTENT. Value null, confidence conflicting.",
+    "competing_list_price_claims": [
+      "$1,086 per month, described as Zepbound's WAC at retail pharmacies",
+      "approximately $1,059 per month, attributed to Eli Lilly published pricing as of April 2026",
+      "$1,059.87 per month as of April 2026",
+      "$1,087 per month (cited in the task brief as an alternative reported figure)",
+      "approximately $1,059-$1,086 per month (cited in the task brief as a range)"
+    ],
+    "WHY_THIS_MATTERS": "Test vector 11 is a savings-delta calculation. The delta between self-pay and list is the headline number a patient will act on. A $27 spread in the denominator is small in dollars but it is the difference between a correct and an incorrect advertised saving, and the spread may not be noise: $1,059.87 and $1,086 could reflect different dose strengths, different units (per vial vs per month, four vials vs one), different dates, or vial versus pen list prices. Averaging them would be a fabrication.",
+    "unit_ambiguity_unresolved": "None of the located figures state unambiguously whether they are per month of therapy, per single-dose vial, per four-vial carton, or per KwikPen. Lilly's own pricinginfo page would settle this and could not be read.",
+    "DO_NOT_RECONCILE": "Per the rules of evidence these figures must be reported as a conflict, not resolved into a midpoint. No list price may be shipped until pricinginfo.lilly.com or an SEC filing is read directly."
+  },
+  "verbatim_excerpt": "From the WebSearch summary, quoted: 'Zepbound's WAC is $1,086 per month at retail pharmacies. Other sources cite slightly varying amounts, with approximately $1,059 per month as of April 2026 according to Eli Lilly published pricing and $1,059.87 per month as of April 2026.' The summary itself flags the disagreement and does not resolve it."
+}

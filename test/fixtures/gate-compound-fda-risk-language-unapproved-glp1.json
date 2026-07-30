@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss",
+  "also_covers_urls": [
+    "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss",
+    "https://www.fda.gov/drugs/human-drug-compounding/understanding-risks-compounded-drugs"
+  ],
+  "http_status": "403 Forbidden on direct read. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "Would be primary_government if directly read. Treat as UNVERIFIED. THESE QUOTES ARE NOT PUBLICATION-READY.",
+  "extracted": {
+    "PURPOSE": "This fixture is the attempt to satisfy gate item 5 - FDA's own verbatim risk language that the site would have to reproduce as required warning text if compounded products were shown at all. IT FAILED. Every sentence below is a search-index paraphrase-or-quote of unknown fidelity. None may be published as FDA's words.",
+    "core_risk_sentence_candidate_1": "Compounded drugs pose a higher risk to patients than FDA-approved drugs because compounded drugs do not undergo FDA premarket review for safety, effectiveness or quality.",
+    "core_risk_sentence_candidate_2": "Compounded drugs are not FDA-approved, meaning that FDA does not verify the safety, effectiveness or quality of compounded drugs before they are marketed.",
+    "core_risk_sentence_candidate_3": "Unapproved versions of GLP-1 receptor agonist drugs, including semaglutide and tirzepatide, can be risky for patients because unapproved versions do not undergo FDA's review for safety, effectiveness and quality before they are marketed.",
+    "quality_failure_language": "If a compounded drug does not meet appropriate quality standards - such as if a drug is contaminated or contains too much active ingredient - it could cause serious injury or death. The labels on compounded drugs may not include important information such as adequate directions to help ensure the drugs are used safely.",
+    "salt_forms_finding": "Some semaglutide products sold by compounders may be salt forms, including semaglutide sodium and semaglutide acetate, which are different active ingredients than those used in the approved drugs. FDA does not have information on whether these salts have the same chemical and pharmacologic properties as the active ingredient in the approved drug.",
+    "historical_basis": "In 2012, contaminated drugs compounded by a Massachusetts pharmacy led to more than 750 cases of infection and more than 60 deaths of patients in 20 states. Congress passed the Drug Quality and Security Act (DQSA) in response.",
+    "FIDELITY_WARNING": "Two of the three 'core risk sentence' candidates above differ in wording while expressing the same proposition ('safety, effectiveness or quality' vs 'safety, quality or effectiveness'). This is direct evidence that the index is not preserving FDA's exact wording. Publishing any of these as a verbatim FDA quotation would be a misattribution."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"Compounded drugs pose a higher risk to patients than FDA-approved drugs because compounded drugs do not undergo FDA premarket review for safety, effectiveness or quality.\" ... \"Some semaglutide products sold by compounders may be salt forms, including semaglutide sodium and semaglutide acetate, which are different active ingredients than those used in the approved drugs.\" ... \"If a compounded drug does not meet appropriate quality standards - such as if a drug is contaminated or contains too much active ingredient - it could cause serious injury or death.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read. NOT SAFE TO ATTRIBUTE TO FDA VERBATIM."
+}

@@ -1,0 +1,9 @@
+# Consolidate common query variants onto the canonical drug pages.
+/zepbound      /zepbound-cost/      301
+/wegovy        /wegovy-cost/        301
+/ozempic       /ozempic-cost/       301
+/mounjaro      /mounjaro-cost/      301
+/foundayo      /foundayo-cost/      301
+/orforglipron  /foundayo-cost/      301
+/sources       /methodology/        301
+/changes       /changelog/          301

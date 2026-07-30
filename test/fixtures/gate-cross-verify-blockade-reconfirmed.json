@@ -1,0 +1,15 @@
+{
+  "retrieved_at": "2026-07-30T10:58:00Z",
+  "url": "https://example.com/ (control) and https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge (target), plus http://127.0.0.1:40851/__agentproxy/status (session diagnostic, NOT a primary source)",
+  "http_status": "403 Forbidden on both control and target. WebFetch: 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' Proxy status endpoint recentRelayFailures shows kind 'connect_rejected', detail 'gateway answered 403 to CONNECT (policy denial or upstream failure)'.",
+  "source_type": "session_diagnostic",
+  "extracted": {
+    "FINDING": "The retrieval blockade reported by the CROSS-RULES researcher is REAL and independently reproduced. I did not take it on trust.",
+    "independent_reproduction": "WebFetch returned HTTP 403 for the https://example.com/ control and for the CMS Medicare GLP-1 Bridge page alike. The proxy status endpoint records gateway-side CONNECT rejections. The denial occurs at the egress gateway before TLS is established with any origin.",
+    "control_test_logic_upheld": "Because a neutral control fails identically to every manufacturer and government target, a 403 on lilly.com or cms.gov carries NO information about that origin's bot policy or programmatic-access permission. The report's conclusion that programmatic_access is 'unclear' rather than 'prohibited' is correct and I adopt it.",
+    "README_compliance": "/root/.ccr/README.md, section '403 / 407 from the proxy': 'The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it - report the blocked host.' I reported rather than attempted circumvention. I did not disable TLS verification and did not unset HTTPS_PROXY.",
+    "consequence_for_this_verification": "No primary source could be read by me either. I therefore CANNOT confirm any figure, and I cannot promote any of the report's located claims to 'confirmed'. Every datum stays unverified with value null. My findings are confined to defects establishable from (a) arithmetic and structural reasoning that needs no network, (b) local filesystem and git evidence, and (c) reproducible WebSearch results used ONLY to show that the report mischaracterized its own retrieval or omitted a condition - never to confirm a value.",
+    "IMPORTANT_LIMIT_ON_MY_OWN_EVIDENCE": "Domain-restricted WebSearch returns a language model's paraphrase of a search index. Restricting allowed_domains to aspe.hhs.gov or cms.gov does NOT make the result a primary read - the text never passed through the origin server to this session. I have not treated any search output as confirmation, including where it corroborates the report."
+  },
+  "verbatim_excerpt": "WebFetch on the control: 'The server returned HTTP 403 Forbidden. The response body was not retrieved.' From /root/.ccr/README.md, a file this session DID read: 'Never disable TLS verification, never unset HTTPS_PROXY, and do not retry organization policy denials (403/407) - report them instead.'"
+}

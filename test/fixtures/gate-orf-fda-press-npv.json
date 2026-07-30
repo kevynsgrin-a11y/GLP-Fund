@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T09:58:20Z",
+  "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-new-molecular-entity-under-national-priority-voucher-program",
+  "http_status": "403",
+  "source_type": "primary_government",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin (not an egress-policy denial: the agent proxy status endpoint recorded no relay failure for www.fda.gov, meaning the CONNECT tunnel succeeded and fda.gov itself refused the request). Also attempted the non-www host https://fda.gov/... (403) and the press-announcement index https://www.fda.gov/news-events/press-announcements (403). This primary source could NOT be read.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "FDA Approves First New Molecular Entity Under National Priority Voucher Program | FDA",
+    "claims_attributed_to_this_url_via_search_index_only": {
+      "program": "Commissioner's National Priority Voucher (CNPV) pilot program",
+      "ordinal": "fifth approval under the CNPV pilot program; first new molecular entity (NME) approved under the program",
+      "review_speed": "issued 50 days after filing; 294 days before the application PDUFA date of January 20, 2027; described as fastest approval of an NME since 2002",
+      "indication_as_summarized": "treatment of adults with obesity or overweight with weight-related medical problems",
+      "dosage_form": "glucagon-like peptide-1 (GLP-1) receptor agonist in tablet form, taken orally once daily"
+    },
+    "provenance_warning": "The claims above were surfaced by the WebSearch tool's summary of this URL. They were NOT obtained by direct retrieval of the page and are therefore NOT treated as primary confirmation of any figure."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

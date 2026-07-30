@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize",
+  "http_status": "403 Forbidden on direct read (WebFetch and curl). Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). Figures below are a language model's summary of a search index's cached view of this FDA page. THIS IS NOT A DIRECT READ AND MUST NOT BE TREATED AS CONFIRMATION.",
+  "source_type_note": "Would be primary_government if directly read. Recorded as index-mediated; treat as UNVERIFIED.",
+  "extracted": {
+    "enforcement_discretion_tirzepatide_503A": "Ended. Index attributes a reference date of February 18, 2025. Not directly confirmed.",
+    "enforcement_discretion_tirzepatide_503B": "Until March 19, 2025. Now long past.",
+    "enforcement_discretion_semaglutide_503A": "Until April 22, 2025, OR until the date of the district court's decision on plaintiffs' preliminary injunction motion in Outsourcing Facilities Association v. FDA, whichever applicable. Now past.",
+    "enforcement_discretion_semaglutide_503B": "Until May 22, 2025. Now long past.",
+    "rationale_for_differing_periods": "The amount of time FDA intends to exercise enforcement discretion is longer for outsourcing facilities (90 days) than for those compounding under 503A (60 days).",
+    "ALL_DEADLINES_EXPIRED": "Every enforcement-discretion deadline FDA set for GLP-1 compounding expired more than fourteen months before today (2026-07-30). There is no live enforcement-discretion window for compounded semaglutide or tirzepatide.",
+    "localized_disruption_caveat": "FDA noted patients and prescribers may still see intermittent localized supply disruptions as products move through the supply chain. This is NOT a shortage listing and does NOT reopen the copies exemption."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to this FDA page, quoted as returned: \"For a state-licensed pharmacy or physician compounding, dispensing or distributing semaglutide injection products under section 503A of the FD&C Act, the period of enforcement discretion has ended.\" ... \"For outsourcing facilities compounding, distributing or dispensing semaglutide injection products under section 503B, FDA does not intend to take action for violations of the FD&C Act arising from conditions that depend on semaglutide injection products' inclusion on FDA's drug shortage list until May 22, 2025.\" ... \"For outsourcing facilities under section 503B, FDA does not intend to take action against compounders for violations of the FD&C Act arising from conditions that depend on tirzepatide injection products' inclusion on FDA's drug shortage list until March 19, 2025.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

@@ -1,0 +1,29 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/newsroom/press-releases/cms-launches-voluntary-model-expand-access-life-changing-medicines-promote-healthier-living",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / hhs.gov) only. NOT a verbatim direct read.",
+  "extracted": {
+    "document_title": "CMS Launches Voluntary Model to Expand Access to Life-Changing Medicines, Promote Healthier Living",
+    "net_price_usd_per_month": 245,
+    "net_price_scope": "the net price that participating MANUFACTURERS agree to offer to all participating PART D PLANS for a one month supply of an eligible model drug for CY 2027 - this is a plan/government-side price, NOT a patient out-of-pocket price",
+    "net_price_year": "CY 2027",
+    "model_drugs": [
+      "all formulations of Mounjaro",
+      "all formulations of Ozempic",
+      "all formulations of Rybelsus",
+      "all formulations of Wegovy",
+      "the KwikPen formulation of Zepbound",
+      "Foundayo"
+    ],
+    "indications_covered": "both currently covered indications as well as weight management indications",
+    "injectable_only_claim_status": "FALSE - the $245 model-drug list includes oral agents (Rybelsus, Foundayo, and Wegovy tablets), not just injectables",
+    "zepbound_scope": "KwikPen formulation ONLY - not all Zepbound formulations",
+    "medicaid_launch": "as early as May 2026",
+    "medicare_part_d_launch": "January 2027",
+    "bridge_relationship": "Prior to the launch of the BALANCE model, CMS also plans to implement a new Medicare GLP-1 payment demonstration beginning in July 2026, which will serve as a short-term bridge to the model.",
+    "voluntary": "Participation will be voluntary for manufacturers, states, and plans."
+  },
+  "verbatim_excerpt": "The net price that participating manufacturers agree to offer to all participating Part D plans for one month supply of an eligible model drug for CY 2027 is $245. Model drugs include all formulations of Mounjaro, Ozempic, Rybelsus, and Wegovy, the KwikPen formulation of Zepbound, and Foundayo, included for both currently covered indications as well as weight management indications. -- NOTE: reproduced from domain-restricted search output, not a direct read."
+}

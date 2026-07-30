@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T09:59:45Z",
+  "url": "https://www.sec.gov/Archives/edgar/data/0000059478/000005947826000043/q126lillysalesandearningsp.htm",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. SEC EDGAR requires a declared User-Agent for programmatic access; WebFetch does not permit setting one, and a curl attempt with a declared User-Agent was denied at the egress gateway before reaching sec.gov. This Eli Lilly Form 8-K (Q1 2026 sales and earnings) was sought as an independent primary confirmation of the orforglipron approval and of any Complete Response Letter, since a CRL on a lead asset is a material event a registrant must disclose.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "search_result_title": "ELI LILLY & Co - Form 8-K - FY2026",
+    "claims_attributed_to_this_url_via_search_index_only": {
+      "regulatory_progress_item": "FDA approval of Foundayo (orforglipron) for adults with obesity, or overweight with weight-related medical problems was announced as regulatory progress by Eli Lilly"
+    },
+    "negative_finding_of_note": "A targeted search restricted to investor.lilly.com, lilly.com, sec.gov and fda.gov for an orforglipron Complete Response Letter returned Lilly CRL press releases for empagliflozin (twice), lebrikizumab, donanemab, baricitinib and mirikizumab, but NONE for orforglipron. Lilly has a consistent practice of issuing a dedicated press release titled 'U.S. Food and Drug Administration Issues Complete Response Letter for X' whenever it receives a CRL. No such release exists for orforglipron.",
+    "provenance_warning": "Search-index derived. Not direct retrieval."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

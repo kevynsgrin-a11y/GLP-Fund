@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T11:01:00Z",
+  "url": "https://www.novocare.com/content/dam/novocare/wegovy_standard_offer_tcs_2025_savings_offer_retail.pdf ; also located: https://www.novocare.com/pharmacy/wegovy/offer.html",
+  "http_status": "403 at CONNECT for www.novocare.com. NO DIRECT READ. Located via unrestricted WebSearch paraphrase only.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "TARGET_CLAIM_BEING_CHALLENGED": "The CROSS-RULES report asserts in its narrative that 'The task's premise is wrong on one point' regarding FEHB, and issues the engine directive 'Therefore DO NOT suppress the Novo copay-card pathway for an FEHB enrollee.'",
+    "corroboration_status": "The FEHB carve-in language WAS independently relocated this session and is directionally consistent with the report: FEHB, ACA/Health-Exchange plans and state employee plans are described as NOT federal or state government health care programs for purposes of the Wegovy savings offer, with FEHB enrollees treated as commercially insured. So the report is probably substantively right.",
+    "DEFECT_IS_EVIDENTIARY_STANDARD_NOT_SUBSTANCE": {
+      "problem": "novocare.com was never read. The support is a language model's paraphrase of a search index plus secondary sites (therxindex.com, checkbook.org, plexusdx.com). Under this project's rules of evidence that can only LOCATE. The report nevertheless converted it into (a) a definitive assertion that the task premise is refuted and (b) an imperative engine directive that GRANTS a discount pathway.",
+      "asymmetry": "The report applied the opposite standard to an equally unconfirmed claim. For LillyDirect Self Pay it wrote 'do not encode either branch' and demanded a disclosure. For FEHB, on evidence of identical quality and from the same blocked-host paraphrase channel, it wrote 'DO NOT suppress'. Two unconfirmed claims, two different standards, and the permissive standard was applied to the one that hands a user an expectation of money off at the counter.",
+      "direction_of_harm": "A wrongly granted copay-card pathway sends an FEHB enrollee to a pharmacy counter expecting a manufacturer discount that may be rejected there. That is a wrong expectation at the point of sale, which is the blocking threshold for this project."
+    },
+    "scope_creep_the_report_itself_flagged_then_partly_ignored": "The located carve-in is specific to the WEGOVY savings offer. The report correctly notes that whether the Ozempic offer carves FEHB in identically is UNKNOWN and that Lilly's cards do not address FEHB at all - yet it phrases the directive at the level of 'the Novo copay-card pathway', which reads as covering Ozempic too.",
+    "REQUIRED_CORRECTION": "Downgrade the FEHB carve-in to an unverified LOCATED claim. Permitted engine behavior: do not encode a universal FEHB suppressor (the report is right that a blanket suppressor is unsupported), but equally do not encode an affirmative FEHB grant. Treat FEHB status as UNRESOLVED for Novo and unaddressed for Lilly, and surface it as 'confirm with the manufacturer' rather than as an entitlement. Confine any Wegovy-specific finding to Wegovy.",
+    "confidence": "unverified - value null."
+  },
+  "verbatim_excerpt": "From WebSearch (PARAPHRASE of a search index, NOT a quotation from a page this session read): 'The Federal Employees Health Benefits (FEHB) Program, Affordable Care (Health Exchange) Plans, and insurance provided through state employee plans are NOT federal or state government health care programs for purposes of this savings offer.' And: 'A patient is not eligible for the savings offer if enrolled in any federal or state health care program with prescription drug coverage, such as Medicaid, Medicare, VA, DOD, TRICARE, or any similar federal or state health care program.'"
+}

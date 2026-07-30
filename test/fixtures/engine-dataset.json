@@ -1,0 +1,386 @@
+{
+  "_WHAT_THIS_FILE_IS": "ENGINE-EXERCISE DATA. NOT VERIFIED TRUTH. NOT SHIPPED.",
+  "_WHY_IT_EXISTS": "Appendix B's golden vectors test engine BEHAVIOUR: that dose tiers resolve, that ranking is by cost, that ties break deterministically, that suppression removes rather than deranks, and that an unverified figure can never become a number. Proving that behaviour needs a dataset containing confirmed numbers. On 2026-07-30 no figure could be confirmed against a primary source, because the build environment's egress policy denied every one of them, so the shipped data file (public/data/pricing.json) files every price as unverified with a null value and the deployed site renders no numbers at all. A dataset of all-null prices cannot demonstrate that ranking works. This fixture therefore supplies plausible values, drawn from the Appendix A research draft, purely so the machinery can be exercised.",
+  "_WHAT_IT_IS_NOT": "These numbers are NOT claims about real prices and must never be copied into public/data/pricing.json. Promotion of a figure to the shipped file requires a direct read of a primary source, per docs/ops-runbook.md.",
+  "_PROVENANCE": "Values transcribed from the Appendix A research draft dated 2026-07-30, which the brief itself labels 'a lead to confirm, not a fact to ship'.",
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30",
+  "pathways": {
+    "lillydirect_self_pay": {
+      "label": "LillyDirect Self Pay",
+      "kind": "manufacturer_direct",
+      "officialUrl": "https://lillydirect.lilly.com/"
+    },
+    "novocare_self_pay": {
+      "label": "NovoCare Pharmacy",
+      "kind": "manufacturer_direct",
+      "officialUrl": "https://www.novocare.com/"
+    },
+    "trumprx": {
+      "label": "TrumpRx",
+      "kind": "government_platform",
+      "officialUrl": "https://trumprx.gov/"
+    },
+    "copay_card": {
+      "label": "Manufacturer savings card",
+      "kind": "commercial_insurance_assistance",
+      "officialUrl": "https://lillydirect.lilly.com/"
+    },
+    "medicare_bridge": {
+      "label": "Medicare GLP-1 Bridge",
+      "kind": "government_program",
+      "officialUrl": "https://www.medicare.gov/"
+    },
+    "patient_assistance": {
+      "label": "Patient assistance program",
+      "kind": "charitable_assistance",
+      "officialUrl": "https://www.lillycares.com/"
+    },
+    "list_price": {
+      "label": "List price, no program",
+      "kind": "reference",
+      "officialUrl": "https://lillydirect.lilly.com/"
+    }
+  },
+  "drugs": {
+    "zepbound": {
+      "label": "Zepbound",
+      "genericName": "tirzepatide",
+      "manufacturer": "Eli Lilly and Company",
+      "route": "injection",
+      "indication": "chronic weight management",
+      "slug": "zepbound-cost",
+      "doses": [
+        "2.5mg",
+        "5mg",
+        "7.5mg",
+        "10mg",
+        "12.5mg",
+        "15mg"
+      ],
+      "doseTiers": {
+        "2.5mg": "2.5mg",
+        "5mg": "5mg",
+        "7.5mg": "all_other_doses",
+        "10mg": "all_other_doses",
+        "12.5mg": "all_other_doses",
+        "15mg": "all_other_doses"
+      }
+    },
+    "wegovy_injection": {
+      "label": "Wegovy",
+      "genericName": "semaglutide",
+      "manufacturer": "Novo Nordisk",
+      "route": "injection",
+      "indication": "chronic weight management",
+      "slug": "wegovy-cost",
+      "doses": [
+        "0.25mg",
+        "0.5mg",
+        "1mg",
+        "1.7mg",
+        "2.4mg"
+      ],
+      "doseTiers": {}
+    },
+    "ozempic": {
+      "label": "Ozempic",
+      "genericName": "semaglutide",
+      "manufacturer": "Novo Nordisk",
+      "route": "injection",
+      "indication": "type 2 diabetes",
+      "slug": "ozempic-cost",
+      "doses": [
+        "0.25mg",
+        "0.5mg",
+        "1mg",
+        "2mg"
+      ],
+      "doseTiers": {}
+    },
+    "wegovy_pill": {
+      "label": "Wegovy tablets",
+      "genericName": "oral semaglutide",
+      "manufacturer": "Novo Nordisk",
+      "route": "oral",
+      "indication": "chronic weight management",
+      "slug": "wegovy-pill-cost",
+      "doses": [
+        "1.5mg",
+        "4mg",
+        "9mg",
+        "25mg"
+      ],
+      "doseTiers": {
+        "1.5mg": "1.5mg",
+        "4mg": "higher_doses",
+        "9mg": "higher_doses",
+        "25mg": "higher_doses"
+      }
+    }
+  },
+  "eligibilityRules": [
+    {
+      "id": "copay-card-federal-program-bar",
+      "pathway": "copay_card",
+      "effect": "suppress",
+      "when": {
+        "field": "federalProgramme",
+        "op": "truthy"
+      },
+      "reason": "Manufacturer savings cards exclude anyone enrolled in a federal healthcare program, including Medicare, Medicaid, TRICARE and VA coverage.",
+      "sourceUrl": "https://lillydirect.lilly.com/",
+      "quote": "This offer is not valid for individuals enrolled in Medicare, Medicaid, TRICARE, or any other federal or state healthcare program."
+    },
+    {
+      "id": "copay-card-requires-commercial-coverage",
+      "pathway": "copay_card",
+      "effect": "require",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "in",
+        "value": [
+          "commercial_covered",
+          "commercial_not_covered"
+        ]
+      },
+      "reason": "A manufacturer savings card requires commercial insurance.",
+      "sourceUrl": "https://lillydirect.lilly.com/",
+      "quote": "Patient must have commercial drug insurance to be eligible for this savings card offer."
+    },
+    {
+      "id": "medicare-bridge-requires-medicare",
+      "pathway": "medicare_bridge",
+      "effect": "require",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "eq",
+        "value": "medicare"
+      },
+      "reason": "This pathway is available only to Medicare beneficiaries.",
+      "sourceUrl": "https://www.medicare.gov/",
+      "quote": "Eligibility for this program is limited to enrolled Medicare beneficiaries with Part D coverage."
+    },
+    {
+      "id": "medicare-bridge-osa-exclusion",
+      "pathway": "medicare_bridge",
+      "effect": "suppress",
+      "when": {
+        "field": "osaCovered",
+        "op": "truthy"
+      },
+      "reason": "Beneficiaries already covered for this medication under the obstructive sleep apnea pathway are ineligible for this program.",
+      "sourceUrl": "https://www.medicare.gov/",
+      "quote": "Beneficiaries whose therapy is already covered under the obstructive sleep apnea indication are not eligible for this program."
+    },
+    {
+      "id": "manufacturer-direct-requires-prescription",
+      "pathway": "*",
+      "effect": "caveat",
+      "when": true,
+      "reason": "Requires a valid prescription from a licensed healthcare provider."
+    },
+    {
+      "id": "patient-assistance-income-tier",
+      "pathway": "patient_assistance",
+      "effect": "require",
+      "when": {
+        "field": "incomeTier",
+        "op": "in",
+        "value": [
+          "low",
+          "moderate",
+          "unknown"
+        ]
+      },
+      "reason": "Patient assistance is limited to applicants below an income threshold.",
+      "sourceUrl": "https://www.lillycares.com/",
+      "quote": "Applicants must have an annual household income at or below the program threshold for their household size."
+    }
+  ],
+  "prices": [
+    {
+      "value": 299,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "2.5mg",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Single-dose vial, starter dose."
+    },
+    {
+      "value": 399,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "5mg",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Single-dose vial, second tier."
+    },
+    {
+      "value": 449,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "all_other_doses",
+      "pathway": "lillydirect_self_pay",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Single-dose vial, 7.5 mg and above.",
+      "caveats": [
+        "The reduced price at this dose requires a refill within 45 days. Missing that window raises what you pay."
+      ]
+    },
+    {
+      "value": 346,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "trumprx",
+      "source_url": "https://trumprx.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Federal platform price."
+    },
+    {
+      "value": 25,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "With commercial coverage of the indication."
+    },
+    {
+      "value": 50,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "medicare_bridge",
+      "source_url": "https://www.medicare.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Multi-dose pen only."
+    },
+    {
+      "value": null,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "patient_assistance",
+      "source_url": "https://www.lillycares.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "unverified",
+      "notes": "Program terms for this product could not be confirmed."
+    },
+    {
+      "value": 1086,
+      "unit": "USD/month",
+      "drug": "zepbound",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://lillydirect.lilly.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Reference figure only."
+    },
+    {
+      "value": 199,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Flat across doses."
+    },
+    {
+      "value": 199,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "trumprx",
+      "source_url": "https://trumprx.gov/",
+      "source_type": "primary_government",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Federal platform price, deliberately equal to NovoCare here so the tie-break is exercised."
+    },
+    {
+      "value": 1349,
+      "unit": "USD/month",
+      "drug": "wegovy_injection",
+      "dose_or_tier": "any",
+      "pathway": "list_price",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Reference figure only."
+    },
+    {
+      "value": 199,
+      "unit": "USD/month",
+      "drug": "ozempic",
+      "dose_or_tier": "any",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Type 2 diabetes indication."
+    },
+    {
+      "value": 25,
+      "unit": "USD/month",
+      "drug": "ozempic",
+      "dose_or_tier": "any",
+      "pathway": "copay_card",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "With commercial coverage of the indication."
+    },
+    {
+      "value": 149,
+      "unit": "USD/month",
+      "drug": "wegovy_pill",
+      "dose_or_tier": "1.5mg",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Oral starting dose."
+    },
+    {
+      "value": 349,
+      "unit": "USD/month",
+      "drug": "wegovy_pill",
+      "dose_or_tier": "higher_doses",
+      "pathway": "novocare_self_pay",
+      "source_url": "https://www.novocare.com/",
+      "source_type": "primary_manufacturer",
+      "verified_date": "2026-07-30",
+      "confidence": "confirmed",
+      "notes": "Oral doses above the starting dose."
+    }
+  ]
+}

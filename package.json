@@ -5,8 +5,8 @@
   "type": "module",
   "description": "Static, mobile-first tool that ranks every legitimate GLP-1 payment pathway by verified monthly out-of-pocket cost.",
   "scripts": {
-    "test": "node --test test/",
-    "test:watch": "node --test --watch test/"
+    "test": "node --test \"test/**/*.test.js\"",
+    "test:watch": "node --test --watch \"test/**/*.test.js\""
   },
   "engines": {
     "node": ">=20"

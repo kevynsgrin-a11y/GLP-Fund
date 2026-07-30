@@ -1,0 +1,73 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "n/a - audit of the prior researcher's GATE-TRUMPRX output structure, not an external retrieval",
+  "http_status": "n/a",
+  "source_type": "internal_audit_not_a_source",
+  "extracted": {
+    "http_status_misreporting": {
+      "issue": "Two sources carry http_status 'ok' for URLs that were never fetched and are in fact 403 in this environment.",
+      "urls": [
+        "https://www.cnn.com/2026/02/24/health/novo-nordisk-ozempic-wegovy-costs",
+        "https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-announcement-launch-drug-website-february-5-2026/"
+      ],
+      "corrected_http_status": "403 Forbidden at CONNECT, body never retrieved",
+      "severity": "material"
+    },
+    "source_type_mislabels": [
+      {
+        "url": "http://127.0.0.1:40851/__agentproxy/status",
+        "labeled": "primary_government",
+        "correct": "local diagnostic endpoint; not an external source of any kind",
+        "note": "The prior researcher admitted labeling it primary_government 'only to satisfy the enum'. A consumer filtering on source_type=primary_government would ingest localhost telemetry as a government source. The enum needed extending, not abusing.",
+        "severity": "material"
+      },
+      {
+        "url": "https://example.com/",
+        "labeled": "secondary_aggregator",
+        "correct": "IANA reserved documentation domain used as a diagnostic control; not an aggregator",
+        "severity": "minor"
+      },
+      {
+        "url": "all https://trumprx.gov/p/* product pages and both whitehouse.gov fact sheets",
+        "labeled": "primary_government",
+        "correct": "The URL is a primary government URL, but the EVIDENCE actually held is a search-index summary, which is secondary. Recording source_type by URL rather than by evidence actually obtained lets an unread page inherit primary standing.",
+        "severity": "material"
+      }
+    ],
+    "verbatim_quote_field_abuse": {
+      "issue": "Every entry in eligibility_rules puts non-verbatim text in a field named verbatim_quote: a paraphrase of a search-index summary, with an editorial disclaimer appended INSIDE the quoted string.",
+      "example": "\"Wegovy pen injections are $199 per month for the first two monthly fills, then $349/month for 0.25mg, 0.5mg, 1mg, 1.7mg, or 2.4mg and $399/month for the 7.2mg dose -- INDEX-MEDIATED, NOT A DIRECT READ of trumprx.gov, which returned HTTP 403.\"",
+      "why_blocking": "The string is not a quotation from trumprx.gov, yet occupies the field a renderer would treat as attributable quoted text, and it carries specific dollar figures. It is also substantively wrong: it attributes the $199 introductory price to all five dose strengths.",
+      "severity": "blocking"
+    },
+    "programmatic_access_inconsistency": {
+      "issue": "trumprx.gov pages are marked programmatic_access 'prohibited' while whitehouse.gov, hhs.gov and cms.gov pages with IDENTICAL evidence (403 at CONNECT, robots.txt never read, no terms read) are marked 'unclear'.",
+      "assessment": "The value 'prohibited' reads as a finding about the site's stance. The only established fact is a local egress denial. The prior researcher's own narrative concedes 'I have zero evidence about whether trumprx.gov blocks automated clients'. 'unclear' is the supportable value for all of them; the MANUAL-CURATION-ONLY operational conclusion can rest on absence-of-grant without asserting site prohibition.",
+      "severity": "material"
+    },
+    "conflict_labeling_errors": [
+      {
+        "datum": "ozempic|list price|list_price",
+        "issue": "Marked confidence 'conflicting' between $1,028 and $935 while simultaneously stating 'I found no sourced support for $935'. An unsupported number is not a competing claim; labeling it a conflict grants it evidentiary standing and inflates uncertainty.",
+        "correct": "confidence 'unverified', value null, with $935 recorded as an unsourced figure from the brief (plausibly a stale historical Ozempic WAC) rather than as a conflicting claim.",
+        "severity": "minor"
+      },
+      {
+        "datum": "zepbound|list price|list_price",
+        "issue": "Presented as a 'FOUR-WAY CONFLICT' where $1,087 and $1,086.37 are the same figure at different rounding.",
+        "correct": "confidence 'conflicting' is right but the conflict is narrower than stated; value null.",
+        "severity": "minor"
+      }
+    ],
+    "what_held_up_under_attack": [
+      "The egress-blockade diagnosis and its refutation of the naive 'trumprx.gov blocks bots' reading -- independently reproduced.",
+      "All values being null with confidence unverified -- correct and the only defensible outcome.",
+      "The two-monthly-fill limit on the $199 introductory price -- the central patient-safety finding; independently reproduced.",
+      "The whitehouse.gov fact sheet figures ($1,028 / $1,349 / $1,088 / $350 / $346 / $199 / $299) -- independently reproduced.",
+      "The average-versus-lowest-dose reading that dissolves the apparent $350-vs-$199 conflict -- independently corroborated, though stated with more certainty than an unreadable page supports.",
+      "Zepbound per-dose ladder genuinely not obtainable by index-mediated means -- I could not obtain it either.",
+      "Fixtures: all seven prior fixture files are valid JSON and contain no emoji."
+    ]
+  },
+  "verbatim_excerpt": "Prior researcher's own concession, quoted from their narrative: \"This distinction is load-bearing and I want it recorded plainly: I have zero evidence about whether trumprx.gov blocks automated clients.\" This is inconsistent with their per-source field value programmatic_access: \"prohibited\" on every trumprx.gov entry."
+}

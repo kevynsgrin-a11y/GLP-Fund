@@ -1,0 +1,41 @@
+{
+  "retrieved_at": "2026-07-30T10:52:36Z",
+  "url": "file:///home/user/GLP-Fund/test/fixtures/",
+  "http_status": "n/a - local filesystem and metadata audit",
+  "source_type": "internal_audit_of_prior_fixture",
+  "retrieval_method": "find / -name 'gate-compound*'; per-file JSON metadata dump of retrieved_at, url, source_type, http_status.",
+  "extracted": {
+    "DEFECT_1_MANIFEST_PATHS_ALL_WRONG": {
+      "claimed_in_fixtures_written": "/home/user/GLP-Fund/fixtures/gate-compound-*.json (11 paths)",
+      "actual_location": "/home/user/GLP-Fund/test/fixtures/gate-compound-*.json",
+      "verification": "/home/user/GLP-Fund/fixtures does not exist. All 11 declared paths are unresolvable. The files themselves DO exist, all 11, under test/fixtures. Content is intact; only the manifest is wrong.",
+      "impact": "Any audit or build step that consumes fixtures_written as its provenance manifest resolves zero of eleven fixtures and would either hard-fail or, worse, silently treat the gate as having frozen nothing."
+    },
+    "DEFECT_2_FDA_TYPED_AS_MANUFACTURER": {
+      "finding": "Nine fda.gov fixtures carry source_type: 'primary_manufacturer'. FDA is the federal regulator, not a manufacturer. The allowlist's manufacturer tier is lilly.com / novonordisk.com and similar.",
+      "aggravating_detail": "Each affected fixture also contains source_type_note: 'Would be primary_government if directly read.' The researcher knew the correct government typing and still wrote 'primary_manufacturer', which is neither the correct type nor the described fallback.",
+      "affected_files": [
+        "gate-compound-503a-503b-essentially-a-copy.json",
+        "gate-compound-fda-503b-bulks-exclusion-proposal.json",
+        "gate-compound-fda-clarifies-policies-compounders.json",
+        "gate-compound-fda-declaratory-orders-shortage-resolution.json",
+        "gate-compound-fda-dosing-errors-alert.json",
+        "gate-compound-fda-green-list-import-alert-66-80.json",
+        "gate-compound-fda-risk-language-unapproved-glp1.json",
+        "gate-compound-fda-telehealth-enforcement.json"
+      ],
+      "secondary_issue": "Every one of these was 403 and never read. Carrying any primary_* type at all overstates evidentiary standing; the type should record that the source was unread."
+    },
+    "DEFECT_3_LOCALHOST_ENDPOINT_TYPED_AS_GOVERNMENT": {
+      "finding": "gate-compound-retrieval-blockade-record.json and the corresponding sources[] entry type http://127.0.0.1:40851/__agentproxy/status as source_type 'primary_government'.",
+      "why_wrong": "It is the agent's own local proxy diagnostic endpoint over plain HTTP on a session-ephemeral port. It is not a government source, not a web source, and not reproducible by any third party.",
+      "impact": "If any downstream consumer counts primary_government sources as a proxy for evidentiary strength, this inflates the count for a gate whose true primary-source count is zero."
+    },
+    "DEFECT_4_UNIFORM_TEMPLATED_TIMESTAMPS": {
+      "finding": "All 11 fixtures and all 19 sources[] entries carry the identical timestamp 2026-07-30T10:19:08Z.",
+      "internal_contradiction": "gate-compound-commercially-interested-source-audit.json carries http_status 'Not fetched. Located via WebSearch only and deliberately NOT read as evidence' yet still carries that same retrieved_at timestamp. A never-fetched source cannot have a retrieval time.",
+      "impact": "retrieved_at is a template constant, not a recorded observation, so it cannot support any later staleness computation - which is the field's only purpose."
+    }
+  },
+  "verbatim_excerpt": "Filesystem check: \"ls: cannot access '/home/user/GLP-Fund/fixtures': No such file or directory\" while \"find / -name 'gate-compound*'\" returns all eleven files under /home/user/GLP-Fund/test/fixtures/. Prior fixture field, quoted: \"source_type\": \"primary_manufacturer\" alongside \"source_type_note\": \"Would be primary_government if directly read. Treat as UNVERIFIED.\""
+}

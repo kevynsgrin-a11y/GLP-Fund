@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/priorities/innovation/files/balance-part-d-plans-rfa.pdf",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase of a cms.gov document, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "finding": "BLOCKING OMISSION IN THE REPORTED GATE-BRIDGE FINDINGS",
+    "reported_claim": "BALANCE Part D patient OOP CAP is $50 per 28- or 30-day supply, gated by four conditions (participating EA plan or EGWP, initial coverage phase, Appendix C model drug, in-network pharmacy)",
+    "omitted_second_tier": "Participating BASIC Part D plans may offer cost-sharing on model drugs of up to $125",
+    "basic_plan_definition_per_source": "coverage options equivalent in value to the defined standard benefit are collectively referred to as basic Part D plans",
+    "why_blocking": "The reported findings present $50 as THE BALANCE Part D patient ceiling. A defined-standard / basic Part D enrollee faces a ceiling up to $125 - 2.5x higher. A tool built on the reported findings would quote $50 to that user.",
+    "ea_egwp_cap_confirmed_in_substance": "$50 per 28- or 30-day supply, initial coverage phase, in-network, and it is a MAXIMUM - plans may go lower",
+    "both_values_remain": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"The BALANCE model permits participating basic plans to offer cost-sharing on model drugs of up to $125 for the model.\" and \"A participating Part D plan sponsor may choose to further enhance its benefit with a lower amount than $50 for all model drugs, as this amount serves as a maximum for model-participating plan benefit packages (PBPs).\""
+}

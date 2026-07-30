@@ -1,6 +1,6 @@
 # GLP-1 Price Check — Implementation Plan (Phases 1–6)
 
-**Status:** awaiting human review. No product code may be written until this document is approved.
+**Status:** **APPROVED 2026-07-30.** Human review gate satisfied; product code authorized.
 **Authored:** 2026-07-30
 **Plan owner:** build agent
 **Build standard applied:** Fortune-500 web engineering gate model (see §8, Grading Scale)
@@ -299,9 +299,13 @@ Phase 6  browser QA at 390px, CLS measurement, runbook, walkthrough + grade
 
 ---
 
-## 11. What I want the reviewer to decide
+## 11. Reviewer decisions — resolved 2026-07-30
 
-1. **`package.json` for `node --test`** — keep (recommended) or hand-roll `test/run.mjs` and delete it. See §1.1.
-2. **`public/` as deploy root, engine served from `public/engine/`** — confirm, or state a preference for a different layout. See §0.2.
-3. **TrumpRx under a 403** — confirm that manual curation with a disclosure on `/methodology/` is the accepted answer, rather than blocking the pathway entirely.
-4. **Anything in §8's weighting** that should shift before it is used to grade the build.
+| # | Question | Decision |
+| --- | --- | --- |
+| 1 | `package.json` for `node --test` | **Keep it.** Zero dependencies, one test script, empty Pages build command. Not a build step. |
+| 2 | `public/` as deploy root, engine at `public/engine/` | **Confirmed** as specified in §0.2. |
+| 3 | TrumpRx under a 403 | **Manual curation with disclosure on `/methodology/`.** The pathway stays in the tool; any figure not confirmable from a `.gov` source renders as "price not currently verified" with a link out, never as a number. Press-reported figures are explicitly rejected as a substitute. |
+| 4 | Foundayo scope if GATE-ORF resolves approved | **Full first-class drug** — dedicated per-drug page plus inclusion in ranked engine output, at its actual launched self-pay price rather than pre-approval agreement pricing. Conditional on the FDA approval database confirming it and the adversarial verifier not refuting it. |
+| 5 | Autonomy through Phases 2–6 | **Run to completion.** The two hard stops in §10 remain wired in: an unresolved gate halts Phase 2, a failing Appendix B vector halts Phase 3. |
+| 6 | §8 grading weights | Accepted unchanged. Applied to the build in the final walkthrough. |

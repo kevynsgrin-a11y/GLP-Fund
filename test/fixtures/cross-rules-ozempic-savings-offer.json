@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-07-30T10:34:30Z",
+  "url": "https://www.novocare.com/content/dam/novocare/diabetes_savings_card_program_tcs_version1_novocare_retail.pdf",
+  "http_status": "403 Forbidden. NO DIRECT PDF READ. Content below is SEARCH-INDEX-MEDIATED PARAPHRASE ONLY, not verbatim document text.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "rule_located": "Ozempic Savings Offer excludes patients enrolled in any federal or state health care program with prescription drug coverage.",
+    "excluded_programs_as_listed_by_search_summary": [
+      "Medicaid",
+      "Medicare",
+      "VA",
+      "DOD",
+      "TRICARE",
+      "any similar federal or state health care program"
+    ],
+    "self_pay_election_barred_for_this_card": "Patients enrolled in a federal or state health care program may not use this program even if they elect to be processed as an uninsured or self-paying patient.",
+    "egwp_exclusion": "Also ineligible if Medicare eligible and enrolled in an employer sponsored group waiver health plan (EGWP) or government-subsidized prescription drug benefit program for retirees.",
+    "separate_pap_note_located": "Medicare beneficiaries with Part D coverage are reported as not eligible to receive Ozempic through the Patient Assistance Program. NOTE: this CONFLICTS with the Novo PAP page located separately, which states patients must have Medicare or no insurance. See cross-rules-novo-pap.json. Unresolved.",
+    "FEHB_status": "Not restated in this particular search summary, but the Wegovy offer summary (same manufacturer, parallel document) carved FEHB OUT of the federal-program definition. Whether the Ozempic offer does the same is UNKNOWN.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Must not be shipped as a quotation."
+  },
+  "verbatim_excerpt": "(none - no document text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'Patients are NOT eligible if enrolled in any federal or state health care program with prescription drug coverage, such as Medicaid, Medicare, VA, DOD, TRICARE, or any similar federal or state health care program.' And: 'Patients enrolled in a federal or state health care program may not use this program even if they elect to be processed as an uninsured or self-paying patient.')"
+}

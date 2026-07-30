@@ -1,0 +1,136 @@
+{
+  "enabled": true,
+  "port": 40851,
+  "caBundlePath": "/root/.ccr/ca-bundle.crt",
+  "hasSystemCa": true,
+  "noProxy": "localhost,127.0.0.1,::1,127.0.0.0/8,0.0.0.0/8,::,169.254.0.0/16,anthropic.com,.anthropic.com,*.anthropic.com,registry.npmjs.org,jsr.io,npm.jsr.io,pypi.org,files.pythonhosted.org,index.crates.io,proxy.golang.org,host.docker.internal,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,.svc.cluster.local,*.svc.cluster.local",
+  "selective": false,
+  "standalone": false,
+  "toolScoped": false,
+  "javaTrustStorePath": "/root/.ccr/java-truststore.p12",
+  "readmePath": "/root/.ccr/README.md",
+  "gitConfigInjection": true,
+  "gitSshRewrite": true,
+  "recentRelayFailures": [
+    {
+      "ts": "2026-07-30T10:22:32.209Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "lilly.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:22:32.532Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.lillydirect.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:22:32.888Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "lillydirect.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:22:33.199Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.lilly.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:26:53.081Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.novocare.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:26:53.393Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.wegovy.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:26:53.718Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.ozempic.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:26:54.046Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.novonordisk.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:26:54.459Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.fda.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:34.328Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.novocare.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:34.960Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "wegovy.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:35.278Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "novocare.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:35.572Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.novonordisk.com:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:35.872Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "accessdata.fda.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:36.199Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.accessdata.fda.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:36.519Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "fda.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:36.860Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.cms.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:37.287Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.medicare.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:37.604Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "trumprx.gov:443"
+    },
+    {
+      "ts": "2026-07-30T10:28:37.932Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "www.prnewswire.com:443"
+    }
+  ]
+}

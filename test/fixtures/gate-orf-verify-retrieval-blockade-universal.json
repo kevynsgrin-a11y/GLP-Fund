@@ -1,0 +1,32 @@
+{
+  "retrieved_at": "2026-07-30T10:36:41Z",
+  "url": "internal: WebFetch control test + $HTTPS_PROXY/__agentproxy/status",
+  "http_status": "403 on every host tested, without exception",
+  "source_type": "verifier_environment_control_test",
+  "extracted": {
+    "purpose": "Falsify the original researcher's central diagnostic claim that fda.gov / lilly.com / sec.gov were subject to an ORIGIN bot-block distinct from an EGRESS-policy denial affecting api.fda.gov, cms.gov, medicare.gov, hhs.gov and trumprx.gov.",
+    "webfetch_control_example_com": "https://example.com/ -> HTTP 403 Forbidden. example.com serves no bot protection and does not 403 real clients. A 403 here proves the block is at the fetch layer, not at the origin.",
+    "webfetch_control_secondary_host": "https://www.drugs.com/foundayo.html -> HTTP 403 Forbidden. A plain secondary aggregator also 403s, so 403 carries zero signal about the identity or policy of the target publisher.",
+    "webfetch_403_hosts_confirmed_by_verifier": [
+      "example.com",
+      "www.drugs.com",
+      "foundayo.lilly.com",
+      "trumprx.gov",
+      "lilly.gcs-web.com",
+      "dailymed.nlm.nih.gov",
+      "nctr-crs.fda.gov"
+    ],
+    "bash_curl_gateway_denials_in_proxy_log": [
+      "www.prnewswire.com:443",
+      "aspe.hhs.gov:443",
+      "www.cms.gov:443",
+      "example.com:443",
+      "www.medicare.gov:443",
+      "zepbound.lilly.com:443",
+      "www.lilly.com:443"
+    ],
+    "conclusion": "Both channels are closed for all hosts. There is no origin-vs-egress distinction. No primary source of any kind was retrievable by this verifier either, so the original gate's nulls stand, but its stated reasons and its remediation recommendation are wrong.",
+    "consequence_for_original_report": "The original report's recommendation that 'unblocking api.fda.gov is the single highest-value remediation' is a misdiagnosis. api.fda.gov is not specially blocked; everything is. Equally, the original report's inference that a 403 on download.open.fda.gov/crl/CRL_BLA125827_20260410.pdf demonstrates that the file EXISTS is invalid, because an identical 403 is returned for example.com."
+  },
+  "verbatim_excerpt": "WebFetch on https://example.com/ returned: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\" Proxy status recentRelayFailures included: {\"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\", \"host\": \"example.com:443\"}."
+}

@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-07-30T09:58:20Z",
+  "url": "https://investor.lilly.com/news-releases/news-release-details/fda-approves-lillys-foundayotm-orforglipron-only-glp-1-pill",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin (no proxy relay failure was recorded for investor.lilly.com, so the tunnel succeeded and the origin refused). The PDF mirror https://investor.lilly.com/node/54076/pdf was also identified but is on the same blocked host.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "FDA approves Lilly's Foundayo (orforglipron), the only GLP-1 pill for weight loss that can be taken any time of day without food or water restrictions",
+    "claims_attributed_to_this_url_via_search_index_only": {
+      "approval_date": "April 1, 2026",
+      "brand_name": "Foundayo",
+      "generic_name": "orforglipron",
+      "indication_as_summarized": "adults with obesity, or overweight with weight-related medical problems",
+      "mechanism": "once-daily small molecule (non-peptide) oral glucagon-like peptide-1 receptor agonist, taken any time of day without restrictions on food and water intake",
+      "trial_result_attain_1": "highest dose, on-treatment: average loss of 27.3 pounds (12.4 percent) vs 2.2 pounds (0.9 percent) with placebo",
+      "availability": "available via LillyDirect, prescriptions accepted immediately, shipping beginning April 6, followed by broad availability through U.S. retail pharmacies and telehealth providers"
+    },
+    "not_obtained": [
+      "verbatim boxed warning text",
+      "verbatim launched self-pay price per dose",
+      "verbatim savings card terms"
+    ],
+    "provenance_warning": "All of the above was surfaced by the WebSearch tool's summary. NOT direct retrieval. Not treated as primary confirmation of any dollar figure."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

@@ -1,0 +1,32 @@
+{
+  "retrieved_at": "2026-07-30T10:33:30Z",
+  "url": "https://mounjaro.lilly.com/savings-coverage",
+  "http_status": "403 Forbidden. NO DIRECT PAGE READ. Content below is SEARCH-INDEX-MEDIATED PARAPHRASE ONLY, not verbatim page text.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "rule_located": "Mounjaro Savings Card excludes beneficiaries of state, federal, and government-funded healthcare programs and requires commercial drug insurance.",
+    "excluded_programs_as_listed_by_search_summary": [
+      "Medicaid",
+      "Medicare",
+      "Medicare Part D",
+      "Medicare Advantage",
+      "Medigap",
+      "DoD",
+      "VA",
+      "TRICARE/CHAMPUS",
+      "any state prescription drug assistance program"
+    ],
+    "additional_located_conditions": {
+      "residency": "resident of the United States or Puerto Rico",
+      "age": "18 years of age or older",
+      "indication": "prescribed Mounjaro single-dose pen for an approved use consistent with FDA approved product labeling",
+      "continuing_eligibility": "eligibility must be met every time the card is used; if the patient begins receiving coverage under any state, federal, or government funded healthcare program they are no longer eligible and must call 1-844-805-5807 to stop participation",
+      "no_reimbursement": "may not seek reimbursement from health insurance, any third party, or any health savings, flexible spending, or other healthcare reimbursement account",
+      "no_stacking": "card savings cannot be combined with any other program, discount, discount card, cash discount card, coupon, incentive, or similar offer involving Mounjaro"
+    },
+    "no_stacking_engine_consequence": "The anti-stacking clause, if real, means the engine must NOT present copay-card savings as combinable with any cash-pay or discount pathway for the same fill.",
+    "FEHB_status": "NOT ADDRESSED in anything located for Lilly.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Must not be shipped as a quotation."
+  },
+  "verbatim_excerpt": "(none - no page text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'you must have been prescribed Mounjaro single-dose pen for an approved use consistent with FDA approved product labeling, be enrolled in a commercial drug insurance plan, not be enrolled in any state, federal, or government funded healthcare program (including Medicaid, Medicare, Medicare Part D, Medicare Advantage, Medigap, DoD, VA, TRICARE/CHAMPUS, or any state prescription drug assistance program), be a resident of the United States or Puerto Rico, and be 18 years of age or older.')"
+}

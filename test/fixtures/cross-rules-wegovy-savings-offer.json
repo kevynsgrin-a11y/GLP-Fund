@@ -1,0 +1,29 @@
+{
+  "retrieved_at": "2026-07-30T10:34:00Z",
+  "url": "https://www.novocare.com/content/dam/novocare/wegovy_standard_offer_tcs_2025_savings_offer_retail.pdf",
+  "http_status": "403 Forbidden. NO DIRECT PDF READ. Content below is SEARCH-INDEX-MEDIATED PARAPHRASE ONLY, not verbatim document text.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "rule_located": "Wegovy Savings Offer excludes patients enrolled in any federal or state health care program with prescription drug coverage.",
+    "excluded_programs_as_listed_by_search_summary": [
+      "Medicaid",
+      "Medicare",
+      "VA",
+      "DOD",
+      "TRICARE",
+      "any similar federal or state health care program"
+    ],
+    "CRITICAL_FEHB_CARVE_IN_CONTRADICTS_TASK_PREMISE": {
+      "located_claim": "The Federal Employees Health Benefits (FEHB) Program, Affordable Care (Health Exchange) Plans, and insurance provided through state employee plans are NOT federal or state government health care programs for purposes of this savings offer.",
+      "why_it_matters": "The task premise asserted copay cards universally exclude FEHB. For Novo Nordisk the located terms say the OPPOSITE. If the engine suppresses the Novo copay-card pathway for an FEHB enrollee it would wrongly deny that user a real discount. This divergence must be resolved by direct read before either behavior is encoded."
+    },
+    "CRITICAL_SELF_PAY_ELECTION_BARRED_FOR_THIS_CARD": {
+      "located_claim": "Patients enrolled in federal or state health care programs may not use this program even if they elect to be processed as an uninsured or self-paying patient.",
+      "why_it_matters": "This closes the self-pay loophole for the SAVINGS OFFER specifically. It is NOT the same document as the NovoCare Pharmacy cash-pay terms and must not be conflated with them."
+    },
+    "egwp_exclusion": "Patients are also ineligible if Medicare eligible and enrolled in an employer sponsored group waiver health plan (EGWP) or government-subsidized prescription drug benefit program for retirees.",
+    "no_reimbursement": "Patients agree not to seek payment or accept reimbursement for any out-of-pocket costs for Wegovy purchased with this offer from any insurance.",
+    "NOT_VERBATIM_WARNING": "Search summarizer prose. Must not be shipped as a quotation."
+  },
+  "verbatim_excerpt": "(none - no document text was ever served. Search-summary paraphrase, explicitly NOT a quotation: 'Patients are not eligible if enrolled in any federal or state health care program with prescription drug coverage, such as Medicaid, Medicare, VA, DOD, TRICARE, or any similar federal or state health care program.' And: 'Patients enrolled in federal or state health care programs may not use this program even if they elect to be processed as an uninsured or self-paying patient.')"
+}

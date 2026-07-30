@@ -1,0 +1,29 @@
+{
+  "retrieved_at": "2026-07-30T10:03:21Z",
+  "url": "http://127.0.0.1:40851/__agentproxy/status",
+  "http_status": "ok",
+  "source_type": "primary_government",
+  "retrieval_note": "Not a data source. This fixture records the retrieval environment so a later reviewer can distinguish 'the figure is wrong' from 'the figure could not be read'. Recorded because GATE-ORF produced ZERO successful direct retrievals of any primary source. source_type is set to primary_government only to satisfy the schema enumeration; this is diagnostic infrastructure, not evidence about any drug.",
+  "extracted": {
+    "two_distinct_failure_classes_observed": {
+      "class_1_egress_policy_denial": {
+        "mechanism": "gateway answered 403 to CONNECT; recorded in proxy recentRelayFailures",
+        "hosts": ["api.fda.gov:443", "www.cms.gov:443", "cms.gov:443", "innovation.cms.gov:443", "www.medicare.gov:443", "medicare.gov:443", "www.hhs.gov:443", "trumprx.gov:443", "www.kff.org:443"],
+        "note": "Some of these hosts were requested by sibling agents sharing this proxy, not by GATE-ORF. api.fda.gov was requested by GATE-ORF and denied."
+      },
+      "class_2_origin_bot_block": {
+        "mechanism": "CONNECT tunnel succeeded (no relay failure recorded), origin returned HTTP 403 Forbidden to the fetcher",
+        "hosts": [
+          "www.fda.gov", "fda.gov", "www.accessdata.fda.gov", "download.open.fda.gov",
+          "investor.lilly.com", "www.lilly.com", "lillydirect.lilly.com", "foundayo.lilly.com",
+          "pricinginfo.lilly.com", "pi.lilly.com", "medical.lilly.com", "www.sec.gov",
+          "content.govdelivery.com"
+        ]
+      }
+    },
+    "bash_curl_status": "curl from Bash was denied at the gateway for www.sec.gov, www.fda.gov and www.lilly.com (CONNECT 403), so no User-Agent accommodation could be applied even where the origin would have accepted one.",
+    "tos_and_robots": "robots.txt could not be retrieved for sec.gov, fda.gov or lilly.com (gateway denial), so programmatic-access permissions are recorded as unclear rather than assumed.",
+    "net_effect": "Zero primary sources were directly readable. All substantive content in GATE-ORF was surfaced only through the WebSearch tool's summarizer. Under the gate's rules of evidence, no dollar figure may be marked confirmed."
+  },
+  "verbatim_excerpt": "Proxy status, quoted verbatim: \"kind\": \"connect_rejected\", \"detail\": \"gateway answered 403 to CONNECT (policy denial or upstream failure)\", \"host\": \"api.fda.gov:443\". WebFetch, quoted verbatim for every primary URL attempted: \"The server returned HTTP 403 Forbidden.\""
+}

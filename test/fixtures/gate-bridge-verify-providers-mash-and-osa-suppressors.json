@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:45:07Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-providers",
+  "http_status": "NOT DIRECTLY READ. WebFetch 403 session-wide; curl 000 via denied CONNECT. Content below is domain-restricted WebSearch paraphrase, NOT a primary read.",
+  "source_type": "primary_government_domain_but_retrieved_only_via_search_summarizer",
+  "extracted": {
+    "suppressor_claim_CORROBORATED": "Three Part D-eligible indications suppress the Bridge: type 2 diabetes, moderate to severe obstructive sleep apnea, noncirrhotic MASH. The reported findings are right that the trigger is the DIAGNOSIS, not existing coverage.",
+    "diagnosis_keyed_trigger_strongly_corroborated": "not eligible for coverage under the Medicare GLP-1 Bridge, regardless of whether their current Part D plan covers a GLP-1 drug for that condition",
+    "MATERIAL_DEFECT_mash_qualifier_dropped": "The reported findings render the MASH suppressor as 'noncirrhotic MASH' with no severity qualifier, while insisting the 'moderate to severe' qualifier on OSA is load-bearing. This page states the MASH suppressor as 'noncirrhotic MASH with moderate to advanced liver scarring (fibrosis)'. A patient with noncirrhotic MASH WITHOUT moderate-to-advanced fibrosis should not be suppressed.",
+    "corrected_suppressor_set": "type 2 diabetes; moderate-to-severe obstructive sleep apnea; noncirrhotic MASH with moderate to advanced liver scarring (fibrosis)",
+    "zepbound_formulation_CORROBORATED": "an eligible GLP-1 drug is Zepbound (KwikPen) when used to reduce excess body weight and maintain weight reduction; the single-dose vial and single-dose pen formulations of Zepbound will not be available through the Medicare GLP-1 Bridge",
+    "reported_quote_not_reproduced": "The reported findings attribute to this page: 'Beneficiaries prescribed Zepbound for the treatment of moderate to severe obstructive sleep apnea in adults with obesity should continue to receive coverage through Medicare Part D.' The index instead returns the general form: 'If a Medicare Part D beneficiary has a prescription for a GLP-1 drug for an indication covered under Medicare Part D, they should continue to obtain their GLP-1 through their Part D plan.' The reported Zepbound-OSA-specific sentence could not be reproduced and must not be treated as verbatim.",
+    "pa_durability_omitted_from_reported_findings": "Bridge PA approvals are valid through December 31, 2027. After the first fill is approved, subsequent fills need no new PA unless the patient switches from one covered GLP-1 drug to a different one.",
+    "pa_submission_channel": "electronically via CoverMyMeds.com or fax 1-800-530-2404",
+    "value": "null / unverified - no primary read"
+  },
+  "verbatim_excerpt": "Search summarizer rendering: \"If a beneficiary has a diagnosis of type 2 diabetes, moderate to severe obstructive sleep apnea, or noncirrhotic MASH with moderate to advanced liver scarring (fibrosis), they are not eligible for coverage under the Medicare GLP-1 Bridge, regardless of whether their current Part D plan covers a GLP-1 drug for that condition.\""
+}

@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:22:00Z",
+  "url": "WebSearch result set only. Primary target https://zepbound.lilly.com/coverage-savings was 403 at CONNECT and never read.",
+  "http_status": "403 on the primary source. LOCATED claims only.",
+  "source_type": "secondary_aggregator",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "LOCATED ONLY, NOT CONFIRMED. All values null. The task asks for VERBATIM exclusion language; no verbatim Lilly text was obtained.",
+    "claimed_copay_when_insurance_covers_zepbound": "as little as $25 for a 1-month prescription fill, for eligible patients with commercial insurance that covers Zepbound",
+    "claimed_copay_when_insurance_does_NOT_cover_zepbound": "NOT OBTAINED. This is a required input for the tool and the search channel did not return it. One summary asserted the card 'does not work for uninsured patients or those with government-sponsored insurance' but said nothing reliable about commercially insured patients whose plan excludes the indication, which is the actual case the tool must price. This is a hard gap.",
+    "claimed_maximum_benefit": "CONFLICTING AND INTERNALLY INCOHERENT. The summary states 'the maximum the card will cover is $100 per one-month fill, $200 for a two-month fill, or $300 for a three-month supply' and separately 'the annual savings cap is $1,300, valid for up to 13 fills'. A $100/fill cap against a list price above $1,000 is implausible on its face for a card advertised as reducing cost to $25, which suggests the summary has conflated the covered-indication and non-covered-indication card variants. Not usable in any form.",
+    "claimed_card_expiry": "December 31, 2026 (unverified)",
+    "claimed_exclusions": "Medicare, Medicaid, TRICARE, VA, and Massachusetts residents cannot use the savings card. The Massachusetts carve-out is a state-law restriction distinct from the federal-program exclusion and would need separate verification.",
+    "VERBATIM_EXCLUSION_LANGUAGE": "NOT OBTAINED. Only paraphrase was available. The task states this exclusion drives test vectors 6 and 7; those vectors cannot be built from a paraphrase, because the operative legal text determines edge cases such as Medicare Part D enrollees without drug coverage, dual-eligibles, and state-funded plans.",
+    "GENERAL_LEGAL_BACKDROP": "That federal anti-kickback rules bar manufacturer copay cards from use with federally funded benefits is a well-established general principle, but the specific wording Lilly uses, and any product-specific carve-outs, must come from Lilly's own terms."
+  },
+  "verbatim_excerpt": "From the WebSearch summary, quoted: 'The Zepbound Savings Card can reduce costs to as little as $25 for a 1-month prescription fill for eligible patients with commercial insurance coverage.' and 'Medicare, Medicaid, TRICARE, VA, and Massachusetts residents cannot use the savings card, but can still pay cash through LillyDirect.' Paraphrase from an aggregator, NOT Lilly's verbatim terms and conditions."
+}

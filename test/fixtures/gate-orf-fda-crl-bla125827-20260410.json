@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-07-30T10:02:40Z",
+  "url": "https://download.open.fda.gov/crl/CRL_BLA125827_20260410.pdf",
+  "http_status": "403",
+  "source_type": "primary_government",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. This is FDA's own Complete Response Letter repository (download.open.fda.gov is an fda.gov subdomain). This is the KEY document for resolving Claim B and it could NOT be read directly. However the FDA filename convention itself is machine-readable evidence.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "structural_evidence_from_fda_filename": {
+      "filename": "CRL_BLA125827_20260410.pdf",
+      "document_type": "CRL (Complete Response Letter)",
+      "application_type": "BLA (Biologics License Application)",
+      "application_number": "125827",
+      "letter_date_encoded": "2026-04-10",
+      "interpretation": "FDA's own CRL repository contains exactly one CRL dated 2026-04-10 surfaced by this search, and it is against BLA 125827. Orforglipron/Foundayo is NDA 220934, a small-molecule tablet reviewed as an NDA, not a BLA. A BLA number cannot refer to orforglipron."
+    },
+    "bla_125827_identity_per_secondary_corroboration": {
+      "product": "RP1 (vusolimogene oderparepvec) in combination with nivolumab",
+      "sponsor": "Replimune Group, Inc.",
+      "indication": "advanced melanoma",
+      "note": "identity established via secondary sources (OncLive, drugs.com, Replimune IR); not confirmed by direct primary retrieval"
+    },
+    "search_result_title": "U.S. Food & Drug Administration 10903 New Hampshire Avenue"
+  },
+  "verbatim_excerpt": "FDA repository filename, quoted verbatim: \"CRL_BLA125827_20260410.pdf\". WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

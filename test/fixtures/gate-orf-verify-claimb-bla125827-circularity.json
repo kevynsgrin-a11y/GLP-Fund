@@ -1,0 +1,14 @@
+{
+  "retrieved_at": "2026-07-30T10:34:40Z",
+  "url": "https://download.open.fda.gov/crl/CRL_BLA125827_20260410.pdf",
+  "http_status": "403 (identical to the 403 returned for example.com; carries no existence signal)",
+  "source_type": "primary_government_asserted_but_never_read",
+  "extracted": {
+    "issue_with_original_reasoning": "The original report states 'A Complete Response Letter dated April 10, 2026 is real - I found it in FDA's own CRL repository' and treats the filename as primary structural evidence encoding application type BLA and number 125827. It never opened the file. Because the fetch layer returns 403 for every host including example.com, a 403 on this URL does not establish that the file exists, and the report's central 'structural evidence' argument is unsupported.",
+    "circularity_warning": "This verifier searched the literal string '125827'. The search summarizer echoed the number and the URL back. That is not independent corroboration. No source encountered by this verifier independently volunteered the number 125827 for RP1.",
+    "conclusion_on_claim_b_substance": "The SUBSTANCE of Claim B's resolution survives on secondary evidence and on date logic, but not as a primary finding. Independently located: Replimune submitted the RP1 plus nivolumab BLA in late 2024; received a first CRL on 2025-07-22; the first resubmission was accepted 2025-10-20 with a PDUFA date of 2026-04-10 under Class II review; and FDA issued a second CRL on that same 2026-04-10 date. So 2026-04-10 is well explained as Replimune's PDUFA-date CRL, and orforglipron was reviewed as NDA 220934, not a BLA.",
+    "staleness_error_in_original_narrative": "The original narrative says 'Replimune has since resubmitted, accepted as Class 1 with an FDA goal date of August 2, 2026.' Located reporting indicates this is the THIRD BLA submission, filed June 2026 after two CRLs, and that FDA's Cellular, Tissue and Gene Therapies Advisory Committee convened on 2026-07-30 to review it. The original narrative omits that it is a third submission and omits the advisory committee.",
+    "net_effect_on_gate": "Claim B remains best explained as a different drug, different sponsor, different application type. But it should be recorded as secondary-supported, not as a primary structural finding, and the specific number 'BLA 125827' should be dropped or flagged as unverified."
+  },
+  "verbatim_excerpt": "Located, secondary: \"Replimune first submitted the BLA for RP1 plus nivolumab in late 2024 and received an initial CRL on July 22, 2025. The company's first resubmission was accepted by the FDA on October 20, 2025, with a PDUFA date of April 10, 2026, under a Class II review timeline. The agency issued a second CRL on the same April 10, 2026 deadline.\" And: \"The FDA received the June 2026 submission of a third BLA ... with the FDA assigning a review goal date of August 2, 2026.\""
+}

@@ -1,0 +1,40 @@
+{
+  "retrieved_at": "2026-07-30T10:12:56Z",
+  "url": "https://www.cnn.com/2026/02/24/health/novo-nordisk-ozempic-wegovy-costs",
+  "http_status": "not directly fetched; surfaced via WebSearch result listing and summary",
+  "source_type": "secondary_press",
+  "fixture_purpose": "Records the LIST-PRICE question. The gate asked that list prices be confirmed against MANUFACTURER sites and marked pathway 'list_price'. Every manufacturer domain (lilly.com, zepbound.lilly.com, novonordisk.com, novocare.com, wegovy.com, ozempic.com) is egress-blocked in this environment, so NO list price could be confirmed against a manufacturer source. All values remain null.",
+  "extracted": {
+    "manufacturer_confirmation_achieved": false,
+    "reason": "www.lilly.com:443 and zepbound.lilly.com:443 denied at CONNECT by egress policy; other manufacturer hosts equally unreachable. No manufacturer page was read.",
+    "wegovy_list_price_claims_usd_per_month": {
+      "1349": "cited by the brief, by index-mediated whitehouse.gov text, and by multiple aggregators - highly consistent across sources but NEVER read from novonordisk.com/wegovy.com"
+    },
+    "ozempic_list_price_claims_usd_per_month": {
+      "1028": "cited by the brief and by index-mediated whitehouse.gov text and aggregators",
+      "935": "cited in the brief as an alternative value - NOT corroborated by anything found in this gate",
+      "998": "appeared in my own search phrasing; NOT found as a sourced claim - disregard"
+    },
+    "zepbound_list_price_claims_usd_per_month": {
+      "1088": "index-mediated whitehouse.gov February 2026 fact sheet text",
+      "1087": "cited by the brief",
+      "1086.37": "cited by aggregators (goodrx/noom-class secondary pages)",
+      "1059_to_1086": "range cited by the brief",
+      "assessment": "FOUR-WAY DISAGREEMENT on a single list price across sources, none primary. This is precisely the kind of figure that must not be published. Value null, confidence conflicting."
+    },
+    "MATERIAL_FORWARD_LOOKING_CHANGE": "Novo Nordisk announced on approximately 2026-02-24 that it will CUT US list prices for Wegovy and Ozempic by up to 50% for 2027, setting a monthly list price of about $675 for its semaglutide medicines. If true, the $1,349 and $1,028 list prices are time-bounded 2026 values that will change on a known horizon. Any stored list price MUST carry an effective-date and must not be presented as durable. Reported by CNN and Bloomberg (secondary) - NOT confirmed against novonordisk.com or an SEC filing.",
+    "secondary_urls_locating_the_list_price_cut": [
+      "https://www.cnn.com/2026/02/24/health/novo-nordisk-ozempic-wegovy-costs",
+      "https://www.bloomberg.com/news/articles/2026-02-24/novo-will-slash-us-list-prices-for-wegovy-and-ozempic-next-year"
+    ],
+    "primary_sources_that_must_be_read_to_close_this": [
+      "https://www.novonordisk.com/ (press releases / investor announcements on US list price)",
+      "https://www.wegovy.com/ (list price and savings disclosure)",
+      "https://www.ozempic.com/ (list price and savings disclosure)",
+      "https://zepbound.lilly.com/ (Zepbound list price disclosure)",
+      "https://investor.lilly.com/ (list price / pricing-action press releases)",
+      "https://www.sec.gov/ (Novo Nordisk 20-F, Lilly 10-K/8-K pricing disclosures)"
+    ]
+  },
+  "verbatim_excerpt": "Search summary over secondary sources, quoted verbatim: \"Wegovy's list price is currently $1,349 - Ozempic's list price is $1,028 - Zepbound currently has a list price of $1,086.37\" and \"Novo Nordisk plans to slash the US list prices for Wegovy and Ozempic, setting a monthly price of $675 for its semaglutide medicines, a cut of as much as 50%.\" -- SECONDARY ONLY. May locate, may never confirm."
+}

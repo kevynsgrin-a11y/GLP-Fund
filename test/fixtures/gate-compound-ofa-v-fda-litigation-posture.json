@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.courthousenews.com/fifth-circuit-probes-fda-ban-on-compounded-glp-1s/",
+  "also_covers_urls": [
+    "https://courthousenews.com/wp-content/uploads/2026/03/ofa-vs-fda-appellees-brief.pdf",
+    "https://courthousenews.com/wp-content/uploads/2026/03/ofa-vs-fda-novo-nordisk-brief.pdf",
+    "https://www.courtlistener.com/docket/69666860/outsourcing-facilities-association-v-food-and-drug-administration/",
+    "https://www.courtlistener.com/docket/69232675/authorities/outsourcing-facilities-association-v-united-states-food-and-drug/"
+  ],
+  "http_status": "403 Forbidden on direct read for every URL above, including courtlistener.com and the two brief PDFs. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "secondary_press",
+  "retrieval_method": "General WebSearch plus domain-restricted WebSearch. NOT a direct read of any court document. Under this project's rules of evidence, SECONDARY - may locate, may never confirm.",
+  "extracted": {
+    "EVIDENTIARY_STATUS": "ZERO primary court documents were read. No FDA statement on litigation posture was read. Everything below is press and law-firm commentary and is UNVERIFIED.",
+    "case_1_tirzepatide": "Outsourcing Facilities Association et al v. U.S. FDA, No. 4:24-cv-00953-P (N.D. Tex.). Filed October 2024. Co-plaintiff FarmaKeio.",
+    "case_2_semaglutide": "Outsourcing Facilities Association v. FDA, No. 4:25-cv-00174 (N.D. Tex.). Filed February 24, 2025, three days after FDA's February 21, 2025 declaratory order.",
+    "district_court_tirzepatide_PI_denied": "March 5, 2025 - district court denied plaintiffs' motion for preliminary injunction and request for stay of FDA's declaration that the tirzepatide shortage is resolved. Notice of interlocutory appeal filed March 10, 2025.",
+    "district_court_tirzepatide_merits": "May 7, 2025 - court concluded FDA acted within its statutory authority in determining tirzepatide was no longer in shortage.",
+    "district_court_semaglutide_merits": "June 13, 2025 ruling for FDA and Novo Nordisk, sealed at the time and unsealed June 17, 2025. The district court relied in part on its parallel tirzepatide decision.",
+    "appeals": "Fifth Circuit. Two docket numbers surfaced: No. 25-10600 (appellees' brief) and No. 25-10758 (Novo Nordisk brief). One appeal reported as filed June 20, 2025. The mapping of each docket number to the tirzepatide vs semaglutide case was NOT established.",
+    "oral_argument": "March 25 (2026). Judge Stuart Kyle Duncan reported as asking 'How can you have an adjudication with no party?' Compounders' counsel characterized FDA's action as 'a prospective legal prohibition on compounding for an entire industry' and a 'party-free adjudication' without precedent in APA history.",
+    "CURRENT_POSTURE_AS_OF_2026_07_30": "NO Fifth Circuit decision was located. Multiple independent searches for a June or July 2026 ruling returned nothing. The panel appears not to have ruled, four months after argument. THIS IS AN OPEN APPEAL WITH LIVE APA ISSUES.",
+    "WHY_THIS_ARGUES_FOR_EXCLUSION_NOT_INCLUSION": "An undecided appeal on whether FDA's delisting was procedurally valid means the legal status of compounded GLP-1s could change on any given day with no advance notice. A static price-comparison site cannot track that. Publishing compounded options creates an obligation to be correct about a question a federal appellate panel has had under submission for four months. Exclusion is the only posture that is robust to either outcome.",
+    "enforcement_reality_regardless_of_appeal": "Secondary commentary consistently reports that the enforcement posture is settled in FDA's favor at present and that 'essentially a copy' mass compounding of semaglutide or tirzepatide is impermissible under both 503A and 503B today. Novo Nordisk and Eli Lilly are separately reported to be filing suit and sending cease-and-desist letters to compounders, clinics and telehealth companies."
+  },
+  "verbatim_excerpt": "Search output attributed to Courthouse News Service, quoted as returned: \"When demand exploded for GLP-1 drugs, the FDA placed them on its 'drug shortage' list, which legally opened the door for special '503B' outsourcing pharmacies to compound large batches of the drugs without full FDA approval. Once the shortage was declared over, compounding became illegal except in narrow cases.\" ... \"How can you have an adjudication with no party?\" (attributed to U.S. Circuit Judge Stuart Kyle Duncan) ... \"a prospective legal prohibition on compounding for an entire industry\" (attributed to compounders' counsel). -- NOTE: SECONDARY PRESS, reproduced from search output, NOT a direct read. May not confirm anything."
+}

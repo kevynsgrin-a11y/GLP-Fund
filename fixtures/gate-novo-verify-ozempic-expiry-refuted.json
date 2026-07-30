@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T10:58:00Z",
+  "url": "WebSearch result set; target primary page (unread, 403): https://www.novocare.com/pharmacy/ozempic/offer.html",
+  "http_status": "WebSearch returned snippets; underlying primary page never retrieved (403)",
+  "source_type": "secondary_search_index_snippet",
+  "extracted": {
+    "refutes_claim": "Original run asserted the Ozempic $199 introductory offer ran 'through 2026-06-30' and was therefore ALREADY EXPIRED as of 2026-07-30, and encoded an eligibility rule whose predicate is hardcoded FALSE.",
+    "located_end_date_from_novocare_page_index": "2026-12-31",
+    "supporting_terms_located": "Prescriptions must be written on or before 12/31/2026, received by the pharmacy by end of day 12/31/2026, and shipped on or before 1/31/2027. Limited-time offer applies to the first two (2) 28-day fills.",
+    "three_incompatible_end_dates_located": {
+      "2026-12-31": "novocare.com indexed page snippets, for BOTH Wegovy and Ozempic",
+      "2026-06-30": "secondary aggregators only (telehealthally.com, plexusdx.com) - the date the original run adopted",
+      "2026-03-31": "original launch announcement coverage; offer began 2025-11-17"
+    },
+    "correct_encoding": "confidence 'conflicting', value null. The offer must NOT be asserted as expired.",
+    "asymmetry_objection": "The offer was launched jointly for Wegovy AND Ozempic in a single announcement. The original run gave Wegovy 2026-12-31 but Ozempic 2026-06-30. Nothing located supports that asymmetry.",
+    "harm_direction": "Suppressing a live $199 offer and quoting $349 overstates cost by $150/month for a self-pay patient."
+  },
+  "verbatim_excerpt": "Patients new to the Ozempic(R) Savings Offer or NovoCare(R) Pharmacy pay $199 for each month of 0.25 mg and 0.5 mg. Offer for 2 monthly fills through December 31, 2026, then $349 per month for Ozempic(R) 0.25 mg, 0.5 mg, or 1 mg, and $499/month for Ozempic(R) 2 mg. ... Prescriptions must be written on or before 12/31/2026, received by the pharmacy by the end of day on 12/31/2026, and shipped on or before 1/31/2027. The limited-time offer applies to the first two (2) 28-day fills."
+}

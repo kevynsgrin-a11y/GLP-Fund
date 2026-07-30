@@ -1,0 +1,16 @@
+{
+  "retrieved_at": "2026-07-30T10:50:00Z",
+  "url": "https://trumprx.gov/p/zepbound-kwikpen",
+  "http_status": "403 Forbidden on direct read (egress policy denial at CONNECT). Content below is SEARCH-INDEX-MEDIATED ONLY and CANNOT confirm anything.",
+  "source_type": "secondary_search_index_summary_of_primary_page",
+  "extracted": {
+    "finding": "The prior researcher's 'COMPARATOR CONFLICT' finding is contradicted by an independent index-mediated read of the same page, and their prescriptive instruction derived from it is unsupported.",
+    "prior_researcher_claim": "Reported that the Zepbound KwikPen page shows a comparator of $499.00 and '40% off', reasoned that $299/$499 = 40% off is 'internally consistent', concluded that 'the site therefore appears to use different comparator baselines in different places', and instructed: 'Do not pair the $299 with a $1,087 was price.'",
+    "my_independent_index_mediated_read": "Zepbound KwikPen starts at $299 per month, compared to a retail price of $1,087, a saving of $788/month or approximately 72% off.",
+    "assessment": "Two index-mediated reads of the same unreadable page disagree on the comparator ($499 vs $1,087) and on the discount ($40% vs ~72%). Neither can confirm the other. The correct handling is confidence 'conflicting' on the comparator, NOT a confident assertion that the comparator is $499 and that $1,087 must not be used.",
+    "secondary_error_in_prior_reasoning": "Internal arithmetic consistency ($299/$499 = 40% off) was treated as corroborating evidence. It is not: it only shows the two numbers in a snippet are arithmetically compatible, which is equally true of $299/$1,087 = ~72% off. Self-consistency of a snippet is not evidence that the snippet reflects the page.",
+    "downstream_risk": "The prior researcher's instruction would have caused the product to suppress a comparator that the page may actually display, and to record a savings figure roughly half the true one. This distorts ranking and savings math rather than the price a patient pays, so it is material rather than blocking.",
+    "confirmation_status": "NOT CONFIRMED either way. Comparator baseline for Zepbound KwikPen is CONFLICTING and unresolved. Value remains null."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to trumprx.gov/p/zepbound-kwikpen: \"Zepbound KwikPen on TrumpRx starts at $299 per month, compared to a retail price of $1,087. This represents a savings of $788 per month, or approximately 72% off the retail price.\" -- reproduced from search-index output, NOT a direct read. Compare the prior researcher's incompatible index-mediated capture: \"Zepbound KwikPen starts at $299.00 (compared to $499.00 retail, which is 40% off)\"."
+}

@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-07-30T10:19:08Z",
+  "url": "https://www.fda.gov/drugs/human-drug-compounding/compounding-when-drugs-are-fdas-drug-shortages-list",
+  "also_covers_urls": [
+    "https://cacmap.fda.gov/drugs/human-drug-compounding/drug-compounding-and-drug-shortages",
+    "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/compounded-drug-products-are-essentially-copies-commercially-available-drug-product-under-section",
+    "https://www.fda.gov/media/98964/download",
+    "https://www.fda.gov/drugs/human-drug-compounding/human-drug-compounding-laws"
+  ],
+  "http_status": "403 Forbidden on direct read for all URLs above, including the cacmap.fda.gov mirror. Content below is SEARCH-INDEX-MEDIATED ONLY.",
+  "source_type": "primary_manufacturer",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: ['fda.gov']). NOT a direct read. Cannot confirm.",
+  "source_type_note": "Would be primary_government if directly read. Treat as UNVERIFIED.",
+  "extracted": {
+    "the_mechanism": "Both sections 503A and 503B restrict compounding drug products that are essentially a copy of a commercially available drug product (503A) or an approved drug product (503B). FDA does not consider a drug to be commercially available when it appears on FDA's drug shortages list - so while a drug is listed, the copies restriction is lifted.",
+    "what_delisting_does": "Removal from the shortage list restores the copies restriction. This is the entire legal hinge. Once semaglutide and tirzepatide came off the list, compounding versions that are essentially copies of Ozempic, Wegovy, Mounjaro or Zepbound lost its statutory basis.",
+    "503A_residual_conditions": "All other conditions of section 503A must still be met, including compounding based on a valid prescription for an individual patient. FDA's own framing is that other conditions remain and compounded drugs may not be able to meet these.",
+    "PERSONALIZED_DOSE_LOOPHOLE_ANALYSIS": "The narrow theory advanced by compounders is that a patient-specific 503A preparation is not 'essentially a copy' if a prescriber documents a clinical difference for that individual patient - a different strength, an excipient sensitivity, a non-label titration. Three things about this: (1) it is inherently individual and prescriber-documented, so it has NO published price and cannot be a row in a cost-comparison table; (2) the exact deviation that supports the legal theory - non-label dose, non-label titration - is the precise hazard FDA identifies as causing hospitalizations; (3) FDA has NOT endorsed this reading and its 503B bulks proposal states there is no clinical need for these molecules to be compounded from bulk at all.",
+    "WHO_ASSERTS_THE_LOOPHOLE": "The only sources located asserting that a lawful 503A personalized-dose pathway exists in 2026 are commercially interested parties selling compounded GLP-1s or marketing to that industry: trimrx.com, lotilabs.com, portraitcare.com, telehealthally.com, trytrimi.com, medspastandards.com, glp1clinics.org, giftfromwithin.org. NO primary FDA source endorsing this pathway was located. These are the exact competitors the tool is positioned against and they are not evidence.",
+    "MASS_COMPOUNDING_CONCLUSION": "Mass compounding - the model that produced the cheap advertised prices consumers are shopping for - has no lawful basis for these molecules today under either 503A or 503B. Anything lawful that remains is individual, unpriced, and prescriber-mediated. There is nothing here to rank."
+  },
+  "verbatim_excerpt": "Domain-restricted search output attributed to FDA, quoted as returned: \"Section 503A restricts compounded drugs that are essentially copies of commercially available drugs, but FDA does not consider a drug to be commercially available when it appears on FDA's drug shortages list.\" ... \"a drug is not considered to be commercially available if it is on FDA's drug shortages list and limitations on compounding essentially copies are not applicable in these circumstances\" ... \"All other conditions of section 503A must be met, including compounding based on a valid prescription for an individual patient.\" -- NOTE: reproduced from domain-restricted search output, NOT a direct read."
+}

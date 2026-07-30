@@ -1,0 +1,35 @@
+{
+  "retrieved_at": "2026-07-30T11:03:21Z",
+  "url": "Local filesystem and git inspection of /home/user/GLP-Fund. No network involved.",
+  "http_status": "n/a - local verification",
+  "source_type": "record_integrity_audit",
+  "extracted": {
+    "defect_1_all_twelve_fixture_paths_wrong": {
+      "claimed_in_fixtures_written": "/home/user/GLP-Fund/fixtures/cross-rules-*.json (12 files)",
+      "actual_location_on_disk": "/home/user/GLP-Fund/test/fixtures/cross-rules-*.json (all 12 present, valid JSON, contents intact)",
+      "verified_by": "find / -name 'cross-rules-*' plus per-file existence test at each declared path",
+      "impact": "Every one of the 12 declared paths resolves to file-not-found. An orchestrator following fixtures_written would conclude the evidence freeze never happened. The evidence exists; the addresses are wrong.",
+      "recurrence": "This is the THIRD consecutive gate with the same defect. /home/user/GLP-Fund/fixtures/gate-lilly-verify-fixture-trail-broken.json records 7 wrong paths for the gate-lilly gate; /home/user/GLP-Fund/fixtures/gate-novo-verify-record-integrity-defects.json records 14 wrong paths for gate-novo. The root cause is a repo reorganization that moved fixtures/ to test/fixtures/ (114 tracked files under test/fixtures/ versus 7 under fixtures/), combined with a task template that specified the literal broken directory 'undefined/'. It is a systemic convention failure, not a per-gate mistake, and it needs fixing once at the orchestrator level.",
+      "action_taken_here": "My own fixtures are written to /home/user/GLP-Fund/test/fixtures/, the canonical tracked location, and the paths I report are the real ones."
+    },
+    "defect_2_example_com_labeled_primary_government": {
+      "url_in_sources_array": "https://example.com/",
+      "declared_source_type": "primary_government",
+      "problem": "example.com is an IANA-reserved documentation domain. It is not a government source and is not on this project's primary allowlist. Any downstream audit asking 'does this gate rest on at least one primary_government source' passes falsely on a control test that by construction carries no drug-pricing information. The report's own key_quote for this entry concedes it is a control, which makes the label self-contradicting.",
+      "remedy": "Relabel as session_control or session_diagnostic, or move it out of the sources array into the retrieval-blockade record. The control test itself was sound methodology and should be kept - only the source_type label is wrong.",
+      "note": "The sibling gate-novo verifier found the identical class of defect with http://127.0.0.1:40851/__agentproxy/status labeled primary_government. Same systemic issue."
+    },
+    "defect_3_verified_date_asserted_on_unverified_data": {
+      "problem": "All eight entries in the data array carry verified_date: '2026-07-30' while simultaneously carrying confidence 'unverified' and notes stating 'NOT CONFIRMED' and 'no page read'. Nothing was verified on that date. A field named verified_date populated on data the same record says was never verified is actively misleading to any consumer that reads metadata without reading notes.",
+      "remedy": "Leave verified_date null when confidence is unverified, and carry the retrieval attempt date in a separate field such as attempted_date or last_retrieval_attempt."
+    },
+    "defect_4_source_type_asserted_for_pages_never_retrieved": {
+      "problem": "Every source in the array carries a definite source_type although not one page was served. The labels are almost certainly correct as statements about what those URLs ARE, and this is the least serious of the four, but combined with defects 2 and 3 the record reads as better-evidenced than it is.",
+      "remedy": "Keep source_type as a property of the URL, and add an explicit retrieval_status field ('not_retrieved - 403 at CONNECT') so provenance and retrieval outcome cannot be conflated."
+    },
+    "WHAT_THE_REPORT_GOT_RIGHT_ON_PROCESS": {
+      "note": "These are record-keeping defects, not evidentiary ones. On the central discipline the report was correct and should be credited: it kept every value null, it kept every confidence unverified, it refused to let a search-index paraphrase confirm anything, it explicitly prefixed every verbatim_quote field to mark it as an unquotable paraphrase rather than fabricating quotes, and it complied with /root/.ccr/README.md by reporting the blocked hosts instead of attempting to route around the egress policy. I independently reconfirmed the blockade and reached the same conclusion."
+    }
+  },
+  "verbatim_excerpt": "Per-path existence test output: 'MISSING: cross-rules-retrieval-blockade-record.json ... MISSING: cross-rules-bridge-50-and-245.json' at /home/user/GLP-Fund/fixtures/, against 'find / -name cross-rules-*' returning '/home/user/GLP-Fund/test/fixtures/cross-rules-retrieval-blockade-record.json' and eleven siblings. git ls-files: 114 tracked files under test/fixtures/, 7 under fixtures/."
+}
