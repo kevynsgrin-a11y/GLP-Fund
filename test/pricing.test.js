@@ -36,7 +36,7 @@ import {
   resolveDoseTiers,
   UNVERIFIED_DISPLAY,
 } from '../public/engine/pricing.js';
-import { verificationDebt } from '../public/engine/eligibility.js';
+import { verificationDebt, toContext } from '../public/engine/eligibility.js';
 
 const load = (p) => JSON.parse(readFileSync(new URL(p, import.meta.url), 'utf8'));
 const ENGINE = load('./fixtures/engine-dataset.json');
@@ -426,6 +426,39 @@ test('vector 4, shipped data: NovoCare and TrumpRx both appear for an uninsured 
   for (const r of results) {
     assert.match(r.sourceUrl, /^https:\/\//);
     assert.ok(r.verifiedDate);
+  }
+});
+
+test('an irreconcilable eligibility conflict neither suppresses nor silently offers', () => {
+  // Sources disagree on whether a Medicare beneficiary may buy through LillyDirect
+  // Self Pay at all. Suppressing would strand a user who does qualify; offering it
+  // silently would send one who does not to a program that will refuse them. The
+  // only honest handling of an unresolved conflict is to keep the pathway AND say
+  // out loud that its eligibility is disputed.
+  const results = rankPathways({ drug: 'zepbound', insurance: 'medicare' }, SHIPPED, at);
+  const lilly = find(results, 'lillydirect_self_pay');
+
+  assert.ok(lilly, 'the pathway must not be suppressed on a conflict we could not settle');
+  assert.ok(
+    lilly.eligibilityNotes.some((n) => /sources disagree/i.test(n)),
+    `the dispute must reach the user, got: ${JSON.stringify(lilly.eligibilityNotes)}`
+  );
+
+  // And an uninsured user, for whom no dispute exists, must not see the warning.
+  const uninsured = find(rankPathways({ drug: 'zepbound', insurance: 'none' }, SHIPPED, at), 'lillydirect_self_pay');
+  assert.ok(!uninsured.eligibilityNotes.some((n) => /sources disagree/i.test(n)));
+});
+
+test('the copay-card bar does not sweep in FEHB or exchange plans', () => {
+  // Research contradicted the brief's premise here: located savings-offer terms
+  // state that FEHB, ACA exchange and state employee plans are NOT federal or
+  // state healthcare programs for the offer's purposes. Treating an FEHB enrollee
+  // as barred would wrongly remove a pathway they can actually use, so
+  // federalProgramme is deliberately limited to the four programs named.
+  assert.equal(toContext({ insurance: 'fehb' }).federalProgramme, false);
+  assert.equal(toContext({ insurance: 'commercial_covered' }).federalProgramme, false);
+  for (const program of ['medicare', 'medicaid', 'tricare', 'va']) {
+    assert.equal(toContext({ insurance: program }).federalProgramme, true, program);
   }
 });
 

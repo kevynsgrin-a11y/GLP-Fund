@@ -348,6 +348,40 @@
         "value": "medicaid"
       },
       "reason": "Medicaid GLP-1 coverage is state-by-state. A federal program reported for 2026 negotiates terms on behalf of state Medicaid agencies, but participation is voluntary and what you pay depends on your own state. There is no national Medicaid price for these medications and this site does not publish one."
+    },
+    {
+      "id": "lillydirect-federal-program-eligibility-disputed",
+      "pathway": "lillydirect_self_pay",
+      "effect": "note",
+      "when": {
+        "field": "federalProgramme",
+        "op": "truthy"
+      },
+      "reason": "IMPORTANT AND UNRESOLVED: sources disagree about whether Medicare and Medicaid beneficiaries may buy through this cash-pay program at all. One reading excludes government-programme beneficiaries outright; another permits anyone with a prescription who chooses to pay cash. We could not settle it, so we are neither hiding this pathway from you nor telling you it is available. Call the program and ask before you rely on it."
+    },
+    {
+      "id": "novocare-self-pay-federal-program-permitted-as-located",
+      "pathway": "novocare_self_pay",
+      "effect": "note",
+      "when": {
+        "field": "federalProgramme",
+        "op": "truthy"
+      },
+      "reason": "This cash-pay pharmacy appears to be open to people who have Medicare or other government coverage but choose to pay cash and not use it. That is a different rule from the manufacturer savings card, which bars government-programme beneficiaries outright. We have not confirmed it directly, so verify before you rely on it."
+    },
+    {
+      "id": "patient-assistance-requires-medicare-or-uninsured",
+      "pathway": "patient_assistance",
+      "effect": "note",
+      "when": {
+        "field": "insuranceStatus",
+        "op": "in",
+        "value": [
+          "commercial_covered",
+          "commercial_not_covered"
+        ]
+      },
+      "reason": "Patient assistance programmes generally require that you have Medicare or no insurance at all. If you have commercial insurance you are typically not eligible, even if your plan does not cover the medication. Income thresholds also vary by product and we have not confirmed which applies here."
     }
   ],
   "prices": [
@@ -457,7 +491,7 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS. Note that two figures circulate for this programme and they are not alternatives: the lower one is what a beneficiary pays at the counter, the higher one is the net price at which manufacturers supply the drug to the government. Only the first is your cost.",
       "candidate": {
         "value": 50,
         "provenance": "Reported as 50 per month from 2026-07-01. cms.gov and medicare.gov were both denied by the egress policy on 2026-07-30, so neither the launch nor the amount could be confirmed.",
@@ -769,7 +803,7 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS. Note that two figures circulate for this programme and they are not alternatives: the lower one is what a beneficiary pays at the counter, the higher one is the net price at which manufacturers supply the drug to the government. Only the first is your cost.",
       "candidate": {
         "value": 50,
         "provenance": "Reported at 50 per month for eligible Medicare Part D beneficiaries. cms.gov denied by egress policy on 2026-07-30.",
@@ -847,7 +881,7 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS. Note that two figures circulate for this programme and they are not alternatives: the lower one is what a beneficiary pays at the counter, the higher one is the net price at which manufacturers supply the drug to the government. Only the first is your cost.",
       "candidate": {
         "value": 50,
         "provenance": "Reported at 50 dollars per month for eligible beneficiaries. cms.gov and medicare.gov both denied by egress policy on 2026-07-30.",
@@ -865,7 +899,7 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS.",
+      "notes": "Reported to run 2026-07-01 through 2027-12-31 and to cover Foundayo (all formulations), Wegovy (injection and tablets) and the Zepbound KwikPen specifically, not Zepbound vials. Could not be confirmed against CMS. Note that two figures circulate for this programme and they are not alternatives: the lower one is what a beneficiary pays at the counter, the higher one is the net price at which manufacturers supply the drug to the government. Only the first is your cost.",
       "candidate": {
         "value": 50,
         "provenance": "Reported at 50 dollars per month for eligible beneficiaries. cms.gov and medicare.gov both denied by egress policy on 2026-07-30.",

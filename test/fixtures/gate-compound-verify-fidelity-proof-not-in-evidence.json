@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T10:52:36Z",
+  "url": "file:///home/user/GLP-Fund/test/fixtures/gate-compound-fda-risk-language-unapproved-glp1.json",
+  "http_status": "n/a - local audit of the prior researcher's own frozen fixture",
+  "source_type": "internal_audit_of_prior_fixture",
+  "retrieval_method": "Read the prior fixture in full, then grep -o across all gate-compound-*.json for the pattern 'safety, <word> (or|and) <word>' to enumerate every actual rendering retrieved.",
+  "extracted": {
+    "THE_CLAIM_UNDER_TEST": "The prior report's dispositive argument is that the search index demonstrably altered FDA's wording, proven by the same sentence returning as 'safety, effectiveness or quality' in one search and 'safety, quality or effectiveness' in another. This proof-pair is stated in eligibility rule compounded_display_precondition and in the fixture's FIDELITY_WARNING field.",
+    "FINDING": "THE PROOF-PAIR IS NOT IN THE EVIDENCE. The string 'safety, quality or effectiveness' appears exactly once across all eleven gate-compound fixtures, and that single occurrence is inside the FIDELITY_WARNING sentence asserting the variant exists. It appears in ZERO retrieved candidate sentences.",
+    "actual_renderings_retrieved": {
+      "safety, effectiveness or quality": "4 occurrences - core_risk_sentence_candidate_1, core_risk_sentence_candidate_2, and the verbatim_excerpt",
+      "safety, effectiveness and quality": "1 occurrence - core_risk_sentence_candidate_3",
+      "safety, quality or effectiveness": "1 occurrence - ONLY inside the FIDELITY_WARNING claim itself, self-referential, never in retrieved text"
+    },
+    "what_the_real_variation_is": "The genuine discrepancy across retrieved candidates is the conjunction, not the word order: 'safety, effectiveness OR quality' (candidates 1 and 2) versus 'safety, effectiveness AND quality' (candidate 3). Note candidate 3 is a sentence about GLP-1s specifically and may legitimately be a different FDA sentence on a different page, in which case it is not evidence of index corruption at all.",
+    "CONSEQUENCE": "The specific evidentiary basis offered for the gate's dispositive holding is fabricated. The holding itself still stands on a stronger and simpler ground the report also states: zero bytes of any fda.gov page were read, so no string may be attributed to FDA as verbatim regardless of internal consistency. The conclusion is right; the stated proof is not.",
+    "severity_reasoning": "Material rather than blocking: no price or dose reaches a user, and the outcome (exclude) is unchanged. But a fabricated evidentiary detail inside a YMYL gate record is exactly the class of error that must never be allowed to harden into precedent for a later reversal decision."
+  },
+  "verbatim_excerpt": "Prior fixture, FIDELITY_WARNING field, quoted in full: \"Two of the three 'core risk sentence' candidates above differ in wording while expressing the same proposition ('safety, effectiveness or quality' vs 'safety, quality or effectiveness'). This is direct evidence that the index is not preserving FDA's exact wording. Publishing any of these as a verbatim FDA quotation would be a misattribution.\" -- The second member of that pair does not occur in candidates 1, 2 or 3."
+}

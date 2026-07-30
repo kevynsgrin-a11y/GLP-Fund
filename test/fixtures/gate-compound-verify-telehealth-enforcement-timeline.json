@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-07-30T10:52:36Z",
+  "url": "https://www.fda.gov/news-events/press-announcements/fda-warns-30-telehealth-companies-against-illegal-marketing-compounded-glp-1s",
+  "http_status": "403 Forbidden on direct read (host denied at CONNECT). Everything below is SEARCH-INDEX-MEDIATED ONLY and CONFIRMS NOTHING.",
+  "source_type": "unread_403_would_be_primary_government_if_read",
+  "retrieval_method": "WebSearch only. No direct read was possible. Index output cannot confirm a figure under this project's rules of evidence.",
+  "extracted": {
+    "PURPOSE": "Adversarial re-test of the prior report's compounded-GLP-1 enforcement timeline. Two defects found. Both are index-vs-index and therefore themselves unverified, but they show the prior timeline is not the only reading of the same evidence.",
+    "DEFECT_A_LIKELY_DOUBLE_COUNTING": {
+      "prior_report_claim": "Treated the 30-letter action and the Weightless Medical LLC dba WeightCare letter (721478, dated 02/20/2026) as two independent enforcement data points, the latter offered as proof that 'enforcement continues into 2026'.",
+      "what_the_index_now_indicates": "The 30-letter wave itself is dated February 20, 2026 and was announced March 3, 2026. WeightCare's letter shares that exact 02/20/2026 date, so it is most plausibly one OF the 30 rather than a separate later action.",
+      "status": "UNVERIFIED both ways - the warning letter pages and the press announcement are all 403. Recorded as a competing reading, not as a corrected fact."
+    },
+    "DEFECT_B_MISSED_MORE_RECENT_ENFORCEMENT_WAVE": {
+      "finding": "The index reports a further wave of warning letters published June 16, 2026 to approximately 25 companies over marketing of compounded GLP-1-style medications. The prior report's most recent enforcement item was Medica Weight Loss (728284) dated 06/08/2026, and it did not surface the June 16, 2026 wave at all.",
+      "why_this_matters": "The prior report listed as unresolved: 'Whether any FDA enforcement-discretion policy, guidance, or litigation-driven stay issued between May 2026 and 2026-07-30 ... CANNOT RULE OUT. The index's coverage of the most recent two months is unknown and unmeasurable.' That coverage gap is no longer hypothetical - it is demonstrated by an item the prior sweep missed.",
+      "direction_of_effect": "Reinforces exclusion. FDA enforcement against consumer-facing presentation of compounded GLP-1s is more recent and more active than the prior report established, not less.",
+      "status": "UNVERIFIED - index-mediated."
+    },
+    "ALSO_LOCATED_UNVERIFIED": {
+      "2025_volume": "Index reports FDA sent over 100 letters to telehealth and compounding providers over GLP-1 claims during 2025. The prior report located 8 individual letters dated 09/09/2025, which is consistent with a partial sample and is not a conflict.",
+      "new_quality_signal": "Index reports a March 2026 study identifying a tirzepatide-B12 adduct in mass-compounded tirzepatide-with-B12 that is absent from FDA-approved tirzepatide. Secondary only; must not be published. Independently undercuts any assumption of stable product identity across compounded sellers."
+    },
+    "enforcement_conduct_category_unchanged": "The regulated conduct remains presentation and claims on consumer-facing sites, including implying sameness with FDA-approved products and obscuring sourcing. The prior report's NO_ADJACENCY conclusion is directionally supported, though its supporting FDA quotation remains unread and unquotable."
+  },
+  "verbatim_excerpt": "Domain-restricted search output, NOT a direct read, NOT safe to attribute to FDA: reported that FDA \"issued 30 warning letters to telehealth companies\" with an action date of February 20, 2026 announced March 3, 2026, and separately that FDA \"published warning letters on June 16, 2026 to 25 companies for their marketing of compounded GLP-1-style medications and related products.\""
+}

@@ -1,0 +1,36 @@
+{
+  "retrieved_at": "2026-07-30T10:52:36Z",
+  "url": "https://www.fda.gov/news-events/press-announcements/fda-proposes-exclude-semaglutide-tirzepatide-and-liraglutide-503b-bulks-list",
+  "also_covers_urls": [
+    "https://www.courthousenews.com/fifth-circuit-probes-fda-ban-on-compounded-glp-1s/",
+    "https://courthousenews.com/wp-content/uploads/2026/03/ofa-vs-fda-novo-nordisk-brief.pdf",
+    "https://courthousenews.com/wp-content/uploads/2026/03/ofa-vs-fda-appellees-brief.pdf",
+    "https://www.federalregister.gov/documents/2026/05/01/2026-08552/list-of-bulk-drug-substances-for-which-there-is-a-clinical-need-under-section-503b-of-the-federal"
+  ],
+  "http_status": "403 Forbidden at CONNECT for fda.gov, federalregister.gov, courtlistener.com and courthousenews.com. Zero direct reads. Index-mediated only; CONFIRMS NOTHING.",
+  "source_type": "unread_403_mixed_government_and_secondary_press",
+  "retrieval_method": "WebSearch only.",
+  "extracted": {
+    "PURPOSE": "Staleness re-test of the two claims most likely to have been superseded between the prior sweep and now: whether the 503B bulks exclusion went final, and whether the Fifth Circuit ruled.",
+    "BULKS_EXCLUSION_STILL_PROPOSED_PRIOR_REPORT_SURVIVES": {
+      "finding": "No final determination located as of 2026-07-30. Index continues to describe the April 30, 2026 action as a proposal, with comments due June 29, 2026, and states FDA will consider comments before making a final determination.",
+      "verdict": "The prior report's insistence that the site MUST NOT state the exclusion is finalized is CORRECT and survives. This is the prior report's strongest and best-calibrated call.",
+      "caveat": "Absence of a located final determination is absence of evidence from an index behind a total egress blockade. It is not a verified negative. A final determination could have issued and not been indexed.",
+      "status": "UNVERIFIED"
+    },
+    "FIFTH_CIRCUIT_STILL_UNDECIDED_PRIOR_REPORT_SURVIVES": {
+      "finding": "No ruling located, four months after the March 25, 2026 argument. Index states no decision has been issued on the appeal.",
+      "verdict": "The prior report's STATUS_VOLATILE rule and its instruction that the site must not assert compounded GLP-1s are 'illegal' as a settled matter both survive.",
+      "status": "UNVERIFIED - zero court documents read; courtlistener.com and both brief PDFs are 403."
+    },
+    "MINOR_OVERSTATEMENT_DOCKET_MAPPING": {
+      "prior_report_claim": "Mapping of Fifth Circuit dockets 25-10600 and 25-10758 to the tirzepatide case (4:24-cv-00953-P) versus the semaglutide case (4:25-cv-00174) was 'NOT ESTABLISHED'.",
+      "what_is_locatable": "A brief PDF titled 'No. 25-10758 IN THE UNITED STATES COURT OF APPEALS FOR THE FIFTH CIRCUIT' is filed under the slug ofa-vs-fda-novo-nordisk-brief.pdf. Novo Nordisk is the semaglutide intervenor, which points to 25-10758 being the semaglutide appeal. The companion PDF is titled 'No. 25-10600' under slug ofa-vs-fda-appellees-brief.pdf.",
+      "assessment": "This is a secondary-source inference from a filename and a cover page, hosted on a press site that is itself 403. It LOCATES the mapping; it cannot CONFIRM it. The prior report's 'not established' is therefore defensible, merely slightly over-pessimistic. Minor severity. No downstream effect - the mapping is irrelevant to the exclusion outcome.",
+      "status": "UNVERIFIED"
+    },
+    "shortage_list_history_located_not_confirmed": "Index states semaglutide was added to the shortage list in 2022 and removed in 2025; tirzepatide added 2022, removed 2024. Consistent with the prior report. Present-tense per-presentation shortage status remains unverified - dps.fda.gov is both 403 and a JavaScript application.",
+    "date_arithmetic_check_passes": "The prior report's enforcement-discretion dates are internally consistent with FDA's stated 60-day-503A / 90-day-503B split measured from each declaratory order: tirzepatide December 2024 order to 02/18/2025 and 03/19/2025; semaglutide 02/21/2025 memorandum to 04/22/2025 and 05/22/2025. Arithmetic coherence is not verification - all four dates remain unread."
+  },
+  "verbatim_excerpt": "Domain-restricted search output, NOT a direct read: \"On April 30, 2026, the FDA announced a proposal to exclude semaglutide, tirzepatide, and liraglutide from the 503B Bulk Drug Substances List. This is currently a proposal, not a final determination yet.\" ... \"As of the most recent search results available, no decision has been issued on that appeal as of this writing.\""
+}

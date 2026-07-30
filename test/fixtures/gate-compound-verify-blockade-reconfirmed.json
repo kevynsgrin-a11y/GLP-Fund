@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-07-30T10:52:36Z",
+  "url": "http://127.0.0.1:40851/__agentproxy/status",
+  "http_status": "200 for the status endpoint itself. Independent curl probe of 17 allowlisted primary hosts returned 'curl: (56) CONNECT tunnel failed, response 403' for every single one. WebFetch of www.fda.gov returned 'The server returned HTTP 403 Forbidden'.",
+  "source_type": "session_diagnostic_not_a_web_source",
+  "retrieval_method": "Direct curl to the local agent proxy status endpoint, plus an independent per-host CONNECT probe. This endpoint is NOT a government source and must not be typed as one.",
+  "extracted": {
+    "VERDICT_ON_THE_BLOCKADE_CLAIM": "CONFIRMED. The prior researcher's central factual claim - that no primary source could be read - survives adversarial re-testing. I reproduced the denial independently.",
+    "hosts_probed_and_denied_403_connect": [
+      "www.fda.gov", "fda.gov", "api.fda.gov", "dps.fda.gov", "accessdata.fda.gov",
+      "www.cms.gov", "www.medicare.gov", "www.hhs.gov",
+      "investor.lilly.com", "www.lilly.com", "zepbound.lilly.com",
+      "www.novonordisk.com", "www.novocare.com", "www.wegovy.com",
+      "www.sec.gov", "www.federalregister.gov", "www.courtlistener.com"
+    ],
+    "hosts_denied_count": 17,
+    "hosts_readable_count": 0,
+    "webfetch_result_on_flagship_fda_page": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize -> 'The server returned HTTP 403 Forbidden. The response body was not retrieved.'",
+    "REPRODUCIBILITY_DEFECT_IN_PRIOR_REPORT": "The prior report cited http://127.0.0.1:40851/__agentproxy/status as a source and quoted a recentRelayFailures entry naming www.fda.gov:443. That buffer is a short rolling window: at 10:52Z it contained only www.google.com, android.clients.google.com, trumprx.gov and redirector.gvt1.com entries. The quoted www.fda.gov entry is no longer retrievable from the cited URL. The underlying claim is true, but the cited artifact is non-reproducible and the port is session-ephemeral.",
+    "policy_compliance": "Per /root/.ccr/README.md the denials were not retried or routed around. No scraping, no mirror-hunting, no TLS bypass."
+  },
+  "verbatim_excerpt": "From /root/.ccr/README.md: \"The destination host is not allowed by your organization's egress policy for this session. Do not retry or route around it - report the blocked host.\" Probe output, representative: \"www.fda.gov -> curl: (56) CONNECT tunnel failed, response 403\"."
+}
