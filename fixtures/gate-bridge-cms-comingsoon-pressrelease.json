@@ -1,0 +1,14 @@
+{
+  "retrieved_at": "2026-07-30T09:58:50Z",
+  "url": "https://www.cms.gov/newsroom/press-releases/coming-soon-cms-provide-50-monthly-access-glp-1-medications-medicare-beneficiaries",
+  "http_status": "403 Forbidden (WebFetch, two attempts, both www.cms.gov and cms.gov hostnames). curl via egress proxy: 'CONNECT tunnel failed, response 403'; proxy status endpoint logged connect_rejected / 'gateway answered 403 to CONNECT (policy denial or upstream failure)' for www.cms.gov:443 at 2026-07-30T09:58:50.655Z. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch only. NOT a verbatim direct read.",
+  "extracted": {
+    "document_role": "pre-launch announcement, superseded by the 2026-07-01 launch press release",
+    "patient_cost_usd_per_month": 50,
+    "period": "2026-07-01 through 2027-12-31",
+    "program_name": "Medicare GLP-1 Bridge"
+  },
+  "verbatim_excerpt": "CMS provides eligible Medicare beneficiaries access to certain GLP-1 medications for $50 per month beginning July 1, 2026, through December 31, 2027. -- NOTE: reproduced from domain-restricted search output, not a direct read."
+}

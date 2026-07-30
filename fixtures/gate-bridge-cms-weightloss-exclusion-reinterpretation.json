@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/newsroom/fact-sheets/contract-year-2026-policy-and-technical-changes-medicare-advantage-program-medicare-prescription",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / medicare.gov / hhs.gov) only. Corroborating primary source: https://aspe.hhs.gov/reports/medicare-coverage-anti-obesity-medications. NOT a verbatim direct read.",
+  "extracted": {
+    "question": "Did Medicare coverage for weight-management indications expand to beneficiaries with obesity absent other qualifying conditions?",
+    "answer": "NOT via general statutory reinterpretation. Only via time-limited, voluntary demonstration/model authority (Medicare GLP-1 Bridge and BALANCE), and only subject to clinical criteria.",
+    "statutory_baseline": "Since the inception of the Part D program, CMS has interpreted the statutory exclusion of 'agents when used for weight loss' to mean that a drug, when used for weight loss, is excluded from the definition of a covered Part D drug. This historical interpretation does not distinguish between use of a drug for treatment of individuals with obesity and individuals without obesity, so anti-obesity medications are only coverable in Part D if used to treat another condition with a medically accepted indication other than weight loss or weight management.",
+    "proposed_rule": "CMS-4208-P (Contract Year 2026 Policy and Technical Changes), proposed November 2024, proposed to reinterpret the statutory exclusion so it would not apply to drugs when used to treat beneficiaries with obesity",
+    "proposed_rule_impact_estimate": "would expand access to an additional 7 percent of the Part D population, or 3.4 million enrollees, with a cost of $24.8 billion to the Medicare program over a ten-year period",
+    "finalization_status": "COULD NOT CONFIRM against a primary source that the reinterpretation was ever finalized. Domain-restricted search of cms.gov returned only the PROPOSED rule; no final-rule adoption of the reinterpretation was located. The absence of a finalized reinterpretation is consistent with CMS instead using demonstration authority (Bridge) and CMMI model authority (BALANCE).",
+    "operative_conclusion_for_tool": "There is NO general, permanent Medicare Part D entitlement to GLP-1s for obesity alone. Access absent another qualifying indication runs through the Bridge (2026-07-01 to 2027-12-31, clinical criteria, PA required) or through a participating BALANCE Part D plan (CY2027 onward)."
+  },
+  "verbatim_excerpt": "CMS proposes to reinterpret the statutory exclusion such that it would not apply to drugs when used to treat beneficiaries with obesity, which would expand access to an additional 7 percent of the Part D population, or 3.4 million enrollees, with a cost of $24.8 billion to the Medicare program over a ten-year period. -- NOTE: 'proposes' is the operative verb; reproduced from domain-restricted search output, not a direct read."
+}

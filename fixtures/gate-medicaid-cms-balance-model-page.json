@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/priorities/innovation/innovation-models/balance",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443 and innovation.cms.gov:443. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / medicaid.gov / hhs.gov) only. Search-index-mediated text attributed to this primary URL. NOT a verbatim direct read.",
+  "extracted": {
+    "model_exists": true,
+    "full_name": "BALANCE (Better Approaches to Lifestyle and Nutrition for Comprehensive hEalth) Model",
+    "is_cmmi_innovation_center_model": true,
+    "url_path_evidence": "/priorities/innovation/innovation-models/balance - CMS Innovation Center model catalog path",
+    "scope": "BOTH Medicare Part D and Medicaid - not Medicaid-only",
+    "purpose": "increase access to select GLP-1 medications and healthy lifestyle interventions to help people with Medicare and Medicaid improve their health",
+    "mechanism": "CMS negotiates drug pricing and coverage terms with GLP-1 manufacturers on behalf of state Medicaid agencies and Medicare Part D plan sponsors",
+    "negotiations_completed_with": ["Eli Lilly", "Novo Nordisk"],
+    "voluntary": "Participation will be voluntary for manufacturers, states, and plans.",
+    "medicaid_launch": "as early as May 2026",
+    "medicaid_state_join_window": "states may choose to start participating on a date of their choosing between May 1, 2026 and January 1, 2027; states that do not join by January 1, 2027 will not be allowed to participate except at CMS discretion",
+    "medicare_part_d_performance_period": "January 1, 2027 through December 31, 2031",
+    "participating_states_published_list": "NONE FOUND - no official list of selected/participating states was located on any primary CMS source",
+    "medicaid_patient_cost_sharing": "NOT CONFIRMED - no patient out-of-pocket figure for Medicaid located on a primary source",
+    "lifestyle_program": "All beneficiaries receiving GLP-1s for weight management under the BALANCE model in Medicaid will be provided with access to a lifestyle support program, provided by the manufacturer at no cost.",
+    "medicaid_state_obligations": "In 2026 and 2027, states will be required to adopt the Medicaid Key Terms, or any CMS-approved variations, for all model drugs from all participating manufacturers, and must execute Supplemental Rebate Agreements (SRAs) with each participating manufacturer reflecting the negotiated Medicaid Key Terms"
+  },
+  "verbatim_excerpt": "The BALANCE Model, which stands for Better Approaches to Lifestyle and Nutrition for Comprehensive hEalth, aims to increase access to select glucagon-like peptide-1 (GLP-1) medications and healthy lifestyle interventions to help people with Medicare and Medicaid improve their health. ... Participation will be voluntary for manufacturers, states, and plans. -- NOTE: reproduced from domain-restricted search output, not a direct read."
+}

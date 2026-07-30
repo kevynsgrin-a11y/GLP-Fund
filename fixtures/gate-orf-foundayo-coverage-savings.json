@@ -1,0 +1,29 @@
+{
+  "retrieved_at": "2026-07-30T10:02:05Z",
+  "url": "https://foundayo.lilly.com/coverage-savings",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. This is the single most important page for GATE-ORF pricing and it could NOT be read. Companion pages https://foundayo.lilly.com/hcp/savings-coverage and https://foundayo.lilly.com/faq are on the same blocked host.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "Foundayo (orforglipron) Coverage & Savings: Self-Pay & Savings Card",
+    "figures_attributed_to_this_url_via_search_index_only_NOT_CONFIRMED": {
+      "self_pay_regular_price_per_1_month_supply": {
+        "0.8 mg": "$149",
+        "2.5 mg": "$199",
+        "5.5 mg": "$299",
+        "9 mg": "$299",
+        "14.5 mg": "$349",
+        "17.2 mg": "$349"
+      },
+      "self_pay_journey_program": "Pay $299 for each 1-month supply of the 14.5 mg and 17.2 mg Foundayo dosages",
+      "refill_window_rule": "To continue to be eligible for this purchase offer, you must complete your refill purchase of Foundayo within 45 days of the delivery/received date of your previous Foundayo prescription fill. If refill purchase is completed more than 45 days after the delivery/receipt of your previous Foundayo prescription, purchase offer will not apply.",
+      "eligibility": "New and existing patients are eligible",
+      "commercial_savings_card": "For patients with commercial drug insurance coverage for Foundayo, you must have commercial drug insurance that covers Foundayo and a prescription for an approved use consistent with FDA-approved product labeling to pay as little as $25 for a 1-month, 2-month, or 3-month prescription fill of Foundayo",
+      "government_program_exclusion": "The Self-Pay Savings Card cannot be used by patients enrolled in any state, federal, or government funded healthcare program, including Medicare, Medicare Part D, Medicare Advantage, or Medigap",
+      "available_strengths": "0.8 mg, 2.5 mg, 5.5 mg, 9 mg, 14.5 mg, 17.2 mg"
+    },
+    "provenance_warning": "CRITICAL. Every figure above was produced by the WebSearch tool's summarizer, which in the same response also summarized non-primary results (drugs.com, findhonestcare.com, ro.co, healthline.com). Individual sentences CANNOT be reliably attributed to this primary URL. Therefore under the rules of evidence these figures are UNVERIFIED and their values are recorded as null in the data output. They are retained here only as leads for re-verification once direct retrieval of foundayo.lilly.com is possible."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

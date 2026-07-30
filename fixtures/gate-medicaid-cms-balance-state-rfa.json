@@ -1,0 +1,17 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/priorities/innovation/files/balance-state-medicaid-rfa.pdf",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PDF READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / medicaid.gov) only. Document surfaced in search index but NO substantive content on Medicaid patient cost sharing was returned. NOT a verbatim direct read.",
+  "extracted": {
+    "document_title": "BALANCE Model State Medicaid Request for Applications",
+    "medicaid_patient_out_of_pocket_cost": "COULD NOT CONFIRM - no primary-source figure located",
+    "state_participation_window": "states may begin participating on a date of their choosing between May 1, 2026 and January 1, 2027; application window reported through July 31, 2026",
+    "participating_states_list": "COULD NOT CONFIRM - no published list of participating states located on any primary CMS or Medicaid.gov source",
+    "state_obligations": "states required to adopt the Medicaid Key Terms (or CMS-approved variations) for all model drugs from all participating manufacturers and to execute Supplemental Rebate Agreements with each participating manufacturer",
+    "economics_conclusion": "The confirmed BALANCE Medicaid mechanism operates on STATE/PLAN economics (negotiated net price plus supplemental rebate agreements). No primary source confirms a nationally uniform Medicaid patient copay.",
+    "general_medicaid_cost_sharing_baseline": "Per Medicaid.gov: states have the option to charge premiums and to establish out-of-pocket spending (cost sharing) requirements for Medicaid enrollees, which may include copayments, coinsurance, deductibles, and other similar charges. Source: https://www.medicaid.gov/medicaid/cost-sharing/cost-sharing-out-pocket-costs"
+  },
+  "verbatim_excerpt": "State Medicaid agencies can apply to participate in the model through the State Request for Applications, and can join the model beginning in May 2026 through January 1, 2027. The model is voluntary for all eligible participants. -- NOTE: reproduced from domain-restricted search output, not a direct read of the PDF. No Medicaid beneficiary cost-sharing figure was returned."
+}

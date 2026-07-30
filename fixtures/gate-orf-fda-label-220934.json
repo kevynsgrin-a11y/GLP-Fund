@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-07-30T10:01:05Z",
+  "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/220934Orig1s000lbl.pdf",
+  "http_status": "403",
+  "source_type": "primary_government",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. This primary source could NOT be read. The Lilly-hosted mirror of the same prescribing information (https://pi.lilly.com/us/foundayo-uspi.pdf) also returned 403.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "FOUNDAYO (orforglipron) tablets, for oral use",
+    "claims_attributed_to_this_url_via_search_index_only": {
+      "boxed_warning_subject": "thyroid C-cell tumors",
+      "boxed_warning_contraindication_language": "Foundayo should not be used in patients with a personal or family history of medullary thyroid cancer or in patients with Multiple Endocrine Neoplasia syndrome type 2",
+      "indication": "in combination with a reduced calorie diet and increased physical activity to reduce excess body weight and maintain weight reduction long term in adults with obesity or adults with overweight in the presence of at least one weight-related comorbid condition",
+      "dosage_form": "tablets, for oral use, once daily, no food or water timing restriction",
+      "strengths_reported_elsewhere_not_from_this_pdf": "0.8 mg, 2.5 mg, 5.5 mg, 9 mg, 14.5 mg, 17.2 mg"
+    },
+    "not_obtained": [
+      "full verbatim BOXED WARNING text",
+      "DOSAGE FORMS AND STRENGTHS section verbatim",
+      "dose escalation schedule verbatim",
+      "Initial U.S. Approval year line"
+    ],
+    "provenance_warning": "Boxed warning subject and indication text above were surfaced by the WebSearch tool's summary of this URL. The full verbatim boxed warning was NOT obtained. Strength list was NOT obtained from this label PDF."
+  },
+  "verbatim_excerpt": "Search-result title for this URL, quoted verbatim: \"FOUNDAYO (orforglipron) tablets, for oral use\". WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

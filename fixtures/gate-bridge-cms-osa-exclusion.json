@@ -1,0 +1,21 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-providers",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / medicare.gov / hhs.gov) only. Search-index-mediated text attributed to this primary URL and to the co-ranked CMS PDFs glp-1-prescribers-c-1.pdf, glp-1-bridge.pdf, glp-1-pharmacies-c.pdf, medicare-glp-1-bridge-expectations-faqs.pdf. NOT a verbatim direct read.",
+  "extracted": {
+    "golden_test_vector": "osaCovered:true must suppress the Bridge pathway",
+    "osa_exclusion_exists": true,
+    "osa_exclusion_qualifier": "moderate to severe obstructive sleep apnea specifically - NOT all OSA",
+    "exclusion_mechanism": "The disqualifier is HAVING a Part D-eligible diagnosis (which confers Part D GLP-1 eligibility), not merely 'already being covered'. Exclusion bites even if the beneficiary otherwise meets all Bridge clinical criteria.",
+    "full_disqualifying_diagnosis_set": [
+      "type 2 diabetes",
+      "moderate to severe obstructive sleep apnea",
+      "noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH)"
+    ],
+    "broader_gate_condition": "The Bridge is for patients who are not eligible to receive a GLP-1 drug through their Part D plan.",
+    "osa_routing_instruction": "Beneficiaries prescribed Zepbound for the treatment of moderate to severe obstructive sleep apnea in adults with obesity should continue to receive coverage through Medicare Part D."
+  },
+  "verbatim_excerpt": "Type 2 diabetes, moderate to severe obstructive sleep apnea, and noncirrhotic metabolic dysfunction-associated steatohepatitis (MASH) indications are eligible for Part D coverage. Beneficiaries with these diagnoses are eligible to receive GLP-1s through their Part D plan and therefore are ineligible to receive them through the Medicare GLP-1 Bridge, even if they otherwise meet the Medicare GLP-1 Bridge clinical criteria. -- NOTE: reproduced from domain-restricted search output, not a direct read."
+}

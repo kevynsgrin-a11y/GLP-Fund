@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:02:40Z",
+  "url": "https://www.drugs.com/nda/vusolimogene_oderparepvec_260410.html",
+  "http_status": "ok (surfaced via WebSearch; not directly fetched)",
+  "source_type": "secondary_aggregator",
+  "retrieval_note": "Used ONLY to identify the owner of BLA 125827, i.e. to establish which drug the 2026-04-10 Complete Response Letter belongs to. Not used to confirm any figure. Corroborating secondary sources located in the same search: https://www.onclive.com/view/fda-issues-crl-for-rp1-plus-nivolumab-in-advanced-melanoma and https://ir.replimune.com/news-releases/news-release-details/replimune-receives-complete-response-letter-fda-rp1-biologics-0 (Replimune investor relations, which is a primary source for Replimune but not for Lilly/orforglipron).",
+  "extracted": {
+    "crl_date": "April 10, 2026",
+    "application": "BLA 125827",
+    "sponsor": "Replimune Group, Inc.",
+    "product": "RP1 (vusolimogene oderparepvec) in combination with nivolumab",
+    "proposed_indication": "advanced melanoma",
+    "cited_deficiencies": "deficiencies related to findings from the single-arm phase 1/2 IGNYTE trial of RP1 plus nivolumab and from the phase 3 IGNYTE-3 trial",
+    "subsequent_status": "BLA resubmission accepted as a complete Class 1 response with an FDA goal date of August 2, 2026; advisory committee meeting expected late July 2026",
+    "relevance_to_gate": "This is the drug that the April 10, 2026 CRL actually concerns. It is not orforglipron, not Eli Lilly, and not an NDA."
+  },
+  "verbatim_excerpt": "Search summary, quoted verbatim: \"Replimune Group received a complete response letter (CRL) from the FDA on April 10, 2026, for the Biologics License Application (BLA) for RP1 in combination with nivolumab for the treatment of advanced melanoma.\""
+}

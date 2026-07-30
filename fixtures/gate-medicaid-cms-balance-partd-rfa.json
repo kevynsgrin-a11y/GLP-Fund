@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/priorities/innovation/files/balance-part-d-plans-rfa.pdf",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PDF READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov) only. NOT a verbatim direct read.",
+  "extracted": {
+    "document_title": "BALANCE Model Request for Applications - Part D Plans",
+    "patient_oop_cap_usd": 50,
+    "cap_basis": "per 28- or 30-day supply, total out-of-pocket costs including co-pay, co-insurance, or other direct costs",
+    "cap_conditions": [
+      "applies to covered patients in a participating Enhanced Alternative (EA) plan or Employer Group Waiver Plan (EGWP)",
+      "applies WHILE IN THE INITIAL COVERAGE PHASE of the Part D benefit",
+      "applies to model drugs listed in Appendix C",
+      "applies when obtained FROM AN IN-NETWORK PHARMACY"
+    ],
+    "cap_is_a_maximum_not_a_fixed_price": "A participating Part D plan sponsor may choose to further enhance its benefit with a lower amount than $50 for all model drugs, as this amount serves as a maximum for model-participating plan benefit packages. However, the reduced amount must apply for all model drugs, consistent with offering uniform cost sharing.",
+    "performance_period": "January 1, 2027 through December 31, 2031",
+    "illustrative_plan_examples_caution": "Search output also surfaced 'plan examples' with model drugs on tiers with copayments ranging from $47.00 for a one-month supply to $130.00 for a three-month supply. These appear to be ILLUSTRATIVE RFA examples, not the operative cap. DO NOT ship these as prices.",
+    "prior_authorization": "patients would be subject to qualifications set by the negotiations between CMS and participating manufacturers, including certain prior authorization requirements"
+  },
+  "verbatim_excerpt": "Participating Part D plan sponsors must ensure that no covered patient in a participating Enhanced Alternative (EA) plan or Employer Group Waiver Plan (EGWP), while in the initial coverage phase of the Part D benefit, pays more than $50 per 28- or 30-day supply in total out-of-pocket costs (including co-pay, co-insurance, or other direct costs) to receive any model drug listed in Appendix C from an in-network pharmacy. -- NOTE: reproduced from domain-restricted search output, not a direct read of the PDF."
+}

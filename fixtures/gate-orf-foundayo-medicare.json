@@ -1,0 +1,24 @@
+{
+  "retrieved_at": "2026-07-30T10:02:05Z",
+  "url": "https://foundayo.lilly.com/medicare",
+  "http_status": "403",
+  "source_type": "primary_manufacturer",
+  "retrieval_note": "DIRECT RETRIEVAL FAILED. WebFetch returned HTTP 403 Forbidden from the origin. The related Lilly investor release https://investor.lilly.com/news-releases/news-release-details/what-medicare-part-d-patients-need-know-about-accessing-foundayo and its PDF mirror https://investor.lilly.com/node/54481/pdf are on the same blocked host family. CMS/medicare.gov could not be used as a cross-check either: the agent proxy recorded egress-policy CONNECT denials for www.cms.gov, cms.gov, innovation.cms.gov, www.medicare.gov, medicare.gov, www.hhs.gov and trumprx.gov.",
+  "extracted": {
+    "direct_retrieval": "none - blocked",
+    "title_from_search_index": "Part D Medicare Coverage for Foundayo (orforglipron)",
+    "figures_attributed_to_this_url_via_search_index_only_NOT_CONFIRMED": {
+      "program_name": "Medicare GLP-1 Bridge",
+      "price": "no more than $50 per month",
+      "start_date": "July 1, 2026",
+      "end_date": "December 31, 2027",
+      "eligibility": "must have Medicare Part D and meet specific Medicare, BMI, and health eligibility requirements; insurance and clinical eligibility criteria both apply",
+      "supply_basis": "$50 for each 28- or 30-day supply",
+      "deductible_treatment": "payment does not count toward the Medicare Part D deductible or annual out-of-pocket spending limit",
+      "indication_restriction": "Medicare GLP-1 Bridge covers Foundayo only for obesity/weight management",
+      "eligible_populations": "new and existing patients"
+    },
+    "provenance_warning": "Figures produced by the WebSearch summarizer across a result set that mixed this primary URL with prnewswire.com, aarp.org and findhonestcare.com. Not attributable to the primary page. UNVERIFIED; value recorded as null."
+  },
+  "verbatim_excerpt": "WebFetch result, quoted verbatim: \"The server returned HTTP 403 Forbidden. The response body was not retrieved.\""
+}

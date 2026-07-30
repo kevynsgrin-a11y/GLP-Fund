@@ -1,0 +1,12 @@
+{
+  "retrieved_at": "2026-07-30T09:59:08Z",
+  "url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22orforglipron%22&limit=5",
+  "http_status": "blocked",
+  "source_type": "primary_government",
+  "retrieval_note": "BLOCKED BY EGRESS POLICY, not by the origin. Both curl and WebFetch failed. The agent proxy status endpoint recorded: kind=connect_rejected, detail=\"gateway answered 403 to CONNECT (policy denial or upstream failure)\", host=api.fda.gov:443, at 2026-07-30T09:59:08.102Z and 2026-07-30T09:59:10.433Z. Per the proxy README this is an organization egress-policy denial and must be reported, not routed around. The openFDA drugsfda endpoint (https://api.fda.gov/drug/drugsfda.json?search=openfda.brand_name:%22FOUNDAYO%22) was denied identically.",
+  "extracted": {
+    "direct_retrieval": "none - egress policy denial",
+    "consequence": "The structured, machine-readable FDA source that would have authoritatively confirmed application number, marketing status, boxed warning text and strengths for orforglipron is unavailable to this session."
+  },
+  "verbatim_excerpt": "curl output, quoted verbatim: \"curl: (56) CONNECT tunnel failed, response 403\". Proxy status endpoint, quoted verbatim: \"gateway answered 403 to CONNECT (policy denial or upstream failure)\" for host \"api.fda.gov:443\"."
+}

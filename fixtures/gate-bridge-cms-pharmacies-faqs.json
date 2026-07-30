@@ -1,0 +1,18 @@
+{
+  "retrieved_at": "2026-07-30T10:02:00Z",
+  "url": "https://www.cms.gov/medicare/coverage/prescription-drug-coverage/medicare-glp-1-bridge/information-pharmacies",
+  "http_status": "403 Forbidden (WebFetch direct read blocked). curl via egress proxy: CONNECT tunnel failed, response 403 for www.cms.gov:443. NO DIRECT PAGE READ WAS ACHIEVED.",
+  "source_type": "primary_government",
+  "retrieval_method": "Domain-restricted WebSearch (allowed_domains: cms.gov / medicare.gov) only. Co-ranked primary CMS documents: https://www.cms.gov/files/document/glp-1-pharmacies-c.pdf, https://www.cms.gov/files/document/medicare-glp-1-bridge-expectations-faqs.pdf, https://www.cms.gov/files/document/medicare-glp-1-bridge-pharmacywebinarslides-061126.pdf. NOT a verbatim direct read.",
+  "extracted": {
+    "patient_copay_usd": 50,
+    "copay_invariance": "The $50 copay for eligible beneficiaries remains the same, regardless of the phase of the Part D benefit an eligible beneficiary is in when they fill a prescription for an eligible GLP-1 drug covered under the Medicare GLP-1 Bridge.",
+    "net_price_to_government_usd": 245,
+    "net_price_accounting": "no part of the $245 price or the $50 copay counts toward an eligible beneficiary's gross covered prescription drug costs (GCPDC) or true out-of-pocket costs (TrOOP) under their Part D plan",
+    "deductible": "Part D deductible does not apply; eligible GLP-1 drugs furnished under the Bridge are provided outside of the Part D benefit payment flow and coverage",
+    "fill_limits": "Only 28-day or 30-day fills are covered under Medicare GLP-1 Bridge.",
+    "drugs_not_included": ["Ozempic", "Mounjaro"],
+    "central_processor": "Humana (LI NET administrator) handles prior authorization, claims adjudication, and pharmacy payment"
+  },
+  "verbatim_excerpt": "The $245 net price for eligible GLP-1 drugs prescribed under the Medicare GLP-1 Bridge means that no part of this price or the $50 copay counts toward an eligible beneficiary's gross covered prescription drug costs (GCPDC) or true out-of-pocket costs (TrOOP) under their Part D plan. ... Only 28-day or 30-day fills are covered under Medicare GLP-1 Bridge. -- NOTE: reproduced from domain-restricted search output, not a direct read."
+}
