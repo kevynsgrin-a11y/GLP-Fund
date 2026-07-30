@@ -1,0 +1,19 @@
+{
+  "retrieved_at": "2026-07-30T10:59:20Z",
+  "url": "multiple: https://www.novocare.com/pharmacy.html | https://www.novocare.com/content/dam/novonordisk/novocare/redesign/pdf/Wegovy_Price_Guide.pdf | https://www.fda.gov/news-events/press-announcements/fda-approves-fourth-product-under-national-priority-voucher-program-higher-dose-semaglutide | https://novonordisk.mediaroom.com/2026-03-31-Novo-Nordisk-launches-first-and-only-multi-month-subscription-program-for-FDA-approved-Wegovy-R-,-offering-savings-of-up-to-1,200-year",
+  "http_status": "403 Forbidden on all four (WebFetch: 'The server returned HTTP 403 Forbidden. The response body was not retrieved.')",
+  "source_type": "verification_control_test",
+  "extracted": {
+    "blockade_independently_reconfirmed": true,
+    "hosts_probed_this_session": [
+      "www.novocare.com (403)",
+      "www.fda.gov (403)",
+      "novonordisk.mediaroom.com (403)"
+    ],
+    "new_finding_vs_original_run": "novonordisk.mediaroom.com, Novo Nordisk's own newsroom host, is ALSO blocked. The original run did not probe it. This closes the last plausible primary route to the subscription-program pricing.",
+    "proxy_diagnostic_confirms": "recentRelayFailures shows kind=connect_rejected, detail='gateway answered 403 to CONNECT (policy denial or upstream failure)' for www.google.com among others; the denial is at CONNECT, before any TLS session with the destination.",
+    "original_run_conclusion_on_blockade": "UPHELD. No primary source is readable in this session. All values must remain null.",
+    "note_on_domain_allowlist": "novonordisk.mediaroom.com is a vendor-hosted newsroom on a different registrable domain than novonordisk.com. Even if reachable it would not sit on the task's primary allowlist without an explicit ruling."
+  },
+  "verbatim_excerpt": "The server returned HTTP 403 Forbidden. The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+}

@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-07-30T11:02:00Z",
+  "url": "https://www.lilly.com/lillydirect/medicines/zepbound/self-pay-journey-program-purchase-offer-full-terms-conditions (located via lilly.com / zepbound.lilly.com / pricinginfo.lilly.com-restricted WebSearch)",
+  "http_status": "403 at CONNECT for all lilly.com hosts. NO DIRECT READ. Located via domain-restricted WebSearch paraphrase only.",
+  "source_type": "primary_manufacturer",
+  "extracted": {
+    "DEFECT_FOUND": "The CROSS-RULES report states the Self Pay Journey Program 45-day refill condition as applying to 'the Zepbound single-dose vial or KwikPen' with NO dose restriction. The located terms restrict the offer to four doses only. A dose-tier boundary was dropped, which is one of the explicitly enumerated failure modes for this verification.",
+    "dose_restriction_located": "Offer valid for 7.5 mg, 10 mg, 12.5 mg and 15 mg Zepbound single-dose vial or KwikPen ONLY. The 2.5 mg and 5 mg doses are NOT covered by the offer.",
+    "why_this_matters_clinically": "2.5 mg and 5 mg are the titration/starting doses. A newly initiating patient is, on the located terms, outside the offer entirely. The report's rule as written would have the engine apply Self Pay Journey Program terms and pricing to patients the program does not cover.",
+    "associated_price_structure_located_NOT_CONFIRMED": {
+      "self_pay_journey_offer_price": "$449 per 1-month supply, for 7.5 / 10 / 12.5 / 15 mg only",
+      "regular_self_pay_prices": "$299 for 2.5 mg, $399 for 5 mg, $499 for 7.5 mg, $699 for 10 mg, $699 for 12.5 mg, $699 for 15 mg",
+      "direction_of_harm_stated_honestly": "For 2.5 mg and 5 mg the regular price ($299 / $399) is LOWER than the $449 offer price, so a low-dose patient is not overcharged by the offer's non-application. The harm runs the other way: if the engine shows $449 as the price for a 2.5 mg or 5 mg patient it OVERSTATES their cost by $150 or $50 and may deter someone from a treatment they can in fact afford. If instead the engine applies the offer's continuing-eligibility machinery (the 45-day window) to those doses, it imposes a condition that does not exist for them.",
+      "note": "These prices are LOCATED ONLY and are not confirmed. They are recorded here because the dose boundary cannot be described without them, not as verified pricing."
+    },
+    "additional_located_condition_the_report_did_capture": "45-day refill window from delivery/received date of the previous prescription; new and existing patients eligible.",
+    "confidence": "unverified - value null. lilly.com was never read; this is a search-index paraphrase and can only LOCATE."
+  },
+  "verbatim_excerpt": "From the lilly.com-restricted WebSearch (PARAPHRASE, NOT a quotation from a page this session read): 'Offer valid for 7.5 mg, 10 mg, 12.5 mg, and 15 mg doses of Zepbound single-dose vial or KwikPen only. The 2.5 mg and 5 mg doses are not covered by this special offer.' And: 'Pay $449 for each 1-month supply of the 7.5 mg, 10 mg, 12.5 mg, and 15 mg Zepbound single-dose vial or KwikPen for single-patient-use.' And: '2.5 mg is a starting dose and is not approved as a maintenance dose.'"
+}

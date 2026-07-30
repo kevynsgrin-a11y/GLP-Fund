@@ -1,0 +1,21 @@
+{
+  "retrieved_at": "2026-07-30T10:58:30Z",
+  "url": "WebSearch result set; candidate primary (unread, 403): https://novonordisk.mediaroom.com/2026-03-31-Novo-Nordisk-launches-first-and-only-multi-month-subscription-program-for-FDA-approved-Wegovy-R-,-offering-savings-of-up-to-1,200-year",
+  "http_status": "WebSearch returned snippets; newsroom page 403",
+  "source_type": "secondary_search_index_snippet",
+  "extracted": {
+    "gap_identified": "An ENTIRE self-pay pricing pathway is absent from the original run's data array, eligibility_rules, and unresolved list: the Wegovy multi-month subscription program, launched 2026-03-31.",
+    "located_prices_wegovy_pen": {
+      "3_month_subscription": "$329/month (savings $240/year)",
+      "6_month_subscription": "$299/month (savings $600/year)",
+      "12_month_subscription": "$249/month (savings $1,200/year)"
+    },
+    "located_doses_covered": "0.25 mg, 0.5 mg, 1 mg, 1.7 mg, 2.4 mg",
+    "located_wegovy_pill_subscription": "up to $600/year savings with a 12-month subscription",
+    "distribution_channel_condition": "Available through select telehealth providers only: Ro, WeightWatchers, LifeMD at launch, with Hims & Hers, Sesame and others to follow. NOT a NovoCare Pharmacy direct price.",
+    "why_this_distorts_ranking": "The original run's narrative states a patient faces $349/month from their third month onward and calls that the steady-state cost. $249/month is located for a 12-month subscription, which is $100/month lower. Any 'cheapest ongoing self-pay pathway' ranking built from the original findings is wrong.",
+    "confidence_required": "unverified, value null. Only secondary sources and a 403 newsroom page support these figures.",
+    "eligibility_conditions_not_captured": "Commitment length, cancellation terms, whether the telehealth consult fee is included, and whether enrollment is restricted to patients new to self-pay were all NOT located."
+  },
+  "verbatim_excerpt": "Novo Nordisk launched a multi-month subscription program for FDA-approved Wegovy, available beginning March 31, 2026, through Ro, WeightWatchers, LifeMD, with Hims & Hers, Sesame, and others to follow soon. For Wegovy pen injections (0.25 mg, 0.5 mg, 1 mg, 1.7 mg, 2.4 mg), patients can choose 3-, 6-, or 12-month subscriptions: 3-month subscription: $329/month, a savings of $240 per year; 6-month subscription: $299/month, a savings of $600 per year; 12-month subscription: $249/month, a savings of $1,200 per year."
+}

@@ -1,0 +1,36 @@
+{
+  "retrieved_at": "2026-07-30T11:03:21Z",
+  "url": "Local arithmetic verification, plus reproduced domain-restricted WebSearch of aspe.hhs.gov / hhs.gov / federalregister.gov",
+  "http_status": "aspe.hhs.gov still 403 at CONNECT (blockade reconfirmed, no direct read). The arithmetic finding below requires no network access and is fully reproducible offline.",
+  "source_type": "adversarial_verification_arithmetic",
+  "extracted": {
+    "TARGET_CLAIM_BEING_REFUTED": "The CROSS-RULES report rejected the located 2026 FPL figure for household size 1 ($15,960) on the stated ground that it is 'arithmetically inconsistent' and a 'probable $100 transcription error propagated across aggregators', asserting the true figure is $16,060. It called this 'independent, on-its-face grounds to refuse the individual figure even setting aside the source-type rule.'",
+    "REFUTATION_1_THE_PROPOSED_CORRECTION_IS_STRUCTURALLY_IMPOSSIBLE": {
+      "method": "The HHS poverty guidelines table for the 48 contiguous states and DC has a constant per-additional-person increment, published in whole dollars and rounded to the nearest $10. The increment is therefore recoverable from any two household sizes.",
+      "check_2025_control": "2025 published: 1-person $15,650, 4-person $32,150. Implied increment (32150-15650)/3 = $5,500 exactly. Confirms the constant-increment structure.",
+      "report_reading_STORY_A": "1-person $16,060 (the report's asserted correction) with 4-person $33,000 (which the report explicitly ACCEPTS as coherent). Implied increment = (33000-16060)/3 = $5,646.6667. NOT an integer and NOT a multiple of $10. No real FPL table can have this increment.",
+      "located_reading_STORY_B": "1-person $15,960 with 4-person $33,000. Implied increment = (33000-15960)/3 = $5,680 exactly. A clean multiple of $10, structurally valid.",
+      "reconstructed_column_under_STORY_B": "15960, 21640, 27320, 33000, 38680, 44360, 50040, 55720",
+      "conclusion": "The report cannot simultaneously accept $33,000 as coherent and assert $16,060 as the true 1-person figure - that pair is internally impossible. The located pair it rejected is the structurally consistent one. The report flagged the figure that fits and endorsed a reconstruction that cannot exist."
+    },
+    "REFUTATION_2_THE_CHAINED_CPI_TEST_IS_NOT_THE_HHS_METHOD": {
+      "problem": "The report's test multiplies the PRIOR YEAR'S GUIDELINE by the year-over-year CPI change. HHS does not derive the guidelines that way. The guidelines are computed from the Census Bureau's poverty THRESHOLDS inflated by CPI-U, then rounded and smoothed so that the per-person increment is constant. Chaining a single percentage onto the previous year's guideline is an approximation that is not expected to reproduce the published table exactly, so a mismatch of $100 is not evidence of a transcription error.",
+      "consequence": "The 'two independent grounds' for rejection collapse to one ground (the 403 blockade), which is by itself sufficient and correct."
+    },
+    "REFUTATION_3_THE_FACTUAL_PREMISE_OF_THE_REJECTION_IS_CONTRADICTED_IN_SESSION": {
+      "report_claim": "'the ASPE-restricted search returned NO dollar figures at all' and 'the figures above came only from an unrestricted search hitting masslegalservices.org, medicaidplanningassistance.org, peoplekeep.com, benefitsusa.org, healthinsurance.org - all SECONDARY.'",
+      "reproduction_this_session": "A WebSearch restricted to allowed_domains ['aspe.hhs.gov','hhs.gov','federalregister.gov'] returned both figures directly: '$15,960.00' for one person and '$33,000.00' for a family of four, together with the 2.63 percent CPI-U adjustment between calendar years 2024 and 2025 and the derivation from the 2024 Census thresholds.",
+      "significance": "The report's assertion that the restricted channel yielded nothing is not reproducible. The figures are associated with ASPE-domain results, not only with secondary aggregators, which removes the 'secondary-only propagation' story used to justify calling $15,960 corrupt."
+    },
+    "WHAT_DOES_NOT_CHANGE": {
+      "confidence_remains_unverified_and_value_remains_null": "WebSearch returns a language model's paraphrase of a search index, not a direct read of the primary page. Under this project's rules of evidence a domain-restricted search still only LOCATES. aspe.hhs.gov was never read. The datum stays unverified with value null.",
+      "still_not_located": "Alaska and Hawaii tables were not obtained. The per-person increment for those tables is unknown. Only the 48-states-and-DC column is reconstructable, and only from unconfirmed figures."
+    },
+    "ENGINE_CONSEQUENCE": {
+      "correct_action": "Leave the FPL table unpopulated pending a direct primary read. This matches the report's bottom line.",
+      "defect_to_correct": "Strike the instruction that $15,960 is a transcription error and that $16,060 is the real figure. A downstream researcher acting on that note would hard-code a 1-person base $100 too high.",
+      "downstream_error_magnitude_if_16060_were_used": "200% FPL ceiling $32,120 instead of $31,920 (+$200); 300% $48,180 vs $47,880 (+$300); 400% $64,240 vs $63,840 (+$400); 500% $80,300 vs $79,800 (+$500). An applicant just above a real ceiling would be told they qualify for a patient assistance program they do not qualify for."
+    }
+  },
+  "verbatim_excerpt": "From the reproduced aspe.hhs.gov/hhs.gov/federalregister.gov-restricted WebSearch (PARAPHRASE of a search index, NOT a quotation from a page this session read): 'For one person (annual income): $15,960.00. For a family of four (annual income): $33,000.00. The January 2026 poverty guidelines are calculated by taking the 2024 Census Bureau's poverty thresholds and adjusting them for price changes between 2024 and 2025 using the Consumer Price Index (CPI-U). The guidelines in this 2026 notice reflect the 2.63 percent price increase between calendar years 2024 and 2025.'"
+}
