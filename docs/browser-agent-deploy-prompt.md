@@ -33,6 +33,14 @@ env:
 
 Both values are empty. I believe I added a token already, so **assume it exists somewhere and is simply in a place GitHub Actions cannot read.** Phase 1 exists to find out where. Do not assume from the start that nothing was configured.
 
+**A second, separate problem has since surfaced, and it is the more serious of the two.** The Cloudflare GitHub App posted a build status onto a pull request in this repository, which means **a Cloudflare Git integration is already connected to this repo and is deploying from it right now.** From that comment:
+
+- The connected project is named **`glp-fund`** — note the missing `1`. The deploy workflow publishes to `glp1-fund`. These are two different projects.
+- It built commit `09cb3cc2` automatically on push and the build **failed**.
+- The dashboard link it produced was `dash.cloudflare.com/?to=/820e7cee61fccc60d14c8e20bc686942/workers/services/view/glp-fund/production/builds/...`, so the account ID is very likely **`820e7cee61fccc60d14c8e20bc686942`**. Confirm this against the dashboard sidebar in Phase 1c rather than trusting it outright.
+
+**Why this matters more than the failed build:** a Git-integrated project deploys on every push *without running the test suite*. This site's one guarantee — that it never displays a price it cannot source — is enforced by a test. A deployment path that skips the tests can publish a broken guarantee to the public, which is the specific outcome the gated workflow exists to prevent. Phase 1B deals with this before anything else.
+
 ## Absolute rules
 
 **1. Never reveal the API token.** If you create or handle a Cloudflare API token, its value must go **directly** from the Cloudflare page into the GitHub secret field via copy and paste. Do not type it into your chat responses, do not summarise it, do not save it anywhere, do not put it in a file, an issue, a commit, or a URL. When you report back, say "token created and stored" and nothing more about its value. If you cannot copy it without displaying it, stop and tell me.
@@ -47,7 +55,7 @@ Both values are empty. I believe I added a token already, so **assume it exists 
 
 **6. Stop and ask me if** any step requires a paid plan or a payment method, asks to change nameservers, asks to delete an existing project, DNS record or namespace, or offers something materially different from what is described here.
 
-**7. Reject the Git-integration shortcut.** Cloudflare may offer to connect the GitHub repository directly so it deploys on every push. **Do not use it.** It would bypass the test suite, and this site's core guarantee is enforced by a test. Use the Direct Upload project plus the GitHub Actions workflow described below.
+**7. Reject the Git-integration shortcut — and undo the one that already exists.** Cloudflare deploys straight from a connected GitHub repo on every push, skipping the test suite entirely. This is not hypothetical here: it is already connected and already deploying, as the context above describes. Never connect a new one, never re-connect the one you disconnect, and if Cloudflare offers "Connect to Git" at any point, decline it. The gated GitHub Actions workflow is the only permitted publish path.
 
 **8. Create nothing that already exists.** Phase 1 tells you what is already there. Reuse it. Two Pages projects or two KV namespaces with confusable names will cause a failure that is much harder to diagnose than the current one.
 
@@ -67,15 +75,33 @@ Check and record, **names only, never values**:
 - Click the **Codespaces** tab and the **Dependabot** tab. Record any Cloudflare-looking secret names on either.
 - Go to `https://github.com/kevynsgrin-a11y/GLP-Fund/settings/environments`. If an environment exists, open it and record any secrets defined there and the environment's exact name. The workflow's deploy job declares an environment named `production`; a secret under an environment with any other name will not resolve.
 
-**1b. Whether the Cloudflare Pages project exists.** Go to `https://dash.cloudflare.com` → **Compute (Workers & Pages)**. Record whether a project named exactly `glp1-fund` exists. Note any near-miss names such as `glp1fund` or `glp-1-fund` — a mismatch here is the next failure you would hit after fixing the secrets.
+**1b. Which Cloudflare projects exist, and which are Git-connected.** Go to `https://dash.cloudflare.com` → **Compute (Workers & Pages)**. List **every** project you see. Specifically:
+- Is there one named exactly `glp1-fund` (what the workflow publishes to)?
+- Is there one named `glp-fund` (the one the bot comment named)? Record any other near-miss such as `glp1fund` or `glp-1-fund`.
+- For each one that exists, open it and record whether its **Settings → Build** shows a **connected GitHub repository**, and what build command and output directory it is configured with. A project with a connected repo is the ungated path described above.
 
-**1c. The account ID.** On the Cloudflare account home page, find the **Account ID** in the right-hand sidebar. It also appears in the dashboard URL as the long hex string after `/`. Record it. This one is **not secret**; you may show it to me.
+**1c. The account ID.** On the Cloudflare account home page, find the **Account ID** in the right-hand sidebar. It also appears in the dashboard URL as the long hex string after `/`. Record it, and say whether it matches `820e7cee61fccc60d14c8e20bc686942` — the value inferred from the bot's link. If it does not match, **the dashboard sidebar wins**; use that and tell me about the discrepancy. This value is **not secret**; you may show it to me.
 
 **1d. Existing KV namespaces.** Go to **Storage & Databases → KV**. Record whether namespaces named `ALERTS` and `ALERTS_preview` already exist.
 
 **1e. Existing custom domains.** If the `glp1-fund` Pages project exists, open it and record what is listed under **Custom domains**.
 
 **Report this audit to me in one short block before continuing.** Then continue without waiting for my reply — you do not need my approval to proceed to Phase 2.
+
+## PHASE 1B — Stop the ungated deploy path
+
+Do this before the secrets. An ungated project that publishes on every push is a live risk; a gated one that has not published yet is merely inconvenient.
+
+For **every** project Phase 1b found with a connected GitHub repository — `glp-fund`, and any other:
+
+1. Open the project → **Settings** → the **Build** or **Builds & deployments** section.
+2. Find the Git connection and **disconnect it**. The control is usually "Disconnect", "Unlink", or "Manage" next to the repository name. Disconnecting stops future automatic builds; it does not delete the project, its deployments, or its domains.
+3. **Do not delete the project itself**, even though its builds are failing. Rule 6 applies. A failing build that no longer triggers is harmless.
+4. Record what you disconnected.
+
+**If you cannot find a disconnect control**, do not start deleting things to achieve the same effect. Report exactly what you see and continue to Phase 2 — a gated deploy that races an ungated one is still better than no gated deploy, and I will sort out the rest.
+
+**Which project should the real deploy publish to?** The workflow passes `--project-name=glp1-fund` and I have told you not to edit the repo, so the target is `glp1-fund`. If Phase 1b found `glp-fund` but no `glp1-fund`, **do not rename `glp-fund` and do not repoint the workflow.** Leave `glp-fund` disconnected and idle, and create `glp1-fund` fresh in Phase 4. Two projects is untidy but correct; a rename mid-flight risks breaking the custom domain later.
 
 ## PHASE 2 — Fix the secrets
 
@@ -171,13 +197,14 @@ If the apex domain is not resolving yet, **run every check against the `*.pages.
 
 Give me, concisely:
 
-1. **The Phase 1 audit findings** — especially which secret store the original token turned out to be in. That answer is the point of this whole exercise.
-2. The live URL and whether it is serving, and whether you tested the apex domain or the pages.dev URL.
-3. Pass or fail for each of the 11 checks in Phase 8, with the specific failure text for any that failed.
-4. Every workflow run you triggered, its conclusion, and for any failure, the step that failed and what you changed before re-running.
-5. The two KV namespace IDs from Phase 5, and the Cloudflare account ID.
-6. Confirmation that the token was created and stored — **and nothing about its value**.
-7. Anything you had to deviate from, and why.
-8. Anything that looked wrong but that you left alone because this prompt told you not to touch it.
+1. **The Phase 1 audit findings** — especially which secret store the original token turned out to be in, and the full list of Cloudflare projects with which ones were Git-connected.
+2. **What you disconnected in Phase 1B**, or why you could not.
+3. The live URL and whether it is serving, and whether you tested the apex domain or the pages.dev URL.
+4. Pass or fail for each of the 11 checks in Phase 8, with the specific failure text for any that failed.
+5. Every workflow run you triggered, its conclusion, and for any failure, the step that failed and what you changed before re-running.
+6. The two KV namespace IDs from Phase 5, and the Cloudflare account ID.
+7. Confirmation that the token was created and stored — **and nothing about its value**.
+8. Anything you had to deviate from, and why.
+9. Anything that looked wrong but that you left alone because this prompt told you not to touch it.
 
 Do not tell me the site needs prices added. I know. That is a separate, deliberate piece of work.
