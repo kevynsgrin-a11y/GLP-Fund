@@ -28,30 +28,14 @@ pages_build_output_dir = "public"
 # or insurance situation -- those are health information and never leave the
 # browser.
 #
-# Until the binding exists, the alert endpoint returns 503 and logs the missing
-# binding -- see functions/api/alerts.js, which checks `env.ALERTS` before it
-# touches anything. Every other part of the site is unaffected, which is the
-# intended failure mode: a broken mailing list must never take down a page
-# somebody is reading at a pharmacy counter.
-#
-# THE BLOCK BELOW IS COMMENTED OUT ON PURPOSE. Wrangler validates this file
-# before it uploads anything, and it rejects an empty id:
-#
-#   "kv_namespaces[0]" bindings should have a string "id" field
-#   but got {"binding":"ALERTS","id":"","preview_id":""}.
-#
-# Placeholder ids are not a thing here -- the field is either a real namespace
-# or absent. An absent binding costs one endpoint; a malformed one costs the
-# whole deploy, which is what it did before this was commented out.
-#
-# The production binding is configured in the Cloudflare dashboard instead
-# (project > Settings > Bindings, variable name ALERTS), which is where Pages
-# reads it from at runtime. Uncomment this only for `wrangler pages dev`, and
-# only with real ids from:
+# These are the existing production and preview namespaces created for this
+# project. Wrangler treats this file as the Pages project's source of truth, so
+# the binding is declared here rather than in the disabled dashboard control.
+# To recreate either namespace, use:
 #   npx wrangler kv namespace create ALERTS
 #   npx wrangler kv namespace create ALERTS --preview
 # ---------------------------------------------------------------------------
-# [[kv_namespaces]]
-# binding = "ALERTS"
-# id = ""
-# preview_id = ""
+[[kv_namespaces]]
+binding = "ALERTS"
+id = "218324bbdfe349cfb9a6a2269378d8e6"
+preview_id = "67d68242b52e4de6ab44bb4204605570"
