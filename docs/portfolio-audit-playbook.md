@@ -45,6 +45,21 @@ Every page the site actually deploys, at every viewport it actually serves. Enum
 from the build output or the router, never from memory or the README. Include pages that ship no
 JavaScript, states only reachable after a form interaction, and error states.
 
+## Capability preflight — before anything else
+
+Establish and report, in one line each, which of these you actually have:
+- Can you build and serve the site locally?
+- Can you drive a real browser against it?
+- Can you fetch the live public URL?
+
+Browser automation and web fetching are pre-authorised. Do not ask permission, just use them.
+These capabilities fail independently — losing the live URL does not cost you the local browser,
+which is where most measurement happens.
+
+If any of them is unavailable, say so explicitly under an "Evidence coverage" heading in the
+deliverable, and name which lenses are degraded as a result. Never silently downgrade a
+measurement to an impression.
+
 ## Method
 
 Fan out audit agents across these six lenses. Keep them non-overlapping so findings do not
@@ -73,6 +88,14 @@ Do not record a finding you have not verified yourself. Plausibility is not evid
 - Compute contrast ratios. Do not estimate them.
 - Count anything that is claimed — rows, cards, words announced by a live region, tracked items.
 - Cite file:line for every finding.
+
+Tag every finding with an evidence grade:
+- MEASURED — you executed code, drove a browser, or computed a value. Include the number.
+- OBSERVED — you read it directly in source, or saw it in a screenshot supplied to you.
+- INFERRED — reasoned from code you did not execute. State what would confirm it.
+
+Report the mix of grades in the summary. Any finding at high severity or above that is only
+INFERRED must carry that word in its own heading, so nobody mistakes reasoning for measurement.
 
 Before writing anything down, re-verify each finding against source yourself. Discard whatever you
 cannot reproduce, and state how many you discarded.
@@ -128,6 +151,54 @@ Commit docs/frontend-audit-<YYYY-MM>.md and open a draft pull request. Structure
 
 Report honestly. Say which fixes you shipped, which you flagged, and anything in scope you did not
 finish and why.
+```
+
+---
+
+## When browsing is unavailable — the screenshot path
+
+Screenshots supplement an audit. They do not substitute for one, and sending more of them makes
+the audit worse, not better.
+
+**What screenshots structurally cannot carry.** Roughly half of the GLP-Fund critical list is
+invisible to a camera. Assistive-only text is hidden by definition, so the contradiction between
+what a screen reader announced and what the page displayed could not appear in any capture.
+Quirks mode renders identically to standards mode. A date-triggered bug has not happened yet.
+A live-region announcement has no visual form. Clipping is visible but not measurable, and the
+flat-640px-from-768-to-2560 finding needs widths nobody screenshots.
+
+**The context cost is real.** Sixteen pages at three viewports is roughly forty-eight images, and
+that budget comes directly out of reading source. The GLP-Fund run used about eight captures, all
+aimed at a specific doubt. Exhaustive capture would have produced a weaker audit.
+
+**The rule that turns a screenshot into evidence: state the viewport width.** With a stated width,
+proportions can be measured. Without one, a screenshot supports opinions only, and every finding
+drawn from it is graded OBSERVED at best.
+
+Capture these, and little else:
+
+| Capture | Why |
+| --- | --- |
+| The two or three highest-value pages, full-page, at three widths | Aesthetic judgment — rhythm, hierarchy, whether it reads as designed |
+| Every state a URL cannot reach | Validation errors, post-submit, empty results, mid-load |
+| Anything auth-gated or rendered by a third party | Unreachable from a local build |
+| The one screen that made you commission the audit | Your instinct is a finding; it just needs locating |
+
+Send alongside each: viewport width, device pixel ratio, browser, OS, and light or dark theme.
+Width is the one that matters; the rest resolve ambiguities.
+
+Append this to Prompt A when supplying screenshots:
+
+```text
+I am supplying screenshots because browser automation is unavailable for this site. Each is
+labelled with the viewport width it was captured at.
+
+Treat them as OBSERVED evidence, never MEASURED. Use them for the visual design and UX lenses.
+For accessibility, client-side function, performance and responsive behaviour, audit from source
+and grade every finding INFERRED unless you can execute something to confirm it.
+
+State plainly in the deliverable which lenses were degraded by the absence of a live browser, and
+list what you would have measured first had one been available.
 ```
 
 ---
