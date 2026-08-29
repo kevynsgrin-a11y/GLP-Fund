@@ -5,7 +5,7 @@
  * Emoji rendering is the single most damaging credibility signal identified
  * across our sites -- on a health-pricing page it reads as a content farm, and
  * a visitor who does not trust the presentation will not trust the numbers.
- * Enforced by test/no-emoji.test.js, not by discipline.
+ * Enforced by the "zero emoji" test in test/integrity.test.js, not by discipline.
  *
  * Every path below is authored for this project on a 24x24 grid with a 1.75
  * stroke, round caps and round joins. No icon font, no sprite sheet, no

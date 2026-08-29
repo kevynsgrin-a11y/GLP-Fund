@@ -114,6 +114,111 @@ function dataStamp(extra = '') {
  * interpolated from config.js on every page, so there is exactly one copy of
  * each string in the codebase and a test asserts both are byte-exact.
  */
+/**
+ * The publisher node, emitted on every page and referenced by @id from the
+ * page node. Before this existed the site was anonymous to machines: no
+ * Organization, no publisher, no author anywhere in the tree, which on a
+ * health-adjacent pricing topic is the ceiling on how much trust it can earn.
+ */
+const ORG_ID = `${ORIGIN}/#organization`;
+
+const ORG_NODE = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: PUBLISHER.legalName,
+  alternateName: SITE_NAME,
+  url: `${ORIGIN}/`,
+  email: PUBLISHER.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: PUBLISHER.street,
+    addressLocality: PUBLISHER.city,
+    addressRegion: PUBLISHER.state,
+    postalCode: PUBLISHER.postalCode,
+    addressCountry: PUBLISHER.country,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'corrections and privacy',
+    email: PUBLISHER.email,
+    areaServed: 'US',
+    availableLanguage: 'en',
+  },
+};
+
+/**
+ * Every page is a WebPage published by the Organization above and modified on
+ * the data date. `dateModified` is the build date rather than a hand-typed
+ * value, so it cannot drift from the figures it describes.
+ */
+function pageNode({ title, description, canonical }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${ORIGIN}/#website` },
+    dateModified: BUILT_ON,
+    publisher: { '@id': ORG_ID },
+    license: `${ORIGIN}/terms/`,
+  };
+}
+
+/**
+ * A two-level breadcrumb for any page that hangs directly off the root. The
+ * drug and pathway builders construct their own; this covers the utility pages
+ * that previously emitted no breadcrumb at all.
+ *
+ * @param {string} name
+ * @param {string} path
+ */
+function crumbs(name, path) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: SITE_NAME, item: `${ORIGIN}/` },
+      { '@type': 'ListItem', position: 2, name, item: `${ORIGIN}${path}` },
+    ],
+  };
+}
+
+const WEBSITE_NODE = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${ORIGIN}/#website`,
+  url: `${ORIGIN}/`,
+  name: SITE_NAME,
+  inLanguage: 'en-US',
+  publisher: { '@id': ORG_ID },
+};
+
+/**
+ * Truncate for a meta description without cutting a word in half.
+ *
+ * A blind slice produced five descriptions ending mid-word ("This page expla"),
+ * which is what a search engine renders. Cut at the last space instead, and
+ * only add an ellipsis when something was actually removed.
+ *
+ * @param {string} text
+ * @param {number} max
+ */
+function truncateAtWord(text, max) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[,;:.\s]+$/, '')}...`;
+}
+
 function layout({ title, description, path, body, jsonLd = [], script = '' }) {
   const canonical = `${ORIGIN}${path}`;
 
@@ -130,7 +235,7 @@ function layout({ title, description, path, body, jsonLd = [], script = '' }) {
 <meta property="og:site_name" content="${esc(SITE_NAME)}">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="/assets/css/base.css">
-${jsonLd.map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
+${[ORG_NODE, WEBSITE_NODE, pageNode({ title, description, canonical }), ...jsonLd].map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -786,7 +891,7 @@ function buildPathwayPage(page) {
     `${page.slug}/index.html`,
     layout({
       title: page.title,
-      description: page.intro.slice(0, 155),
+      description: truncateAtWord(page.intro, 155),
       path: `/${page.slug}/`,
       body,
       jsonLd: [
@@ -1023,6 +1128,42 @@ function buildMethodology() {
         'Every price figure, its source, its source type, its verification date and its confidence level. The complete evidence table, including what we could not confirm.',
       path: '/methodology/',
       body,
+      jsonLd: [
+        crumbs('Methodology', '/methodology/'),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Dataset',
+          '@id': `${ORIGIN}/methodology/#dataset`,
+          name: `${SITE_NAME} GLP-1 price dataset`,
+          description:
+            `Every GLP-1 payment pathway we track, with the source, source type, ` +
+            `verification date and confidence level for each figure. ` +
+            `${DATA.prices.length} rows across ${Object.keys(DATA.drugs).length} medications ` +
+            `and ${Object.keys(DATA.pathways).length} payment pathways. ` +
+            `${DATA.prices.filter((r) => r.value !== null).length} rows currently carry a ` +
+            `confirmed price; the remainder are published as unverified because no figure in ` +
+            `circulation survived a direct read of a primary source.`,
+          url: `${ORIGIN}/methodology/`,
+          isAccessibleForFree: true,
+          creator: { '@id': ORG_ID },
+          publisher: { '@id': ORG_ID },
+          dateModified: BUILT_ON,
+          license: `${ORIGIN}/terms/`,
+          spatialCoverage: { '@type': 'Place', name: 'United States' },
+          measurementTechnique:
+            'Direct read of a primary manufacturer or government source, recorded with the date of the read.',
+          variableMeasured: {
+            '@type': 'PropertyValue',
+            name: 'Monthly out-of-pocket cost',
+            unitText: 'USD per month',
+          },
+          distribution: {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: `${ORIGIN}/data/pricing.json`,
+          },
+        },
+      ],
     })
   );
 }
@@ -1082,6 +1223,7 @@ function buildChangelog() {
         'Every price change we record, with the date and the source. Proof that this site updates rather than a claim that it does.',
       path: '/changelog/',
       body,
+      jsonLd: [crumbs('Price changes', '/changelog/')],
     })
   );
 }
@@ -1148,6 +1290,7 @@ function buildAlerts() {
         'Email alerts when the price of your GLP-1 medication changes, with the source. No newsletter, no product offers.',
       path: '/alerts/',
       body,
+      jsonLd: [crumbs('Price-change alerts', '/alerts/')],
       script: '<script type="module" src="/assets/js/alerts.js"></script>',
     })
   );
@@ -1193,11 +1336,55 @@ function buildAbout() {
     try to. It tells you what things cost and shows you where the number came from.
   </p>
 
+  <h2>Who publishes this</h2>
+  <p>
+    ${esc(SITE_NAME)} is published by ${esc(PUBLISHER.legalName)}, a limited
+    liability company organised in the State of California and based in
+    ${esc(PUBLISHER.city)}.
+  </p>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+  <p>
+    We are a software company, not a clinical one. Nobody here is a physician, a
+    pharmacist or a benefits adviser, and we do not employ one. That is precisely
+    why this site reports prices and provenance and stops there: the questions we
+    are not qualified to answer are the ones we refuse to answer.
+  </p>
+
+  <h2>Editorial standards</h2>
+  <p>
+    A figure is published only when it has been read directly from a primary
+    source: a manufacturer's own page for its own product, or a government
+    platform for its own program. A search-engine summary, a news article, an
+    aggregator or a screenshot is not a primary source. It can tell us a figure
+    exists and is worth checking; it can never put that figure on the site.
+  </p>
+  <p>
+    Every published figure carries the date it was last confirmed. Past
+    ${STALENESS_WARN_DAYS} days we flag it as possibly outdated; past
+    ${STALENESS_URGENT_DAYS} days we raise a prominent warning rather than let it
+    sit quietly.
+  </p>
+  <p>
+    When sources conflict, we publish neither figure. We record both, say what
+    each would need in order to be confirmed, and leave the price unverified
+    until one of them can be. This is why the site currently shows no verified
+    price for any medication: not one figure in circulation survived a direct
+    read. That is a finding, not a gap, and
+    <a href="/methodology/">the methodology page</a> shows the full evidence
+    table behind it.
+  </p>
+
   <h2>Corrections</h2>
   <p>
-    Every figure carries its source so you can check it. Every change is logged on the
-    <a href="/changelog/">changelog</a>. If something here is wrong we would rather fix
-    it than defend it.
+    Every figure carries its source so you can check it. Every change is logged
+    on the <a href="/changelog/">changelog</a>, including corrections, whether we
+    found them or you did. If something here is wrong we would rather fix it than
+    defend it, and there is now somewhere to tell us:
+    <a href="/contact/">contact and corrections</a>.
   </p>
 `;
 
@@ -1209,6 +1396,7 @@ function buildAbout() {
         'Why this GLP-1 pricing site sells nothing, takes no pharmaceutical or telehealth money, and shows a source and verification date on every figure.',
       path: '/about/',
       body,
+      jsonLd: [crumbs('About', '/about/')],
     })
   );
 }
@@ -1367,6 +1555,7 @@ function buildPrivacy() {
         'alerts list, where it is stored, how long it is kept, and how to have it deleted.',
       path: '/privacy/',
       body,
+      jsonLd: [crumbs('Privacy policy', '/privacy/')],
     })
   );
 }
@@ -1459,6 +1648,7 @@ function buildTerms() {
         'its accuracy, how you may quote its figures, and who publishes it.',
       path: '/terms/',
       body,
+      jsonLd: [crumbs('Terms of use', '/terms/')],
     })
   );
 }
@@ -1529,6 +1719,7 @@ function buildContact() {
         'write, and how to make a privacy request.',
       path: '/contact/',
       body,
+      jsonLd: [crumbs('Contact and corrections', '/contact/')],
     })
   );
 }

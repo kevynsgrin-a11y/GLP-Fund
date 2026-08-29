@@ -11,7 +11,80 @@
 <meta property="og:site_name" content="GLP-1 Price Check">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="/assets/css/base.css">
-
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://glp1-fund.com/#organization",
+  "name": "Oak and Main Developers LLC",
+  "alternateName": "GLP-1 Price Check",
+  "url": "https://glp1-fund.com/",
+  "email": "contact@glp1-fund.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2108 N St.",
+    "addressLocality": "Sacramento",
+    "addressRegion": "CA",
+    "postalCode": "95816",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "corrections and privacy",
+    "email": "contact@glp1-fund.com",
+    "areaServed": "US",
+    "availableLanguage": "en"
+  }
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://glp1-fund.com/#website",
+  "url": "https://glp1-fund.com/",
+  "name": "GLP-1 Price Check",
+  "inLanguage": "en-US",
+  "publisher": {
+    "@id": "https://glp1-fund.com/#organization"
+  }
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://glp1-fund.com/changelog/#webpage",
+  "url": "https://glp1-fund.com/changelog/",
+  "name": "GLP-1 price changes: a dated log of every figure we have changed",
+  "description": "Every price change we record, with the date and the source. Proof that this site updates rather than a claim that it does.",
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@id": "https://glp1-fund.com/#website"
+  },
+  "dateModified": "2026-07-30",
+  "publisher": {
+    "@id": "https://glp1-fund.com/#organization"
+  },
+  "license": "https://glp1-fund.com/terms/"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GLP-1 Price Check",
+      "item": "https://glp1-fund.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Price changes",
+      "item": "https://glp1-fund.com/changelog/"
+    }
+  ]
+}</script>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -53,7 +126,7 @@
   <p>The tool, the engine and the full source manifest go live. No price renders as a number, because on this date no figure could be confirmed against a primary source. This entry exists so the gap is on the record from day one rather than discovered later.</p>
   <ul>
     <li>Published the ranking engine covering 6 medications and 8 payment pathways, with eligibility rules held as data rather than prose.</li>
-    <li>Filed all 26 tracked price figures as unverified or conflicting with a null value. Outbound connections to every primary source (fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, and all Eli Lilly and Novo Nordisk domains) were refused by the network this build runs on, so none could be read directly.</li>
+    <li>Filed all 45 tracked price figures as unverified or conflicting with a null value. Outbound connections to every primary source (fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, and all Eli Lilly and Novo Nordisk domains) were refused by the network this build runs on, so none could be read directly.</li>
     <li>Recorded, alongside each unverified figure, what research located and the provenance actually held for it, so a single verification pass can promote it without a code change.</li>
     <li>Marked the TrumpRx pathway as manually curated: programmatic access to trumprx.gov is refused, and the November 2025 announced figures conflict with later readings of the live platform.</li>
     <li>Excluded compounded semaglutide and tirzepatide entirely, the current lawful status being unestablished against FDA sources.</li>
