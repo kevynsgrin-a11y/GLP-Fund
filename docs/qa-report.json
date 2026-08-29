@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-07-30T12:51:29.057Z",
+  "ranAt": "2026-08-29T08:02:30.015Z",
   "viewport": "390x844",
   "chromium": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
   "checks": [
@@ -11,7 +11,7 @@
     {
       "name": "all three inputs are reachable without scrolling",
       "pass": true,
-      "detail": "form bottom at 720px, viewport 844px"
+      "detail": "form bottom at 781px, viewport 844px"
     },
     {
       "name": "dose selector repopulates for the chosen drug",
@@ -114,7 +114,7 @@
       "detail": ""
     },
     {
-      "name": "all 16 pages pass compliance and layout audit",
+      "name": "all 19 pages pass compliance and layout audit",
       "pass": true,
       "detail": "no issues"
     },

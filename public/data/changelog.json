@@ -5,7 +5,7 @@
     "summary": "The tool, the engine and the full source manifest go live. No price renders as a number, because on this date no figure could be confirmed against a primary source. This entry exists so the gap is on the record from day one rather than discovered later.",
     "changes": [
       "Published the ranking engine covering 6 medications and 8 payment pathways, with eligibility rules held as data rather than prose.",
-      "Filed all 26 tracked price figures as unverified or conflicting with a null value. Outbound connections to every primary source (fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, and all Eli Lilly and Novo Nordisk domains) were refused by the network this build runs on, so none could be read directly.",
+      "Filed all 45 tracked price figures as unverified or conflicting with a null value. Outbound connections to every primary source (fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, and all Eli Lilly and Novo Nordisk domains) were refused by the network this build runs on, so none could be read directly.",
       "Recorded, alongside each unverified figure, what research located and the provenance actually held for it, so a single verification pass can promote it without a code change.",
       "Marked the TrumpRx pathway as manually curated: programmatic access to trumprx.gov is refused, and the November 2025 announced figures conflict with later readings of the live platform.",
       "Excluded compounded semaglutide and tirzepatide entirely, the current lawful status being unestablished against FDA sources.",

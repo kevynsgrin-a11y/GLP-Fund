@@ -12,7 +12,17 @@
  * health information and are never transmitted from the client, so this endpoint
  * has no field to receive them and would drop them if it did.
  *
- * Binding required: KV namespace `ALERTS`.
+ * UNSUBSCRIBE lives here rather than in a second Pages Function, deliberately.
+ * A mailing list cannot lawfully exist without a working opt-out -- CAN-SPAM
+ * requires one, and /alerts/ promises one -- so removal is part of the single
+ * permitted purpose rather than a second one. It is served from this same
+ * endpoint by method and query string, so the "one function" envelope holds.
+ *
+ * Bindings required:
+ *   KV namespace `ALERTS`.
+ *   Secret `ALERTS_SECRET` -- signs unsubscribe tokens so a link cannot be
+ *   forged and a stranger cannot remove someone else's address. Without it,
+ *   unsubscribe fails closed and signup is unaffected.
  *   wrangler.toml, or Pages project settings, Functions, KV namespace bindings.
  */
 
@@ -149,9 +159,174 @@ export async function onRequestPost(context) {
   }
 }
 
-/** Anything other than POST. No listing endpoint exists, by design. */
+/* --------------------------------------------------------------- unsubscribe */
+
+/**
+ * Sign an email address for use in an unsubscribe link.
+ *
+ * HMAC-SHA256 over the lowercased address, hex encoded. The token is not a
+ * secret in itself -- it is a proof that we generated the link -- so it is safe
+ * in a URL, and it cannot be produced for an arbitrary address without the
+ * signing secret.
+ *
+ * @param {string} email
+ * @param {string} secret
+ * @returns {Promise<string>} hex token
+ */
+export async function signUnsubscribe(email, secret) {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(normaliseEmail(email)));
+  return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+/**
+ * Constant-time-ish comparison. Both values are hex of the same length, so a
+ * length check plus a full-width XOR accumulation is enough to avoid leaking
+ * where the first difference is.
+ *
+ * @param {string} a
+ * @param {string} b
+ */
+function tokensMatch(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i += 1) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+/**
+ * Remove an address from both places it is stored: its own record and every
+ * per-drug index. Idempotent -- unsubscribing twice is a success, because a
+ * person clicking twice should not see an error.
+ *
+ * @param {string} email already normalised
+ * @param {{ALERTS: KVNamespace}} env
+ * @returns {Promise<boolean>} whether a record existed
+ */
+export async function removeSubscriber(email, env) {
+  const key = `subscriber:${email}`;
+  const existing = await env.ALERTS.get(key, { type: 'json' });
+
+  await env.ALERTS.delete(key);
+
+  // The index the subscriber is filed under is whichever drug they chose, but a
+  // preference change could have left them in an older one. Sweep them all
+  // rather than trusting the record we may have just failed to read.
+  for (const drug of ALLOWED_DRUGS) {
+    const indexKey = `index:${drug}`;
+    const index = await env.ALERTS.get(indexKey, { type: 'json' });
+    if (!Array.isArray(index) || !index.includes(email)) continue;
+    const next = index.filter((e) => e !== email);
+    await env.ALERTS.put(indexKey, JSON.stringify(next));
+  }
+
+  return Boolean(existing);
+}
+
+const UNSUB_PAGE_HEADERS = {
+  'Content-Type': 'text/html; charset=utf-8',
+  'Cache-Control': 'no-store',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+};
+
+/**
+ * A self-contained confirmation page. It carries no stylesheet link because it
+ * must render correctly even if the address being removed belongs to someone
+ * whose mail client stripped everything else.
+ *
+ * @param {string} heading
+ * @param {string} message
+ * @param {number} status
+ */
+function unsubPage(heading, message, status = 200) {
+  return new Response(
+    `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">` +
+      `<meta name="viewport" content="width=device-width, initial-scale=1">` +
+      `<meta name="robots" content="noindex">` +
+      `<title>${heading}</title>` +
+      `<link rel="stylesheet" href="/assets/css/base.css"></head><body>` +
+      `<main class="wrap"><h1>${heading}</h1><p>${message}</p>` +
+      `<p><a href="/">Back to the price tool</a></p></main></body></html>`,
+    { status, headers: UNSUB_PAGE_HEADERS }
+  );
+}
+
+/**
+ * Handle an unsubscribe request.
+ *
+ * Two shapes reach here. A person clicking the link in an email sends a GET and
+ * gets an HTML confirmation. A mail provider honouring RFC 8058 one-click sends
+ * a POST and gets JSON. Both remove the address.
+ *
+ * @param {{request: Request, env: object}} context
+ */
+async function handleUnsubscribe(context) {
+  const { request, env } = context;
+  const url = new URL(request.url);
+  const email = url.searchParams.get('unsubscribe');
+  const token = url.searchParams.get('t');
+  const wantsHtml = request.method === 'GET';
+
+  const fail = (message, status) =>
+    wantsHtml
+      ? unsubPage('We could not unsubscribe you', message, status)
+      : json({ error: message }, status);
+
+  if (!env?.ALERTS) {
+    console.error('alerts: KV namespace binding ALERTS is missing');
+    return fail('This is our fault, not yours. Please write to us and we will remove you by hand.', 500);
+  }
+  if (!env?.ALERTS_SECRET) {
+    // Fail closed. An unsigned unsubscribe would let anyone remove any address.
+    console.error('alerts: ALERTS_SECRET is missing; unsubscribe cannot verify tokens');
+    return fail('This is our fault, not yours. Please write to us and we will remove you by hand.', 500);
+  }
+  if (!isValidEmail(email) || !token) {
+    return fail('That unsubscribe link is not valid. Please write to us and we will remove you by hand.', 400);
+  }
+
+  const normalised = normaliseEmail(email);
+  const expected = await signUnsubscribe(normalised, env.ALERTS_SECRET);
+  if (!tokensMatch(token, expected)) {
+    return fail('That unsubscribe link is not valid. Please write to us and we will remove you by hand.', 403);
+  }
+
+  try {
+    await removeSubscriber(normalised, env);
+  } catch (error) {
+    console.error('alerts: KV delete failed', error);
+    return fail('Something went wrong on our side. Please write to us and we will remove you by hand.', 500);
+  }
+
+  return wantsHtml
+    ? unsubPage(
+        'You are unsubscribed',
+        'Your address has been deleted from our alert list. We keep no record that you were ever on it.'
+      )
+    : json({ ok: true });
+}
+
+/**
+ * Method router. Signup is POST with a JSON body. Unsubscribe is any request
+ * carrying an `unsubscribe` query parameter, which is how both a clicked link
+ * and an RFC 8058 one-click POST arrive. No listing endpoint exists, by design.
+ */
 export async function onRequest(context) {
-  if (context.request.method === 'POST') return onRequestPost(context);
+  const { request } = context;
+  const hasUnsubParam = new URL(request.url).searchParams.has('unsubscribe');
+
+  if (hasUnsubParam && (request.method === 'GET' || request.method === 'POST')) {
+    return handleUnsubscribe(context);
+  }
+  if (request.method === 'POST') return onRequestPost(context);
+
   return json({ error: 'Method not allowed.' }, 405, {
     Allow: 'POST',
   });

@@ -33,6 +33,9 @@ import {
   STALENESS_WARN_DAYS,
   STALENESS_URGENT_DAYS,
   FLAGS,
+  PUBLISHER,
+  PUBLISHER_ADDRESS,
+  DATA_RETENTION_DAYS,
 } from '../public/engine/config.js';
 import { esc } from '../public/assets/js/render.js';
 import { icon } from '../public/assets/js/icons.js';
@@ -70,6 +73,9 @@ const FOOTER_NAV = [
   { href: '/methodology/', label: 'Methodology' },
   { href: '/changelog/', label: 'Price changes' },
   { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/privacy/', label: 'Privacy' },
+  { href: '/terms/', label: 'Terms' },
 ];
 
 /**
@@ -108,8 +114,129 @@ function dataStamp(extra = '') {
  * interpolated from config.js on every page, so there is exactly one copy of
  * each string in the codebase and a test asserts both are byte-exact.
  */
+/**
+ * The publisher node, emitted on every page and referenced by @id from the
+ * page node. Before this existed the site was anonymous to machines: no
+ * Organization, no publisher, no author anywhere in the tree, which on a
+ * health-adjacent pricing topic is the ceiling on how much trust it can earn.
+ */
+const ORG_ID = `${ORIGIN}/#organization`;
+
+const ORG_NODE = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: PUBLISHER.legalName,
+  alternateName: SITE_NAME,
+  url: `${ORIGIN}/`,
+  email: PUBLISHER.email,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${ORIGIN}/assets/img/icon-512.png`,
+    width: 512,
+    height: 512,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: PUBLISHER.street,
+    addressLocality: PUBLISHER.city,
+    addressRegion: PUBLISHER.state,
+    postalCode: PUBLISHER.postalCode,
+    addressCountry: PUBLISHER.country,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'corrections and privacy',
+    email: PUBLISHER.email,
+    areaServed: 'US',
+    availableLanguage: 'en',
+  },
+};
+
+/**
+ * Every page is a WebPage published by the Organization above and modified on
+ * the data date. `dateModified` is the build date rather than a hand-typed
+ * value, so it cannot drift from the figures it describes.
+ */
+function pageNode({ title, description, canonical, image }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${ORIGIN}/#website` },
+    dateModified: BUILT_ON,
+    publisher: { '@id': ORG_ID },
+    license: `${ORIGIN}/terms/`,
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: image,
+      width: 1200,
+      height: 630,
+    },
+  };
+}
+
+/**
+ * A two-level breadcrumb for any page that hangs directly off the root. The
+ * drug and pathway builders construct their own; this covers the utility pages
+ * that previously emitted no breadcrumb at all.
+ *
+ * @param {string} name
+ * @param {string} path
+ */
+function crumbs(name, path) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: SITE_NAME, item: `${ORIGIN}/` },
+      { '@type': 'ListItem', position: 2, name, item: `${ORIGIN}${path}` },
+    ],
+  };
+}
+
+const WEBSITE_NODE = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${ORIGIN}/#website`,
+  url: `${ORIGIN}/`,
+  name: SITE_NAME,
+  inLanguage: 'en-US',
+  publisher: { '@id': ORG_ID },
+};
+
+/**
+ * Truncate for a meta description without cutting a word in half.
+ *
+ * A blind slice produced five descriptions ending mid-word ("This page expla"),
+ * which is what a search engine renders. Cut at the last space instead, and
+ * only add an ellipsis when something was actually removed.
+ *
+ * @param {string} text
+ * @param {number} max
+ */
+function truncateAtWord(text, max) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[,;:.\s]+$/, '')}...`;
+}
+
 function layout({ title, description, path, body, jsonLd = [], script = '' }) {
   const canonical = `${ORIGIN}${path}`;
+  // Share cards are generated per page by tools/build-images.mjs, keyed by the
+  // same slug the path produces. The home card covers '/'.
+  const ogSlug = path === '/' ? 'home' : path.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+  const ogImage = `${ORIGIN}/assets/img/og/${ogSlug}.png`;
 
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -122,9 +249,21 @@ function layout({ title, description, path, body, jsonLd = [], script = '' }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="${esc(SITE_NAME)}">
-<meta name="twitter:card" content="summary">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="${esc(ogImage)}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(`${SITE_NAME}: ${title}. Pricing data as of ${BUILT_ON}.`)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${esc(ogImage)}">
+<link rel="icon" href="/favicon.ico" sizes="32x32 16x16">
+<link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0b5c4a">
 <link rel="stylesheet" href="/assets/css/base.css">
-${jsonLd.map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
+${[ORG_NODE, WEBSITE_NODE, pageNode({ title, description, canonical, image: ogImage }), ...jsonLd].map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -153,9 +292,11 @@ ${body}
     <p class="non-affiliation">${esc(NON_AFFILIATION)}</p>
     <p>
       This site sells nothing. It carries no telehealth referrals, no
-      pharmaceutical affiliate links and no compounding-pharmacy links. It does
-      not collect health information: the medication, insurance situation and
-      dose you select are never stored or transmitted.
+      pharmaceutical affiliate links and no compounding-pharmacy links. The
+      price tool collects nothing: the medication, insurance situation and dose
+      you select there are never stored or transmitted. The only personal data
+      we hold is what you give us if you join the price-change alert list, set
+      out in full in our <a href="/privacy/">privacy policy</a>.
       <a href="/methodology/">See how every figure here is sourced</a>.
     </p>
     <ul class="footer-nav">
@@ -316,12 +457,104 @@ function faqFor(drugId) {
  * The tool
  * ========================================================================= */
 
+/**
+ * The site's current verification position, stated in normal type near the top
+ * of the page rather than discovered in the smallest grey text after three
+ * questions.
+ *
+ * Derived from the data rather than written down, so it cannot become a lie the
+ * moment a figure is confirmed: once prices carry values, this renders the count
+ * instead of the disclosure.
+ */
+function verificationState() {
+  const total = DATA.prices.length;
+  const priced = DATA.prices.filter((r) => r.value !== null).length;
+
+  if (priced === 0) {
+    return `
+  <div class="verification-state" role="note">
+    <h2>Right now, we publish no verified price</h2>
+    <p>
+      We track ${total} figures across ${Object.keys(DATA.drugs).length} medications.
+      Not one of them currently survives our standard, which is a direct read of a
+      manufacturer or government page rather than a search result or an aggregator.
+      Every figure in circulation failed that check, so we show you the pathways,
+      the evidence we hold, and a link to the official page &mdash; instead of a
+      number we cannot stand behind.
+    </p>
+    <p>
+      <a href="/methodology/">See exactly what we found and what would confirm it</a>.
+    </p>
+  </div>`;
+  }
+
+  return `
+  <div class="verification-state" role="note">
+    <h2>${priced} of ${total} figures are currently verified</h2>
+    <p>
+      A verified figure has been read directly from a manufacturer or government
+      page and carries the date of that read. The remaining ${total - priced} are
+      shown as unverified rather than guessed.
+      <a href="/methodology/">See the evidence table</a>.
+    </p>
+  </div>`;
+}
+
+/**
+ * The introductory-pricing warning.
+ *
+ * This is the most consequential thing the site knows and it reached zero of
+ * the static pages: it lived only in pricing.json, surfacing as one bullet
+ * inside a rendered card, styled exactly like "requires a valid prescription".
+ * A reader who has seen a low headline price elsewhere needs to meet this
+ * before they act on it, so it renders as its own block with its own heading.
+ *
+ * The text is taken verbatim from the data rather than restated here. If the
+ * caveat changes in pricing.json, this changes with it.
+ *
+ * @param {(row: object) => boolean} match which rows to consider
+ * @returns {string} markup, or '' when no matching row carries the caveat
+ */
+function introPricingWarning(match) {
+  const texts = new Set();
+  for (const row of DATA.prices) {
+    if (!match(row)) continue;
+    for (const caveat of row.caveats ?? []) {
+      if (/INTRODUCTORY/i.test(caveat)) texts.add(caveat);
+    }
+  }
+  if (texts.size === 0) return '';
+
+  const pathways = new Set(
+    DATA.prices
+      .filter((r) => match(r) && (r.caveats ?? []).some((c) => /INTRODUCTORY/i.test(c)))
+      .map((r) => DATA.pathways[r.pathway]?.label)
+      .filter(Boolean)
+  );
+
+  return `
+  <aside class="intro-warning" role="note" aria-labelledby="intro-warning-heading">
+    <h2 id="intro-warning-heading">
+      ${icon('alertTriangle', { size: 20 })}
+      A low advertised price may not be your ongoing price
+    </h2>
+    ${[...texts].map((t) => `<p>${esc(t)}</p>`).join('\n    ')}
+    <p class="intro-warning__scope">
+      This applies to: ${esc([...pathways].join(', '))}.
+      We have not been able to confirm the ongoing figure against a primary
+      source, which is why no number renders for it here.
+      <a href="/methodology/">See what we found and what would confirm it</a>.
+    </p>
+  </aside>`;
+}
+
 function buildIndex() {
   const body = `
-  <h1>The cheapest legal way to pay for your GLP-1</h1>
+  <h1>Every legal way to pay for your GLP-1, with the receipts</h1>
   <p class="lede">
-    Three questions. Every payment pathway ranked by what you would actually pay
-    this month, each with its source and the date we checked it.
+    Three questions. Every payment pathway for Zepbound, Wegovy, Ozempic,
+    Mounjaro, Wegovy tablets and Foundayo, each with the source it came from and
+    the date we last checked it.
   </p>
 
   <form class="tool" data-tool-form novalidate>
@@ -357,6 +590,11 @@ function buildIndex() {
   </form>
 
   ${dataStamp()}
+
+  ${/* Below the form, deliberately. Above it, this block pushed the third input
+        past the fold on a 390x844 viewport and broke the "three inputs, one
+        screen" contract that tools/qa.mjs measures. */ ''}
+  ${verificationState()}
 
   <section class="results" data-results aria-live="polite" aria-atomic="false" aria-labelledby="results-heading">
     <div class="empty">
@@ -400,6 +638,21 @@ function buildIndex() {
         adjacent slots left a dead band of roughly 350px on a 390px viewport and
         halve each other's viewability. */ ''}
   ${adSlot('inline')}
+
+  <h2>Every medication we track</h2>
+  <p>
+    Each page carries the full pathway table for that medication, with the source
+    and verification date on every figure.
+  </p>
+  <ul class="link-list">
+    ${Object.values(DATA.drugs)
+      .map(
+        (d) =>
+          `<li><a href="/${esc(d.slug)}/">${esc(d.label)} cost</a> &mdash; ` +
+          `${esc(d.genericName)}, made by ${esc(d.manufacturer)}</li>`
+      )
+      .join('\n    ')}
+  </ul>
 
   <h2>Every pathway we track</h2>
   <ul>
@@ -464,6 +717,7 @@ function buildDrugPage(drugId) {
     ${esc(meta.manufacturer)} and is approved for ${esc(meta.indication)}.
   </p>
   ${dataStamp()}
+  ${introPricingWarning((r) => r.drug === drugId)}
   ${adSlot('leaderboard')}
 
   <h2>What ${esc(meta.label)} costs on each pathway</h2>
@@ -744,6 +998,74 @@ const PATHWAY_PAGES = [
   },
 ];
 
+/**
+ * Eligibility and caveats for one pathway, rendered from the data.
+ *
+ * The five pathway pages described their programs in prose while the data file
+ * held 14 caveats and 17 eligibility rules that never reached them. A reader
+ * arriving from search needs to know who is excluded before they read what
+ * something costs, and the Medicare and Medicaid bar on manufacturer savings
+ * cards is the most consequential rule on the site.
+ *
+ * Rules with pathway "*" apply everywhere. `suppress` means the pathway is
+ * unavailable to that person, so it is rendered as an exclusion rather than a
+ * footnote.
+ *
+ * @param {string} pathwayId
+ */
+function eligibilityAndCaveats(pathwayId) {
+  const rules = (DATA.eligibilityRules ?? []).filter(
+    (r) => r.pathway === pathwayId || r.pathway === '*'
+  );
+  const caveats = new Set();
+  for (const row of DATA.prices) {
+    if (row.pathway !== pathwayId) continue;
+    for (const caveat of row.caveats ?? []) {
+      // The introductory-pricing warning renders as its own block above.
+      if (!/INTRODUCTORY/i.test(caveat)) caveats.add(caveat);
+    }
+  }
+
+  if (rules.length === 0 && caveats.size === 0) return '';
+
+  const excluded = rules.filter((r) => r.effect === 'suppress');
+  const required = rules.filter((r) => r.effect === 'require');
+  const notes = rules.filter((r) => r.effect === 'note' || r.effect === 'caveat');
+
+  const block = (heading, items) =>
+    items.length === 0
+      ? ''
+      : `
+    <h3>${esc(heading)}</h3>
+    <ul>
+      ${items.map((t) => `<li>${esc(t)}</li>`).join('\n      ')}
+    </ul>`;
+
+  return `
+  <section class="eligibility">
+    <h2>Who can use this, and what to watch for</h2>
+    <p>
+      Every point below comes from the same data file that drives the price
+      table, so it cannot drift from the figures on this page.
+    </p>
+    ${block('You cannot use this pathway if', excluded.map((r) => r.reason))}
+    ${block('You need', required.map((r) => r.reason))}
+    ${block('Worth knowing', [...notes.map((r) => r.reason), ...caveats])}
+    ${
+      rules.some((r) => r.verification === 'pending_primary_verification')
+        ? `<p class="eligibility__pending">
+      ${icon('helpCircle', { size: 16 })}
+      Some rules above are applied from program terms we have not yet been able
+      to read directly. Where that is so, we apply the rule that narrows your
+      options rather than widens them, because telling someone a discount is
+      available when it is not is the more damaging error.
+      <a href="/methodology/">How we handle unverified rules</a>.
+    </p>`
+        : ''
+    }
+  </section>`;
+}
+
 function buildPathwayPage(page) {
   const rows = DATA.prices.filter((p) => p.pathway === page.pathway);
 
@@ -751,6 +1073,8 @@ function buildPathwayPage(page) {
   <h1>${esc(page.h1)}</h1>
   <p class="lede">${esc(page.intro)}</p>
   ${dataStamp()}
+  ${introPricingWarning((r) => r.pathway === page.pathway)}
+  ${eligibilityAndCaveats(page.pathway)}
   ${adSlot('leaderboard')}
 
   ${page.sections
@@ -778,7 +1102,7 @@ function buildPathwayPage(page) {
     `${page.slug}/index.html`,
     layout({
       title: page.title,
-      description: page.intro.slice(0, 155),
+      description: truncateAtWord(page.intro, 155),
       path: `/${page.slug}/`,
       body,
       jsonLd: [
@@ -799,6 +1123,51 @@ function buildPathwayPage(page) {
  * Methodology: the trust engine. A receipt, not a disclaimer.
  * ========================================================================= */
 
+/**
+ * The verification pipeline, drawn.
+ *
+ * How a figure moves from located, to read against a primary source, to
+ * published or withheld is the site's entire argument, and it existed only as
+ * prose several screens down a 4,000-word page.
+ *
+ * Every label is HTML positioned in a grid, not SVG <text>: SVG text scales
+ * with the viewBox and was measured rendering at roughly 7px on a 390px
+ * viewport, which is unreadable. The SVG here draws connectors only, so it can
+ * scale freely while the type stays at document size. Counts come from the data,
+ * so the diagram cannot drift from the table beneath it.
+ */
+function verificationPipeline() {
+  const total = DATA.prices.length;
+  const published = DATA.prices.filter((r) => r.value !== null).length;
+  const withheld = total - published;
+
+  const step = (n, title, detail, tone) => `
+      <li class="pipeline__step pipeline__step--${tone}">
+        <span class="pipeline__n">${n}</span>
+        <span class="pipeline__body">
+          <strong>${esc(title)}</strong>
+          <span>${detail}</span>
+        </span>
+      </li>`;
+
+  return `
+  <figure class="pipeline">
+    <figcaption>How a figure becomes a published price</figcaption>
+    <ol class="pipeline__steps">
+      ${step(1, 'Located', 'A figure is found in circulation: an announcement, a search summary, an aggregator. This is a lead, never a source.', 'neutral')}
+      ${step(2, 'Read directly', 'We open the manufacturer or government page that owns the number and read it ourselves, and we record the date we did.', 'neutral')}
+      ${step(3, 'Confirmed, or not', 'If the primary source states the figure, it is confirmed. If sources conflict, or the page cannot be read, it is not.', 'neutral')}
+      ${step(4, `Published as a number (${published} of ${total})`, 'Only a confirmed figure renders as a price, and it carries its source and its verification date.', published > 0 ? 'good' : 'muted')}
+      ${step(5, `Withheld (${withheld} of ${total})`, 'Everything else renders as unverified, with what we found and what a confirmation would require.', withheld > 0 ? 'warn' : 'muted')}
+    </ol>
+    <p class="pipeline__note">
+      ${icon('shieldCheck', { size: 16 })}
+      A figure never skips step 2. That is the whole discipline: a number without
+      a direct read is a rumour with a dollar sign in front of it.
+    </p>
+  </figure>`;
+}
+
 function buildMethodology() {
   const total = DATA.prices.length;
   const byConfidence = DATA.prices.reduce((acc, p) => {
@@ -816,6 +1185,8 @@ function buildMethodology() {
     were able to confirm it. Nothing is aggregated away.
   </p>
   ${dataStamp()}
+
+  ${verificationPipeline()}
 
   <h2>The tally</h2>
   <div class="receipt">
@@ -1015,6 +1386,42 @@ function buildMethodology() {
         'Every price figure, its source, its source type, its verification date and its confidence level. The complete evidence table, including what we could not confirm.',
       path: '/methodology/',
       body,
+      jsonLd: [
+        crumbs('Methodology', '/methodology/'),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Dataset',
+          '@id': `${ORIGIN}/methodology/#dataset`,
+          name: `${SITE_NAME} GLP-1 price dataset`,
+          description:
+            `Every GLP-1 payment pathway we track, with the source, source type, ` +
+            `verification date and confidence level for each figure. ` +
+            `${DATA.prices.length} rows across ${Object.keys(DATA.drugs).length} medications ` +
+            `and ${Object.keys(DATA.pathways).length} payment pathways. ` +
+            `${DATA.prices.filter((r) => r.value !== null).length} rows currently carry a ` +
+            `confirmed price; the remainder are published as unverified because no figure in ` +
+            `circulation survived a direct read of a primary source.`,
+          url: `${ORIGIN}/methodology/`,
+          isAccessibleForFree: true,
+          creator: { '@id': ORG_ID },
+          publisher: { '@id': ORG_ID },
+          dateModified: BUILT_ON,
+          license: `${ORIGIN}/terms/`,
+          spatialCoverage: { '@type': 'Place', name: 'United States' },
+          measurementTechnique:
+            'Direct read of a primary manufacturer or government source, recorded with the date of the read.',
+          variableMeasured: {
+            '@type': 'PropertyValue',
+            name: 'Monthly out-of-pocket cost',
+            unitText: 'USD per month',
+          },
+          distribution: {
+            '@type': 'DataDownload',
+            encodingFormat: 'application/json',
+            contentUrl: `${ORIGIN}/data/pricing.json`,
+          },
+        },
+      ],
     })
   );
 }
@@ -1074,6 +1481,7 @@ function buildChangelog() {
         'Every price change we record, with the date and the source. Proof that this site updates rather than a claim that it does.',
       path: '/changelog/',
       body,
+      jsonLd: [crumbs('Price changes', '/changelog/')],
     })
   );
 }
@@ -1114,7 +1522,12 @@ function buildAlerts() {
   <ul>
     <li>An email when a price for your medication changes, with the source and the date.</li>
     <li>Nothing else. No newsletter, no product recommendations, no telehealth offers, no partner emails, ever.</li>
-    <li>We store your email address and your medication preference. That is all. We do not ask for and cannot infer your insurance situation, your dose or any other health information.</li>
+    <li>We store five things: your email address, the medication you want watched, the date you
+        signed up, the fact that you signed up here rather than anywhere else, and a country code
+        our edge network supplies so the list stays US-scoped. Nothing more. We do not ask for and
+        cannot infer your insurance situation, your dose, your prescriber or your diagnosis. The
+        <a href="/privacy/">privacy policy</a> sets out where those five fields are stored and how
+        long they are kept.</li>
     <li>One-click unsubscribe in every email.</li>
   </ul>
 
@@ -1135,6 +1548,7 @@ function buildAlerts() {
         'Email alerts when the price of your GLP-1 medication changes, with the source. No newsletter, no product offers.',
       path: '/alerts/',
       body,
+      jsonLd: [crumbs('Price-change alerts', '/alerts/')],
       script: '<script type="module" src="/assets/js/alerts.js"></script>',
     })
   );
@@ -1180,11 +1594,55 @@ function buildAbout() {
     try to. It tells you what things cost and shows you where the number came from.
   </p>
 
+  <h2>Who publishes this</h2>
+  <p>
+    ${esc(SITE_NAME)} is published by ${esc(PUBLISHER.legalName)}, a limited
+    liability company organised in the State of California and based in
+    ${esc(PUBLISHER.city)}.
+  </p>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+  <p>
+    We are a software company, not a clinical one. Nobody here is a physician, a
+    pharmacist or a benefits adviser, and we do not employ one. That is precisely
+    why this site reports prices and provenance and stops there: the questions we
+    are not qualified to answer are the ones we refuse to answer.
+  </p>
+
+  <h2>Editorial standards</h2>
+  <p>
+    A figure is published only when it has been read directly from a primary
+    source: a manufacturer's own page for its own product, or a government
+    platform for its own program. A search-engine summary, a news article, an
+    aggregator or a screenshot is not a primary source. It can tell us a figure
+    exists and is worth checking; it can never put that figure on the site.
+  </p>
+  <p>
+    Every published figure carries the date it was last confirmed. Past
+    ${STALENESS_WARN_DAYS} days we flag it as possibly outdated; past
+    ${STALENESS_URGENT_DAYS} days we raise a prominent warning rather than let it
+    sit quietly.
+  </p>
+  <p>
+    When sources conflict, we publish neither figure. We record both, say what
+    each would need in order to be confirmed, and leave the price unverified
+    until one of them can be. This is why the site currently shows no verified
+    price for any medication: not one figure in circulation survived a direct
+    read. That is a finding, not a gap, and
+    <a href="/methodology/">the methodology page</a> shows the full evidence
+    table behind it.
+  </p>
+
   <h2>Corrections</h2>
   <p>
-    Every figure carries its source so you can check it. Every change is logged on the
-    <a href="/changelog/">changelog</a>. If something here is wrong we would rather fix
-    it than defend it.
+    Every figure carries its source so you can check it. Every change is logged
+    on the <a href="/changelog/">changelog</a>, including corrections, whether we
+    found them or you did. If something here is wrong we would rather fix it than
+    defend it, and there is now somewhere to tell us:
+    <a href="/contact/">contact and corrections</a>.
   </p>
 `;
 
@@ -1196,6 +1654,7 @@ function buildAbout() {
         'Why this GLP-1 pricing site sells nothing, takes no pharmaceutical or telehealth money, and shows a source and verification date on every figure.',
       path: '/about/',
       body,
+      jsonLd: [crumbs('About', '/about/')],
     })
   );
 }
@@ -1203,6 +1662,325 @@ function buildAbout() {
 /* ========================================================================= *
  * Infrastructure files
  * ========================================================================= */
+
+/* =========================================================================
+ * LEGAL AND CONTACT PAGES
+ *
+ * These exist because the site collects an email address. Every factual claim
+ * below is derived from what functions/api/alerts.js actually does, not from a
+ * template: the field list, the two storage keys and the retention window are
+ * the code's behaviour, and if the endpoint changes these pages are wrong.
+ * ========================================================================= */
+
+function buildPrivacy() {
+  const body = `
+  <h1>Privacy policy</h1>
+  <p class="lede">
+    ${esc(SITE_NAME)} is published by ${esc(PUBLISHER.legalName)}. This policy
+    describes exactly what we collect, which is very little, and what we do with
+    it, which is one thing.
+  </p>
+  ${dataStamp()}
+
+  <h2>The price tool collects nothing</h2>
+  <p>
+    The medication, insurance situation and dose you select in the tool stay in
+    your browser for as long as the page is open and are then gone. They are
+    never transmitted to us, never written to storage, and never used to build a
+    profile. There is no account to create, and the tool works with JavaScript
+    disabled for every page except the interactive ranking itself.
+  </p>
+  <p>
+    This is enforced in the codebase rather than promised in prose: a test
+    asserts that the dose and insurance selections are never persisted or
+    transmitted, and it fails the build if that changes.
+  </p>
+
+  <h2>What the price-change alert list collects</h2>
+  <p>
+    If, and only if, you submit the alerts form, we store the following five
+    fields:
+  </p>
+  <table>
+    <thead>
+      <tr><th scope="col">Field</th><th scope="col">What it is</th><th scope="col">Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Email address</td><td>What you typed, lowercased</td><td>To send you the alert you asked for</td></tr>
+      <tr><td>Medication preference</td><td>Which medication you want watched, or "all"</td><td>So a price-change email only goes to people it affects</td></tr>
+      <tr><td>Signup date</td><td>The date the record was created</td><td>To honour the retention period below</td></tr>
+      <tr><td>Source</td><td>The fixed string "web"</td><td>To distinguish signup routes if we ever add another</td></tr>
+      <tr><td>Country</td><td>A two-letter country code supplied by our edge network</td><td>Only to keep the list scoped to the United States, since every price here is a US price</td></tr>
+    </tbody>
+  </table>
+  <p>
+    We do not store your IP address, your user agent, or any device fingerprint.
+    We do not ask for and cannot infer your insurance situation, your dose, your
+    prescriber, your diagnosis, or whether you actually take any medication.
+  </p>
+
+  <h2>Your medication preference, stated plainly</h2>
+  <p>
+    A medication preference attached to an email address is the most sensitive
+    thing we hold, and we would rather describe it accurately than hide behind a
+    category. It records which price you asked us to watch. It is not a
+    diagnosis, not a prescription record, and not evidence that you take
+    anything. We treat it as personal data regardless, and it is subject to
+    every right described below.
+  </p>
+
+  <h2>Where it is stored, and for how long</h2>
+  <p>
+    Records are held in Cloudflare Workers KV, in two places: a record keyed by
+    your email address, and a per-medication index used to select recipients for
+    a send. Deleting your record removes your address from both.
+  </p>
+  <p>
+    We keep a subscriber record for ${DATA_RETENTION_DAYS} days after your last
+    interaction with it, and then delete it. Unsubscribing deletes it
+    immediately rather than at the end of that window.
+  </p>
+
+  <h2>Who we share it with</h2>
+  <p>
+    Nobody. We do not sell, rent, trade or share the list. We take no money from
+    any pharmaceutical manufacturer, no telehealth referral fees, no
+    compounding-pharmacy commissions and no affiliate revenue of any kind, so
+    there is no commercial party we would have a reason to share it with. The
+    site is funded by display advertising, which is served without access to the
+    alert list.
+  </p>
+  <p>
+    Cloudflare processes the data as our infrastructure provider in order to
+    store and deliver it. That is the only third party involved.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    If you are a California resident, the CCPA as amended by the CPRA gives you
+    the right to know what personal information we hold about you, to have it
+    deleted, to correct it, and not to be discriminated against for exercising
+    those rights. We do not sell or share personal information as those terms
+    are defined by the CPRA, so there is nothing for you to opt out of.
+  </p>
+  <p>
+    If you are in the European Economic Area or the United Kingdom, you have the
+    right to access, rectify, erase, restrict and port your data, and to object
+    to processing. Our lawful basis is your consent, given when you submitted
+    the form, and you may withdraw it at any time by unsubscribing.
+  </p>
+  <p>
+    To exercise any of these rights, use the unsubscribe link in any alert email,
+    or write to us at <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>.
+    We will respond within 45 days, and usually far sooner.
+  </p>
+
+  <h2>Cookies and analytics</h2>
+  <p>
+    We set no cookies of our own and run no first-party analytics. Display
+    advertising, where enabled, is served by a third party that may set its own
+    cookies; that behaviour is governed by their policy, not this one.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    This site is not directed to children under 13 and we do not knowingly
+    collect their information. If you believe a child has submitted an address,
+    write to us and we will delete it.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    If this policy changes materially we will record the change on the
+    <a href="/changelog/">changelog</a> alongside our price corrections, so the
+    edit history is public rather than silent.
+  </p>
+
+  <h2>Who we are</h2>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+`;
+
+  return write(
+    'privacy/index.html',
+    layout({
+      title: `Privacy policy: ${SITE_NAME}`,
+      description:
+        'What this site collects, which is nothing from the price tool and five fields from the ' +
+        'alerts list, where it is stored, how long it is kept, and how to have it deleted.',
+      path: '/privacy/',
+      body,
+      jsonLd: [crumbs('Privacy policy', '/privacy/')],
+    })
+  );
+}
+
+function buildTerms() {
+  const body = `
+  <h1>Terms of use</h1>
+  <p class="lede">
+    Plain terms for a site that sells nothing. Using ${esc(SITE_NAME)} means you
+    accept these.
+  </p>
+  ${dataStamp()}
+
+  <h2>What this site is</h2>
+  <p>
+    ${esc(SITE_NAME)} is a price-comparison tool published by
+    ${esc(PUBLISHER.legalName)}, a limited liability company organised in the
+    State of California. It reports what medications cost through various
+    payment pathways, with a source and a verification date for every figure.
+  </p>
+
+  <h2>What it is not</h2>
+  <p class="disclaimer">${esc(DISCLAIMER)}</p>
+  <p>
+    Nothing here is medical advice, legal advice, insurance advice or financial
+    advice. We cannot tell you which medication is right for you and we do not
+    try to. Decisions about your treatment belong between you and your
+    prescriber.
+  </p>
+
+  <h2>Accuracy, and its limits</h2>
+  <p>
+    We publish a figure only when we have confirmed it against a primary source,
+    and we publish the date we confirmed it. Where we could not confirm a figure,
+    we say so rather than printing it. That discipline is described in full on
+    our <a href="/methodology/">methodology page</a>.
+  </p>
+  <p>
+    Even so, prices change without notice, vary by pharmacy, and depend on facts
+    about your coverage that we do not hold. We make no warranty that any figure
+    is current or that it will be what you are charged. Verify the price with the
+    manufacturer, your insurer or your pharmacy before you act on it. To the
+    fullest extent permitted by law, ${esc(PUBLISHER.legalName)} is not liable
+    for any loss arising from reliance on a figure published here.
+  </p>
+
+  <h2>Acceptable use</h2>
+  <p>
+    You may read, link to, quote and cite this site freely, including our
+    figures, provided you carry the verification date alongside any figure you
+    quote. A price without its date is the exact failure this site exists to
+    correct.
+  </p>
+  <p>
+    You may not scrape the site in a way that degrades it for others, submit
+    addresses you do not control to the alerts list, or present this site as
+    your own.
+  </p>
+
+  <h2>The alerts list</h2>
+  <p>
+    Signing up is free and you can leave at any time using the unsubscribe link
+    in any email. What we store and for how long is set out in our
+    <a href="/privacy/">privacy policy</a>.
+  </p>
+
+  <h2>Independence</h2>
+  <p class="non-affiliation">${esc(NON_AFFILIATION)}</p>
+
+  <h2>Governing law</h2>
+  <p>
+    These terms are governed by the laws of the State of California, without
+    regard to its conflict-of-laws rules.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+`;
+
+  return write(
+    'terms/index.html',
+    layout({
+      title: `Terms of use: ${SITE_NAME}`,
+      description:
+        'Terms for using this price-comparison tool: what it is, what it is not, the limits of ' +
+        'its accuracy, how you may quote its figures, and who publishes it.',
+      path: '/terms/',
+      body,
+      jsonLd: [crumbs('Terms of use', '/terms/')],
+    })
+  );
+}
+
+function buildContact() {
+  const body = `
+  <h1>Contact and corrections</h1>
+  <p class="lede">
+    If a figure here is wrong, we would rather fix it than defend it. This is how
+    to tell us.
+  </p>
+  ${dataStamp()}
+
+  <h2>Report a price error</h2>
+  <p>
+    Write to <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>.
+    The most useful correction includes the page, the figure as we show it, what
+    you believe it should be, and where you saw it. A link to a manufacturer or
+    government page is worth more than anything else you can send, because it is
+    the only kind of evidence we can publish against.
+  </p>
+
+  <h2>What happens next</h2>
+  <ol>
+    <li>We acknowledge your message.</li>
+    <li>We attempt a direct read of the primary source. A search result, an
+        aggregator, or a screenshot is not enough on its own to change a figure.</li>
+    <li>If the source confirms your correction, we change the figure, update its
+        verification date, and log the change on our
+        <a href="/changelog/">changelog</a> with the source.</li>
+    <li>If we cannot confirm it either way, we move the figure to unverified
+        rather than leave a number we cannot stand behind, and record what a
+        confirmation would require.</li>
+  </ol>
+  <p>
+    Corrections are logged publicly whether they came from us or from you. The
+    changelog is the record.
+  </p>
+
+  <h2>Other reasons to write</h2>
+  <ul>
+    <li>Privacy requests, including access and deletion. See the
+        <a href="/privacy/">privacy policy</a> for what we hold.</li>
+    <li>Press and research enquiries.</li>
+    <li>Reporting a security issue in the site itself.</li>
+  </ul>
+  <p>
+    We do not offer medical advice and cannot answer questions about whether a
+    medication is right for you, what dose you should take, or whether you will
+    be approved for a program. Those belong with your prescriber, your insurer,
+    or the program itself.
+  </p>
+
+  <h2>Publisher</h2>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+`;
+
+  return write(
+    'contact/index.html',
+    layout({
+      title: `Contact and corrections: ${SITE_NAME}`,
+      description:
+        'How to report a price error, what evidence lets us act on it, what happens after you ' +
+        'write, and how to make a privacy request.',
+      path: '/contact/',
+      body,
+      jsonLd: [crumbs('Contact and corrections', '/contact/')],
+    })
+  );
+}
 
 function buildInfra() {
   const written = [];
@@ -1215,6 +1993,9 @@ function buildInfra() {
     ...PATHWAY_PAGES.map((p) => ({ path: `/${p.slug}/`, priority: '0.8', freq: 'weekly' })),
     { path: '/alerts/', priority: '0.6', freq: 'monthly' },
     { path: '/about/', priority: '0.5', freq: 'monthly' },
+    { path: '/contact/', priority: '0.5', freq: 'monthly' },
+    { path: '/privacy/', priority: '0.3', freq: 'yearly' },
+    { path: '/terms/', priority: '0.3', freq: 'yearly' },
   ];
 
   written.push(
@@ -1260,6 +2041,15 @@ Sitemap: ${ORIGIN}/sitemap.xml
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/site.webmanifest
+  Cache-Control: public, max-age=604800
 
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate
@@ -1307,6 +2097,9 @@ const written = [
   buildChangelog(),
   buildAlerts(),
   buildAbout(),
+  buildPrivacy(),
+  buildTerms(),
+  buildContact(),
   ...buildInfra(),
 ];
 
