@@ -130,6 +130,12 @@ const ORG_NODE = {
   alternateName: SITE_NAME,
   url: `${ORIGIN}/`,
   email: PUBLISHER.email,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${ORIGIN}/assets/img/icon-512.png`,
+    width: 512,
+    height: 512,
+  },
   address: {
     '@type': 'PostalAddress',
     streetAddress: PUBLISHER.street,
@@ -156,7 +162,7 @@ const ORG_NODE = {
  * the data date. `dateModified` is the build date rather than a hand-typed
  * value, so it cannot drift from the figures it describes.
  */
-function pageNode({ title, description, canonical }) {
+function pageNode({ title, description, canonical, image }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -169,6 +175,12 @@ function pageNode({ title, description, canonical }) {
     dateModified: BUILT_ON,
     publisher: { '@id': ORG_ID },
     license: `${ORIGIN}/terms/`,
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: image,
+      width: 1200,
+      height: 630,
+    },
   };
 }
 
@@ -221,6 +233,10 @@ function truncateAtWord(text, max) {
 
 function layout({ title, description, path, body, jsonLd = [], script = '' }) {
   const canonical = `${ORIGIN}${path}`;
+  // Share cards are generated per page by tools/build-images.mjs, keyed by the
+  // same slug the path produces. The home card covers '/'.
+  const ogSlug = path === '/' ? 'home' : path.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+  const ogImage = `${ORIGIN}/assets/img/og/${ogSlug}.png`;
 
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -233,9 +249,21 @@ function layout({ title, description, path, body, jsonLd = [], script = '' }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="${esc(SITE_NAME)}">
-<meta name="twitter:card" content="summary">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="${esc(ogImage)}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(`${SITE_NAME}: ${title}. Pricing data as of ${BUILT_ON}.`)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${esc(ogImage)}">
+<link rel="icon" href="/favicon.ico" sizes="32x32 16x16">
+<link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0b5c4a">
 <link rel="stylesheet" href="/assets/css/base.css">
-${[ORG_NODE, WEBSITE_NODE, pageNode({ title, description, canonical }), ...jsonLd].map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
+${[ORG_NODE, WEBSITE_NODE, pageNode({ title, description, canonical, image: ogImage }), ...jsonLd].map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -429,12 +457,56 @@ function faqFor(drugId) {
  * The tool
  * ========================================================================= */
 
+/**
+ * The site's current verification position, stated in normal type near the top
+ * of the page rather than discovered in the smallest grey text after three
+ * questions.
+ *
+ * Derived from the data rather than written down, so it cannot become a lie the
+ * moment a figure is confirmed: once prices carry values, this renders the count
+ * instead of the disclosure.
+ */
+function verificationState() {
+  const total = DATA.prices.length;
+  const priced = DATA.prices.filter((r) => r.value !== null).length;
+
+  if (priced === 0) {
+    return `
+  <div class="verification-state" role="note">
+    <h2>Right now, we publish no verified price</h2>
+    <p>
+      We track ${total} figures across ${Object.keys(DATA.drugs).length} medications.
+      Not one of them currently survives our standard, which is a direct read of a
+      manufacturer or government page rather than a search result or an aggregator.
+      Every figure in circulation failed that check, so we show you the pathways,
+      the evidence we hold, and a link to the official page &mdash; instead of a
+      number we cannot stand behind.
+    </p>
+    <p>
+      <a href="/methodology/">See exactly what we found and what would confirm it</a>.
+    </p>
+  </div>`;
+  }
+
+  return `
+  <div class="verification-state" role="note">
+    <h2>${priced} of ${total} figures are currently verified</h2>
+    <p>
+      A verified figure has been read directly from a manufacturer or government
+      page and carries the date of that read. The remaining ${total - priced} are
+      shown as unverified rather than guessed.
+      <a href="/methodology/">See the evidence table</a>.
+    </p>
+  </div>`;
+}
+
 function buildIndex() {
   const body = `
-  <h1>The cheapest legal way to pay for your GLP-1</h1>
+  <h1>Every legal way to pay for your GLP-1, with the receipts</h1>
   <p class="lede">
-    Three questions. Every payment pathway ranked by what you would actually pay
-    this month, each with its source and the date we checked it.
+    Three questions. Every payment pathway for Zepbound, Wegovy, Ozempic,
+    Mounjaro, Wegovy tablets and Foundayo, each with the source it came from and
+    the date we last checked it.
   </p>
 
   <form class="tool" data-tool-form novalidate>
@@ -470,6 +542,11 @@ function buildIndex() {
   </form>
 
   ${dataStamp()}
+
+  ${/* Below the form, deliberately. Above it, this block pushed the third input
+        past the fold on a 390x844 viewport and broke the "three inputs, one
+        screen" contract that tools/qa.mjs measures. */ ''}
+  ${verificationState()}
 
   <section class="results" data-results aria-live="polite" aria-atomic="false" aria-labelledby="results-heading">
     <div class="empty">
@@ -513,6 +590,21 @@ function buildIndex() {
         adjacent slots left a dead band of roughly 350px on a 390px viewport and
         halve each other's viewability. */ ''}
   ${adSlot('inline')}
+
+  <h2>Every medication we track</h2>
+  <p>
+    Each page carries the full pathway table for that medication, with the source
+    and verification date on every figure.
+  </p>
+  <ul class="link-list">
+    ${Object.values(DATA.drugs)
+      .map(
+        (d) =>
+          `<li><a href="/${esc(d.slug)}/">${esc(d.label)} cost</a> &mdash; ` +
+          `${esc(d.genericName)}, made by ${esc(d.manufacturer)}</li>`
+      )
+      .join('\n    ')}
+  </ul>
 
   <h2>Every pathway we track</h2>
   <ul>
@@ -1783,6 +1875,15 @@ Sitemap: ${ORIGIN}/sitemap.xml
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/site.webmanifest
+  Cache-Control: public, max-age=604800
 
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate

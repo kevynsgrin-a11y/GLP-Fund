@@ -582,6 +582,7 @@ async function main() {
       '/wegovy-pill-cost/', '/foundayo-cost/', '/trumprx/', '/lillydirect/',
       '/novocare/', '/medicare-glp1-bridge/', '/patient-assistance/',
       '/methodology/', '/changelog/', '/alerts/', '/about/',
+      '/privacy/', '/terms/', '/contact/',
     ];
 
     const disclaimer = readFileSync(join(ROOT, 'public/engine/config.js'), 'utf8');
