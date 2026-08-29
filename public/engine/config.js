@@ -50,6 +50,40 @@ export const FLAGS = Object.freeze({
   PREMIUM_TIER_ENABLED: false,
 });
 
+/**
+ * Publisher identity.
+ *
+ * A YMYL pricing site cannot accumulate trust anonymously, and it cannot
+ * lawfully collect an email address without naming who is collecting it. These
+ * are the facts a privacy policy, a corrections channel and an Organization
+ * node all depend on, so they live here rather than being typed into pages.
+ */
+export const PUBLISHER = Object.freeze({
+  legalName: 'Oak and Main Developers LLC',
+  shortName: 'Oak and Main Developers',
+  street: '2108 N St.',
+  city: 'Sacramento',
+  state: 'CA',
+  postalCode: '95816',
+  country: 'US',
+  /**
+   * The published contact address. This mailbox MUST exist before launch: it is
+   * the corrections channel promised on /about/ and /methodology/, the privacy
+   * contact required by CCPA/CPRA, and the reply-to on every alert email.
+   */
+  email: 'contact@glp1-fund.com',
+});
+
+/** One-line postal address, for rendering and for schema. */
+export const PUBLISHER_ADDRESS =
+  `${PUBLISHER.street}, ${PUBLISHER.city}, ${PUBLISHER.state} ${PUBLISHER.postalCode}`;
+
+/**
+ * How long a subscriber record is kept after the last interaction. Stated in
+ * the privacy policy, so it is a promise rather than a preference.
+ */
+export const DATA_RETENTION_DAYS = 730;
+
 /** Exact compliance strings. Rendered verbatim; never paraphrased. */
 export const DISCLAIMER =
   'This tool provides pricing information only. It is not medical advice and ' +

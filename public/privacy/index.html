@@ -1,0 +1,211 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy: GLP-1 Price Check</title>
+<meta name="description" content="What this site collects, which is nothing from the price tool and five fields from the alerts list, where it is stored, how long it is kept, and how to have it deleted.">
+<link rel="canonical" href="https://glp1-fund.com/privacy/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy policy: GLP-1 Price Check">
+<meta property="og:description" content="What this site collects, which is nothing from the price tool and five fields from the alerts list, where it is stored, how long it is kept, and how to have it deleted.">
+<meta property="og:url" content="https://glp1-fund.com/privacy/">
+<meta property="og:site_name" content="GLP-1 Price Check">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/css/base.css">
+
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="masthead__brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 2.75h14v16.6l-2.33-1.4-2.34 1.4-2.33-1.4-2.34 1.4L7.33 18 5 19.35Z"/><line x1="8.25" y1="7.5" x2="15.75" y2="7.5"/><line x1="8.25" y1="11" x2="15.75" y2="11"/><line x1="8.25" y1="14.5" x2="13" y2="14.5"/></svg>
+      GLP-1 Price Check
+    </a>
+    <nav class="masthead__nav" aria-label="Primary">
+      <a href="/">Price tool</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/changelog/">Price changes</a>
+      <a href="/alerts/">Alerts</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <h1>Privacy policy</h1>
+  <p class="lede">
+    GLP-1 Price Check is published by Oak and Main Developers LLC. This policy
+    describes exactly what we collect, which is very little, and what we do with
+    it, which is one thing.
+  </p>
+  
+      <p class="data-stamp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.75"/><path d="M12 7.25V12l3.4 2.1"/></svg>
+        Pricing data as of <time datetime="2026-07-30">2026-07-30</time>.
+      </p>
+
+  <h2>The price tool collects nothing</h2>
+  <p>
+    The medication, insurance situation and dose you select in the tool stay in
+    your browser for as long as the page is open and are then gone. They are
+    never transmitted to us, never written to storage, and never used to build a
+    profile. There is no account to create, and the tool works with JavaScript
+    disabled for every page except the interactive ranking itself.
+  </p>
+  <p>
+    This is enforced in the codebase rather than promised in prose: a test
+    asserts that the dose and insurance selections are never persisted or
+    transmitted, and it fails the build if that changes.
+  </p>
+
+  <h2>What the price-change alert list collects</h2>
+  <p>
+    If, and only if, you submit the alerts form, we store the following five
+    fields:
+  </p>
+  <table>
+    <thead>
+      <tr><th scope="col">Field</th><th scope="col">What it is</th><th scope="col">Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Email address</td><td>What you typed, lowercased</td><td>To send you the alert you asked for</td></tr>
+      <tr><td>Medication preference</td><td>Which medication you want watched, or "all"</td><td>So a price-change email only goes to people it affects</td></tr>
+      <tr><td>Signup date</td><td>The date the record was created</td><td>To honour the retention period below</td></tr>
+      <tr><td>Source</td><td>The fixed string "web"</td><td>To distinguish signup routes if we ever add another</td></tr>
+      <tr><td>Country</td><td>A two-letter country code supplied by our edge network</td><td>Only to keep the list scoped to the United States, since every price here is a US price</td></tr>
+    </tbody>
+  </table>
+  <p>
+    We do not store your IP address, your user agent, or any device fingerprint.
+    We do not ask for and cannot infer your insurance situation, your dose, your
+    prescriber, your diagnosis, or whether you actually take any medication.
+  </p>
+
+  <h2>Your medication preference, stated plainly</h2>
+  <p>
+    A medication preference attached to an email address is the most sensitive
+    thing we hold, and we would rather describe it accurately than hide behind a
+    category. It records which price you asked us to watch. It is not a
+    diagnosis, not a prescription record, and not evidence that you take
+    anything. We treat it as personal data regardless, and it is subject to
+    every right described below.
+  </p>
+
+  <h2>Where it is stored, and for how long</h2>
+  <p>
+    Records are held in Cloudflare Workers KV, in two places: a record keyed by
+    your email address, and a per-medication index used to select recipients for
+    a send. Deleting your record removes your address from both.
+  </p>
+  <p>
+    We keep a subscriber record for 730 days after your last
+    interaction with it, and then delete it. Unsubscribing deletes it
+    immediately rather than at the end of that window.
+  </p>
+
+  <h2>Who we share it with</h2>
+  <p>
+    Nobody. We do not sell, rent, trade or share the list. We take no money from
+    any pharmaceutical manufacturer, no telehealth referral fees, no
+    compounding-pharmacy commissions and no affiliate revenue of any kind, so
+    there is no commercial party we would have a reason to share it with. The
+    site is funded by display advertising, which is served without access to the
+    alert list.
+  </p>
+  <p>
+    Cloudflare processes the data as our infrastructure provider in order to
+    store and deliver it. That is the only third party involved.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    If you are a California resident, the CCPA as amended by the CPRA gives you
+    the right to know what personal information we hold about you, to have it
+    deleted, to correct it, and not to be discriminated against for exercising
+    those rights. We do not sell or share personal information as those terms
+    are defined by the CPRA, so there is nothing for you to opt out of.
+  </p>
+  <p>
+    If you are in the European Economic Area or the United Kingdom, you have the
+    right to access, rectify, erase, restrict and port your data, and to object
+    to processing. Our lawful basis is your consent, given when you submitted
+    the form, and you may withdraw it at any time by unsubscribing.
+  </p>
+  <p>
+    To exercise any of these rights, use the unsubscribe link in any alert email,
+    or write to us at <a href="mailto:contact@glp1-fund.com">contact@glp1-fund.com</a>.
+    We will respond within 45 days, and usually far sooner.
+  </p>
+
+  <h2>Cookies and analytics</h2>
+  <p>
+    We set no cookies of our own and run no first-party analytics. Display
+    advertising, where enabled, is served by a third party that may set its own
+    cookies; that behaviour is governed by their policy, not this one.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    This site is not directed to children under 13 and we do not knowingly
+    collect their information. If you believe a child has submitted an address,
+    write to us and we will delete it.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    If this policy changes materially we will record the change on the
+    <a href="/changelog/">changelog</a> alongside our price corrections, so the
+    edit history is public rather than silent.
+  </p>
+
+  <h2>Who we are</h2>
+  <p>
+    Oak and Main Developers LLC<br>
+    2108 N St., Sacramento, CA 95816<br>
+    <a href="mailto:contact@glp1-fund.com">contact@glp1-fund.com</a>
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    
+      <aside class="ad-slot ad-slot--footer" data-ad-slot="footer" aria-hidden="true">
+        <span class="ad-slot__label">Advertisement</span>
+      </aside>
+
+    <h2>Important information</h2>
+    <p class="disclaimer">This tool provides pricing information only. It is not medical advice and is not a substitute for consultation with a licensed healthcare provider. Prices change frequently and may differ at your pharmacy. Verify all costs directly with the manufacturer, your insurer, or your pharmacy before making decisions about your treatment.</p>
+    <p class="non-affiliation">Not affiliated with, endorsed by, or sponsored by Eli Lilly, Novo Nordisk, the U.S. Department of Health and Human Services, or any government program.</p>
+    <p>
+      This site sells nothing. It carries no telehealth referrals, no
+      pharmaceutical affiliate links and no compounding-pharmacy links. The
+      price tool collects nothing: the medication, insurance situation and dose
+      you select there are never stored or transmitted. The only personal data
+      we hold is what you give us if you join the price-change alert list, set
+      out in full in our <a href="/privacy/">privacy policy</a>.
+      <a href="/methodology/">See how every figure here is sourced</a>.
+    </p>
+    <ul class="footer-nav">
+      <li><a href="/zepbound-cost/">Zepbound</a></li>
+      <li><a href="/wegovy-cost/">Wegovy</a></li>
+      <li><a href="/ozempic-cost/">Ozempic</a></li>
+      <li><a href="/mounjaro-cost/">Mounjaro</a></li>
+      <li><a href="/wegovy-pill-cost/">Wegovy tablets</a></li>
+      <li><a href="/foundayo-cost/">Foundayo</a></li>
+      <li><a href="/trumprx/">TrumpRx</a></li>
+      <li><a href="/lillydirect/">LillyDirect</a></li>
+      <li><a href="/novocare/">NovoCare</a></li>
+      <li><a href="/medicare-glp1-bridge/">Medicare Bridge</a></li>
+      <li><a href="/patient-assistance/">Patient assistance</a></li>
+      <li><a href="/methodology/">Methodology</a></li>
+      <li><a href="/changelog/">Price changes</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/privacy/">Privacy</a></li>
+      <li><a href="/terms/">Terms</a></li>
+    </ul>
+    <p>Pricing data as of <time datetime="2026-07-30">2026-07-30</time>.</p>
+  </div>
+</footer>
+

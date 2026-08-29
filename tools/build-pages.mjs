@@ -33,6 +33,9 @@ import {
   STALENESS_WARN_DAYS,
   STALENESS_URGENT_DAYS,
   FLAGS,
+  PUBLISHER,
+  PUBLISHER_ADDRESS,
+  DATA_RETENTION_DAYS,
 } from '../public/engine/config.js';
 import { esc } from '../public/assets/js/render.js';
 import { icon } from '../public/assets/js/icons.js';
@@ -70,6 +73,9 @@ const FOOTER_NAV = [
   { href: '/methodology/', label: 'Methodology' },
   { href: '/changelog/', label: 'Price changes' },
   { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/privacy/', label: 'Privacy' },
+  { href: '/terms/', label: 'Terms' },
 ];
 
 /**
@@ -153,9 +159,11 @@ ${body}
     <p class="non-affiliation">${esc(NON_AFFILIATION)}</p>
     <p>
       This site sells nothing. It carries no telehealth referrals, no
-      pharmaceutical affiliate links and no compounding-pharmacy links. It does
-      not collect health information: the medication, insurance situation and
-      dose you select are never stored or transmitted.
+      pharmaceutical affiliate links and no compounding-pharmacy links. The
+      price tool collects nothing: the medication, insurance situation and dose
+      you select there are never stored or transmitted. The only personal data
+      we hold is what you give us if you join the price-change alert list, set
+      out in full in our <a href="/privacy/">privacy policy</a>.
       <a href="/methodology/">See how every figure here is sourced</a>.
     </p>
     <ul class="footer-nav">
@@ -1114,7 +1122,12 @@ function buildAlerts() {
   <ul>
     <li>An email when a price for your medication changes, with the source and the date.</li>
     <li>Nothing else. No newsletter, no product recommendations, no telehealth offers, no partner emails, ever.</li>
-    <li>We store your email address and your medication preference. That is all. We do not ask for and cannot infer your insurance situation, your dose or any other health information.</li>
+    <li>We store five things: your email address, the medication you want watched, the date you
+        signed up, the fact that you signed up here rather than anywhere else, and a country code
+        our edge network supplies so the list stays US-scoped. Nothing more. We do not ask for and
+        cannot infer your insurance situation, your dose, your prescriber or your diagnosis. The
+        <a href="/privacy/">privacy policy</a> sets out where those five fields are stored and how
+        long they are kept.</li>
     <li>One-click unsubscribe in every email.</li>
   </ul>
 
@@ -1204,6 +1217,322 @@ function buildAbout() {
  * Infrastructure files
  * ========================================================================= */
 
+/* =========================================================================
+ * LEGAL AND CONTACT PAGES
+ *
+ * These exist because the site collects an email address. Every factual claim
+ * below is derived from what functions/api/alerts.js actually does, not from a
+ * template: the field list, the two storage keys and the retention window are
+ * the code's behaviour, and if the endpoint changes these pages are wrong.
+ * ========================================================================= */
+
+function buildPrivacy() {
+  const body = `
+  <h1>Privacy policy</h1>
+  <p class="lede">
+    ${esc(SITE_NAME)} is published by ${esc(PUBLISHER.legalName)}. This policy
+    describes exactly what we collect, which is very little, and what we do with
+    it, which is one thing.
+  </p>
+  ${dataStamp()}
+
+  <h2>The price tool collects nothing</h2>
+  <p>
+    The medication, insurance situation and dose you select in the tool stay in
+    your browser for as long as the page is open and are then gone. They are
+    never transmitted to us, never written to storage, and never used to build a
+    profile. There is no account to create, and the tool works with JavaScript
+    disabled for every page except the interactive ranking itself.
+  </p>
+  <p>
+    This is enforced in the codebase rather than promised in prose: a test
+    asserts that the dose and insurance selections are never persisted or
+    transmitted, and it fails the build if that changes.
+  </p>
+
+  <h2>What the price-change alert list collects</h2>
+  <p>
+    If, and only if, you submit the alerts form, we store the following five
+    fields:
+  </p>
+  <table>
+    <thead>
+      <tr><th scope="col">Field</th><th scope="col">What it is</th><th scope="col">Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Email address</td><td>What you typed, lowercased</td><td>To send you the alert you asked for</td></tr>
+      <tr><td>Medication preference</td><td>Which medication you want watched, or "all"</td><td>So a price-change email only goes to people it affects</td></tr>
+      <tr><td>Signup date</td><td>The date the record was created</td><td>To honour the retention period below</td></tr>
+      <tr><td>Source</td><td>The fixed string "web"</td><td>To distinguish signup routes if we ever add another</td></tr>
+      <tr><td>Country</td><td>A two-letter country code supplied by our edge network</td><td>Only to keep the list scoped to the United States, since every price here is a US price</td></tr>
+    </tbody>
+  </table>
+  <p>
+    We do not store your IP address, your user agent, or any device fingerprint.
+    We do not ask for and cannot infer your insurance situation, your dose, your
+    prescriber, your diagnosis, or whether you actually take any medication.
+  </p>
+
+  <h2>Your medication preference, stated plainly</h2>
+  <p>
+    A medication preference attached to an email address is the most sensitive
+    thing we hold, and we would rather describe it accurately than hide behind a
+    category. It records which price you asked us to watch. It is not a
+    diagnosis, not a prescription record, and not evidence that you take
+    anything. We treat it as personal data regardless, and it is subject to
+    every right described below.
+  </p>
+
+  <h2>Where it is stored, and for how long</h2>
+  <p>
+    Records are held in Cloudflare Workers KV, in two places: a record keyed by
+    your email address, and a per-medication index used to select recipients for
+    a send. Deleting your record removes your address from both.
+  </p>
+  <p>
+    We keep a subscriber record for ${DATA_RETENTION_DAYS} days after your last
+    interaction with it, and then delete it. Unsubscribing deletes it
+    immediately rather than at the end of that window.
+  </p>
+
+  <h2>Who we share it with</h2>
+  <p>
+    Nobody. We do not sell, rent, trade or share the list. We take no money from
+    any pharmaceutical manufacturer, no telehealth referral fees, no
+    compounding-pharmacy commissions and no affiliate revenue of any kind, so
+    there is no commercial party we would have a reason to share it with. The
+    site is funded by display advertising, which is served without access to the
+    alert list.
+  </p>
+  <p>
+    Cloudflare processes the data as our infrastructure provider in order to
+    store and deliver it. That is the only third party involved.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    If you are a California resident, the CCPA as amended by the CPRA gives you
+    the right to know what personal information we hold about you, to have it
+    deleted, to correct it, and not to be discriminated against for exercising
+    those rights. We do not sell or share personal information as those terms
+    are defined by the CPRA, so there is nothing for you to opt out of.
+  </p>
+  <p>
+    If you are in the European Economic Area or the United Kingdom, you have the
+    right to access, rectify, erase, restrict and port your data, and to object
+    to processing. Our lawful basis is your consent, given when you submitted
+    the form, and you may withdraw it at any time by unsubscribing.
+  </p>
+  <p>
+    To exercise any of these rights, use the unsubscribe link in any alert email,
+    or write to us at <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>.
+    We will respond within 45 days, and usually far sooner.
+  </p>
+
+  <h2>Cookies and analytics</h2>
+  <p>
+    We set no cookies of our own and run no first-party analytics. Display
+    advertising, where enabled, is served by a third party that may set its own
+    cookies; that behaviour is governed by their policy, not this one.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    This site is not directed to children under 13 and we do not knowingly
+    collect their information. If you believe a child has submitted an address,
+    write to us and we will delete it.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    If this policy changes materially we will record the change on the
+    <a href="/changelog/">changelog</a> alongside our price corrections, so the
+    edit history is public rather than silent.
+  </p>
+
+  <h2>Who we are</h2>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+`;
+
+  return write(
+    'privacy/index.html',
+    layout({
+      title: `Privacy policy: ${SITE_NAME}`,
+      description:
+        'What this site collects, which is nothing from the price tool and five fields from the ' +
+        'alerts list, where it is stored, how long it is kept, and how to have it deleted.',
+      path: '/privacy/',
+      body,
+    })
+  );
+}
+
+function buildTerms() {
+  const body = `
+  <h1>Terms of use</h1>
+  <p class="lede">
+    Plain terms for a site that sells nothing. Using ${esc(SITE_NAME)} means you
+    accept these.
+  </p>
+  ${dataStamp()}
+
+  <h2>What this site is</h2>
+  <p>
+    ${esc(SITE_NAME)} is a price-comparison tool published by
+    ${esc(PUBLISHER.legalName)}, a limited liability company organised in the
+    State of California. It reports what medications cost through various
+    payment pathways, with a source and a verification date for every figure.
+  </p>
+
+  <h2>What it is not</h2>
+  <p class="disclaimer">${esc(DISCLAIMER)}</p>
+  <p>
+    Nothing here is medical advice, legal advice, insurance advice or financial
+    advice. We cannot tell you which medication is right for you and we do not
+    try to. Decisions about your treatment belong between you and your
+    prescriber.
+  </p>
+
+  <h2>Accuracy, and its limits</h2>
+  <p>
+    We publish a figure only when we have confirmed it against a primary source,
+    and we publish the date we confirmed it. Where we could not confirm a figure,
+    we say so rather than printing it. That discipline is described in full on
+    our <a href="/methodology/">methodology page</a>.
+  </p>
+  <p>
+    Even so, prices change without notice, vary by pharmacy, and depend on facts
+    about your coverage that we do not hold. We make no warranty that any figure
+    is current or that it will be what you are charged. Verify the price with the
+    manufacturer, your insurer or your pharmacy before you act on it. To the
+    fullest extent permitted by law, ${esc(PUBLISHER.legalName)} is not liable
+    for any loss arising from reliance on a figure published here.
+  </p>
+
+  <h2>Acceptable use</h2>
+  <p>
+    You may read, link to, quote and cite this site freely, including our
+    figures, provided you carry the verification date alongside any figure you
+    quote. A price without its date is the exact failure this site exists to
+    correct.
+  </p>
+  <p>
+    You may not scrape the site in a way that degrades it for others, submit
+    addresses you do not control to the alerts list, or present this site as
+    your own.
+  </p>
+
+  <h2>The alerts list</h2>
+  <p>
+    Signing up is free and you can leave at any time using the unsubscribe link
+    in any email. What we store and for how long is set out in our
+    <a href="/privacy/">privacy policy</a>.
+  </p>
+
+  <h2>Independence</h2>
+  <p class="non-affiliation">${esc(NON_AFFILIATION)}</p>
+
+  <h2>Governing law</h2>
+  <p>
+    These terms are governed by the laws of the State of California, without
+    regard to its conflict-of-laws rules.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+`;
+
+  return write(
+    'terms/index.html',
+    layout({
+      title: `Terms of use: ${SITE_NAME}`,
+      description:
+        'Terms for using this price-comparison tool: what it is, what it is not, the limits of ' +
+        'its accuracy, how you may quote its figures, and who publishes it.',
+      path: '/terms/',
+      body,
+    })
+  );
+}
+
+function buildContact() {
+  const body = `
+  <h1>Contact and corrections</h1>
+  <p class="lede">
+    If a figure here is wrong, we would rather fix it than defend it. This is how
+    to tell us.
+  </p>
+  ${dataStamp()}
+
+  <h2>Report a price error</h2>
+  <p>
+    Write to <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>.
+    The most useful correction includes the page, the figure as we show it, what
+    you believe it should be, and where you saw it. A link to a manufacturer or
+    government page is worth more than anything else you can send, because it is
+    the only kind of evidence we can publish against.
+  </p>
+
+  <h2>What happens next</h2>
+  <ol>
+    <li>We acknowledge your message.</li>
+    <li>We attempt a direct read of the primary source. A search result, an
+        aggregator, or a screenshot is not enough on its own to change a figure.</li>
+    <li>If the source confirms your correction, we change the figure, update its
+        verification date, and log the change on our
+        <a href="/changelog/">changelog</a> with the source.</li>
+    <li>If we cannot confirm it either way, we move the figure to unverified
+        rather than leave a number we cannot stand behind, and record what a
+        confirmation would require.</li>
+  </ol>
+  <p>
+    Corrections are logged publicly whether they came from us or from you. The
+    changelog is the record.
+  </p>
+
+  <h2>Other reasons to write</h2>
+  <ul>
+    <li>Privacy requests, including access and deletion. See the
+        <a href="/privacy/">privacy policy</a> for what we hold.</li>
+    <li>Press and research enquiries.</li>
+    <li>Reporting a security issue in the site itself.</li>
+  </ul>
+  <p>
+    We do not offer medical advice and cannot answer questions about whether a
+    medication is right for you, what dose you should take, or whether you will
+    be approved for a program. Those belong with your prescriber, your insurer,
+    or the program itself.
+  </p>
+
+  <h2>Publisher</h2>
+  <p>
+    ${esc(PUBLISHER.legalName)}<br>
+    ${esc(PUBLISHER_ADDRESS)}<br>
+    <a href="mailto:${esc(PUBLISHER.email)}">${esc(PUBLISHER.email)}</a>
+  </p>
+`;
+
+  return write(
+    'contact/index.html',
+    layout({
+      title: `Contact and corrections: ${SITE_NAME}`,
+      description:
+        'How to report a price error, what evidence lets us act on it, what happens after you ' +
+        'write, and how to make a privacy request.',
+      path: '/contact/',
+      body,
+    })
+  );
+}
+
 function buildInfra() {
   const written = [];
 
@@ -1215,6 +1544,9 @@ function buildInfra() {
     ...PATHWAY_PAGES.map((p) => ({ path: `/${p.slug}/`, priority: '0.8', freq: 'weekly' })),
     { path: '/alerts/', priority: '0.6', freq: 'monthly' },
     { path: '/about/', priority: '0.5', freq: 'monthly' },
+    { path: '/contact/', priority: '0.5', freq: 'monthly' },
+    { path: '/privacy/', priority: '0.3', freq: 'yearly' },
+    { path: '/terms/', priority: '0.3', freq: 'yearly' },
   ];
 
   written.push(
@@ -1307,6 +1639,9 @@ const written = [
   buildChangelog(),
   buildAlerts(),
   buildAbout(),
+  buildPrivacy(),
+  buildTerms(),
+  buildContact(),
   ...buildInfra(),
 ];
 
