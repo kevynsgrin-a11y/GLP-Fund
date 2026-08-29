@@ -500,6 +500,54 @@ function verificationState() {
   </div>`;
 }
 
+/**
+ * The introductory-pricing warning.
+ *
+ * This is the most consequential thing the site knows and it reached zero of
+ * the static pages: it lived only in pricing.json, surfacing as one bullet
+ * inside a rendered card, styled exactly like "requires a valid prescription".
+ * A reader who has seen a low headline price elsewhere needs to meet this
+ * before they act on it, so it renders as its own block with its own heading.
+ *
+ * The text is taken verbatim from the data rather than restated here. If the
+ * caveat changes in pricing.json, this changes with it.
+ *
+ * @param {(row: object) => boolean} match which rows to consider
+ * @returns {string} markup, or '' when no matching row carries the caveat
+ */
+function introPricingWarning(match) {
+  const texts = new Set();
+  for (const row of DATA.prices) {
+    if (!match(row)) continue;
+    for (const caveat of row.caveats ?? []) {
+      if (/INTRODUCTORY/i.test(caveat)) texts.add(caveat);
+    }
+  }
+  if (texts.size === 0) return '';
+
+  const pathways = new Set(
+    DATA.prices
+      .filter((r) => match(r) && (r.caveats ?? []).some((c) => /INTRODUCTORY/i.test(c)))
+      .map((r) => DATA.pathways[r.pathway]?.label)
+      .filter(Boolean)
+  );
+
+  return `
+  <aside class="intro-warning" role="note" aria-labelledby="intro-warning-heading">
+    <h2 id="intro-warning-heading">
+      ${icon('alertTriangle', { size: 20 })}
+      A low advertised price may not be your ongoing price
+    </h2>
+    ${[...texts].map((t) => `<p>${esc(t)}</p>`).join('\n    ')}
+    <p class="intro-warning__scope">
+      This applies to: ${esc([...pathways].join(', '))}.
+      We have not been able to confirm the ongoing figure against a primary
+      source, which is why no number renders for it here.
+      <a href="/methodology/">See what we found and what would confirm it</a>.
+    </p>
+  </aside>`;
+}
+
 function buildIndex() {
   const body = `
   <h1>Every legal way to pay for your GLP-1, with the receipts</h1>
@@ -669,6 +717,7 @@ function buildDrugPage(drugId) {
     ${esc(meta.manufacturer)} and is approved for ${esc(meta.indication)}.
   </p>
   ${dataStamp()}
+  ${introPricingWarning((r) => r.drug === drugId)}
   ${adSlot('leaderboard')}
 
   <h2>What ${esc(meta.label)} costs on each pathway</h2>
@@ -956,6 +1005,7 @@ function buildPathwayPage(page) {
   <h1>${esc(page.h1)}</h1>
   <p class="lede">${esc(page.intro)}</p>
   ${dataStamp()}
+  ${introPricingWarning((r) => r.pathway === page.pathway)}
   ${adSlot('leaderboard')}
 
   ${page.sections

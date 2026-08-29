@@ -140,6 +140,46 @@ a:hover { text-decoration-thickness: 2px; }
   margin-bottom: 0;
 }
 
+/* The introductory-pricing warning. Weighted like a warning rather than like a
+   routine caveat, because a reader who has seen a low headline price elsewhere
+   has to meet this before they budget on it. */
+.intro-warning {
+  border: 1px solid var(--warn);
+  border-left: 4px solid var(--warn);
+  border-radius: 4px;
+  background: var(--warn-bg);
+  color: var(--warn);
+  padding: 1rem 1.15rem;
+  margin: 1.25rem 0;
+}
+
+.intro-warning h2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: var(--step-1);
+  margin: 0 0 0.5rem;
+  color: inherit;
+}
+
+.intro-warning h2 svg {
+  flex: none;
+  margin-top: 0.15em;
+}
+
+.intro-warning p {
+  margin: 0 0 0.5rem;
+  color: var(--ink);
+}
+
+.intro-warning p:last-child {
+  margin-bottom: 0;
+}
+
+.intro-warning__scope {
+  font-size: var(--step--1);
+}
+
 /* A list of destinations rather than prose. */
 .link-list {
   list-style: none;
