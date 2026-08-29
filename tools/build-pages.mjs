@@ -998,6 +998,74 @@ const PATHWAY_PAGES = [
   },
 ];
 
+/**
+ * Eligibility and caveats for one pathway, rendered from the data.
+ *
+ * The five pathway pages described their programs in prose while the data file
+ * held 14 caveats and 17 eligibility rules that never reached them. A reader
+ * arriving from search needs to know who is excluded before they read what
+ * something costs, and the Medicare and Medicaid bar on manufacturer savings
+ * cards is the most consequential rule on the site.
+ *
+ * Rules with pathway "*" apply everywhere. `suppress` means the pathway is
+ * unavailable to that person, so it is rendered as an exclusion rather than a
+ * footnote.
+ *
+ * @param {string} pathwayId
+ */
+function eligibilityAndCaveats(pathwayId) {
+  const rules = (DATA.eligibilityRules ?? []).filter(
+    (r) => r.pathway === pathwayId || r.pathway === '*'
+  );
+  const caveats = new Set();
+  for (const row of DATA.prices) {
+    if (row.pathway !== pathwayId) continue;
+    for (const caveat of row.caveats ?? []) {
+      // The introductory-pricing warning renders as its own block above.
+      if (!/INTRODUCTORY/i.test(caveat)) caveats.add(caveat);
+    }
+  }
+
+  if (rules.length === 0 && caveats.size === 0) return '';
+
+  const excluded = rules.filter((r) => r.effect === 'suppress');
+  const required = rules.filter((r) => r.effect === 'require');
+  const notes = rules.filter((r) => r.effect === 'note' || r.effect === 'caveat');
+
+  const block = (heading, items) =>
+    items.length === 0
+      ? ''
+      : `
+    <h3>${esc(heading)}</h3>
+    <ul>
+      ${items.map((t) => `<li>${esc(t)}</li>`).join('\n      ')}
+    </ul>`;
+
+  return `
+  <section class="eligibility">
+    <h2>Who can use this, and what to watch for</h2>
+    <p>
+      Every point below comes from the same data file that drives the price
+      table, so it cannot drift from the figures on this page.
+    </p>
+    ${block('You cannot use this pathway if', excluded.map((r) => r.reason))}
+    ${block('You need', required.map((r) => r.reason))}
+    ${block('Worth knowing', [...notes.map((r) => r.reason), ...caveats])}
+    ${
+      rules.some((r) => r.verification === 'pending_primary_verification')
+        ? `<p class="eligibility__pending">
+      ${icon('helpCircle', { size: 16 })}
+      Some rules above are applied from program terms we have not yet been able
+      to read directly. Where that is so, we apply the rule that narrows your
+      options rather than widens them, because telling someone a discount is
+      available when it is not is the more damaging error.
+      <a href="/methodology/">How we handle unverified rules</a>.
+    </p>`
+        : ''
+    }
+  </section>`;
+}
+
 function buildPathwayPage(page) {
   const rows = DATA.prices.filter((p) => p.pathway === page.pathway);
 
@@ -1006,6 +1074,7 @@ function buildPathwayPage(page) {
   <p class="lede">${esc(page.intro)}</p>
   ${dataStamp()}
   ${introPricingWarning((r) => r.pathway === page.pathway)}
+  ${eligibilityAndCaveats(page.pathway)}
   ${adSlot('leaderboard')}
 
   ${page.sections
