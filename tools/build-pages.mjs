@@ -1123,6 +1123,51 @@ function buildPathwayPage(page) {
  * Methodology: the trust engine. A receipt, not a disclaimer.
  * ========================================================================= */
 
+/**
+ * The verification pipeline, drawn.
+ *
+ * How a figure moves from located, to read against a primary source, to
+ * published or withheld is the site's entire argument, and it existed only as
+ * prose several screens down a 4,000-word page.
+ *
+ * Every label is HTML positioned in a grid, not SVG <text>: SVG text scales
+ * with the viewBox and was measured rendering at roughly 7px on a 390px
+ * viewport, which is unreadable. The SVG here draws connectors only, so it can
+ * scale freely while the type stays at document size. Counts come from the data,
+ * so the diagram cannot drift from the table beneath it.
+ */
+function verificationPipeline() {
+  const total = DATA.prices.length;
+  const published = DATA.prices.filter((r) => r.value !== null).length;
+  const withheld = total - published;
+
+  const step = (n, title, detail, tone) => `
+      <li class="pipeline__step pipeline__step--${tone}">
+        <span class="pipeline__n">${n}</span>
+        <span class="pipeline__body">
+          <strong>${esc(title)}</strong>
+          <span>${detail}</span>
+        </span>
+      </li>`;
+
+  return `
+  <figure class="pipeline">
+    <figcaption>How a figure becomes a published price</figcaption>
+    <ol class="pipeline__steps">
+      ${step(1, 'Located', 'A figure is found in circulation: an announcement, a search summary, an aggregator. This is a lead, never a source.', 'neutral')}
+      ${step(2, 'Read directly', 'We open the manufacturer or government page that owns the number and read it ourselves, and we record the date we did.', 'neutral')}
+      ${step(3, 'Confirmed, or not', 'If the primary source states the figure, it is confirmed. If sources conflict, or the page cannot be read, it is not.', 'neutral')}
+      ${step(4, `Published as a number (${published} of ${total})`, 'Only a confirmed figure renders as a price, and it carries its source and its verification date.', published > 0 ? 'good' : 'muted')}
+      ${step(5, `Withheld (${withheld} of ${total})`, 'Everything else renders as unverified, with what we found and what a confirmation would require.', withheld > 0 ? 'warn' : 'muted')}
+    </ol>
+    <p class="pipeline__note">
+      ${icon('shieldCheck', { size: 16 })}
+      A figure never skips step 2. That is the whole discipline: a number without
+      a direct read is a rumour with a dollar sign in front of it.
+    </p>
+  </figure>`;
+}
+
 function buildMethodology() {
   const total = DATA.prices.length;
   const byConfidence = DATA.prices.reduce((acc, p) => {
@@ -1140,6 +1185,8 @@ function buildMethodology() {
     were able to confirm it. Nothing is aggregated away.
   </p>
   ${dataStamp()}
+
+  ${verificationPipeline()}
 
   <h2>The tally</h2>
   <div class="receipt">

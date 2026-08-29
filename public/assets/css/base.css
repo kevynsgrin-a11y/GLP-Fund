@@ -219,6 +219,83 @@ a:hover { text-decoration-thickness: 2px; }
   margin-top: 0.2em;
 }
 
+/* The verification pipeline. Numbered because the content genuinely is a
+   sequence: a figure cannot reach step 4 without passing step 2. Labels are
+   HTML at document size rather than SVG text, which scales with the viewBox and
+   becomes unreadable on a phone. */
+.pipeline {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.15rem 1.15rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.pipeline > figcaption {
+  font-weight: 650;
+  font-size: var(--step-1);
+  margin-bottom: 0.75rem;
+}
+
+.pipeline__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pipeline__step {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  gap: 0 0.7rem;
+  align-items: start;
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--rule-strong);
+}
+
+.pipeline__step--good {
+  border-left-color: var(--confirmed);
+}
+
+.pipeline__step--warn {
+  border-left-color: var(--warn);
+}
+
+.pipeline__step--muted {
+  border-left-color: var(--rule);
+  color: var(--ink-soft);
+}
+
+.pipeline__n {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  color: var(--accent);
+  line-height: 1.5;
+}
+
+.pipeline__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.pipeline__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.pipeline__note svg {
+  flex: none;
+  margin-top: 0.2em;
+}
+
 /* A list of destinations rather than prose. */
 .link-list {
   list-style: none;
@@ -311,13 +388,19 @@ svg { display: inline-block; vertical-align: -0.15em; flex: none; }
 
 .masthead__nav a { color: var(--ink-soft); }
 
+/* The icon and the sentence are flex items; the trailing full stop after the
+   <time> element was becoming a third one, so every page rendered
+   "Pricing data as of 2026-07-30 ." with a space before the stop. Aligning the
+   icon on the text baseline instead keeps the sentence a single inline flow. */
 .data-stamp {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-xs);
   font-size: var(--step--1);
   color: var(--ink-faint);
   margin-block: var(--gap-sm) 0;
+}
+
+.data-stamp svg {
+  vertical-align: -0.15em;
+  margin-inline-end: var(--gap-xs);
 }
 
 /* --------------------------------------------------------------------------
