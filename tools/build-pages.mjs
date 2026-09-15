@@ -231,14 +231,21 @@ function truncateAtWord(text, max) {
   return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[,;:.\s]+$/, '')}...`;
 }
 
-function layout({ title, description, path, body, jsonLd = [], script = '' }) {
+function layout({ title, description, path, body, jsonLd = [], script = '', variant = 'interior' }) {
   const canonical = `${ORIGIN}${path}`;
   // Share cards are generated per page by tools/build-images.mjs, keyed by the
   // same slug the path produces. The home card covers '/'.
   const ogSlug = path === '/' ? 'home' : path.replace(/^\/|\/$/g, '').replace(/\//g, '-');
   const ogImage = `${ORIGIN}/assets/img/og/${ogSlug}.png`;
 
-  return `<meta charset="utf-8">
+  // The doctype and the language were both absent before the design pass, which
+  // put all 19 pages in quirks mode and failed WCAG 3.1.1 (Level A). A design
+  // pass cannot be delivered into quirks mode -- box sizing and table layout are
+  // not the same there -- so both are added here. html, head and body tags stay
+  // optional per the HTML spec; the doctype is what selects standards mode.
+  return `<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
@@ -261,7 +268,9 @@ function layout({ title, description, path, body, jsonLd = [], script = '' }) {
 <link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0b5c4a">
+<meta name="theme-color" content="#0c1215">
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-v23-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/archivo-black-v23-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/base.css">
 ${[ORG_NODE, WEBSITE_NODE, pageNode({ title, description, canonical, image: ogImage }), ...jsonLd].map((b) => `<script type="application/ld+json">${JSON.stringify(b, null, 2)}</script>`).join('\n')}
 
@@ -279,7 +288,7 @@ ${[ORG_NODE, WEBSITE_NODE, pageNode({ title, description, canonical, image: ogIm
   </div>
 </header>
 
-<main id="main" class="wrap">
+<main id="main"${variant === 'home' ? '' : ' class="interior"'}>
 ${body}
 </main>
 
@@ -550,13 +559,25 @@ function introPricingWarning(match) {
 
 function buildIndex() {
   const body = `
-  <h1>Every legal way to pay for your GLP-1, with the receipts</h1>
-  <p class="lede">
-    Three questions. Every payment pathway for Zepbound, Wegovy, Ozempic,
-    Mounjaro, Wegovy tablets and Foundayo, each with the source it came from and
-    the date we last checked it.
-  </p>
+  ${/* The cinematic one-sheet opening. The composition is the one the design
+        pass specified; the photograph it specified is NOT here. .hero__media is
+        drawn in CSS, issues no request and fills the hero exactly as the still
+        will, so dropping the real image in later changes the picture and moves
+        no pixel. Dimensions, framing and alt text: IMAGE-MANIFEST.md. */ ''}
+  <section class="hero full-bleed">
+    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="hero__content wrap">
+      <h1>Every legal way to pay for your GLP-1, with the receipts</h1>
+      <p class="lede">
+        Three questions. Every payment pathway for Zepbound, Wegovy, Ozempic,
+        Mounjaro, Wegovy tablets and Foundayo, each with the source it came from and
+        the date we last checked it.
+      </p>
+    </div>
+  </section>
 
+  <div class="page-grid">
   <form class="tool" data-tool-form novalidate>
     <h2 class="visually-hidden">Find your cheapest pathway</h2>
     <div class="tool__grid">
@@ -589,12 +610,16 @@ function buildIndex() {
     </p>
   </form>
 
-  ${dataStamp()}
-
-  ${/* Below the form, deliberately. Above it, this block pushed the third input
-        past the fold on a 390x844 viewport and broke the "three inputs, one
-        screen" contract that tools/qa.mjs measures. */ ''}
-  ${verificationState()}
+  ${/* Below the form in document order, deliberately. Above it, this block
+        pushed the third input past the fold on a 390x844 viewport and broke the
+        "three inputs, one screen" contract that tools/qa.mjs measures. At 800px
+        and up it moves beside the form rather than above it, which changes
+        nothing about the order a screen reader or a phone sees. */ ''}
+  <div class="page-grid__aside">
+    ${dataStamp()}
+    ${verificationState()}
+  </div>
+  </div>
 
   <section class="results" data-results aria-live="polite" aria-atomic="false" aria-labelledby="results-heading">
     <div class="empty">
@@ -613,7 +638,17 @@ function buildIndex() {
   ${adSlot('leaderboard')}
   ${affiliateSlot('below-results')}
 
+  ${/* The paper band: one inverted, full-bleed editorial passage per page, and
+        the only place the palette flips to bone. It carries the argument the
+        site exists to make, which is the passage that most deserves to read
+        like a printed page rather than an interface. Copy unchanged; this is a
+        wrapper and a heading/prose split, nothing more. */ ''}
+  <section class="paper-band full-bleed">
+    <div class="wrap editorial-grid">
+      <div>
   <h2>Why this site and not a telehealth cost guide</h2>
+      </div>
+      <div class="prose">
   <p>
     Search for GLP-1 pricing and most of what ranks is published by companies that
     sell GLP-1 products or provider access. A page that recommends the cheapest
@@ -633,6 +668,9 @@ function buildIndex() {
     so and link you to the official page instead of guessing.
     <a href="/methodology/">Read the methodology</a>.
   </p>
+      </div>
+    </div>
+  </section>
 
   ${/* Second slot placed here rather than directly under the first: stacked
         adjacent slots left a dead band of roughly 350px on a 390px viewport and
@@ -680,6 +718,7 @@ function buildIndex() {
       description:
         'Compare every legitimate way to pay for Zepbound, Wegovy, Ozempic, Mounjaro and oral GLP-1s, ranked by real monthly cost. Every figure carries a source link and a verification date. Sells nothing.',
       path: '/',
+      variant: 'home',
       body,
       jsonLd: [
         {
@@ -2053,6 +2092,12 @@ Sitemap: ${ORIGIN}/sitemap.xml
 
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate
+
+# The two self-hosted font files carry their release version in the filename, so
+# a new cut is a new URL and a year of immutable caching is honest rather than a
+# trap. They are also the only render-blocking-adjacent asset on the site.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /engine/*
   Cache-Control: public, max-age=3600, must-revalidate

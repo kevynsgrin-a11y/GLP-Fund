@@ -47,6 +47,13 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.xml': 'application/xml',
   '.txt': 'text/plain; charset=utf-8',
+  // Without these the local server hands Chromium application/octet-stream and
+  // the browser declines to use the file. A QA run that silently measures the
+  // fallback font stack instead of the shipped one is worse than no QA run.
+  '.woff2': 'font/woff2',
+  '.png': 'image/png',
+  '.ico': 'image/x-icon',
+  '.webmanifest': 'application/manifest+json',
 };
 
 const results = [];
