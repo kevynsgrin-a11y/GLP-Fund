@@ -30,7 +30,7 @@ This is a less useful product than the brief describes. It is the honest version
 npm test                      # 118 unit tests, zero dependencies
 node tools/build-pages.mjs    # regenerate the 19 static pages from the data file
 node tools/qa.mjs             # 25 browser checks in real Chromium at 390px
-node tools/contrast-audit.mjs # 126 WCAG contrast pairs, measured on rendered pages
+node tools/contrast-audit.mjs # 127 WCAG contrast pairs, measured on rendered pages
 node tools/keyboard-audit.mjs # 26 focus stops through the three-step tool
 ```
 
@@ -56,6 +56,7 @@ tools/qa.mjs              browser QA over CDP, Node builtins only
 tools/contrast-audit.mjs  WCAG contrast, measured on rendered pages
 tools/keyboard-audit.mjs  keyboard walkthrough and target sizes
 docs/                     plan, gate resolutions, discrepancy report, handoff, runbook
+CLAUDE.md                 the frozen contract, the gates, and the traps
 IMAGE-MANIFEST.md         images the design specifies but does not generate
 COPY-SLOTS.md             words the design needs and does not write
 ```

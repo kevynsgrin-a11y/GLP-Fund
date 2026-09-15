@@ -201,7 +201,7 @@ pages, `/about/`, `/contact/`, `/privacy/`, `/terms/`.
 
 ## 4. Accessibility
 
-### Contrast — 126 pairs, measured on rendered pages, zero failures
+### Contrast — 127 pairs, measured on rendered pages, zero failures
 
 The ratios below are not read off the token table. Each one is taken from a real
 element on a real page in real Chromium using `CSS.getBackgroundColors`, the
@@ -580,13 +580,60 @@ add the rules or delete the preview.
 
 ---
 
-## 9. Reproducing every number in this document
+## 9. Follow-up shipped in the same branch
+
+Two things the owner asked for after reviewing the pass. Neither is a design
+change; both are consequences of looking hard at `/methodology/`.
+
+### The tally is now machine-readable
+
+It was eight `<div><span>label</span><span>count</span></div>` pairs —
+semantically inert. A screen reader read out eight unlabelled numbers, and the
+counts that are the entire argument of the page were extractable by nothing.
+
+It is now a `<dl>`, which is the correct semantic for name/value pairs and the
+only one that needs no `<caption>` or column header — so the visible copy stays
+byte-identical. It renders pixel-for-pixel as it did before.
+
+The same eight counts are now also emitted into the page's existing `Dataset`
+node as `variableMeasured` `PropertyValue` entries, **generated from the same
+array that renders the visible list**, so the page and its structured data
+cannot drift apart. Before this they existed only as prose inside the Dataset's
+`description` string.
+
+`variableMeasured` rather than the more natural-sounding `additionalProperty`:
+schema.org scopes the latter to `Place`, `Product` and the Value types. It is
+not in domain for `Dataset`, and shipping out-of-domain markup on the page whose
+whole argument is precision would be its own small lie. `variableMeasured` is
+Dataset-native and takes an array of `PropertyValue`.
+
+What this is and is not: it makes the numbers extractable by Dataset Search and
+by answer surfaces that read structured data. It is not a ranking change —
+nothing about the styling of a tally was ever going to be one.
+
+### `CLAUDE.md`
+
+Added at the repository root: the frozen contract, the five gates, the visual
+system's rules, and the traps that have already caught someone — the `qa.mjs`
+class-name coupling, the 390×844 fold contract, the `.svg`-under-`public/`
+problem, and the credential heuristic documented above. Every future session in
+this repository reads it automatically.
+
+### The receipt decision
+
+Resolved: **option A**, the ledger, which is what was already in the branch.
+`.research-receipt` is not being added. The preview at
+https://claude.ai/artifact/LcypXZwd2zVYhkfMPKfWzE records what was weighed.
+
+---
+
+## 10. Reproducing every number in this document
 
 ```bash
 npm test                      # 118 unit tests
 node tools/build-pages.mjs    # regenerate the 19 pages
 node tools/qa.mjs             # 25 browser checks at 390x844, CLS, fold contract
-node tools/contrast-audit.mjs # 126 contrast pairs, exits non-zero on failure
+node tools/contrast-audit.mjs # 127 contrast pairs, exits non-zero on failure
 node tools/keyboard-audit.mjs # 26 focus stops, exits non-zero on failure
 ```
 

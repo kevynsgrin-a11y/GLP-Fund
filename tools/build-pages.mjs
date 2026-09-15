@@ -1216,6 +1216,32 @@ function buildMethodology() {
   const hardRules = DATA.eligibilityRules.filter((r) => ['suppress', 'require'].includes(r.effect));
   const pendingRules = hardRules.filter((r) => !r.quote);
 
+  /**
+   * The tally. ONE array, rendered twice: once as the visible list a person
+   * reads, once as structured data a machine reads.
+   *
+   * It is a single array for the same reason this generator exists at all --
+   * two hand-maintained copies of the same eight counts is exactly the drift
+   * this project was built to make structurally impossible. Before this, the
+   * counts existed as eight <div><span> pairs (readable by nobody but a
+   * sighted human) and, separately, as prose inside the Dataset's description
+   * string. The numbers that ARE the argument of this page were machine-
+   * readable nowhere.
+   *
+   * `unit` is the noun the count is counting, used only by the structured data.
+   * `label` is the visible copy and is unchanged from before this pass.
+   */
+  const TALLY = [
+    { label: 'Price figures tracked', value: total, unit: 'price figures' },
+    { label: 'Confirmed against a primary source', value: byConfidence.confirmed ?? 0, unit: 'price figures' },
+    { label: 'Sources conflict', value: byConfidence.conflicting ?? 0, unit: 'price figures' },
+    { label: 'Not verified', value: byConfidence.unverified ?? 0, unit: 'price figures' },
+    { label: 'Eligibility rules applied', value: DATA.eligibilityRules.length, unit: 'eligibility rules' },
+    { label: 'Rules that remove a pathway', value: hardRules.length, unit: 'eligibility rules' },
+    { label: 'Rules awaiting a verbatim source quote', value: pendingRules.length, unit: 'eligibility rules' },
+    { label: 'Figures rendered as a number', value: byConfidence.confirmed ?? 0, unit: 'price figures', total: true },
+  ];
+
   const body = `
   <h1>Methodology</h1>
   <p class="lede">
@@ -1227,17 +1253,20 @@ function buildMethodology() {
 
   ${verificationPipeline()}
 
+  ${/* A description list, not eight divs of spans.
+        These are name/value pairs, which is what <dl> is for -- and it is the
+        one semantic that needs no <caption> or column header, so the visible
+        copy stays byte-identical. A screen reader now announces "description
+        list, 8 items" and pairs each label with its count; before, it read out
+        eight unlabelled numbers. The div wrapper around each dt/dd pair is
+        valid HTML5 and is what carries the row layout. */ ''}
   <h2>The tally</h2>
-  <div class="receipt">
-    <div class="receipt__row"><span>Price figures tracked</span><span>${total}</span></div>
-    <div class="receipt__row"><span>Confirmed against a primary source</span><span>${byConfidence.confirmed ?? 0}</span></div>
-    <div class="receipt__row"><span>Sources conflict</span><span>${byConfidence.conflicting ?? 0}</span></div>
-    <div class="receipt__row"><span>Not verified</span><span>${byConfidence.unverified ?? 0}</span></div>
-    <div class="receipt__row"><span>Eligibility rules applied</span><span>${DATA.eligibilityRules.length}</span></div>
-    <div class="receipt__row"><span>Rules that remove a pathway</span><span>${hardRules.length}</span></div>
-    <div class="receipt__row"><span>Rules awaiting a verbatim source quote</span><span>${pendingRules.length}</span></div>
-    <div class="receipt__row receipt__total"><span>Figures rendered as a number</span><span>${byConfidence.confirmed ?? 0}</span></div>
-  </div>
+  <dl class="receipt">
+    ${TALLY.map(
+      (row) => `<div class="receipt__row${row.total ? ' receipt__total' : ''}">` +
+        `<dt>${esc(row.label)}</dt><dd>${row.value}</dd></div>`
+    ).join('\n    ')}
+  </dl>
 
   <h2>Our rules of evidence</h2>
   <p>
@@ -1449,11 +1478,32 @@ function buildMethodology() {
           spatialCoverage: { '@type': 'Place', name: 'United States' },
           measurementTechnique:
             'Direct read of a primary manufacturer or government source, recorded with the date of the read.',
-          variableMeasured: {
-            '@type': 'PropertyValue',
-            name: 'Monthly out-of-pocket cost',
-            unitText: 'USD per month',
-          },
+          /**
+           * The variable the dataset actually measures, followed by the eight
+           * tally counts from the SAME array the visible list renders, so the
+           * page and its structured data cannot disagree.
+           *
+           * `variableMeasured` rather than `additionalProperty`: the latter is
+           * the more natural English for a summary statistic, but schema.org
+           * scopes it to Place, Product and the Value types -- it is not in
+           * domain for Dataset, and shipping out-of-domain markup on the page
+           * whose whole argument is precision would be its own small lie.
+           * `variableMeasured` is Dataset-native and takes an array of
+           * PropertyValue, which is how Google's own Dataset examples use it.
+           */
+          variableMeasured: [
+            {
+              '@type': 'PropertyValue',
+              name: 'Monthly out-of-pocket cost',
+              unitText: 'USD per month',
+            },
+            ...TALLY.map((row) => ({
+              '@type': 'PropertyValue',
+              name: row.label,
+              value: row.value,
+              unitText: row.unit,
+            })),
+          ],
           distribution: {
             '@type': 'DataDownload',
             encodingFormat: 'application/json',
