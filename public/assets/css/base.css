@@ -1,57 +1,183 @@
 /**
- * Base styles. Deliberately minimal.
+ * GLP-1 Price Check - visual system.
  *
- * This is a SHELL for a later design pass, not a finished skin. It establishes
- * layout, reading order, hit targets, focus visibility and contrast, and it
- * reserves ad space so the design pass inherits a zero-CLS page. It does not
- * establish a brand.
+ * Direction: "Cinematic one-sheet". Near-black editorial surfaces, bone text,
+ * teal verification signals, restrained amber emphasis, evidence-led typography.
  *
- * Mobile-first with no lower breakpoint: the median visitor is on a phone,
- * standing in a pharmacy, mildly stressed. The desktop layout is the exception
- * handled by a media query, not the default.
+ * PROVENANCE. This file is a port of the stylesheet produced by the Lovable
+ * design pass (project "GLP-1 Aesthetics", src/styles.css). The application
+ * around that stylesheet was discarded: this site is hand-authored static HTML,
+ * one CSS file and one vanilla ES module, and it has no framework, no bundler,
+ * no package manager and no build step. Four things were removed on the way in
+ * and are recorded here so nobody reinstates them by accident:
  *
- * The design pass may replace every rule in this file. It may not change the
- * engine or its data contract. See docs/v0-handoff.md.
+ *   1. The Tailwind header (@import "tailwindcss" / @source / tw-animate-css)
+ *      and the @theme inline block. Nothing here consumes them.
+ *   2. .eyebrow and .section-kicker -- tracked-out all-caps labels, which the
+ *      design brief bans as template chrome. If a section needs explaining,
+ *      its heading does the explaining.
+ *   3. Every image reference, including the full-bleed hero photograph
+ *      (.hero > img). The hero composition survives; the photograph is a CSS
+ *      placeholder at the final aspect ratio, so the day a real image lands
+ *      nothing moves. The requirement is specified in IMAGE-MANIFEST.md.
+ *   4. The interior-hero ghost word and the Lovable routes that do not exist
+ *      here (ledger filters/index/records, research tables, source cards).
+ *      See docs/design-pass-2026-09-15.md for what was dropped and why.
+ *
+ * COLOUR NOTATION IS oklch() THROUGHOUT, deliberately and consistently. The
+ * palette is a ladder of four near-black surfaces plus signal colours that must
+ * hold a measured contrast ratio against every one of them. In oklch the L
+ * channel IS perceived lightness, so a surface step is a number you can reason
+ * about and an accessibility budget you can keep; in hex the same ladder is
+ * eyeballed and drifts. Every value below was measured, not guessed --
+ * tools/contrast-audit.mjs prints the table and fails on any pair under its
+ * WCAG 2.2 AA threshold.
+ *
+ * MOBILE-FIRST. The median visitor is on a phone, standing in a pharmacy,
+ * mildly stressed. The Lovable file was desktop-first with max-width queries;
+ * this is min-width at the same two breakpoint positions (480px / 800px), so a
+ * missed rule degrades towards the phone layout rather than towards a desktop
+ * layout rendered on a phone.
+ *
+ * THE ENGINE AND ITS DATA CONTRACT ARE FROZEN. This file may restyle every
+ * element. It may not change what any of them mean. See docs/v0-handoff.md.
  */
 
+/* --------------------------------------------------------------------------
+   Typography: two families, two files, self-hosted, no third-party request.
+   -------------------------------------------------------------------------- */
+
+/**
+ * IBM Plex Sans, variable weight axis 100-700, latin subset. ONE file covers
+ * every weight this site uses, which also disposes of the Android weight-
+ * collapse bug recorded in the 30-day plan: there is no second static face to
+ * collapse onto.
+ *
+ * Its figures are tabular AND lining by construction -- all ten digits carry an
+ * advance width of 600 units at wght 400, 600 and 700, verified against the
+ * font's own hmtx table rather than assumed. There is no `tnum` feature to
+ * enable because tabular is not an alternate here, it is the default. On a site
+ * that is columns of prices, that is the property that matters.
+ *
+ * Libre Baskerville was the third family in the Lovable file and is cut. See
+ * docs/design-pass-2026-09-15.md.
+ */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url('../fonts/ibm-plex-sans-v23-latin.woff2') format('woff2');
+}
+
+/* Archivo Black. One weight, used only for the display line, the price and the
+   brand mark. Also tabular by default: 667 units on every digit. */
+@font-face {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/archivo-black-v23-latin.woff2') format('woff2');
+}
+
+/* --------------------------------------------------------------------------
+   Tokens
+   -------------------------------------------------------------------------- */
+
 :root {
-  --ink: #14171a;
-  --ink-soft: #4a5259;
-  --ink-faint: #6b747c;
-  --paper: #ffffff;
-  --paper-sunk: #f4f6f8;
-  --rule: #d8dde2;
-  --rule-strong: #b6bfc7;
+  /* Surfaces, darkest first. Each step is +0.037 L, which is the smallest step
+     that still separates two panels on a dimmed phone screen. */
+  --bg: oklch(0.178 0.011 220);
+  --surface: oklch(0.215 0.013 220);
+  --surface-2: oklch(0.252 0.013 222);
+  --surface-3: oklch(0.288 0.013 222);
 
-  --accent: #0b5c4a;
-  --accent-ink: #ffffff;
+  /* The paper band. One inverted section per page at most: the editorial
+     passage that argues the site's position. Bone, not white. */
+  --paper: oklch(0.955 0.013 95);
+  --paper-2: oklch(0.915 0.014 95);
+  --ink: oklch(0.235 0.014 220);
+  --ink-muted: oklch(0.43 0.016 220);
 
-  --confirmed: #14603f;
-  --warn: #7a4b00;
-  --warn-bg: #fff6e5;
-  --urgent: #8a1c11;
-  --urgent-bg: #fdecea;
-  --unverified: #55606a;
+  /* Text on dark. */
+  --text: oklch(0.955 0.013 95);
+  --text-muted: oklch(0.775 0.018 215);
 
+  /* Signals. Never the only carrier of a state -- see the pill and stamp rules,
+     which vary border style and weight as well as hue. */
+  --confirmed: oklch(0.8 0.125 172);
+  --warn: oklch(0.845 0.135 85);
+  --urgent: oklch(0.72 0.165 30);
+  --unverified: oklch(0.79 0.008 220);
+  --emphasis: oklch(0.825 0.13 78);
+  --confirmed-ink: oklch(0.48 0.095 172);
+  --urgent-ink: oklch(0.505 0.18 30);
+
+  /* Tinted signal grounds. Low-chroma washes of the signal hue, dark enough
+     that every text token above still clears AA on them. */
+  --warn-wash: oklch(0.235 0.032 85);
+  --urgent-wash: oklch(0.235 0.042 30);
+  --confirmed-wash: oklch(0.235 0.028 172);
+
+  /* Lines. --rule is a decorative hairline. --rule-strong delimits interactive
+     controls and clears 3:1 against every surface above. */
+  --rule: oklch(0.33 0.016 222);
+  --rule-strong: oklch(0.575 0.02 222);
+
+  /* Type scale. The floor is 0.8125rem (13px) and it is used only for the ad
+     label and dense table cells. The disclaimer, the non-affiliation statement,
+     the tool's privacy note and every verification stamp sit at or above body
+     size, non-negotiably: see their rules below. */
   --step--1: 0.8125rem;
   --step-0: 1rem;
-  --step-1: 1.125rem;
-  --step-2: 1.375rem;
-  --step-3: 1.75rem;
-  --price: 2.5rem;
+  --step-1: 1.0625rem;
+  --step-2: clamp(1.3rem, 1.09rem + 0.9vw, 1.75rem);
+  --step-3: clamp(1.55rem, 1.24rem + 1.4vw, 2.25rem);
+  /* The display line is capped hard at the small end. At 390px the headline has
+     to set in three lines, not four: the fourth line costs 36px of the budget
+     that tools/qa.mjs spends keeping all three inputs above the fold. The
+     one-sheet drama is a desktop property and is paid for there. */
+  --display: clamp(1.9rem, 0.35rem + 5.4vw, 4.75rem);
+  --price: clamp(2.2rem, 1.71rem + 2.5vw, 3.25rem);
 
   --gap-xs: 0.25rem;
   --gap-sm: 0.5rem;
   --gap: 1rem;
   --gap-lg: 1.5rem;
   --gap-xl: 2.5rem;
+  --gap-2xl: clamp(3rem, 1.5rem + 5vw, 5.5rem);
 
-  --radius: 0.5rem;
-  --measure: 42rem;
+  /* Sharp corners are the direction. The one exception is the focus ring, which
+     needs a hair of radius to read as a ring rather than as a border. */
+  --radius: 0;
 
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-num: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --gutter: 1rem;
+  --container: 72rem;
+  --measure: 40rem;
+
+  --font: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Archivo Black', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-panel: 0 1.75rem 4rem -2rem oklch(0 0 0 / 0.85);
+
+  /**
+   * The delivery ratio of the hero still specified in IMAGE-MANIFEST.md, held
+   * here so the stylesheet and the manifest cannot drift apart. Nothing in the
+   * layout is derived from it, and that is the point: .hero__media is an
+   * absolutely positioned fill whose box is sized by the hero, so the eventual
+   * photograph sits in it with object-fit:cover and moves nothing. The reserved
+   * area exists before first paint and is identical with or without an asset.
+   * Measured CLS is 0.0000; see docs/qa-report.json.
+   */
+  --hero-media-ratio: 16 / 9;
+  --hero-media-focal: 68% center;
+
+  color-scheme: dark;
 }
+
+/* --------------------------------------------------------------------------
+   Reset and base elements
+   -------------------------------------------------------------------------- */
 
 *,
 *::before,
@@ -68,247 +194,72 @@ html {
 
 body {
   margin: 0;
+  min-width: 20rem;
   font-family: var(--font);
   font-size: var(--step-0);
-  line-height: 1.55;
-  color: var(--ink);
-  background: var(--paper);
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
   /* The disclaimer is non-dismissible and sits at the end of the document, so
      the page must always be tall enough to reach it. */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  line-height: 1.15;
   margin: 0 0 var(--gap-sm);
-  font-weight: 650;
   text-wrap: balance;
 }
 
-h1 { font-size: var(--step-3); }
-h2 { font-size: var(--step-2); margin-top: var(--gap-xl); }
-h3 { font-size: var(--step-1); margin-top: var(--gap-lg); }
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--step-2);
+  font-weight: 600;
+  margin-top: var(--gap-xl);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--step-1);
+  font-weight: 600;
+  margin-top: var(--gap-lg);
+}
 
 p { margin: 0 0 var(--gap); }
 p:last-child { margin-bottom: 0; }
 
+ul, ol { margin: 0 0 var(--gap); padding-left: 1.15rem; }
+li { margin-bottom: var(--gap-sm); }
+li:last-child { margin-bottom: 0; }
+
+strong { font-weight: 600; }
+
 a {
-  color: var(--accent);
-  text-underline-offset: 0.15em;
+  color: var(--confirmed);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: from-font;
 }
+
 a:hover { text-decoration-thickness: 2px; }
 
 /* A visible focus ring is not optional on a form a stressed person is filling
-   in. Never remove this without replacing it. */
+   in. Never remove this without replacing it. Amber rather than teal so the
+   ring never reads as a verification signal. */
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--warn);
   outline-offset: 2px;
   border-radius: 2px;
-}
-
-/* Images. The stylesheet had no img rule at all until share cards and icons
-   existed, which meant the first image added to this site would have overflowed
-   its container on every viewport. `height: auto` keeps the aspect ratio when
-   width is constrained; the intrinsic width/height attributes on the markup do
-   the rest to reserve space before load. */
-/* The site's current verification position. Deliberately quiet rather than
-   alarming: it is a statement of method, not an error. It sits below the three
-   inputs so the fold contract measured by tools/qa.mjs still holds. */
-.verification-state {
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--accent);
-  border-radius: 4px;
-  background: var(--paper-sunk);
-  padding: 1rem 1.15rem;
-  margin: 1.25rem 0;
-}
-
-.verification-state h2 {
-  font-size: var(--step-1);
-  margin: 0 0 0.4rem;
-}
-
-.verification-state p {
-  margin: 0 0 0.5rem;
-}
-
-.verification-state p:last-child {
-  margin-bottom: 0;
-}
-
-/* The introductory-pricing warning. Weighted like a warning rather than like a
-   routine caveat, because a reader who has seen a low headline price elsewhere
-   has to meet this before they budget on it. */
-.intro-warning {
-  border: 1px solid var(--warn);
-  border-left: 4px solid var(--warn);
-  border-radius: 4px;
-  background: var(--warn-bg);
-  color: var(--warn);
-  padding: 1rem 1.15rem;
-  margin: 1.25rem 0;
-}
-
-.intro-warning h2 {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-size: var(--step-1);
-  margin: 0 0 0.5rem;
-  color: inherit;
-}
-
-.intro-warning h2 svg {
-  flex: none;
-  margin-top: 0.15em;
-}
-
-.intro-warning p {
-  margin: 0 0 0.5rem;
-  color: var(--ink);
-}
-
-.intro-warning p:last-child {
-  margin-bottom: 0;
-}
-
-.intro-warning__scope {
-  font-size: var(--step--1);
-}
-
-/* Eligibility, rendered from the data rather than described in prose. */
-.eligibility {
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 1rem 1.15rem 1.15rem;
-  margin: 1.5rem 0;
-  background: var(--paper-sunk);
-}
-
-.eligibility h2 {
-  font-size: var(--step-1);
-  margin: 0 0 0.4rem;
-}
-
-.eligibility h3 {
-  font-size: var(--step-0);
-  margin: 1rem 0 0.35rem;
-}
-
-.eligibility ul {
-  margin: 0;
-}
-
-.eligibility__pending {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.45rem;
-  font-size: var(--step--1);
-  color: var(--ink-soft);
-  margin: 1rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--rule);
-}
-
-.eligibility__pending svg {
-  flex: none;
-  margin-top: 0.2em;
-}
-
-/* The verification pipeline. Numbered because the content genuinely is a
-   sequence: a figure cannot reach step 4 without passing step 2. Labels are
-   HTML at document size rather than SVG text, which scales with the viewBox and
-   becomes unreadable on a phone. */
-.pipeline {
-  margin: 1.5rem 0 2rem;
-  padding: 1rem 1.15rem 1.15rem;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-}
-
-.pipeline > figcaption {
-  font-weight: 650;
-  font-size: var(--step-1);
-  margin-bottom: 0.75rem;
-}
-
-.pipeline__steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.pipeline__step {
-  display: grid;
-  grid-template-columns: 1.9rem 1fr;
-  gap: 0 0.7rem;
-  align-items: start;
-  padding-left: 0.65rem;
-  border-left: 3px solid var(--rule-strong);
-}
-
-.pipeline__step--good {
-  border-left-color: var(--confirmed);
-}
-
-.pipeline__step--warn {
-  border-left-color: var(--warn);
-}
-
-.pipeline__step--muted {
-  border-left-color: var(--rule);
-  color: var(--ink-soft);
-}
-
-.pipeline__n {
-  font-variant-numeric: tabular-nums;
-  font-weight: 650;
-  color: var(--accent);
-  line-height: 1.5;
-}
-
-.pipeline__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.pipeline__note {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.45rem;
-  margin: 1rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--rule);
-  font-size: var(--step--1);
-  color: var(--ink-soft);
-}
-
-.pipeline__note svg {
-  flex: none;
-  margin-top: 0.2em;
-}
-
-/* A list of destinations rather than prose. */
-.link-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.link-list li {
-  padding: 0.4rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.link-list li:last-child {
-  border-bottom: 0;
 }
 
 img,
@@ -320,11 +271,63 @@ video {
 
 svg { display: inline-block; vertical-align: -0.15em; flex: none; }
 
+hr { border: 0; border-top: 1px solid var(--rule); margin-block: var(--gap-lg); }
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+
 .wrap {
   width: 100%;
-  max-width: var(--measure);
+  max-width: var(--container);
   margin-inline: auto;
-  padding-inline: var(--gap);
+  padding-inline: var(--gutter);
+}
+
+/**
+ * <main> is a three-track grid rather than a padded box. Ordinary children land
+ * in the centre track; a .full-bleed child spans edge to edge without negative
+ * margins, without 100vw (which counts the scrollbar and would reintroduce the
+ * horizontal scroll this file is careful to avoid), and without any wrapper
+ * element being added to the generated markup.
+ */
+main {
+  flex: 1 0 auto;
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [content-start] min(100% - (var(--gutter) * 2), var(--container)) [content-end]
+    minmax(var(--gutter), 1fr) [full-end];
+  padding-block: 0 var(--gap-2xl);
+  row-gap: 0;
+}
+
+main > * { grid-column: content; }
+main > .full-bleed { grid-column: full; }
+
+/* Prose holds a reading measure even though the content track is wide. The wide
+   track exists for tables: the methodology price table needs 935px and was
+   being clipped at 640px on every desktop up to 2560px. */
+main > p,
+main > ul,
+main > ol,
+main > h2,
+main > h3,
+main > .lede,
+main > .link-list {
+  max-width: var(--measure);
+}
+
+/* Panels carry prose too, just more of it per line. Wider than the measure,
+   nowhere near the full evidence-table track. */
+main > .verification-state,
+main > .intro-warning,
+main > .eligibility,
+main > .banner,
+main > .receipt,
+main > .pipeline,
+main > .alerts-form {
+  max-width: 52rem;
 }
 
 .visually-hidden {
@@ -341,15 +344,20 @@ svg { display: inline-block; vertical-align: -0.15em; flex: none; }
 
 .skip-link {
   position: absolute;
-  left: var(--gap);
-  top: -3rem;
-  z-index: 20;
-  padding: var(--gap-sm) var(--gap);
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: var(--radius);
+  left: var(--gutter);
+  top: -4rem;
+  z-index: 40;
+  padding: 0.75rem var(--gap);
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  background: var(--warn);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
   transition: top 120ms ease;
 }
+
 .skip-link:focus { top: var(--gap-sm); }
 
 /* --------------------------------------------------------------------------
@@ -358,92 +366,233 @@ svg { display: inline-block; vertical-align: -0.15em; flex: none; }
 
 .masthead {
   border-bottom: 1px solid var(--rule);
-  padding-block: var(--gap-sm);
+  background: var(--bg);
+  position: relative;
+  z-index: 20;
 }
 
+/**
+ * Brand on one row, nav on the next, until there is room for both.
+ *
+ * Letting the nav wrap link-by-link instead cost 171px of masthead on a 390px
+ * phone -- three ragged rows of 44px hit targets -- which on its own broke the
+ * fold contract below. Two deliberate rows is 104px and reads as a masthead
+ * rather than as an accident.
+ */
 .masthead__inner {
   display: flex;
   align-items: center;
-  gap: var(--gap);
+  gap: 0 var(--gap);
   flex-wrap: wrap;
+  padding-block: var(--gap-xs);
 }
 
 .masthead__brand {
   display: inline-flex;
   align-items: center;
   gap: var(--gap-sm);
-  font-weight: 700;
-  font-size: var(--step-1);
-  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--text);
   text-decoration: none;
+  min-height: 2.75rem;
 }
+
+.masthead__brand svg { color: var(--warn); }
 
 .masthead__nav {
-  margin-left: auto;
+  width: 100%;
   display: flex;
-  gap: var(--gap);
-  font-size: var(--step--1);
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-top: 1px solid var(--rule);
 }
 
-.masthead__nav a { color: var(--ink-soft); }
-
-/* The icon and the sentence are flex items; the trailing full stop after the
-   <time> element was becoming a third one, so every page rendered
-   "Pricing data as of 2026-07-30 ." with a space before the stop. Aligning the
-   icon on the text baseline instead keeps the sentence a single inline flow. */
-.data-stamp {
-  font-size: var(--step--1);
-  color: var(--ink-faint);
-  margin-block: var(--gap-sm) 0;
+/* 44x44 on a nav a stressed thumb has to hit. min-width matters as much as
+   min-height: "Alerts" measured 39px wide before this rule. */
+.masthead__nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
 }
 
-.data-stamp svg {
-  vertical-align: -0.15em;
-  margin-inline-end: var(--gap-xs);
-}
+.masthead__nav a:hover,
+.masthead__nav a:focus-visible { color: var(--text); text-decoration: underline; }
 
 /* --------------------------------------------------------------------------
-   Main
+   The hero. Composition preserved from the design pass; the photograph is not.
    -------------------------------------------------------------------------- */
 
-main { flex: 1 0 auto; padding-block: var(--gap-lg) var(--gap-xl); }
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+}
+
+/**
+ * The placeholder standing in for the photograph specified in IMAGE-MANIFEST.md.
+ *
+ * It is drawn entirely in CSS and issues no request, so there is nothing to
+ * fail, nothing to lazy-load and nothing to shift. It is absolutely positioned
+ * and fills the hero exactly as `object-fit: cover` will, and the hero's height
+ * is declared below rather than derived from any asset -- so substituting the
+ * real image changes the picture and moves no pixel of layout. Measured CLS
+ * stays at 0.
+ *
+ * Deliberately not a grey box with a diagonal cross: that reads as a failure.
+ * It is a dark field with a single raking gradient and a fine horizontal
+ * structure, which is what the eventual still needs to sit behind anyway.
+ */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(105% 85% at 72% 22%, oklch(0.42 0.035 200 / 0.9), transparent 64%),
+    radial-gradient(80% 65% at 95% 88%, oklch(0.34 0.06 74 / 0.5), transparent 62%),
+    linear-gradient(196deg, oklch(0.3 0.02 210 / 0.55), transparent 58%),
+    repeating-linear-gradient(
+      0deg,
+      oklch(1 0 0 / 0.03) 0 1px,
+      transparent 1px 7px
+    );
+}
+
+/* The veil is what keeps the headline legible over whatever eventually sits
+   behind it. Sized so the measured contrast of the h1 and the lede is taken
+   against --bg, not against the placeholder. */
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(
+      100deg,
+      oklch(0.178 0.011 220 / 0.985) 0%,
+      oklch(0.178 0.011 220 / 0.965) 44%,
+      oklch(0.178 0.011 220 / 0.72) 78%,
+      oklch(0.178 0.011 220 / 0.6) 100%
+    ),
+    linear-gradient(0deg, var(--bg) 2%, oklch(0.178 0.011 220 / 0) 55%);
+}
+
+.hero__content {
+  position: relative;
+  padding-block: var(--gap-lg) var(--gap-xl);
+}
+
+.hero h1 {
+  max-width: 15ch;
+  font-size: var(--display);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--gap);
+}
+
+.hero .lede {
+  max-width: 38rem;
+  margin-bottom: 0;
+}
 
 .lede {
   font-size: var(--step-1);
-  color: var(--ink-soft);
-  max-width: 34rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+/* Interior pages get the same register from type and space alone: a soft band
+   behind the opening, no second composition to maintain and no ghost word. */
+main.interior {
+  background-image: linear-gradient(
+    180deg,
+    var(--surface) 0%,
+    oklch(0.215 0.013 220 / 0.55) 42%,
+    oklch(0.215 0.013 220 / 0) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% clamp(14rem, 30vw, 22rem);
+  padding-top: var(--gap-xl);
+}
+
+main.interior > h1 {
+  max-width: 22ch;
+  margin-bottom: var(--gap);
+}
+
+main.interior > .lede {
+  padding-bottom: var(--gap);
+  border-bottom: 1px solid var(--rule);
+  max-width: 44rem;
 }
 
 /* --------------------------------------------------------------------------
-   The tool: three inputs, one screen, no scrolling to start
+   The tool: three inputs, one screen, no scrolling to start.
+
+   tools/qa.mjs measures the form's bottom edge against a 390x844 viewport and
+   fails the deploy if it falls below the fold. Nothing above the form may grow
+   without re-running that check.
    -------------------------------------------------------------------------- */
 
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  align-items: start;
+  /* .hero is a stacking context (isolation: isolate), so it paints above later
+     in-flow siblings and was covering the first field label. The tool rides
+     over the hero's lower edge, not under it. */
+  position: relative;
+  z-index: 3;
+  /* Lifts the tool over the hero's lower edge. The cinematic overlap, and the
+     reason the tool reads as the instrument the page is built around. */
+  margin-top: calc(var(--gap-xl) * -1.2);
+  margin-bottom: var(--gap-lg);
+}
+
+/* Column two of the one-sheet: the data stamp and the site's verification
+   position. A plain wrapper, so the stacked mobile order is unchanged. */
+.page-grid__aside { display: flex; flex-direction: column; min-width: 0; }
+
 .tool {
-  margin-block: var(--gap-lg);
   padding: var(--gap);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  background: var(--paper-sunk);
+  border: 1px solid var(--rule-strong);
+  background: var(--surface);
+  box-shadow: var(--shadow-panel);
 }
 
 .tool__grid {
   display: grid;
-  gap: var(--gap);
+  gap: 0.75rem;
   grid-template-columns: 1fr;
 }
 
 .field { display: flex; flex-direction: column; gap: var(--gap-xs); }
 
-.field__label { font-weight: 600; font-size: var(--step--1); }
+.field__label {
+  font-weight: 600;
+  font-size: var(--step-0);
+  color: var(--text);
+}
 
-.field__hint { font-size: var(--step--1); color: var(--ink-faint); }
+.field__hint { font-size: var(--step--1); color: var(--text-muted); }
 
-.field select {
+.field select,
+select {
   font: inherit;
   font-size: var(--step-0);
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--text);
+  background-color: var(--bg);
   border: 1px solid var(--rule-strong);
   border-radius: var(--radius);
   padding: 0.7rem 0.75rem;
@@ -453,223 +602,648 @@ main { flex: 1 0 auto; padding-block: var(--gap-lg) var(--gap-xl); }
   width: 100%;
 }
 
-.field select:disabled { background: var(--paper-sunk); color: var(--ink-faint); }
+.field select:hover { border-color: var(--text-muted); }
 
+.field select:disabled {
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+  border-color: var(--rule);
+}
+
+/**
+ * The privacy note. At body size, inside the form, last -- exactly where it was
+ * and no smaller. It was 0.8125rem before this pass; a promise about health
+ * data set in the smallest type on the page is a promise made quietly.
+ */
 .privacy-note {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   gap: var(--gap-sm);
-  align-items: flex-start;
-  margin-top: var(--gap);
+  align-items: start;
+  margin: var(--gap) 0 0;
   padding-top: var(--gap);
   border-top: 1px solid var(--rule);
-  font-size: var(--step--1);
-  color: var(--ink-soft);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  color: var(--text-muted);
 }
+
+.privacy-note svg { color: var(--confirmed); margin-top: 0.25em; }
+
+.data-stamp {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  margin-block: var(--gap-sm) 0;
+}
+
+.data-stamp svg {
+  vertical-align: -0.15em;
+  margin-inline-end: var(--gap-xs);
+  color: var(--text-muted);
+}
+
+/**
+ * The site's current verification position. Amber-edged and quiet: it is a
+ * statement of method, not an error. It sits below the three inputs so the fold
+ * contract above still holds.
+ */
+.verification-state {
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--emphasis);
+  background: var(--surface);
+  padding: var(--gap) var(--gap-lg);
+  margin: var(--gap-lg) 0;
+}
+
+.verification-state h2 {
+  font-size: var(--step-1);
+  margin: 0 0 var(--gap-sm);
+}
+
+.verification-state p {
+  margin: 0 0 var(--gap-sm);
+  color: var(--text-muted);
+}
+
+.verification-state p:last-child { margin-bottom: 0; }
+
+/**
+ * The introductory-pricing warning: the most consequential thing this site
+ * knows. Weighted like a warning, never like a routine caveat.
+ */
+.intro-warning {
+  border: 1px solid var(--warn);
+  border-left-width: 4px;
+  background: var(--warn-wash);
+  padding: var(--gap) var(--gap-lg);
+  margin: var(--gap-lg) 0;
+}
+
+.intro-warning h2 {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-sm);
+  font-size: var(--step-1);
+  margin: 0 0 var(--gap-sm);
+  color: var(--warn);
+}
+
+.intro-warning h2 svg { flex: none; margin-top: 0.15em; }
+
+.intro-warning p { margin: 0 0 var(--gap-sm); color: var(--text); }
+.intro-warning p:last-child { margin-bottom: 0; }
+.intro-warning__scope { font-size: var(--step--1); color: var(--text-muted) !important; }
+
+/* Eligibility, rendered from the data rather than described in prose. */
+.eligibility {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  padding: var(--gap) var(--gap-lg) var(--gap-lg);
+  margin: var(--gap-lg) 0;
+}
+
+.eligibility h2 { font-size: var(--step-1); margin: 0 0 var(--gap-sm); }
+.eligibility h3 { font-size: var(--step-0); margin: var(--gap) 0 var(--gap-xs); }
+.eligibility ul { margin: 0; color: var(--text-muted); }
+
+.eligibility__pending {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-sm);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  margin: var(--gap) 0 0;
+  padding-top: var(--gap-sm);
+  border-top: 1px solid var(--rule);
+}
+
+.eligibility__pending svg { flex: none; margin-top: 0.2em; }
 
 /* --------------------------------------------------------------------------
    Results
    -------------------------------------------------------------------------- */
 
-.results { margin-top: var(--gap-lg); }
-
-.results__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--gap);
-  flex-wrap: wrap;
-  margin-bottom: var(--gap);
+/* The results hold a reading measure. The content track is 72rem wide for the
+   evidence tables; a caveat set across 1100px is not readable at any weight. */
+.results {
+  margin-top: var(--gap-lg);
+  scroll-margin-top: var(--gap-lg);
+  max-width: 58rem;
 }
 
-.results__count { font-size: var(--step--1); color: var(--ink-faint); }
+.results__head { margin-bottom: var(--gap); }
 
+.results__head h2 { margin-top: 0; }
+
+.results__count {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+.empty {
+  padding: var(--gap-lg);
+  border: 1px dashed var(--rule-strong);
+  text-align: center;
+  color: var(--text-muted);
+  min-height: 7rem;
+  display: grid;
+  place-content: center;
+  gap: var(--gap-sm);
+}
+
+.empty p { max-width: 44rem; margin-inline: auto; }
+
+/**
+ * Staleness banners. Colour is never the only signal: --warn carries the clock
+ * icon and a 1px edge, --urgent carries the triangle, a 4px edge and role=alert.
+ */
 .banner {
   display: flex;
   gap: var(--gap-sm);
   align-items: flex-start;
   padding: var(--gap);
-  border-radius: var(--radius);
   margin-bottom: var(--gap);
-  font-size: var(--step--1);
-  border: 1px solid transparent;
+  font-size: var(--step-0);
+  border: 1px solid var(--warn);
+  border-left-width: 3px;
+  background: var(--warn-wash);
+  color: var(--warn);
 }
 
-.banner--warn { background: var(--warn-bg); border-color: #e8c583; color: var(--warn); }
-.banner--urgent { background: var(--urgent-bg); border-color: #eda9a1; color: var(--urgent); }
-.banner strong { display: block; font-size: var(--step-0); }
+.banner svg { flex: none; margin-top: 0.15em; }
+.banner strong { display: block; color: var(--text); }
 
-.card-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--gap); }
+.banner--urgent {
+  border-color: var(--urgent);
+  border-left-width: 5px;
+  background: var(--urgent-wash);
+  color: var(--urgent);
+}
+
+/* --------------------------------------------------------------------------
+   Result cards. The price is the hero; the verified stamp is part of the price.
+   -------------------------------------------------------------------------- */
+
+.card-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--gap-sm); }
 
 .card {
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: var(--gap);
-  background: var(--paper);
+  position: relative;
+  /* The card edge is a boundary a reader has to find, so it holds 3:1 against
+     the page on all four sides rather than relying on a 1.10:1 surface step. */
+  border: 1px solid var(--rule-strong);
+  border-left: 3px solid var(--rule-strong);
+  padding: var(--gap) var(--gap-lg);
+  background: var(--surface-2);
+  margin: 0;
 }
 
-.card--best { border-color: var(--accent); border-width: 2px; }
+/* The one card that matters most is marked by edge weight and a rank line, not
+   by hue alone. */
+.card--best { border-color: var(--confirmed); border-left-width: 5px; }
 
 .card__rank {
   display: inline-flex;
   align-items: center;
   gap: var(--gap-xs);
-  font-size: var(--step--1);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  margin-bottom: var(--gap-xs);
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--confirmed);
+  margin: 0 0 var(--gap-xs);
 }
 
-.card__name { font-size: var(--step-1); font-weight: 650; margin: 0; }
+.card__name {
+  font-size: var(--step-1);
+  font-weight: 600;
+  margin: 0;
+}
 
 .card__cost {
-  font-family: var(--font-num);
+  font-family: var(--font-display);
   font-size: var(--price);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.02em;
+  color: var(--text);
   margin-block: var(--gap-sm) 0;
   /* Reserved so a slow data fetch cannot shift the card. */
   min-height: calc(var(--price) * 1.05);
 }
 
+/* An unverified figure is never dressed as a price. Different family, much
+   smaller, muted -- it must not be mistaken for a number at a glance. It also
+   drops the price line's reserved height: that reserve exists to stop a real
+   figure jumping as it resolves, and holding 3.25rem of empty card open above a
+   sentence reads as a broken layout rather than as restraint. */
 .card__cost--unverified {
   font-family: var(--font);
   font-size: var(--step-1);
   font-weight: 600;
   color: var(--unverified);
+  letter-spacing: 0;
+  min-height: 0;
 }
 
-.card__annual { font-size: var(--step--1); color: var(--ink-soft); margin-block: var(--gap-xs) 0; }
+.card__annual {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  margin-block: var(--gap-xs) 0;
+}
 
-.card__notes { margin: var(--gap) 0 0; padding: 0; list-style: none; display: grid; gap: var(--gap-sm); }
+.card__annual a { color: var(--emphasis); }
+
+.card__notes {
+  margin: var(--gap) 0 0;
+  padding: var(--gap-sm) 0 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+  display: grid;
+  gap: var(--gap-sm);
+}
 
 .card__note,
 .card__caveat {
   display: flex;
   gap: var(--gap-sm);
   align-items: flex-start;
-  font-size: var(--step--1);
-  color: var(--ink-soft);
+  font-size: var(--step-0);
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 0;
 }
 
-.card__caveat { color: var(--warn); }
+.card__note svg,
+.card__caveat svg { flex: none; margin-top: 0.15em; }
 
-/* The verified stamp is never optional. It is styled as part of the price, not
-   as fine print, because it is the site's entire argument. */
+/**
+ * A caveat is a condition under which the displayed price is NOT what the
+ * person pays. render.js already gives it a different icon from an ordinary
+ * note (alertTriangle against shield); this adds hue and weight on top, so the
+ * distinction survives a monochrome screen and a colour-blind reader alike.
+ *
+ * Weight 500 rather than 600: a card can carry three caveats, and three blocks
+ * of bold amber shout down the pathway name and the price they are qualifying.
+ */
+.card__caveat { color: var(--warn); font-weight: 500; }
+
+/**
+ * The verified stamp. Non-optional, at body size, never fine print: if a price
+ * is on screen, this is on screen beside it. It is the site's whole argument.
+ */
 .card__verified {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--gap-sm);
-  margin-top: var(--gap);
+  gap: var(--gap-sm) var(--gap);
+  margin: var(--gap) 0 0;
   padding-top: var(--gap-sm);
-  border-top: 1px dashed var(--rule);
-  font-size: var(--step--1);
+  border-top: 1px solid var(--rule);
+  font-size: var(--step-0);
 }
 
-.card__verified-state { display: inline-flex; align-items: center; gap: var(--gap-xs); font-weight: 600; }
+.card__verified-state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  font-weight: 600;
+}
+
+/* Four states, four hues -- and four icons, already emitted by render.js
+   (checkCircle / clock / alertTriangle / helpCircle), plus two weights. Never
+   hue alone. */
 .card__verified-state--fresh { color: var(--confirmed); }
 .card__verified-state--warn { color: var(--warn); }
 .card__verified-state--urgent { color: var(--urgent); }
-.card__verified-state--unverified { color: var(--unverified); }
+.card__verified-state--unverified { color: var(--unverified); font-weight: 400; font-style: italic; }
 
 .card__source { margin-left: auto; display: inline-flex; align-items: center; gap: var(--gap-xs); }
+.card__source a { display: inline-flex; align-items: center; gap: var(--gap-xs); min-height: 2.75rem; }
 
 .savings {
   margin-top: var(--gap-lg);
-  padding: var(--gap);
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--paper-sunk);
+  padding: var(--gap) var(--gap-lg);
+  border: 1px solid var(--confirmed);
+  border-left-width: 4px;
+  background: var(--confirmed-wash);
 }
 
-.savings__figure { font-family: var(--font-num); font-size: var(--step-3); font-weight: 700; }
+.savings p { margin-bottom: var(--gap-sm); }
 
-.suppressed { margin-top: var(--gap-lg); }
-.suppressed summary { cursor: pointer; font-weight: 600; font-size: var(--step--1); }
-.suppressed ul { list-style: none; margin: var(--gap) 0 0; padding: 0; display: grid; gap: var(--gap-sm); }
-.suppressed li { font-size: var(--step--1); color: var(--ink-soft); border-left: 3px solid var(--rule); padding-left: var(--gap-sm); }
+.savings__figure {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 400;
+  color: var(--confirmed);
+  letter-spacing: -0.01em;
+}
 
-.empty {
-  padding: var(--gap-lg);
-  border: 1px dashed var(--rule-strong);
-  border-radius: var(--radius);
-  text-align: center;
-  color: var(--ink-soft);
+.suppressed {
+  margin-top: var(--gap-lg);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--gap);
+}
+
+.suppressed summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--step-0);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  min-height: 2.75rem;
+}
+
+.suppressed summary svg { color: var(--emphasis); }
+
+.suppressed ul {
+  list-style: none;
+  margin: var(--gap-sm) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--gap-sm);
+}
+
+.suppressed li {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  border-left: 3px solid var(--rule-strong);
+  padding-left: var(--gap);
+  margin: 0;
 }
 
 /* --------------------------------------------------------------------------
-   Tables (methodology, changelog). Scroll inside their own container so the
-   page body never scrolls horizontally.
+   Tables. The evidence, and the reason the content track is 72rem wide.
    -------------------------------------------------------------------------- */
 
 .table-scroll {
   overflow-x: auto;
   border: 1px solid var(--rule);
-  border-radius: var(--radius);
+  background: var(--surface);
   margin-block: var(--gap);
   -webkit-overflow-scrolling: touch;
 }
 
+/* Keyboard users scroll a wide table with the arrow keys, which requires the
+   container to be focusable and to show that it is. */
+.table-scroll:focus-visible { outline-offset: -3px; }
+
 table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
 
-caption { text-align: left; padding: var(--gap); color: var(--ink-soft); font-size: var(--step--1); }
+caption {
+  text-align: left;
+  padding: var(--gap);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
 
 th,
-td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td {
+  text-align: left;
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
 
-th { background: var(--paper-sunk); font-weight: 650; white-space: nowrap; position: sticky; top: 0; }
+th {
+  background: var(--surface-3);
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 
-td.num { font-family: var(--font-num); white-space: nowrap; }
+/* Figures line up because the body face's digits are tabular by construction.
+   The declaration below is belt and braces for the fallback stack. */
+td.num {
+  font-variant-numeric: tabular-nums lining-nums;
+  white-space: nowrap;
+}
 
 tbody tr:last-child td { border-bottom: 0; }
 
-/* Receipt treatment for the methodology table: the brief asks for a receipt,
-   not a disclaimer. */
+/**
+ * The methodology tally. Kept as a plain ledger: aligned rows, one hairline per
+ * row, a ruled total. The receipt-skeuomorphic variant from the design pass
+ * (dashed borders, dotted rows, a double-rule total, a torn-paper zigzag edge)
+ * is NOT in this file -- it is a judgement call held open for the owner. See
+ * docs/design-pass-2026-09-15.md.
+ */
 .receipt {
-  font-family: var(--font-num);
   border: 1px solid var(--rule-strong);
-  border-radius: var(--radius);
-  padding: var(--gap);
-  background: var(--paper);
-  font-size: var(--step--1);
+  background: var(--surface);
+  padding: var(--gap) var(--gap-lg);
+  font-size: var(--step-0);
+  font-variant-numeric: tabular-nums lining-nums;
+  max-width: 34rem;
 }
-.receipt__row { display: flex; justify-content: space-between; gap: var(--gap); padding-block: 0.35rem; border-bottom: 1px dotted var(--rule); }
-.receipt__row:last-child { border-bottom: 0; }
-.receipt__total { font-weight: 700; border-top: 2px solid var(--ink); margin-top: var(--gap-sm); padding-top: var(--gap-sm); }
 
+.receipt__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding-block: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.receipt__row:last-child { border-bottom: 0; }
+
+.receipt__row span:last-child { font-weight: 600; }
+
+.receipt__total {
+  font-weight: 600;
+  color: var(--text);
+  border-top: 2px solid var(--emphasis);
+  border-bottom: 0;
+  margin-top: var(--gap-sm);
+  padding-top: var(--gap-sm);
+}
+
+/**
+ * Confidence and source-type pills.
+ *
+ * State is carried by the LABEL first ("Confirmed" / "Sources conflict" / "Not
+ * verified"), then by border style, then by hue. A reader who cannot separate
+ * teal from amber still gets solid vs dashed vs dotted, and everyone gets the
+ * word. Never hue alone.
+ */
 .pill {
-  display: inline-block;
-  padding: 0.1rem 0.45rem;
-  border-radius: 1rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  padding: 0.1rem 0.5rem;
+  font-size: var(--step--1);
+  font-weight: 600;
   border: 1px solid currentColor;
   white-space: nowrap;
 }
-.pill--confirmed { color: var(--confirmed); }
-.pill--conflicting { color: var(--warn); }
-.pill--unverified { color: var(--unverified); }
-.pill--primary { color: var(--confirmed); }
-.pill--secondary { color: var(--warn); }
+
+.pill--confirmed { color: var(--confirmed); border-style: solid; }
+.pill--conflicting { color: var(--warn); border-style: dashed; }
+.pill--unverified { color: var(--unverified); border-style: dotted; }
+.pill--primary { color: var(--confirmed); border-style: solid; }
+.pill--secondary { color: var(--warn); border-style: dashed; }
 
 /* --------------------------------------------------------------------------
-   Ad slots. CLS-safe by construction: the box occupies its final height before
-   any script runs, so nothing below it can move. Health and pharma display RPM
-   is strong and layout shift is what kills it.
+   The verification pipeline on /methodology/
+   -------------------------------------------------------------------------- */
+
+.pipeline {
+  margin: var(--gap-lg) 0 var(--gap-xl);
+  padding: var(--gap) var(--gap-lg) var(--gap-lg);
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  max-width: 48rem;
+}
+
+.pipeline > figcaption {
+  font-weight: 600;
+  font-size: var(--step-1);
+  margin-bottom: var(--gap);
+}
+
+.pipeline__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.pipeline__step {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  gap: 0 0.7rem;
+  align-items: start;
+  padding-left: var(--gap-sm);
+  border-left: 3px solid var(--rule-strong);
+  margin: 0;
+}
+
+.pipeline__step--good { border-left-color: var(--confirmed); }
+.pipeline__step--warn { border-left-color: var(--warn); }
+.pipeline__step--neutral { border-left-color: var(--rule-strong); }
+.pipeline__step--muted { border-left-color: var(--rule); color: var(--text-muted); }
+
+.pipeline__n {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 600;
+  color: var(--emphasis);
+  line-height: 1.6;
+}
+
+.pipeline__body { display: flex; flex-direction: column; gap: 0.1rem; }
+
+.pipeline__note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-sm);
+  margin: var(--gap) 0 0;
+  padding-top: var(--gap-sm);
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.pipeline__note svg { flex: none; margin-top: 0.2em; }
+
+/* --------------------------------------------------------------------------
+   The paper band.
+
+   One inverted, full-bleed passage per page and no more. It exists so the
+   argument this site is built on reads as a printed page rather than as another
+   panel in an interface, and so the near-black has something to be dark
+   against. Every token used inside it is measured against --paper, not against
+   --bg: see the contrast table in docs/design-pass-2026-09-15.md.
+   -------------------------------------------------------------------------- */
+
+.paper-band {
+  background: var(--paper);
+  color: var(--ink);
+  border-block: 1px solid var(--rule-strong);
+  padding-block: var(--gap-2xl);
+  margin-block: var(--gap-2xl);
+}
+
+.paper-band h2 {
+  margin-top: 0;
+  color: var(--ink);
+  max-width: 18ch;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-lg);
+  align-items: start;
+}
+
+.prose {
+  font-size: var(--step-1);
+  line-height: 1.7;
+  color: var(--ink-muted);
+  max-width: 38rem;
+}
+
+.prose p { margin-bottom: var(--gap-lg); }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); }
+.prose a { color: var(--confirmed-ink); font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   Index lists
+   -------------------------------------------------------------------------- */
+
+.link-list {
+  list-style: none;
+  padding-left: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: var(--gap);
+}
+
+.link-list li {
+  margin: 0;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.4rem;
+  align-items: baseline;
+}
+
+/* Standalone navigational link, so it carries a 44px target. The links inside
+   the sentences on this page do not, and must not: WCAG 2.2's 2.5.8 inline
+   exception exists precisely because padding a link inside running text breaks
+   the paragraph's line rhythm to no one's benefit. */
+.link-list a {
+  color: var(--emphasis);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Ad slots.
+
+   CLS-safe by construction: the box occupies its final height before any script
+   runs, so nothing below it can move. Heights and document positions are
+   unchanged from the pre-design-pass stylesheet -- this pass restyles the
+   surface and nothing else about them. The label stays legible and is set in a
+   register nothing editorial uses, so a creative can never be mistaken for our
+   own copy.
    -------------------------------------------------------------------------- */
 
 .ad-slot {
   display: block;
-  margin-block: var(--gap-lg);
-  background: var(--paper-sunk);
-  border: 1px dashed var(--rule);
-  border-radius: var(--radius);
+  margin-block: var(--gap-xl);
+  background: var(--bg);
+  border: 1px dashed var(--rule-strong);
   overflow: hidden;
   /* contain:layout stops a misbehaving creative from reflowing the document. */
   contain: layout size;
@@ -677,23 +1251,20 @@ tbody tr:last-child td { border-bottom: 0; }
 
 .ad-slot__label {
   display: block;
-  font-size: 0.6875rem;
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-faint);
+  color: var(--text-muted);
   text-align: center;
   padding-top: var(--gap-xs);
 }
 
 /* Fixed dimensions per placement. Height is declared, never derived from the
-   creative. */
+   creative. Identical to the values tools/qa.mjs measured at CLS 0.0000. */
 .ad-slot--leaderboard { height: 6.25rem; }
 .ad-slot--inline { height: 15.625rem; }
 .ad-slot--footer { height: 6.25rem; }
-
-@media (min-width: 48rem) {
-  .ad-slot--leaderboard { height: 5.625rem; }
-}
 
 /* Affiliate slots ship built but empty and disabled. The rule below is a second
    line of defence behind the config flag and the link-allowlist test: even if
@@ -704,7 +1275,15 @@ tbody tr:last-child td { border-bottom: 0; }
    Alert capture
    -------------------------------------------------------------------------- */
 
-.alerts-form { display: grid; gap: var(--gap); margin-top: var(--gap); }
+.alerts-form {
+  display: grid;
+  gap: var(--gap);
+  margin-top: var(--gap);
+  max-width: 44rem;
+  padding: var(--gap-lg);
+  border: 1px solid var(--rule-strong);
+  background: var(--surface);
+}
 
 .alerts-form input[type='email'],
 .alerts-form select {
@@ -713,75 +1292,206 @@ tbody tr:last-child td { border-bottom: 0; }
   min-height: 2.75rem;
   border: 1px solid var(--rule-strong);
   border-radius: var(--radius);
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   width: 100%;
 }
 
+.alerts-form input[type='email']::placeholder { color: var(--text-muted); }
+
 .btn {
   font: inherit;
-  font-weight: 650;
+  font-weight: 600;
   min-height: 2.75rem;
   padding: 0.7rem 1.25rem;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--warn);
   border-radius: var(--radius);
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--warn);
+  color: var(--bg);
   cursor: pointer;
 }
-.btn:hover { filter: brightness(1.1); }
+
+.btn:hover { background: var(--emphasis); border-color: var(--emphasis); }
 .btn[disabled] { opacity: 0.55; cursor: not-allowed; }
 
-.form-status { font-size: var(--step--1); min-height: 1.5rem; }
-.form-status--error { color: var(--urgent); }
-.form-status--ok { color: var(--confirmed); }
+.form-status { font-size: var(--step-0); min-height: 1.6rem; margin: 0; }
+.form-status--error { color: var(--urgent); font-weight: 600; }
+.form-status--ok { color: var(--confirmed); font-weight: 600; }
 
 /* --------------------------------------------------------------------------
-   Footer. The disclaimer is persistent and non-dismissible. There is no
-   dismiss control in the markup and none may be added.
+   Footer.
+
+   The disclaimer is persistent and non-dismissible. There is no dismiss control
+   in the markup and none may be added. Both compliance statements are at body
+   size or above -- they were 0.8125rem before this pass, which is not what
+   "prominent" means.
    -------------------------------------------------------------------------- */
 
 .site-footer {
   flex: none;
-  border-top: 2px solid var(--ink);
-  background: var(--paper-sunk);
-  padding-block: var(--gap-lg);
-  font-size: var(--step--1);
-  color: var(--ink-soft);
+  border-top: 1px solid var(--rule-strong);
+  background: var(--surface);
+  padding-block: var(--gap-xl);
+  font-size: var(--step-0);
+  color: var(--text-muted);
 }
 
-.site-footer h2 { font-size: var(--step-0); margin-top: 0; }
+.site-footer h2 { font-size: var(--step-1); margin-top: 0; }
+
+.site-footer a { color: var(--confirmed); }
 
 .disclaimer {
-  border-left: 4px solid var(--ink);
+  border-left: 4px solid var(--emphasis);
   padding-left: var(--gap);
   margin-bottom: var(--gap-lg);
+  font-size: var(--step-1);
+  color: var(--text);
+  max-width: 48rem;
 }
 
-.non-affiliation { font-weight: 600; color: var(--ink); }
+.non-affiliation {
+  font-weight: 600;
+  color: var(--text);
+  font-size: var(--step-0);
+  border-left: 4px solid var(--urgent);
+  padding-left: var(--gap);
+  margin-bottom: var(--gap-lg);
+  max-width: 48rem;
+}
 
-.footer-nav { display: flex; flex-wrap: wrap; gap: var(--gap); margin-block: var(--gap-lg) 0; padding: 0; list-style: none; }
+.site-footer > .wrap > p { max-width: 48rem; }
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--gap-lg);
+  margin-block: var(--gap-lg) var(--gap);
+  padding: var(--gap) 0 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+}
+
+.footer-nav li { margin: 0; }
+
+.footer-nav a {
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+.footer-nav a:hover { color: var(--text); }
 
 /* --------------------------------------------------------------------------
-   Wider viewports
+   480px and up
    -------------------------------------------------------------------------- */
 
-@media (min-width: 40rem) {
-  :root { --price: 3rem; }
-  .tool__grid { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 30rem) {
+  :root { --gutter: 1.25rem; }
+
+  .hero__content { padding-block: var(--gap-xl) calc(var(--gap-xl) * 1.35); }
+
   .alerts-form { grid-template-columns: 2fr 1fr auto; align-items: end; }
+  .alerts-form .form-status { grid-column: 1 / -1; }
 }
 
+/* --------------------------------------------------------------------------
+   800px and up: the one-sheet composition
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 50rem) {
+  :root { --gutter: 2rem; }
+
+  .hero__content { padding-block: calc(var(--gap-2xl) * 1.1) calc(var(--gap-2xl) * 1.2); }
+
+  .hero__veil {
+    background-image:
+      linear-gradient(
+        100deg,
+        oklch(0.178 0.011 220 / 0.985) 0%,
+        oklch(0.178 0.011 220 / 0.94) 38%,
+        oklch(0.178 0.011 220 / 0.45) 72%,
+        oklch(0.178 0.011 220 / 0.25) 100%
+      ),
+      linear-gradient(0deg, var(--bg) 1%, oklch(0.178 0.011 220 / 0) 48%);
+  }
+
+  /* Brand and nav share one row once there is room for both. */
+  .masthead__inner { flex-wrap: nowrap; padding-block: var(--gap-sm); }
+
+  .masthead__nav {
+    width: auto;
+    margin-left: auto;
+    justify-content: flex-end;
+    gap: 0 var(--gap-lg);
+    font-size: var(--step-0);
+    border-top: 0;
+  }
+
+  /* The tool and the verification position sit side by side, and the pair lifts
+     further over the hero. The tool takes the wider track: three native selects
+     carrying option text like "Commercial insurance, does not cover it" need
+     every pixel they can get before the browser truncates them. */
+  .page-grid {
+    grid-template-columns: minmax(0, 1.28fr) minmax(17rem, 0.72fr);
+    gap: var(--gap-lg);
+    margin-top: calc(var(--gap-2xl) * -0.6);
+  }
+
+  .page-grid__aside { gap: var(--gap-sm); }
+  .page-grid__aside > .data-stamp { margin-top: 0; }
+  .page-grid__aside > .verification-state { margin: 0; flex: 1 0 auto; }
+
+  .tool { padding: var(--gap-lg); }
+  .tool__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+
+  main.interior { padding-top: var(--gap-2xl); }
+
+  .editorial-grid { grid-template-columns: 0.8fr 1.2fr; gap: clamp(2rem, 6vw, 6rem); }
+
+  .card { padding: var(--gap-lg) var(--gap-xl); }
+
+  .footer-grid,
+  .site-footer > .wrap { max-width: var(--container); }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion, forced colours, print
+   -------------------------------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
+/* In forced-colours mode the hue signals are discarded by the OS, so the shape
+   signals have to survive on their own. */
+@media (forced-colors: active) {
+  .pill,
+  .card,
+  .banner,
+  .tool,
+  .verification-state { border: 1px solid; }
+  .card--best { border-width: 3px; }
+  .hero__media, .hero__veil { display: none; }
+}
+
 @media print {
-  .ad-slot, .masthead__nav, .alerts-form { display: none; }
-  body { color: #000; }
+  .ad-slot,
+  .masthead__nav,
+  .alerts-form,
+  .hero__media,
+  .hero__veil { display: none; }
+
+  body { color: #000; background: #fff; }
+  main.interior { background: none; }
+  .card, .tool, .verification-state, .site-footer { background: none; box-shadow: none; }
+  .page-grid { margin-top: 0; }
 }

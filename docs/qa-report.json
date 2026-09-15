@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-08-29T08:02:30.015Z",
+  "ranAt": "2026-09-15T12:09:26.459Z",
   "viewport": "390x844",
   "chromium": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
   "checks": [
@@ -11,7 +11,7 @@
     {
       "name": "all three inputs are reachable without scrolling",
       "pass": true,
-      "detail": "form bottom at 781px, viewport 844px"
+      "detail": "form bottom at 813px, viewport 844px"
     },
     {
       "name": "dose selector repopulates for the chosen drug",

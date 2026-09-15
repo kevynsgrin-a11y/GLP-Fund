@@ -27,9 +27,11 @@ This is a less useful product than the brief describes. It is the honest version
 ## Quick start
 
 ```bash
-npm test                    # 102 unit tests, zero dependencies
-node tools/build-pages.mjs  # regenerate the 20 static pages from the data file
-node tools/qa.mjs           # 25 browser checks in real Chromium at 390px
+npm test                      # 118 unit tests, zero dependencies
+node tools/build-pages.mjs    # regenerate the 19 static pages from the data file
+node tools/qa.mjs             # 25 browser checks in real Chromium at 390px
+node tools/contrast-audit.mjs # 126 WCAG contrast pairs, measured on rendered pages
+node tools/keyboard-audit.mjs # 26 focus stops through the three-step tool
 ```
 
 No install step. No dependencies. `package.json` exists only to invoke `node --test`.
@@ -42,15 +44,20 @@ No install step. No dependencies. `package.json` exists only to invoke `node --t
 public/                   Cloudflare Pages output directory, served as committed
   engine/                 pure ES modules: pricing, eligibility, staleness, savings, config
   assets/js/              render.js (pure strings), app.js (the only DOM code), icons.js
-  assets/css/base.css     minimal shell styles, CLS-safe ad slots
+  assets/css/base.css     the whole visual system, one file, CLS-safe ad slots
+  assets/fonts/           two self-hosted woff2 faces; no third-party request anywhere
   data/pricing.json       the price spine and the eligibility rule table
   data/changelog.json     every price change, dated and sourced
-  <16 pages>/index.html   generated, committed
+  <19 pages>/index.html   generated, committed
 functions/api/alerts.js   the only server-side code: KV-backed alert capture
-test/                     102 tests, plus 108 frozen source fixtures
+test/                     118 tests, plus frozen source fixtures
 tools/build-pages.mjs     page generator (dev/ops tool, not a deploy step)
 tools/qa.mjs              browser QA over CDP, Node builtins only
+tools/contrast-audit.mjs  WCAG contrast, measured on rendered pages
+tools/keyboard-audit.mjs  keyboard walkthrough and target sizes
 docs/                     plan, gate resolutions, discrepancy report, handoff, runbook
+IMAGE-MANIFEST.md         images the design specifies but does not generate
+COPY-SLOTS.md             words the design needs and does not write
 ```
 
 The engine lives inside `public/` deliberately: the brief requires both DOM-free unit-testable modules and no build step, so the identical file must be importable by the browser (`/engine/pricing.js`) and by the Node test runner (`../public/engine/pricing.js`). A `src/` directory would have needed a copy step, which is a build step.
