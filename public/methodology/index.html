@@ -134,11 +134,61 @@
     "name": "United States"
   },
   "measurementTechnique": "Direct read of a primary manufacturer or government source, recorded with the date of the read.",
-  "variableMeasured": {
-    "@type": "PropertyValue",
-    "name": "Monthly out-of-pocket cost",
-    "unitText": "USD per month"
-  },
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "Monthly out-of-pocket cost",
+      "unitText": "USD per month"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Price figures tracked",
+      "value": 45,
+      "unitText": "price figures"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Confirmed against a primary source",
+      "value": 0,
+      "unitText": "price figures"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Sources conflict",
+      "value": 8,
+      "unitText": "price figures"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Not verified",
+      "value": 37,
+      "unitText": "price figures"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Eligibility rules applied",
+      "value": 17,
+      "unitText": "eligibility rules"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Rules that remove a pathway",
+      "value": 5,
+      "unitText": "eligibility rules"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Rules awaiting a verbatim source quote",
+      "value": 5,
+      "unitText": "eligibility rules"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Figures rendered as a number",
+      "value": 0,
+      "unitText": "price figures"
+    }
+  ],
   "distribution": {
     "@type": "DataDownload",
     "encodingFormat": "application/json",
@@ -229,17 +279,18 @@
     </p>
   </figure>
 
+  
   <h2>The tally</h2>
-  <div class="receipt">
-    <div class="receipt__row"><span>Price figures tracked</span><span>45</span></div>
-    <div class="receipt__row"><span>Confirmed against a primary source</span><span>0</span></div>
-    <div class="receipt__row"><span>Sources conflict</span><span>8</span></div>
-    <div class="receipt__row"><span>Not verified</span><span>37</span></div>
-    <div class="receipt__row"><span>Eligibility rules applied</span><span>17</span></div>
-    <div class="receipt__row"><span>Rules that remove a pathway</span><span>5</span></div>
-    <div class="receipt__row"><span>Rules awaiting a verbatim source quote</span><span>5</span></div>
-    <div class="receipt__row receipt__total"><span>Figures rendered as a number</span><span>0</span></div>
-  </div>
+  <dl class="receipt">
+    <div class="receipt__row"><dt>Price figures tracked</dt><dd>45</dd></div>
+    <div class="receipt__row"><dt>Confirmed against a primary source</dt><dd>0</dd></div>
+    <div class="receipt__row"><dt>Sources conflict</dt><dd>8</dd></div>
+    <div class="receipt__row"><dt>Not verified</dt><dd>37</dd></div>
+    <div class="receipt__row"><dt>Eligibility rules applied</dt><dd>17</dd></div>
+    <div class="receipt__row"><dt>Rules that remove a pathway</dt><dd>5</dd></div>
+    <div class="receipt__row"><dt>Rules awaiting a verbatim source quote</dt><dd>5</dd></div>
+    <div class="receipt__row receipt__total"><dt>Figures rendered as a number</dt><dd>0</dd></div>
+  </dl>
 
   <h2>Our rules of evidence</h2>
   <p>
