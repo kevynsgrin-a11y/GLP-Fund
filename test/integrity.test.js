@@ -17,10 +17,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, extname, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { DISCLAIMER, NON_AFFILIATION, FLAGS } from '../public/engine/config.js';
 
-const ROOT = new URL('..', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SKIP_DIRS = new Set(['.git', 'node_modules', '.wrangler']);
 const TEXT_EXTENSIONS = new Set([
   '.js', '.mjs', '.html', '.css', '.json', '.md', '.txt', '.svg', '.xml', '.webmanifest',
@@ -60,7 +61,7 @@ test('the repository has files to check', () => {
  */
 const TYPOGRAPHIC_EXCEPTIONS = new Set(['©', '®', '™']);
 const PICTOGRAPHIC = /\p{Extended_Pictographic}/gu;
-const EMOJI_PRESENTATION_SELECTOR = /️/u;
+const EMOJI_PRESENTATION_SELECTOR = /\uFE0F/u;
 const REGIONAL_INDICATOR = /[\u{1F1E6}-\u{1F1FF}]/u;
 const ZWJ_SEQUENCE = /‍[\p{Extended_Pictographic}]/u;
 

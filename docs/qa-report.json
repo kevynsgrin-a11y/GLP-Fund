@@ -1,7 +1,7 @@
 {
-  "ranAt": "2026-09-15T14:17:31.417Z",
+  "ranAt": "2026-09-28T14:30:04.203Z",
   "viewport": "390x844",
-  "chromium": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+  "chromium": "C:/Program Files/Google/Chrome/Application/chrome.exe",
   "checks": [
     {
       "name": "landing page has no horizontal scroll",
@@ -30,8 +30,8 @@
     },
     {
       "name": "shipped data renders no price as a number",
-      "pass": true,
-      "detail": "LillyDirect Self Pay: Price not currently verified | Medicare Part D: Price not currently verified | Patient assistance program: Price not currently verified | "
+      "pass": false,
+      "detail": "TrumpRx: $299 | LillyDirect Self Pay: Price not currently verified | Medicare Part D: Price not currently verified | Patient assistance program: Price not curre"
     },
     {
       "name": "every card carries a source link and a verification date",
@@ -126,26 +126,34 @@
     {
       "name": "every source URL was checked and its status recorded",
       "pass": true,
-      "detail": "8 URLs; 8 unreachable from this network"
+      "detail": "10 URLs; 4 unreachable from this network"
     }
   ],
-  "failures": 0,
+  "failures": 1,
   "urlLiveness": [
     {
       "url": "https://lillydirect.lilly.com/",
       "status": "403"
     },
     {
-      "url": "https://trumprx.gov/",
-      "status": "403"
+      "url": "https://www.trumprx.gov/",
+      "status": "200"
     },
     {
       "url": "https://www.medicare.gov/",
-      "status": "403"
+      "status": "200"
     },
     {
       "url": "https://www.novocare.com/",
-      "status": "403"
+      "status": "200"
+    },
+    {
+      "url": "https://www.novocare.com/pharmacy.html",
+      "status": "200"
+    },
+    {
+      "url": "https://trumprx.gov/",
+      "status": "200"
     },
     {
       "url": "https://pricinginfo.lilly.com/foundayo",
@@ -157,7 +165,7 @@
     },
     {
       "url": "https://www.medicare.gov/drug-coverage-part-d",
-      "status": "403"
+      "status": "200"
     },
     {
       "url": "https://www.novonordiskpap.com/",

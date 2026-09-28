@@ -60,17 +60,33 @@ test('the engine fixture dataset is structurally valid', () => {
   assert.deepEqual(validateDataset(ENGINE), []);
 });
 
-test('the shipped dataset renders no numbers at all, by design', () => {
-  // The consequence of the egress blockade, asserted so it cannot regress into
-  // "someone pasted a number in without a source".
+test('the shipped dataset publishes numbers only from the verified allowlist, by design', () => {
+  // The egress-blockade era (every value null) ended on 2026-09-28 with the
+  // first direct primary reads. The guard generalises rather than retires:
+  // a value may exist ONLY on a row confirmed in this file's pass, and the
+  // provenance suite (test/provenance.test.js) holds every published number
+  // to a primary source, a date, and a deleted candidate block.
+  const VERIFIED_2026_09_28 = new Set([
+    'zepbound|any|trumprx',
+    'ozempic|any|novocare_self_pay',
+    'ozempic|any|trumprx',
+    'wegovy_pill|1.5mg|novocare_self_pay',
+    'wegovy_pill|higher_doses|novocare_self_pay',
+    'wegovy_injection|low_doses|novocare_self_pay',
+    'wegovy_injection|standard_doses|novocare_self_pay',
+    'wegovy_injection|low_doses|trumprx',
+  ]);
   const numeric = SHIPPED.prices.filter((p) => p.value !== null);
   assert.deepEqual(
     numeric.map((p) => `${p.drug}|${p.dose_or_tier}|${p.pathway}`),
-    [],
-    'No shipped price may carry a value until it is confirmed against a primary source.'
+    [...VERIFIED_2026_09_28],
+    'A shipped price may carry a value only when confirmed against a primary source in a recorded pass.'
   );
   const confirmed = SHIPPED.prices.filter((p) => p.confidence === 'confirmed');
-  assert.deepEqual(confirmed, [], 'No shipped price may be marked confirmed yet.');
+  assert.deepEqual(
+    confirmed.map((p) => `${p.drug}|${p.dose_or_tier}|${p.pathway}`),
+    [...VERIFIED_2026_09_28]
+  );
 });
 
 test('the shipped dataset states its verification status out loud', () => {
@@ -235,30 +251,34 @@ test('vector 5: wegovy pill 1.5mg returns the oral starting-dose tier', () => {
   assert.notEqual(higher.monthlyCost, novo.monthlyCost);
 });
 
-test('vector 5, shipped data: the 149-vs-199 conflict renders as unverified, not as a picked side', () => {
-  // The brief asks this vector to "resolve the $149 vs $199 conflict". Phase 1
-  // could not resolve it: both figures are in circulation and novocare.com was
-  // unreachable. Reconciling them into one number would be a guess, and a guess
-  // is what this site exists not to do. So the shipped datum is `conflicting`
-  // with a null value, and the UI says so.
-  // The apparent conflict is now reported to resolve as a strength-and-deadline
-  // distinction rather than a contradiction -- but it is still not CONFIRMED, so
-  // the datum stays conflicting with a null value. What changed is that the raw
-  // figures no longer appear in the card prose; they live in the candidate block,
-  // which /methodology/ renders under an explicit "located but not confirmed"
-  // heading. See the bare-figure invariant below for why that matters.
+test('vector 5, shipped data: the 149-vs-199 conflict is RESOLVED by direct read, as separate strength tiers', () => {
+  // Resolved 2026-09-28 by the first primary read of novocare.com/pharmacy.html:
+  // the two figures in circulation were never in conflict -- the starting
+  // strength and the 4 mg strength carry different verified prices, with the two
+  // highest strengths higher still. The conflict is retired, not reconciled:
+  // each tier now holds its own directly read figure, and the higher tier's
+  // card prose still names the higher strengths in words so nobody budgets the
+  // 4 mg figure for a 25 mg prescription.
   const datum = SHIPPED.prices.find(
     (p) => p.drug === 'wegovy_pill' && p.dose_or_tier === '1.5mg' && p.pathway === 'novocare_self_pay'
   );
-  assert.equal(datum.confidence, 'conflicting');
-  assert.equal(datum.value, null);
-  assert.match(datum.notes, /different strengths and different offer windows/);
-  assert.equal(datum.candidate.value, null);
+  assert.equal(datum.confidence, 'confirmed');
+  assert.equal(datum.value, 149);
+  assert.equal(datum.verified_date, '2026-09-28');
+  assert.equal(datum.candidate, undefined);
+  assert.ok(datum.caveats.some((c) => /9 mg and 25 mg strengths are verified at a higher|9 mg and 25 mg strengths higher still/i.test(c) || /higher still/i.test(c)));
+
+  const higher = SHIPPED.prices.find(
+    (p) => p.drug === 'wegovy_pill' && p.dose_or_tier === 'higher_doses' && p.pathway === 'novocare_self_pay'
+  );
+  assert.equal(higher.confidence, 'confirmed');
+  assert.equal(higher.value, 199);
+  assert.ok(higher.caveats.some((c) => /roughly three hundred dollars/i.test(c)));
 
   const results = rankPathways({ drug: 'wegovy_pill', dose: '1.5mg', insurance: 'none' }, SHIPPED, at);
   const novo = find(results, 'novocare_self_pay');
-  assert.equal(novo.monthlyCost, null);
-  assert.equal(novo.displayCost, UNVERIFIED_DISPLAY);
+  assert.equal(novo.monthlyCost, 149);
+  assert.equal(novo.displayCost, '$149');
 });
 
 /* ========================================================================= *
@@ -568,12 +588,26 @@ test('vector 10: NO code path can return an unverified pathway with a numeric co
 });
 
 test('vector 10: the invariant holds across the real shipped dataset', () => {
+  // Since the 2026-09-28 verification pass the shipped dataset mixes confirmed
+  // figures (NovoCare Pharmacy, TrumpRx) with unverified ones (every
+  // Lilly-sourced figure). The invariant generalises: a rendered number may
+  // appear ONLY for a datum whose confidence is exactly "confirmed", and every
+  // other card must still say so. The all-null era of the file is over; the
+  // no-number-without-confirmation rule is not.
+  const byKey = new Map(SHIPPED.prices.map((p) => [`${p.drug}|${p.dose_or_tier}|${p.pathway}`, p]));
   for (const drug of Object.keys(SHIPPED.drugs)) {
     for (const insurance of ['none', 'commercial_covered', 'commercial_not_covered', 'medicare', 'medicaid']) {
       const results = rankPathways({ drug, insurance }, SHIPPED, at);
       for (const r of results) {
-        assert.equal(r.monthlyCost, null, `${drug}/${insurance}/${r.pathway}`);
-        assert.equal(r.displayCost, UNVERIFIED_DISPLAY, `${drug}/${insurance}/${r.pathway}`);
+        const datum = byKey.get(`${drug}|${r.doseOrTier}|${r.pathway}`);
+        const confirmed = datum?.confidence === 'confirmed';
+        if (confirmed) {
+          assert.ok(typeof r.monthlyCost === 'number', `${drug}/${insurance}/${r.pathway}: confirmed but no number`);
+          assert.notEqual(r.displayCost, UNVERIFIED_DISPLAY, `${drug}/${insurance}/${r.pathway}`);
+        } else {
+          assert.equal(r.monthlyCost, null, `${drug}/${insurance}/${r.pathway}`);
+          assert.equal(r.displayCost, UNVERIFIED_DISPLAY, `${drug}/${insurance}/${r.pathway}`);
+        }
       }
     }
   }

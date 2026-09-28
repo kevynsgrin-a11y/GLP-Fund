@@ -16,7 +16,7 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="GLP-1 Price Check: Methodology: how every GLP-1 price on this site is sourced. Pricing data as of 2026-07-30.">
+<meta property="og:image:alt" content="GLP-1 Price Check: Methodology: how every GLP-1 price on this site is sourced. Pricing data as of 2026-09-28.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://glp1-fund.com/assets/img/og/methodology.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32 16x16">
@@ -83,7 +83,7 @@
   "isPartOf": {
     "@id": "https://glp1-fund.com/#website"
   },
-  "dateModified": "2026-07-30",
+  "dateModified": "2026-09-28",
   "publisher": {
     "@id": "https://glp1-fund.com/#organization"
   },
@@ -118,7 +118,7 @@
   "@type": "Dataset",
   "@id": "https://glp1-fund.com/methodology/#dataset",
   "name": "GLP-1 Price Check GLP-1 price dataset",
-  "description": "Every GLP-1 payment pathway we track, with the source, source type, verification date and confidence level for each figure. 45 rows across 6 medications and 8 payment pathways. 0 rows currently carry a confirmed price; the remainder are published as unverified because no figure in circulation survived a direct read of a primary source.",
+  "description": "Every GLP-1 payment pathway we track, with the source, source type, verification date and confidence level for each figure. 45 rows across 6 medications and 8 payment pathways. 8 rows currently carry a confirmed price; the remainder are published as unverified because no figure in circulation survived a direct read of a primary source.",
   "url": "https://glp1-fund.com/methodology/",
   "isAccessibleForFree": true,
   "creator": {
@@ -127,7 +127,7 @@
   "publisher": {
     "@id": "https://glp1-fund.com/#organization"
   },
-  "dateModified": "2026-07-30",
+  "dateModified": "2026-09-28",
   "license": "https://glp1-fund.com/terms/",
   "spatialCoverage": {
     "@type": "Place",
@@ -149,19 +149,19 @@
     {
       "@type": "PropertyValue",
       "name": "Confirmed against a primary source",
-      "value": 0,
-      "unitText": "price figures"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Sources conflict",
       "value": 8,
       "unitText": "price figures"
     },
     {
       "@type": "PropertyValue",
+      "name": "Sources conflict",
+      "value": 3,
+      "unitText": "price figures"
+    },
+    {
+      "@type": "PropertyValue",
       "name": "Not verified",
-      "value": 37,
+      "value": 34,
       "unitText": "price figures"
     },
     {
@@ -185,7 +185,7 @@
     {
       "@type": "PropertyValue",
       "name": "Figures rendered as a number",
-      "value": 0,
+      "value": 8,
       "unitText": "price figures"
     }
   ],
@@ -224,7 +224,7 @@
   
       <p class="data-stamp">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.75"/><path d="M12 7.25V12l3.4 2.1"/></svg>
-        Pricing data as of <time datetime="2026-07-30">2026-07-30</time>.
+        Pricing data as of <time datetime="2026-09-28">2026-09-28</time>.
       </p>
 
   
@@ -256,10 +256,10 @@
         </span>
       </li>
       
-      <li class="pipeline__step pipeline__step--muted">
+      <li class="pipeline__step pipeline__step--good">
         <span class="pipeline__n">4</span>
         <span class="pipeline__body">
-          <strong>Published as a number (0 of 45)</strong>
+          <strong>Published as a number (8 of 45)</strong>
           <span>Only a confirmed figure renders as a price, and it carries its source and its verification date.</span>
         </span>
       </li>
@@ -267,7 +267,7 @@
       <li class="pipeline__step pipeline__step--warn">
         <span class="pipeline__n">5</span>
         <span class="pipeline__body">
-          <strong>Withheld (45 of 45)</strong>
+          <strong>Withheld (37 of 45)</strong>
           <span>Everything else renders as unverified, with what we found and what a confirmation would require.</span>
         </span>
       </li>
@@ -283,13 +283,13 @@
   <h2>The tally</h2>
   <dl class="receipt">
     <div class="receipt__row"><dt>Price figures tracked</dt><dd>45</dd></div>
-    <div class="receipt__row"><dt>Confirmed against a primary source</dt><dd>0</dd></div>
-    <div class="receipt__row"><dt>Sources conflict</dt><dd>8</dd></div>
-    <div class="receipt__row"><dt>Not verified</dt><dd>37</dd></div>
+    <div class="receipt__row"><dt>Confirmed against a primary source</dt><dd>8</dd></div>
+    <div class="receipt__row"><dt>Sources conflict</dt><dd>3</dd></div>
+    <div class="receipt__row"><dt>Not verified</dt><dd>34</dd></div>
     <div class="receipt__row"><dt>Eligibility rules applied</dt><dd>17</dd></div>
     <div class="receipt__row"><dt>Rules that remove a pathway</dt><dd>5</dd></div>
     <div class="receipt__row"><dt>Rules awaiting a verbatim source quote</dt><dd>5</dd></div>
-    <div class="receipt__row receipt__total"><dt>Figures rendered as a number</dt><dd>0</dd></div>
+    <div class="receipt__row receipt__total"><dt>Figures rendered as a number</dt><dd>8</dd></div>
   </dl>
 
   <h2>Our rules of evidence</h2>
@@ -323,7 +323,7 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 21.5 20H2.5Z"/><line x1="12" y1="9.75" x2="12" y2="14"/><line x1="12" y1="16.75" x2="12" y2="16.85"/></svg>
     <span>
       <strong>We currently publish no verified prices at all.</strong>
-      On 2026-07-30, the network our build runs on refused outbound connections to
+      On 2026-09-28, the network our build runs on refused outbound connections to
       every primary source we rely on: fda.gov, cms.gov, medicare.gov, hhs.gov,
       trumprx.gov, sec.gov, and every Eli Lilly and Novo Nordisk domain. We could
       search, but we could not read. Under our own rules of evidence a search result
@@ -571,11 +571,11 @@
               <td>Zepbound</td>
               <td>TrumpRx</td>
               <td>any</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td class="num">$299</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, government</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Zepbound</td>
@@ -631,21 +631,21 @@
               <td>Ozempic</td>
               <td>NovoCare Pharmacy</td>
               <td>any</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td class="num">$199</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, manufacturer</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.novocare.com/pharmacy.html" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Ozempic</td>
               <td>TrumpRx</td>
               <td>any</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td class="num">$199</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, government</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Ozempic</td>
@@ -671,21 +671,21 @@
               <td>Wegovy tablets</td>
               <td>NovoCare Pharmacy</td>
               <td>1.5mg</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td class="num">$149</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, manufacturer</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.novocare.com/pharmacy.html" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Wegovy tablets</td>
               <td>NovoCare Pharmacy</td>
               <td>higher doses</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--conflicting">Sources conflict</span></td>
+              <td class="num">$199</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, manufacturer</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.novocare.com/pharmacy.html" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Wegovy tablets</td>
@@ -731,21 +731,21 @@
               <td>Wegovy</td>
               <td>NovoCare Pharmacy</td>
               <td>low doses</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td class="num">$199</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, manufacturer</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.novocare.com/pharmacy.html" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Wegovy</td>
               <td>NovoCare Pharmacy</td>
               <td>standard doses</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td class="num">$349</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, manufacturer</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://www.novocare.com/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.novocare.com/pharmacy.html" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Wegovy</td>
@@ -851,11 +851,11 @@
               <td>Wegovy</td>
               <td>TrumpRx</td>
               <td>low doses</td>
-              <td class="num">Not verified</td>
-              <td><span class="pill pill--unverified">Not verified</span></td>
+              <td class="num">$199</td>
+              <td><span class="pill pill--confirmed">Confirmed</span></td>
               <td><span class="pill pill--primary">Primary, government</span></td>
-              <td class="num">2026-07-30</td>
-              <td><a href="https://trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
+              <td class="num">2026-09-28</td>
+              <td><a href="https://www.trumprx.gov/" rel="noopener nofollow" target="_blank">Open <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5H19.5V10.5"/><line x1="19.5" y1="4.5" x2="11.5" y2="12.5"/><path d="M18 14.5v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6h4"/></svg></a></td>
             </tr>
             <tr>
               <td>Wegovy</td>
@@ -1017,40 +1017,32 @@
           <td>LillyDirect Self Pay</td>
           <td>2.5mg</td>
           <td class="num">$299</td>
-          <td>Located via search-index summaries of a Lilly announcement dated 2025-12-01 reporting a reduction from 349 to 299 for the 2.5 mg vial. NOT a direct read of any Lilly page.</td>
-          <td>One direct read of lillydirect.lilly.com to confirm the figure is still current.</td>
+          <td>Located via search-index summaries of a Lilly announcement dated 2025-12-01 reporting a reduction from 349 to 299 for the 2.5 mg vial. NOT a direct read of any Lilly page. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Zepbound</td>
           <td>LillyDirect Self Pay</td>
           <td>5mg</td>
           <td class="num">$399</td>
-          <td>Located via search-index summaries of the same 2025-12-01 Lilly announcement, reporting a reduction from 499 to 399 for the 5 mg vial. NOT a direct read.</td>
-          <td>One direct read of lillydirect.lilly.com.</td>
+          <td>Located via search-index summaries of the same 2025-12-01 Lilly announcement, reporting a reduction from 499 to 399 for the 5 mg vial. NOT a direct read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Zepbound</td>
           <td>LillyDirect Self Pay</td>
           <td>all other doses</td>
           <td class="num">$449</td>
-          <td>Located via search-index summaries of the 2025-12-01 Lilly announcement, reporting a reduction from 499 to 449 for all other approved doses. NOT a direct read.</td>
-          <td>Direct read of lillydirect.lilly.com, and explicit confirmation of the 45-day refill condition, which materially changes real monthly cost.</td>
-        </tr>
-        <tr>
-          <td>Zepbound</td>
-          <td>TrumpRx</td>
-          <td>any</td>
-          <td class="num">none</td>
-          <td>Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 to every request on 2026-07-30.</td>
-          <td>A direct read of trumprx.gov. Until then this figure must not render as a number in any state.</td>
+          <td>Located via search-index summaries of the 2025-12-01 Lilly announcement, reporting a reduction from 499 to 449 for all other approved doses. NOT a direct read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Zepbound</td>
           <td>Manufacturer savings card</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Copay card amounts are tiered by whether the plan covers the indication, and the terms could not be retrieved. No single figure is defensible.</td>
-          <td>Direct read of the Zepbound savings card terms, including the maximum annual benefit.</td>
+          <td>Copay card amounts are tiered by whether the plan covers the indication, and the terms could not be retrieved. No single figure is defensible. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Zepbound</td>
@@ -1065,72 +1057,40 @@
           <td>List price, no program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Four mutually inconsistent figures located: 1086, 1059, 1059.87 and 1087. Averaging them would invent a price nobody charges.</td>
-          <td>A current WAC or list figure from a Lilly source, with its as-of date.</td>
+          <td>Four mutually inconsistent figures located: 1086, 1059, 1059.87 and 1087. Averaging them would invent a price nobody charges. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required. TrumpRx (read 2026-09-28) displays a reference figure of $1,087 beside the Zepbound offer; not promoted because the platform does not label the figure a list price and no manufacturer page could be read.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Wegovy</td>
           <td>Manufacturer savings card</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Terms unretrievable on 2026-07-30.</td>
-          <td>Direct read of the Wegovy savings card terms.</td>
+          <td>Direct read of novocare.com/pharmacy.html on 2026-09-28 confirms the insured offer as a bound, not a price: &quot;Pay as little as $25 per month for up to 3 months&quot;, capped at &quot;a maximum savings of $100/month&quot; (exact source wording held here; card prose stays number-free by policy). Value stays null because a bound is not a price.</td>
+          <td>Verbatim capture of the covered-vs-not-covered distinction and the federal-program exclusion sentence from the product savings pages, which still refused automated readers.</td>
         </tr>
         <tr>
           <td>Wegovy</td>
           <td>List price, no program</td>
           <td>any</td>
           <td class="num">$1,349</td>
-          <td>Reported at approximately 1349 per month. Not confirmable without a direct read.</td>
+          <td>Reported at approximately 1349 per month. Not confirmable without a direct read. TrumpRx (read 2026-09-28) displays a reference figure of $1,349 beside the Wegovy pen offer; not promoted because the platform does not label the figure a list price and no manufacturer page could be read.</td>
           <td>A current list figure from a Novo Nordisk source.</td>
-        </tr>
-        <tr>
-          <td>Ozempic</td>
-          <td>NovoCare Pharmacy</td>
-          <td>any</td>
-          <td class="num">$199</td>
-          <td>Reported at 199 per month. novocare.com denied by egress policy on 2026-07-30.</td>
-          <td>Direct read of novocare.com.</td>
-        </tr>
-        <tr>
-          <td>Ozempic</td>
-          <td>TrumpRx</td>
-          <td>any</td>
-          <td class="num">none</td>
-          <td>Conflicting, neither confirmable. HTTP 403 on 2026-07-30.</td>
-          <td>A direct read of trumprx.gov.</td>
         </tr>
         <tr>
           <td>Ozempic</td>
           <td>Manufacturer savings card</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Terms unretrievable on 2026-07-30.</td>
-          <td>Direct read of the Ozempic savings card terms.</td>
+          <td>Direct read of novocare.com/pharmacy.html on 2026-09-28 confirms the insured offer as a bound, not a price: &quot;Pay as little as $25 per month for up to 3 months&quot;, capped at &quot;a maximum savings of $100/month&quot; (exact source wording held here; card prose stays number-free by policy). Value stays null because a bound is not a price.</td>
+          <td>Verbatim capture of the covered-vs-not-covered distinction and the federal-program exclusion sentence from the product savings pages, which still refused automated readers.</td>
         </tr>
         <tr>
           <td>Ozempic</td>
           <td>List price, no program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Two figures in circulation, neither confirmable.</td>
+          <td>Two figures in circulation, neither confirmable. TrumpRx (read 2026-09-28) displays a reference figure of $1,028 beside the Ozempic offer; not promoted because the platform does not label the figure a list price and no manufacturer page could be read.</td>
           <td>A current list figure from a Novo Nordisk source.</td>
-        </tr>
-        <tr>
-          <td>Wegovy tablets</td>
-          <td>NovoCare Pharmacy</td>
-          <td>1.5mg</td>
-          <td class="num">none</td>
-          <td>Reported at the lower of the two circulating figures for this strength. The apparent 149-versus-199 conflict is reported to resolve as a strength-and-deadline distinction rather than a contradiction, but neither figure was read from a Novo Nordisk page.</td>
-          <td>A direct read of novocare.com establishing which figure applies to which purchase channel. Until then this renders as unverified rather than picking a side.</td>
-        </tr>
-        <tr>
-          <td>Wegovy tablets</td>
-          <td>NovoCare Pharmacy</td>
-          <td>higher doses</td>
-          <td class="num">none</td>
-          <td>No figure located for the higher oral doses.</td>
-          <td>Direct read of novocare.com.</td>
         </tr>
         <tr>
           <td>Wegovy tablets</td>
@@ -1145,40 +1105,24 @@
           <td>LillyDirect Self Pay</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain.</td>
-          <td>Direct read of lillydirect.lilly.com for an actual Mounjaro self-pay figure.</td>
+          <td>Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Mounjaro</td>
           <td>Manufacturer savings card</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Terms unretrievable on 2026-07-30.</td>
-          <td>Direct read of the Mounjaro savings card terms.</td>
+          <td>Terms unretrievable on 2026-07-30. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Mounjaro</td>
           <td>List price, no program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Not separately located from Zepbound reporting.</td>
-          <td>A current list figure from a Lilly source.</td>
-        </tr>
-        <tr>
-          <td>Wegovy</td>
-          <td>NovoCare Pharmacy</td>
-          <td>low doses</td>
-          <td class="num">none</td>
-          <td>A low introductory figure and a higher ongoing figure are both reported for these doses. Which applies depends on fill number and on an offer end date. Not confirmable without a direct read.</td>
-          <td>A direct read of novocare.com establishing the introductory price, how many fills it covers, its end date, and the ongoing price after it.</td>
-        </tr>
-        <tr>
-          <td>Wegovy</td>
-          <td>NovoCare Pharmacy</td>
-          <td>standard doses</td>
-          <td class="num">none</td>
-          <td>Reported at a materially higher ongoing figure than the introductory price quoted for the lowest doses. Not confirmable without a direct read.</td>
-          <td>A direct read of novocare.com for the per-dose price table.</td>
+          <td>Not separately located from Zepbound reporting. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Wegovy</td>
@@ -1201,40 +1145,40 @@
           <td>LillyDirect Self Pay</td>
           <td>0.8mg</td>
           <td class="num">$149</td>
-          <td>Reported at 149 per month post-launch. lilly.com denied at the egress gateway on 2026-07-30.</td>
-          <td>A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose.</td>
+          <td>Reported at 149 per month post-launch. lilly.com denied at the egress gateway on 2026-07-30. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Foundayo</td>
           <td>LillyDirect Self Pay</td>
           <td>2.5mg</td>
           <td class="num">$199</td>
-          <td>Reported at 199 per month post-launch. Not read.</td>
-          <td>A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose.</td>
+          <td>Reported at 199 per month post-launch. Not read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Foundayo</td>
           <td>LillyDirect Self Pay</td>
           <td>mid doses</td>
           <td class="num">$299</td>
-          <td>Reported at 299 per month for both 5.5 mg and 9 mg. Not read.</td>
-          <td>A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose.</td>
+          <td>Reported at 299 per month for both 5.5 mg and 9 mg. Not read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Foundayo</td>
           <td>LillyDirect Self Pay</td>
           <td>top doses</td>
           <td class="num">none</td>
-          <td>Post-launch reporting gives 349 as the regular price and 299 when refilled within 45 days. Pre-approval reporting gave a top-of-range figure of 399, which is an agreement price rather than a launched one. The brief warned specifically against shipping pre-approval pricing, so no figure is adopted.</td>
-          <td>A direct read establishing the regular price, the conditional price, and the exact refill terms.</td>
+          <td>Post-launch reporting gives 349 as the regular price and 299 when refilled within 45 days. Pre-approval reporting gave a top-of-range figure of 399, which is an agreement price rather than a launched one. The brief warned specifically against shipping pre-approval pricing, so no figure is adopted. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Foundayo</td>
           <td>Manufacturer savings card</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Reported as &quot;as little as&quot; 25 dollars. An &quot;as little as&quot; figure is a floor, not a price, and it is conditional on the plan covering this drug rather than merely on having commercial insurance.</td>
-          <td>A direct read of the savings card terms, including the maximum benefit and what a covered-plan-excluded-indication patient actually pays.</td>
+          <td>Reported as &quot;as little as&quot; 25 dollars. An &quot;as little as&quot; figure is a floor, not a price, and it is conditional on the plan covering this drug rather than merely on having commercial insurance. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Foundayo</td>
@@ -1257,23 +1201,15 @@
           <td>List price, no program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>No list or WAC figure was obtained. Lilly&#39;s statutory price-disclosure page for this product could not be read.</td>
-          <td>A direct read of the Lilly pricing-information page.</td>
-        </tr>
-        <tr>
-          <td>Wegovy</td>
-          <td>TrumpRx</td>
-          <td>low doses</td>
-          <td class="num">none</td>
-          <td>An &quot;as low as&quot; introductory figure was reported for the starting doses. The platform could not be read.</td>
-          <td>A direct read of the trumprx.gov Wegovy product page, per dose.</td>
+          <td>No list or WAC figure was obtained. Lilly&#39;s statutory price-disclosure page for this product could not be read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Wegovy</td>
           <td>TrumpRx</td>
           <td>standard doses</td>
           <td class="num">none</td>
-          <td>Reported at a materially higher figure than the advertised introductory price, applying immediately rather than after a promotional period.</td>
+          <td>Direct read of trumprx.gov on 2026-09-28: the platform lists one Wegovy pen price with no dose split, so a standard-dose-specific figure cannot be confirmed separately. Previously circulating secondary figures remain unconfirmed.</td>
           <td>A direct read of the trumprx.gov Wegovy product page, per dose.</td>
         </tr>
         <tr>
@@ -1281,8 +1217,8 @@
           <td>Patient assistance program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
-          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Zepbound</td>
@@ -1329,8 +1265,8 @@
           <td>Patient assistance program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
-          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Mounjaro</td>
@@ -1361,8 +1297,8 @@
           <td>Patient assistance program</td>
           <td>any</td>
           <td class="num">none</td>
-          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.</td>
-          <td>A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies.</td>
+          <td>Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served &quot;no healthy upstream&quot;; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.</td>
+          <td>A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com.</td>
         </tr>
         <tr>
           <td>Foundayo</td>
@@ -1423,7 +1359,7 @@
       <li><a href="/privacy/">Privacy</a></li>
       <li><a href="/terms/">Terms</a></li>
     </ul>
-    <p>Pricing data as of <time datetime="2026-07-30">2026-07-30</time>.</p>
+    <p>Pricing data as of <time datetime="2026-09-28">2026-09-28</time>.</p>
   </div>
 </footer>
 

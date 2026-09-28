@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-09-28",
+    "title": "First verified prices: NovoCare Pharmacy and TrumpRx read directly",
+    "summary": "The first primary-source reads since launch. The NovoCare Pharmacy page and the federal TrumpRx platform were read directly on September 28, 2026, and eight figures were confirmed with their conditions; two insured offers were confirmed as bounds (which are not prices, so they still render no number). Every Lilly-sourced figure remains unverified because Lilly properties refuse automated readers.",
+    "changes": [
+      "Confirmed on NovoCare Pharmacy: Wegovy pill self-pay tiers (starting strength, the 4 mg strength, and the two highest strengths at a higher verified figure), Wegovy injection introductory price for the two starting doses (first two monthly fills, offer verified through December 31, 2026) with the ongoing prices for standard and HD strengths, and the Ozempic introductory price with its verified ongoing prices per strength.",
+      "Confirmed on TrumpRx: the Zepbound, Ozempic and Wegovy pen monthly figures as displayed on the federal platform, each beside the reference figure the platform shows. The previously conflicting Zepbound figure is superseded by the current listing.",
+      "Recorded, not promoted: the insured \"pay as little as\" offers on NovoCare Pharmacy are verified bounds with a verified monthly savings cap, and bounds never become values under the rules of evidence.",
+      "Attempted and refused: every Lilly property refused automated readers (HTTP 403, gateway errors, timeouts), so all Lilly-sourced figures stay unverified with the attempt recorded against each.",
+      "The end-date ambiguity on the introductory offers is resolved by the direct read: the verified offer runs through December 31, 2026."
+    ]
+  },
+  {
     "date": "2026-07-30",
     "title": "Site launch, with no verified prices",
     "summary": "The tool, the engine and the full source manifest go live. No price renders as a number, because on this date no figure could be confirmed against a primary source. This entry exists so the gap is on the record from day one rather than discovered later.",
