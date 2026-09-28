@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30",
+  "generatedAt": "2026-09-28",
   "verification": {
     "status": "primary_sources_unreachable",
-    "summary": "Every price in this file is filed as unverified with a null value. On 2026-07-30 the build environment's egress policy denied HTTPS CONNECT to every primary source (fda.gov, accessdata.fda.gov, api.fda.gov, cms.gov, medicare.gov, hhs.gov, trumprx.gov, sec.gov, lilly.com, investor.lilly.com, lillydirect.lilly.com, novonordisk.com, novocare.com, wegovy.com, ozempic.com), so no figure could be confirmed by direct retrieval. Secondary sources may locate a fact but may never confirm one, so no figure here renders as a number.",
+    "summary": "Partial verification achieved 2026-09-28: the NovoCare Pharmacy page (novocare.com/pharmacy.html) and the federal TrumpRx platform (trumprx.gov) were read directly and eight figures were confirmed with their conditions. Every Lilly-sourced figure remains unverified: lillydirect.lilly.com, zepbound.lilly.com and the other Lilly properties refused both automated readers (HTTP 403, gateway errors, timeouts). Any figure not marked confirmed still renders no price.",
     "candidateFieldMeaning": "Each datum may carry a `candidate` block: the figure research located, with the provenance actually held for it. The engine NEVER reads `candidate`. It exists so /methodology/ can show its work and so a single verification pass can promote a figure with no code change.",
     "promotionProcedure": "docs/ops-runbook.md, section 'Promoting a candidate figure'",
     "discrepancyReport": "docs/discrepancy-report.md"
@@ -406,9 +406,9 @@
       "notes": "Single-dose vial, starter dose, via the self-pay program.",
       "candidate": {
         "value": 299,
-        "provenance": "Located via search-index summaries of a Lilly announcement dated 2025-12-01 reporting a reduction from 349 to 299 for the 2.5 mg vial. NOT a direct read of any Lilly page.",
+        "provenance": "Located via search-index summaries of a Lilly announcement dated 2025-12-01 reporting a reduction from 349 to 299 for the 2.5 mg vial. NOT a direct read of any Lilly page. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "One direct read of lillydirect.lilly.com to confirm the figure is still current."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -424,9 +424,9 @@
       "notes": "Single-dose vial, second dose tier, via the self-pay program.",
       "candidate": {
         "value": 399,
-        "provenance": "Located via search-index summaries of the same 2025-12-01 Lilly announcement, reporting a reduction from 499 to 399 for the 5 mg vial. NOT a direct read.",
+        "provenance": "Located via search-index summaries of the same 2025-12-01 Lilly announcement, reporting a reduction from 499 to 399 for the 5 mg vial. NOT a direct read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "One direct read of lillydirect.lilly.com."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -446,31 +446,27 @@
       ],
       "candidate": {
         "value": 449,
-        "provenance": "Located via search-index summaries of the 2025-12-01 Lilly announcement, reporting a reduction from 499 to 449 for all other approved doses. NOT a direct read.",
+        "provenance": "Located via search-index summaries of the 2025-12-01 Lilly announcement, reporting a reduction from 499 to 449 for all other approved doses. NOT a direct read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "Direct read of lillydirect.lilly.com, and explicit confirmation of the 45-day refill condition, which materially changes real monthly cost."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
-      "value": null,
+      "value": 299,
       "unit": "USD/month",
       "drug": "zepbound",
       "dose_or_tier": "any",
       "pathway": "trumprx",
-      "source_url": "https://trumprx.gov/",
+      "source_url": "https://www.trumprx.gov/",
       "source_type": "primary_government",
-      "verified_date": "2026-07-30",
-      "confidence": "conflicting",
-      "notes": "Sources conflict and the live platform could not be read. A November 2025 announcement described approximately 346 per month; later readings of the live site described approximately 299. The live site governs, and it is unreadable from this build.",
-      "candidate": {
-        "value": null,
-        "provenance": "Two conflicting figures, neither confirmable. trumprx.gov returned HTTP 403 to every request on 2026-07-30.",
-        "basis": "conflicting_secondary",
-        "needs": "A direct read of trumprx.gov. Until then this figure must not render as a number in any state."
-      },
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Direct read of the federal TrumpRx platform. A November 2025 announcement had described a higher figure, which the current listing supersedes.",
       "caveats": [
-        "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost."
-      ]
+        "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost.",
+        "Price as displayed on the federal platform on September 28, 2026, beside a reference figure of roughly one thousand ninety dollars. The listing states no dose split, fill limits, or introductory conditions; the introductory warning above reflects secondary reporting we could not confirm or refute on the platform page itself."
+      ],
+      "reverifyBy": "2026-10-31"
     },
     {
       "value": null,
@@ -485,9 +481,9 @@
       "notes": "Requires commercial insurance. Reported to apply to PEN presentations only: single-dose vials are reported to be excluded from the savings card entirely and sold only through the separate cash-pay programme.",
       "candidate": {
         "value": null,
-        "provenance": "Copay card amounts are tiered by whether the plan covers the indication, and the terms could not be retrieved. No single figure is defensible.",
+        "provenance": "Copay card amounts are tiered by whether the plan covers the indication, and the terms could not be retrieved. No single figure is defensible. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "unretrieved",
-        "needs": "Direct read of the Zepbound savings card terms, including the maximum annual benefit."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       },
       "caveats": [
         "If you are prescribed single-dose VIALS rather than a pen, this savings card is reported not to apply to you at all. That is a different pathway with a different price. Check which presentation you have been prescribed."
@@ -528,9 +524,9 @@
       "notes": "Reference figure only. Sources give 1086 as WAC and approximately 1059 attributed to April 2026 published pricing. A spread in the denominator changes the headline saving, so no single figure is adopted.",
       "candidate": {
         "value": null,
-        "provenance": "Four mutually inconsistent figures located: 1086, 1059, 1059.87 and 1087. Averaging them would invent a price nobody charges.",
+        "provenance": "Four mutually inconsistent figures located: 1086, 1059, 1059.87 and 1087. Averaging them would invent a price nobody charges. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required. TrumpRx (read 2026-09-28) displays a reference figure of $1,087 beside the Zepbound offer; not promoted because the platform does not label the figure a list price and no manufacturer page could be read.",
         "basis": "conflicting_secondary",
-        "needs": "A current WAC or list figure from a Lilly source, with its as-of date."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -546,9 +542,9 @@
       "notes": "Requires commercial insurance. Amount depends on whether your plan covers the weight-management indication.",
       "candidate": {
         "value": null,
-        "provenance": "Terms unretrievable on 2026-07-30.",
-        "basis": "unretrieved",
-        "needs": "Direct read of the Wegovy savings card terms."
+        "provenance": "Direct read of novocare.com/pharmacy.html on 2026-09-28 confirms the insured offer as a bound, not a price: \"Pay as little as $25 per month for up to 3 months\", capped at \"a maximum savings of $100/month\" (exact source wording held here; card prose stays number-free by policy). Value stays null because a bound is not a price.",
+        "basis": "primary_read_bound",
+        "needs": "Verbatim capture of the covered-vs-not-covered distinction and the federal-program exclusion sentence from the product savings pages, which still refused automated readers."
       }
     },
     {
@@ -564,56 +560,43 @@
       "notes": "Reference figure only.",
       "candidate": {
         "value": 1349,
-        "provenance": "Reported at approximately 1349 per month. Not confirmable without a direct read.",
+        "provenance": "Reported at approximately 1349 per month. Not confirmable without a direct read. TrumpRx (read 2026-09-28) displays a reference figure of $1,349 beside the Wegovy pen offer; not promoted because the platform does not label the figure a list price and no manufacturer page could be read.",
         "basis": "secondary_press",
         "needs": "A current list figure from a Novo Nordisk source."
       }
     },
     {
-      "value": null,
+      "value": 199,
       "unit": "USD/month",
       "drug": "ozempic",
       "dose_or_tier": "any",
       "pathway": "novocare_self_pay",
-      "source_url": "https://www.novocare.com/",
+      "source_url": "https://www.novocare.com/pharmacy.html",
       "source_type": "primary_manufacturer",
-      "verified_date": "2026-07-30",
-      "confidence": "conflicting",
-      "notes": "Direct cash-pay price for the type 2 diabetes indication. The advertised introductory figure is reported to apply to the two lowest doses only; higher doses are reported to cost more from the first fill.",
-      "candidate": {
-        "value": 199,
-        "provenance": "Reported at 199 per month. novocare.com denied by egress policy on 2026-07-30.",
-        "basis": "secondary_press",
-        "needs": "Direct read of novocare.com."
-      },
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Direct cash-pay price for the type 2 diabetes indication. Verified introductory self-pay price on the NovoCare Pharmacy page.",
       "caveats": [
-        "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost.",
-        "IMPORTANT: the low figure you have probably seen advertised for this pathway is reported NOT to apply to this dose at all. It is reported to cover only the two starting doses. At this dose the higher price is reported to apply from your FIRST fill, not after a promotional period. Arriving at the counter expecting the advertised figure could mean a difference of roughly 150 dollars on day one. Confirm your dose price before you fill.",
-        "The end date of this offer is genuinely unclear: three different dates are in circulation and one of them has already passed. If an offer price matters to your decision, confirm it is still running before you fill."
-      ]
+        "This is an INTRODUCTORY price for the two starting doses (0.25 mg and 0.5 mg), for the first two monthly fills, verified to run through December 31, 2026. Afterward the verified ongoing prices are roughly three hundred fifty dollars per month for the 0.25 mg, 0.5 mg and 1 mg strengths, and roughly five hundred dollars per month for the 2 mg strength. One month equals one box of one pen. Do not budget the introductory figure as your ongoing cost."
+      ],
+      "reverifyBy": "2026-10-31"
     },
     {
-      "value": null,
+      "value": 199,
       "unit": "USD/month",
       "drug": "ozempic",
       "dose_or_tier": "any",
       "pathway": "trumprx",
-      "source_url": "https://trumprx.gov/",
+      "source_url": "https://www.trumprx.gov/",
       "source_type": "primary_government",
-      "verified_date": "2026-07-30",
-      "confidence": "conflicting",
-      "notes": "A November 2025 announcement described approximately 350 per month; later readings of the live site described approximately 199. Unreadable from this build. The advertised introductory figure is reported to apply to the two lowest doses only; higher doses are reported to cost more from the first fill.",
-      "candidate": {
-        "value": null,
-        "provenance": "Conflicting, neither confirmable. HTTP 403 on 2026-07-30.",
-        "basis": "conflicting_secondary",
-        "needs": "A direct read of trumprx.gov."
-      },
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Direct read of the federal TrumpRx platform, 2026-09-28.",
       "caveats": [
         "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost.",
-        "IMPORTANT: the low figure you have probably seen advertised for this pathway is reported NOT to apply to this dose at all. It is reported to cover only the two starting doses. At this dose the higher price is reported to apply from your FIRST fill, not after a promotional period. Arriving at the counter expecting the advertised figure could mean a difference of roughly 150 dollars on day one. Confirm your dose price before you fill.",
-        "The end date of this offer is genuinely unclear: three different dates are in circulation and one of them has already passed. If an offer price matters to your decision, confirm it is still running before you fill."
-      ]
+        "Price as displayed on the federal platform on September 28, 2026, beside a reference figure of roughly one thousand thirty dollars. The listing states no dose split, fill limits, or introductory conditions; the introductory warning above reflects secondary reporting we could not confirm or refute on the platform page itself."
+      ],
+      "reverifyBy": "2026-10-31"
     },
     {
       "value": null,
@@ -628,9 +611,9 @@
       "notes": "Requires commercial insurance covering the type 2 diabetes indication.",
       "candidate": {
         "value": null,
-        "provenance": "Terms unretrievable on 2026-07-30.",
-        "basis": "unretrieved",
-        "needs": "Direct read of the Ozempic savings card terms."
+        "provenance": "Direct read of novocare.com/pharmacy.html on 2026-09-28 confirms the insured offer as a bound, not a price: \"Pay as little as $25 per month for up to 3 months\", capped at \"a maximum savings of $100/month\" (exact source wording held here; card prose stays number-free by policy). Value stays null because a bound is not a price.",
+        "basis": "primary_read_bound",
+        "needs": "Verbatim capture of the covered-vs-not-covered distinction and the federal-program exclusion sentence from the product savings pages, which still refused automated readers."
       }
     },
     {
@@ -646,50 +629,42 @@
       "notes": "Reference figure only. Sources give approximately 935 and approximately 1028.",
       "candidate": {
         "value": null,
-        "provenance": "Two figures in circulation, neither confirmable.",
+        "provenance": "Two figures in circulation, neither confirmable. TrumpRx (read 2026-09-28) displays a reference figure of $1,028 beside the Ozempic offer; not promoted because the platform does not label the figure a list price and no manufacturer page could be read.",
         "basis": "conflicting_secondary",
         "needs": "A current list figure from a Novo Nordisk source."
       }
     },
     {
-      "value": null,
+      "value": 149,
       "unit": "USD/month",
       "drug": "wegovy_pill",
       "dose_or_tier": "1.5mg",
       "pathway": "novocare_self_pay",
-      "source_url": "https://www.novocare.com/",
+      "source_url": "https://www.novocare.com/pharmacy.html",
       "source_type": "primary_manufacturer",
-      "verified_date": "2026-07-30",
-      "confidence": "conflicting",
-      "notes": "Oral starting dose. The two figures in circulation for oral semaglutide are reported to describe different strengths and different offer windows rather than being a contradiction: this strength is reported at the lower figure.",
-      "candidate": {
-        "value": null,
-        "provenance": "Reported at the lower of the two circulating figures for this strength. The apparent 149-versus-199 conflict is reported to resolve as a strength-and-deadline distinction rather than a contradiction, but neither figure was read from a Novo Nordisk page.",
-        "basis": "conflicting_secondary",
-        "needs": "A direct read of novocare.com establishing which figure applies to which purchase channel. Until then this renders as unverified rather than picking a side."
-      }
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Oral starting strength, verified on the NovoCare Pharmacy page. Higher strengths carry higher verified figures on the same page.",
+      "caveats": [
+        "This figure is the verified 1.5 mg starting strength only. The 4 mg strength is verified at a higher figure, and the 9 mg and 25 mg strengths higher still, on the same pharmacy page. Budget the figure for your exact strength."
+      ],
+      "reverifyBy": "2026-10-31"
     },
     {
-      "value": null,
+      "value": 199,
       "unit": "USD/month",
       "drug": "wegovy_pill",
       "dose_or_tier": "higher_doses",
       "pathway": "novocare_self_pay",
-      "source_url": "https://www.novocare.com/",
+      "source_url": "https://www.novocare.com/pharmacy.html",
       "source_type": "primary_manufacturer",
-      "verified_date": "2026-07-30",
-      "confidence": "conflicting",
-      "notes": "Oral doses above the starting dose. One strength is reported to sit at the lower introductory figure only until the end of August 2026, after which it is reported to rise.",
-      "candidate": {
-        "value": null,
-        "provenance": "No figure located for the higher oral doses.",
-        "basis": "unretrieved",
-        "needs": "Direct read of novocare.com."
-      },
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Oral doses above the starting strength. This row holds the verified 4 mg strength figure; the two highest strengths are verified higher on the same page.",
       "caveats": [
-        "An offer covering one of these strengths is reported to expire at the end of August 2026, after which the price is reported to rise by roughly a third. If you are starting or continuing at this strength, confirm the current price rather than relying on a figure published earlier in the year."
+        "This is the verified 4 mg strength figure. The 9 mg and 25 mg strengths are verified at roughly three hundred dollars per month on the same pharmacy page. If you take one of those strengths, budget the higher figure."
       ],
-      "reverifyBy": "2026-08-31"
+      "reverifyBy": "2026-10-31"
     },
     {
       "value": null,
@@ -722,9 +697,9 @@
       "notes": "Reported as a single flat self-pay price across ALL dose strengths, structurally unlike Zepbound vials which are tiered. Mounjaro must not inherit Zepbound dose-tier logic.",
       "candidate": {
         "value": null,
-        "provenance": "Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain.",
+        "provenance": "Reported as added at 50 to 60 percent off list, which is a range rather than a price. Deriving a number from a percentage range would be manufacturing precision the source does not contain. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "Direct read of lillydirect.lilly.com for an actual Mounjaro self-pay figure."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -740,9 +715,9 @@
       "notes": "Requires commercial insurance covering the type 2 diabetes indication.",
       "candidate": {
         "value": null,
-        "provenance": "Terms unretrievable on 2026-07-30.",
+        "provenance": "Terms unretrievable on 2026-07-30. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "unretrieved",
-        "needs": "Direct read of the Mounjaro savings card terms."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -758,54 +733,42 @@
       "notes": "Reference figure only.",
       "candidate": {
         "value": null,
-        "provenance": "Not separately located from Zepbound reporting.",
+        "provenance": "Not separately located from Zepbound reporting. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "unretrieved",
-        "needs": "A current list figure from a Lilly source."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
-      "value": null,
+      "value": 199,
       "unit": "USD/month",
       "drug": "wegovy_injection",
       "dose_or_tier": "low_doses",
       "pathway": "novocare_self_pay",
-      "source_url": "https://www.novocare.com/",
+      "source_url": "https://www.novocare.com/pharmacy.html",
       "source_type": "primary_manufacturer",
-      "verified_date": "2026-07-30",
-      "confidence": "unverified",
-      "notes": "Lowest two doses (0.25 mg and 0.5 mg). Reported to carry an introductory price for a limited number of fills.",
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Lowest two doses (0.25 mg and 0.5 mg). Verified introductory self-pay price on the NovoCare Pharmacy page.",
       "caveats": [
-        "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost.",
-        "The end date of this offer is genuinely unclear: three different dates are in circulation and one of them has already passed. If an offer price matters to your decision, confirm it is still running before you fill."
+        "This is an INTRODUCTORY price for the two starting doses only, and only for the first two monthly fills. The offer is verified to run through December 31, 2026. After those fills the ongoing price is the standard-doses figure on this pathway. Do not budget the introductory figure as your ongoing cost. One month equals one box of four pens."
       ],
-      "candidate": {
-        "value": null,
-        "provenance": "A low introductory figure and a higher ongoing figure are both reported for these doses. Which applies depends on fill number and on an offer end date. Not confirmable without a direct read.",
-        "basis": "secondary_press",
-        "needs": "A direct read of novocare.com establishing the introductory price, how many fills it covers, its end date, and the ongoing price after it."
-      }
+      "reverifyBy": "2026-10-31"
     },
     {
-      "value": null,
+      "value": 349,
       "unit": "USD/month",
       "drug": "wegovy_injection",
       "dose_or_tier": "standard_doses",
       "pathway": "novocare_self_pay",
-      "source_url": "https://www.novocare.com/",
+      "source_url": "https://www.novocare.com/pharmacy.html",
       "source_type": "primary_manufacturer",
-      "verified_date": "2026-07-30",
-      "confidence": "unverified",
-      "notes": "Doses from 1 mg upward. Reported to be priced above the lowest two doses, contradicting the flat-rate pricing widely attributed to this pathway.",
-      "candidate": {
-        "value": null,
-        "provenance": "Reported at a materially higher ongoing figure than the introductory price quoted for the lowest doses. Not confirmable without a direct read.",
-        "basis": "secondary_press",
-        "needs": "A direct read of novocare.com for the per-dose price table."
-      },
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Doses from 1 mg upward. Verified ongoing self-pay price on the NovoCare Pharmacy page.",
       "caveats": [
-        "IMPORTANT: the low figure you have probably seen advertised for this pathway is reported NOT to apply to this dose at all. It is reported to cover only the two starting doses. At this dose the higher price is reported to apply from your FIRST fill, not after a promotional period. Arriving at the counter expecting the advertised figure could mean a difference of roughly 150 dollars on day one. Confirm your dose price before you fill.",
-        "The end date of this offer is genuinely unclear: three different dates are in circulation and one of them has already passed. If an offer price matters to your decision, confirm it is still running before you fill."
-      ]
+        "This is the ongoing non-introductory price for the 0.25 mg through 2.4 mg strengths. The highest strength, Wegovy HD at 7.2 mg, is verified at a higher figure, roughly four hundred dollars per month, on the same pharmacy page. One month equals one box of four pens."
+      ],
+      "reverifyBy": "2026-10-31"
     },
     {
       "value": null,
@@ -862,9 +825,9 @@
       "notes": "Starting dose.",
       "candidate": {
         "value": 149,
-        "provenance": "Reported at 149 per month post-launch. lilly.com denied at the egress gateway on 2026-07-30.",
+        "provenance": "Reported at 149 per month post-launch. lilly.com denied at the egress gateway on 2026-07-30. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -880,9 +843,9 @@
       "notes": "Second dose step.",
       "candidate": {
         "value": 199,
-        "provenance": "Reported at 199 per month post-launch. Not read.",
+        "provenance": "Reported at 199 per month post-launch. Not read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -898,9 +861,9 @@
       "notes": "5.5 mg and 9 mg, reported to share a price tier.",
       "candidate": {
         "value": 299,
-        "provenance": "Reported at 299 per month for both 5.5 mg and 9 mg. Not read.",
+        "provenance": "Reported at 299 per month for both 5.5 mg and 9 mg. Not read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "A direct read of the Lilly Foundayo pricing page confirming the actual launched self-pay price for this dose."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -919,9 +882,9 @@
       ],
       "candidate": {
         "value": null,
-        "provenance": "Post-launch reporting gives 349 as the regular price and 299 when refilled within 45 days. Pre-approval reporting gave a top-of-range figure of 399, which is an agreement price rather than a launched one. The brief warned specifically against shipping pre-approval pricing, so no figure is adopted.",
+        "provenance": "Post-launch reporting gives 349 as the regular price and 299 when refilled within 45 days. Pre-approval reporting gave a top-of-range figure of 399, which is an agreement price rather than a launched one. The brief warned specifically against shipping pre-approval pricing, so no figure is adopted. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "A direct read establishing the regular price, the conditional price, and the exact refill terms."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -937,9 +900,9 @@
       "notes": "Requires commercial insurance that covers this medication specifically. Excludes Medicare, Medicare Part D, Medicare Advantage, Medigap and any other government programme.",
       "candidate": {
         "value": null,
-        "provenance": "Reported as \"as little as\" 25 dollars. An \"as little as\" figure is a floor, not a price, and it is conditional on the plan covering this drug rather than merely on having commercial insurance.",
+        "provenance": "Reported as \"as little as\" 25 dollars. An \"as little as\" figure is a floor, not a price, and it is conditional on the plan covering this drug rather than merely on having commercial insurance. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "A direct read of the savings card terms, including the maximum benefit and what a covered-plan-excluded-indication patient actually pays."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -995,31 +958,27 @@
       "notes": "Reference figure only.",
       "candidate": {
         "value": null,
-        "provenance": "No list or WAC figure was obtained. Lilly's statutory price-disclosure page for this product could not be read.",
+        "provenance": "No list or WAC figure was obtained. Lilly's statutory price-disclosure page for this product could not be read. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "secondary_press",
-        "needs": "A direct read of the Lilly pricing-information page."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
-      "value": null,
+      "value": 199,
       "unit": "USD/month",
       "drug": "wegovy_injection",
       "dose_or_tier": "low_doses",
       "pathway": "trumprx",
-      "source_url": "https://trumprx.gov/",
+      "source_url": "https://www.trumprx.gov/",
       "source_type": "primary_government",
-      "verified_date": "2026-07-30",
-      "confidence": "unverified",
-      "notes": "Starting doses on the federal platform. Reported to carry an introductory price for a limited number of fills.",
+      "verified_date": "2026-09-28",
+      "confidence": "confirmed",
+      "notes": "Direct read of the federal TrumpRx platform, 2026-09-28.",
       "caveats": [
-        "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost."
+        "The low figure widely quoted for this pathway is reported to be an INTRODUCTORY price that applies to the two starting doses only, and only for the first two monthly fills. After that it is reported to rise substantially. Do not budget it as your ongoing cost.",
+        "Price as displayed on the federal platform on September 28, 2026, beside a reference figure of roughly one thousand three hundred fifty dollars. The listing states no dose split, fill limits, or introductory conditions; the introductory warning above reflects secondary reporting we could not confirm or refute on the platform page itself."
       ],
-      "candidate": {
-        "value": null,
-        "provenance": "An \"as low as\" introductory figure was reported for the starting doses. The platform could not be read.",
-        "basis": "secondary_press",
-        "needs": "A direct read of the trumprx.gov Wegovy product page, per dose."
-      }
+      "reverifyBy": "2026-10-31"
     },
     {
       "value": null,
@@ -1031,13 +990,13 @@
       "source_type": "primary_government",
       "verified_date": "2026-07-30",
       "confidence": "unverified",
-      "notes": "Doses from 1 mg upward on the federal platform. Reported to be priced above the starting doses from the first fill.",
+      "notes": "TrumpRx read 2026-09-28 shows a single Wegovy pen price with no dose tiering; no standard-dose-specific figure is separately stated on the platform. See the low-doses row on this pathway.",
       "caveats": [
         "IMPORTANT: the low figure you have probably seen advertised for this pathway is reported NOT to apply to this dose at all. It is reported to cover only the two starting doses. At this dose the higher price is reported to apply from your FIRST fill, not after a promotional period. Arriving at the counter expecting the advertised figure could mean a difference of roughly 150 dollars on day one. Confirm your dose price before you fill."
       ],
       "candidate": {
         "value": null,
-        "provenance": "Reported at a materially higher figure than the advertised introductory price, applying immediately rather than after a promotional period.",
+        "provenance": "Direct read of trumprx.gov on 2026-09-28: the platform lists one Wegovy pen price with no dose split, so a standard-dose-specific figure cannot be confirmed separately. Previously circulating secondary figures remain unconfirmed.",
         "basis": "secondary_press",
         "needs": "A direct read of the trumprx.gov Wegovy product page, per dose."
       }
@@ -1058,9 +1017,9 @@
       ],
       "candidate": {
         "value": null,
-        "provenance": "Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.",
+        "provenance": "Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "unretrieved",
-        "needs": "A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -1184,9 +1143,9 @@
       ],
       "candidate": {
         "value": null,
-        "provenance": "Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.",
+        "provenance": "Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "unretrieved",
-        "needs": "A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
@@ -1268,9 +1227,9 @@
       ],
       "candidate": {
         "value": null,
-        "provenance": "Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none.",
+        "provenance": "Income thresholds are reported to vary by product rather than sitting at one figure, and sources directly contradict each other on whether the weight-management products are covered at all. Publishing a threshold we could not read would be worse than publishing none. Verification attempted 2026-09-28: Lilly properties refuse automated readers (lillydirect.lilly.com served \"no healthy upstream\"; zepbound.lilly.com timed out; plain HTTP fetch returns 403). A human browser visit or allowlisted egress is required.",
         "basis": "unretrieved",
-        "needs": "A direct read of the programme page establishing which products are covered and the income threshold and household-size table that applies."
+        "needs": "A human visit to the Lilly page from a residential connection, or an egress allowlist entry for lillydirect.lilly.com / zepbound.lilly.com / mounjaro.lilly.com."
       }
     },
     {
