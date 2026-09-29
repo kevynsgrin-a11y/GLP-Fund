@@ -421,9 +421,18 @@ async function main() {
     const shippedCards = await page.eval(SCRAPE_CARDS);
     check('results render for a completed flow', shippedCards.length > 0, `${shippedCards.length} cards`);
     check(
-      'shipped data renders no price as a number',
-      shippedCards.every((c) => /Price not currently verified/.test(c.cost ?? '')),
+      'shipped data: every card renders a verified number or the honest not-verified state',
+      shippedCards.every((c) =>
+        /^\$\d/.test(c.cost ?? '')
+          ? /\d{4}-\d{2}-\d{2}/.test(c.verified ?? '')
+          : /Price not currently verified/.test(c.cost ?? '')),
       shippedCards.map((c) => `${c.name}: ${c.cost}`).join(' | ').slice(0, 160)
+    );
+    const shippedTrumpRx = shippedCards.find((c) => /TrumpRx/.test(c.name ?? ''));
+    check(
+      'shipped data: TrumpRx Zepbound renders the verified $299 (first verified prices, PR #13)',
+      shippedTrumpRx?.cost === '$299' && /\d{4}-\d{2}-\d{2}/.test(shippedTrumpRx?.verified ?? ''),
+      `${shippedTrumpRx?.name ?? 'no TrumpRx card'}: ${shippedTrumpRx?.cost ?? '?'} (${shippedTrumpRx?.verified ?? 'no date'})`
     );
     check(
       'every card carries a source link and a verification date',
