@@ -247,6 +247,8 @@ function layout({ title, description, path, body, jsonLd = [], script = '', vari
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1MERP1T5FS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1MERP1T5FS');</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(canonical)}">
@@ -1866,9 +1868,11 @@ function buildPrivacy() {
 
   <h2>Cookies and analytics</h2>
   <p>
-    We set no cookies of our own and run no first-party analytics. Display
-    advertising, where enabled, is served by a third party that may set its own
-    cookies; that behaviour is governed by their policy, not this one.
+    We run first-party aggregate analytics (Google Analytics 4) to count visits
+    and page views. It sets a first-party cookie (_ga*) holding a random client
+    identifier; we use it for measurement only, not advertising or profiling.
+    Display advertising, where enabled, is served by a third party that may set
+    its own cookies; that behaviour is governed by their policy, not this one.
   </p>
 
   <h2>Children</h2>

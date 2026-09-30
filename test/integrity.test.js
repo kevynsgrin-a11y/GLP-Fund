@@ -114,6 +114,9 @@ test('zero emoji in any source or rendered file', () => {
  * build -- which is the neutrality guarantee stated as code.
  */
 const ALLOWED_HOSTS = new Set([
+  // Measurement infrastructure, not a content source: the GA4 tag loader
+  // (see tools/build-pages.mjs layout). Never cited as a price reference.
+  'www.googletagmanager.com', 'googletagmanager.com',
   // Government, primary.
   'www.fda.gov', 'fda.gov', 'accessdata.fda.gov',
   'www.cms.gov', 'cms.gov', 'www.medicare.gov', 'medicare.gov',
