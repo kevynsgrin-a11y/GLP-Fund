@@ -897,6 +897,76 @@ function buildDrugPage(drugId) {
  * Per-pathway explainers
  * ========================================================================= */
 
+// SEO layer for the pathway explainers (2026-10-04). Every answer restates
+// prose that already exists in the page's own sections — no new claims, no
+// new figures. Descriptions exist because the default (intro-truncated) lead
+// buries the exact query phrases these pages rank on.
+const PATHWAY_DESCRIPTIONS = {
+  lillydirect:
+    'LillyDirect Self Pay cash prices for Zepbound and Mounjaro, explained: dose tiers, the refill condition we could not confirm, and the deductible trade-off of paying cash.',
+  novocare:
+    'NovoCare Pharmacy cash prices for Wegovy and Ozempic: flat injectable pricing, the oral-dose conflict we could not resolve, and the deductible trade-off.',
+  'medicare-glp1-bridge':
+    'Medicare GLP-1 Bridge eligibility and cost as reported: BMI thresholds, the comorbid route, exclusions we apply, and what we could not confirm with CMS.',
+  trumprx:
+    'TrumpRx GLP-1 prices: what the federal platform has announced, why the figures conflict, and why we render them unverified.',
+};
+
+const PATHWAY_FAQS = {
+  lillydirect: [
+    {
+      q: 'Does LillyDirect Self Pay count toward my deductible or out-of-pocket maximum?',
+      a: 'No. Self Pay is a cash purchase that bypasses insurance entirely, so what you spend does not count toward your deductible or your annual out-of-pocket maximum. If you expect to hit either this year, the cheapest monthly price may not be the cheapest annual outcome.',
+    },
+    {
+      q: 'Do I need a prescription to buy from LillyDirect?',
+      a: 'Yes. A direct-pay program changes who you pay, not whether you need a prescriber.',
+    },
+    {
+      q: 'Is Zepbound one flat price on LillyDirect?',
+      a: 'No. Zepbound single-dose vials are filed in tiers rather than at a flat price, so the starter dose and the maintenance doses are different figures. Any page quoting one Zepbound price is wrong for most readers.',
+    },
+    {
+      q: 'Can LillyDirect tell me if a competitor is cheaper?',
+      a: 'No. A manufacturer pharmacy is accurate about its own products and structurally incapable of telling you that a competitor\u2019s medication or the federal platform is cheaper for you. This site has no relationship with Eli Lilly and ranks every pathway against the others.',
+    },
+  ],
+  novocare: [
+    {
+      q: 'Does NovoCare Pharmacy take insurance?',
+      a: 'No. NovoCare is Novo Nordisk\u2019s direct-to-patient channel selling Wegovy and Ozempic for cash without insurance. As with any manufacturer direct-pay program, the amount does not count toward your deductible or out-of-pocket maximum.',
+    },
+    {
+      q: 'Is the NovoCare price the same at every dose?',
+      a: 'The injectable products have been reported at a flat price across doses. The oral product is where reporting conflicts: two different monthly figures are in circulation for the starting dose, and we could not establish which describes what, so that price renders as unverified rather than averaged into a third number.',
+    },
+  ],
+  'medicare-glp1-bridge': [
+    {
+      q: 'Who is eligible for the Medicare GLP-1 Bridge?',
+      a: 'The program is reported to provide a fixed low monthly cost to eligible Medicare beneficiaries, subject to a BMI threshold, with a further route in at a lower BMI where a weight-related comorbid condition is present. It is reported to exclude beneficiaries whose therapy is already covered under the obstructive sleep apnea indication. Confirm your own eligibility with Medicare directly.',
+    },
+    {
+      q: 'Is the Medicare GLP-1 Bridge price confirmed?',
+      a: 'No. We could not reach CMS to confirm the beneficiary cost, so it renders as unverified rather than as a number. The exclusions we apply anyway, because applying them is the cautious direction.',
+    },
+    {
+      q: 'Can I use a manufacturer savings card on Medicare?',
+      a: 'No. Manufacturer copay and savings cards exclude anyone enrolled in a federal healthcare program. What remains available is this program, standard Part D coverage where your plan covers the indication, and cash-pay direct programs.',
+    },
+  ],
+  trumprx: [
+    {
+      q: 'What does TrumpRx charge for GLP-1 medications?',
+      a: 'We do not publish a verified figure. A November 2025 announcement described roughly $350 a month for Ozempic and Wegovy and roughly $346 for Zepbound, and later readings of the live site described materially lower figures. These conflict, the live site governs, and we cannot read it automatically \u2014 so TrumpRx figures render as unverified with a link to the platform.',
+    },
+    {
+      q: 'Why doesn\u2019t this site show TrumpRx prices?',
+      a: 'Because we could not read the platform automatically and no government page we could reach states a current per-drug price. Publishing a number we cannot verify is exactly the aggregator behavior this site exists to correct.',
+    },
+  ],
+};
+
 const PATHWAY_PAGES = [
   {
     slug: 'trumprx',
@@ -1126,6 +1196,14 @@ function buildPathwayPage(page) {
     )
     .join('\n')}
 
+  ${(PATHWAY_FAQS[page.slug] ?? []).length
+    ? `
+  <h2>Questions people ask about ${esc(page.h1)}</h2>
+  ${(PATHWAY_FAQS[page.slug] ?? [])
+    .map((f) => `\n  <h3>${esc(f.q)}</h3>\n  <p>${esc(f.a)}</p>`)
+    .join('')}`
+    : ''}
+
   ${adSlot('inline')}
 
   <h2>Every figure we hold for this pathway</h2>
@@ -1143,10 +1221,23 @@ function buildPathwayPage(page) {
     `${page.slug}/index.html`,
     layout({
       title: page.title,
-      description: truncateAtWord(page.intro, 155),
+      description: page.description ?? PATHWAY_DESCRIPTIONS[page.slug] ?? truncateAtWord(page.intro, 155),
       path: `/${page.slug}/`,
       body,
       jsonLd: [
+        ...((PATHWAY_FAQS[page.slug] ?? []).length
+          ? [
+              {
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: PATHWAY_FAQS[page.slug].map((f) => ({
+                  '@type': 'Question',
+                  name: f.q,
+                  acceptedAnswer: { '@type': 'Answer', text: f.a },
+                })),
+              },
+            ]
+          : []),
         {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
